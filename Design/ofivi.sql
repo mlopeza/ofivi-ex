@@ -33,7 +33,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Escuela` (
   CONSTRAINT `escuela_campus`
     FOREIGN KEY (`idCampus` )
     REFERENCES `SEVI`.`Campus` (`idCampus` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
@@ -53,7 +53,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Departamento` (
   CONSTRAINT `Departamento_Escuela`
     FOREIGN KEY (`idEscuela` )
     REFERENCES `SEVI`.`Escuela` (`idEscuela` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
@@ -84,7 +84,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Usuario` (
   CONSTRAINT `Usuario_Departamento`
     FOREIGN KEY (`idDepartamento` )
     REFERENCES `SEVI`.`Departamento` (`idDepartamento` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
@@ -201,7 +201,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Estado` (
   CONSTRAINT `Estado_Usuario`
     FOREIGN KEY (`idUsuario` )
     REFERENCES `SEVI`.`Usuario` (`idUsuario` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
@@ -221,12 +221,12 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Usuario_Proyecto` (
   CONSTRAINT `UP_Proyecto`
     FOREIGN KEY (`idProyecto` )
     REFERENCES `SEVI`.`Proyecto` (`idProyecto` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `UP_Usuario`
     FOREIGN KEY (`idUsuario` )
     REFERENCES `SEVI`.`Usuario` (`idUsuario` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
@@ -257,7 +257,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Empresa` (
   CONSTRAINT `Empresa_Grupo`
     FOREIGN KEY (`idGrupo` )
     REFERENCES `SEVI`.`Grupo` (`idGrupo` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
@@ -276,7 +276,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Categoria_Proyecto` (
   CONSTRAINT `CP_Categoria`
     FOREIGN KEY (`idCategoria` )
     REFERENCES `SEVI`.`Categoria` (`idCategoria` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `CP_Proyecto`
     FOREIGN KEY (`idProyecto` )
@@ -305,7 +305,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Contacto` (
   CONSTRAINT `Contacto_Empresa`
     FOREIGN KEY (`idEmpresa` )
     REFERENCES `SEVI`.`Empresa` (`idEmpresa` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
@@ -324,13 +324,13 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Contacto_Proyecto` (
   CONSTRAINT `fk_Contacto_Proyecto_1`
     FOREIGN KEY (`idContacto` )
     REFERENCES `SEVI`.`Contacto` (`idContacto` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Contacto_Proyecto_2`
     FOREIGN KEY (`idProyecto` )
     REFERENCES `SEVI`.`Proyecto` (`idProyecto` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -405,8 +405,8 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Usuario_Area` (
   CONSTRAINT `UA_Area`
     FOREIGN KEY (`idArea_Conocimiento` )
     REFERENCES `SEVI`.`Area_Conocimiento` (`idArea_Conocimiento` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
