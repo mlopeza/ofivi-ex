@@ -79,6 +79,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Usuario` (
   `Vista_Supervisor_Extension` BIT NOT NULL DEFAULT 0 ,
   `Vista_Usuario_Extension` BIT NOT NULL DEFAULT 0 ,
   `Usuario_Activo` BIT NOT NULL DEFAULT 0 ,
+  `Usuario_Aceptado` CHAR NOT NULL DEFAULT 'e' ,
   PRIMARY KEY (`idUsuario`, `idDepartamento`) ,
   INDEX `Usuario_Departamento` (`idDepartamento` ASC) ,
   CONSTRAINT `Usuario_Departamento`
@@ -414,3 +415,4 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
