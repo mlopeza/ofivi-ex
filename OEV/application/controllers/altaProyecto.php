@@ -20,9 +20,12 @@ extends CI_Controller {
      */
     public function index()
     {
-		
+		$this->load->helper('url');
         $this->load->helper('form');
+		$this->load->view('usuarios/header');
+		$this->load->view('usuarios/usuario_extension/menu_extension');
         $this->load->view('usuarios/usuario_extension/altaProyecto');
+		$this->load->view('usuarios/footer');
     }
 
     public function alta()

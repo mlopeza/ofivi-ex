@@ -17,7 +17,19 @@
         <script src="<?php echo base_url("js/button-utils.js");?>"></script>
         <script src="<?php echo base_url("js/jquery.dataTables.js");?>"></script>
 		<script src="<?php echo base_url("js/simple-search.js");?>"></script>
-
+		<script src="<?php echo base_url("js/admin-users-util.js");?>"></script>
+		<script src="<?php echo base_url("js/js/wysihtml5-0.3.0.js");?>"></script>	
+		<script src="<?php echo base_url("js/bootstrap-wysihtml5.js");?>"></script>
+		<script src="<?php echo base_url("js/bootstrap-datepicker.js");?>"></script>
+        <script src="<?php echo base_url("js/jquery.min.js");?>"></script>
+        <script src="<?php echo base_url("js/bootstrap.min.js");?>"></script>
+        <script src="<?php echo base_url("js/jquery.dataTables.js");?>"></script>
+        <script src="<?php echo base_url("js/jquery-ui.min.js");?>"></script>
+        <script src="<?php echo base_url("js/button-utils.js");?>"></script>
+        <script src="<?php echo base_url("js/jquery.tokeninput.js");?>"></script>
+        <script src="<?php echo base_url("js/wysihtml5-0.3.0.js");?>"></script>
+        <script src="<?php echo base_url("js/bootstrap-wysihtml5.js");?>"></script>
+        <script src="<?php echo base_url("js/bootstrap-datepicker.js");?>"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $('.togglemenuleft').click(function(){
@@ -69,7 +81,52 @@
                     $(this).find('i').toggleClass('icon-circle-arrow-left');
                 });
 
+
+            //wysihtml5
+                $('.textarea').wysihtml5();
+                $('a.style').click(function(){
+                    var style = $(this).attr('href');
+                    $('.links-css').attr('href','css/' + style);
+                    return false;
+                });
+                 $("#demo-input-local").tokenInput([
+                {id: 7, name: "Ruby"},
+                {id: 11, name: "Python"},
+                {id: 13, name: "JavaScript"},
+                {id: 17, name: "ActionScript"},
+                {id: 19, name: "Scheme"},
+                {id: 23, name: "Lisp"},
+                {id: 29, name: "C#"},
+                {id: 31, name: "Fortran"},
+                {id: 37, name: "Visual Basic"},
+                {id: 41, name: "C"},
+                {id: 43, name: "C++"},
+                {id: 47, name: "Java"}
+            ]); 
+
             });
         </script>
+
+<script>
+    $(function(){
+      window.prettyPrint && prettyPrint();
+
+            
+      var startDate = new Date(2012,1,20);
+      var endDate = new Date(2012,1,25);
+      $('#end').datepicker()
+        .on('changeDate', function(ev){
+          if (ev.date.valueOf() > endDate.valueOf()){
+            $('#alert').show().find('strong').text('The start date can not be greater then the end date');
+          } else {
+            $('#alert').hide();
+            startDate = new Date(ev.date);
+            $('#startDate').text($('#end').data('date'));
+          }
+          $('#end').datepicker('hide');
+        });
+    });
+  </script>
+
     </body>
 </html>

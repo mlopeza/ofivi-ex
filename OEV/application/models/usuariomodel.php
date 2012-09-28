@@ -37,7 +37,12 @@ class Usuariomodel extends CI_Model {
 	function getUsuariosPendientes(){
 		$this->load->database();
         $query = $this->db->query('
-			SELECT d.Nombre as Departamento,e.Nombre as Escuela, c.Nombre as Campus,u.* FROM Usuario u
+			SELECT d.idDepartamento as idDepartamento,
+					d.Nombre as Departamento,
+					e.Nombre as Escuela, 
+					c.Nombre as Campus,
+					u.* 
+			FROM Usuario u
 			INNER JOIN Departamento d ON d.idDepartamento = u.idDepartamento
 			INNER JOIN Escuela e ON e.idEscuela = d.idEscuela
 			INNER JOIN Campus c ON e.idCampus = c.idCampus
