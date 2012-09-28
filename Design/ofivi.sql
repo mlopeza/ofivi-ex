@@ -161,7 +161,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `SEVI`.`Proyecto` ;
 
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Proyecto` (
-  `idProyecto` INT NOT NULL ,
+  `idProyecto` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
   `descripcionUsuario` BLOB NOT NULL ,
   `descripcionAEV` BLOB NOT NULL ,
