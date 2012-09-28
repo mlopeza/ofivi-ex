@@ -31,6 +31,23 @@ class Usuariomodel extends CI_Model {
         $query = $this->db->get('usuario');
         return $query->result();
     }
+
+	//Funcion que agrega una clausula where a la busqueda
+
+	function getUsuariosPendientes(){
+		$this->load->database();
+        $query = $this->db->query('
+			SELECT d.Nombre as Departamento,e.Nombre as Escuela, c.Nombre as Campus,u.* FROM Usuario u
+			INNER JOIN Departamento d ON d.idDepartamento = u.idDepartamento
+			INNER JOIN Escuela e ON e.idEscuela = d.idEscuela
+			INNER JOIN Campus c ON e.idCampus = c.idCampus
+			WHERE u.Usuario_Aceptado <> \'a\'
+			');
+		
+		return $query;
+
+	}
+
 	//Función para validar que el usuario puso correctamente su contraseña.
 	function validLogin(){
 		$this->load->database();
