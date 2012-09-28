@@ -85,6 +85,13 @@ class Departamento extends CI_Model {
 
 		$this->db->insert('departamento',$data);	 	
 	}
-		
+	//Función Select de Nombres
+	function selectN($id){
+		$this->load->database();
+		$this->db->select('nombre,idDepartamento');
+		$this->db->order_by("nombre", "asc");
+		$query = $this->db->get_where('departamento',array('idEscuela'=>$id));
+		return $query->result();
+	}		
 }
 ?>

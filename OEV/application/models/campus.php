@@ -79,6 +79,15 @@ class Campus extends CI_Model {
 
 		$this->db->insert('campus',$data);	 	
 	}
+	//Función Select de Nombres
+	function selectN(){
+		$this->load->database();
+		$this->db->select('Nombre,idCampus');
+		$this->db->order_by("Nombre", "asc");
+		$query = $this->db->get('campus');
+		return $query->result();
+	}
+
 		
 }
 ?>

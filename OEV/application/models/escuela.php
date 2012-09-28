@@ -87,6 +87,13 @@ class Escuela extends CI_Model {
 
 		$this->db->insert('departamento',$data);	 	
 	}
-		
+	//Función Select de Nombres
+	function selectN($id){
+		$this->load->database();
+		$this->db->select('Nombre,idEscuela');
+		$this->db->order_by("Nombre", "asc");
+		$query = $this->db->get_where('escuela',array('idCampus'=>$id));
+		return $query->result();
+	}
 }
 ?>
