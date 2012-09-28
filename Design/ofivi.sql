@@ -418,3 +418,46 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+-- -----------------------------------------------------
+-- Data for table `SEVI`.`Campus`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SEVI`;
+INSERT INTO `SEVI`.`Campus` (`idCampus`, `Nombre`, `Ciudad`) VALUES (1, 'Campus Monterrey', 'Monterrey');
+INSERT INTO `SEVI`.`Campus` (`idCampus`, `Nombre`, `Ciudad`) VALUES (2, 'Campus Guadalajara', 'Guadalajara');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SEVI`.`Escuela`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SEVI`;
+INSERT INTO `SEVI`.`Escuela` (`idEscuela`, `idCampus`, `Nombre`, `Ubicacion`) VALUES (1, 1, 'Escuela de Ingenieria', 'Aulas 6 Cuarto Piso');
+INSERT INTO `SEVI`.`Escuela` (`idEscuela`, `idCampus`, `Nombre`, `Ubicacion`) VALUES (2, 1, 'Escuela de Negocios', 'A6402');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SEVI`.`Departamento`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SEVI`;
+INSERT INTO `SEVI`.`Departamento` (`idDepartamento`, `idEscuela`, `nombre`, `ubicacion`) VALUES (1, 1, 'Ciencias Computacionales', 'A2110');
+INSERT INTO `SEVI`.`Departamento` (`idDepartamento`, `idEscuela`, `nombre`, `ubicacion`) VALUES (2, 1, 'Ingenieria Quimica', 'A1110');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SEVI`.`Usuario`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SEVI`;
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (1, 1, 'elda_quiroga', 'Elda', 'Quiroga', '', 'equiroga@itesm.mx', 'none', 'p', 1, 0, 0, 0, 0, 0, 1, 'e');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (2, 1, 'L00203456', 'Juan Arturo', 'Nolazco', 'Flores', 'jnolazco@itesm.mx', 'none', 'p', 1, 1, 0, 0, 0, 0, 1, 'e');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (3, 1, 'L00202020', 'Luis Humberto', 'Gonzalez', 'Guerra', 'lherrera@itesm.mx', 'none', 'p', 1, 0, 0, 1, 1, 0, 1, 'a');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (4, 1, 'jorge_limon', 'Jorge', 'Limon', '', 'jlimon@itesm.mx', 'none', 'v', 0, 1, 1, 0, 0, 0, 1, 'a');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (5, 1, 'evesdrop_fake_hack_hack', 'Eve', 'Fake', '', 'efake@itesm.mx', 'none', 'a', 0, 0, 0, 0, 0, 0, 0, 'r');
+
+COMMIT;
+
