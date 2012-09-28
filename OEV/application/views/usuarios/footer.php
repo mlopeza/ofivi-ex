@@ -25,8 +25,9 @@
                     $('#menu-left').toggleClass('icons-only');
                     $('#menu-left').toggleClass('span3');
                     
-                    $('#content').toggleClass('span6');
-                    $('#content').toggleClass('span8');
+					//Reducia el tamaño del Contenido, lo removí
+                    //$('#content').toggleClass('span6');
+                    //$('#content').toggleClass('span8');
                     
                     $(this).find('i').toggleClass('icon-circle-arrow-right');
                     $(this).find('i').toggleClass('icon-circle-arrow-left');
@@ -41,8 +42,8 @@
                     $('.links-css').attr('href','css/' + style);
                     return false;
                 });       
-
                 $('#menu-left a').click(function(){
+
                     $('#menu-left').find('a').removeClass('active');
                     $(this).addClass('active');
                 });

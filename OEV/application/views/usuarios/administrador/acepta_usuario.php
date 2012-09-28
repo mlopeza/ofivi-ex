@@ -5,11 +5,10 @@
                             <li class="active"><a href="#tab1" data-toggle="tab">Tables</a></li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="tab1" style="min-width:2500px;">
-
+                            <div class="tab-pane active" id="tab1">
                                 <div class="row-fluid">
                                     <!--Tabs2-->
-                                    <div class="span20">
+                                    <div class="span15" style="min-width:2500px;">
                                         <div id="accordion1" class="accordion">
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
