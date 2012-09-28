@@ -1,6 +1,3 @@
-								</div>
-                    </div>
-                </div>
             </div>
             <footer>
                 <p><strong>&copy; Oficina de Extensión Virtual - 2012</strong></p>
@@ -17,6 +14,9 @@
         <script src="<?php echo base_url("js/charts/jquery.flot.pie.js");?>"></script>
         <script src="<?php echo base_url("js/charts/customcharts.js");?>"></script>
         <script src="<?php echo base_url("js/jquery-ui.min.js");?>"></script>
+        <script src="<?php echo base_url("js/button-utils.js");?>"></script>
+        <script src="<?php echo base_url("js/jquery.dataTables.js");?>"></script>
+
         <script type="text/javascript">
             $(document).ready(function(){
                 $('.togglemenuleft').click(function(){
@@ -33,23 +33,29 @@
                     $('#menu-left').find('.dropdown').toggle();
                 });
 
+                // sort table 
+                $('#example').dataTable();
+                $('a.style').click(function(){
+                    var style = $(this).attr('href');
+                    $('.links-css').attr('href','css/' + style);
+                    return false;
+                });       
+
                 $('#menu-left a').click(function(){
                     $('#menu-left').find('a').removeClass('active');
                     $(this).addClass('active');
                 });
-        // tool tip
+		        // tool tip
                 $('a').tooltip('hide');
 
-        //datePciker
+       			 //datePciker
                 $("#datepicker").datepicker();
-// switch style 
+				// switch style 
                 $('a.style').click(function(){
                     var style = $(this).attr('href');
                     $('.links-css').attr('href','css/' + style);
                     return false;
                 });
-               
-
 
                 $(".switcher").click(function(){
                     if($(this).find('i').hasClass('icon-circle-arrow-right'))

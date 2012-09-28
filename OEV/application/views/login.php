@@ -52,6 +52,15 @@
                                 <input type="text" maxlength="30" name="username" placeholder="Usuario" id="id_username" required>
                             </div>
                             <div class="input">
+                                <input type="text" maxlength="30" name="nombre" placeholder="Nombre" id="name" required>
+                            </div>
+                            <div class="input">
+                                <input type="text" maxlength="30" name="apellido_paterno" placeholder="Apellido Paterno" id="lastname1" required>
+                            </div>
+                            <div class="input">
+                                <input type="text" maxlength="30" name="apellido_materno" placeholder="Apellido Materno" id="lastname2" required>
+                            </div>
+                            <div class="input">
                                 <input type="text" maxlength="75" name="email" placeholder="Email" id="id_email" required>
                                 <div class="email_suggestion" style="display: none;"></div>
                             </div>

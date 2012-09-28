@@ -136,6 +136,3 @@
 
         <div class="container-fluid">
             <div class="row-fluid">
-                <div id='content' class="span6 section-body">
-                    <div id="section-body" class="tabbable">
-								<div class="row-fluid">
