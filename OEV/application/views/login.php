@@ -80,6 +80,14 @@
                            		<option>Ciencias Computacionales</option>
                            		<option>Arquitectura</option>
                            	</select>
+                           </div>
+                          <div class="input">
+                           	<select name="tipo-usuario" id="select-usuario">
+                           		<option>Tipo de Usuario</option>
+                           		<option>Administrador de Extensión</option>
+                           		<option>Usuario de Extensión</option>
+                           		<option>Usuario de Proyectos</option>
+                           	</select>
                            </div>	
                             <div class="actions">
                                 <input type="submit" class="btn btn-success" value="Solicitar Cuenta">
@@ -115,7 +123,7 @@
             </div>
         </div>
 
-        <!-- JavaScript
+        <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="js/jquery.min.js"></script>
