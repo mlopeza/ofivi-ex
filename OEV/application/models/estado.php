@@ -38,9 +38,14 @@ Class Estado extends CI_Model{
 		$estado = $this->input->post('estado');
 	}
 	
-	function insert($id){
+	function insert($proyectoid,$usuarioid){
+		$this->load->database();
 		$estado = array(
-			'idProyecto' => $id,
+			'idProyecto' => $proyectoid,
+			'idUsuario'=> $usuarioid,
+			'estado' => 'Registrado');
+		$this->db->insert('Estado',$estado);			
+	}
 			
 }
 ?>

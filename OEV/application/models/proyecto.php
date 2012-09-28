@@ -23,7 +23,7 @@ class Proyecto extends CI_Model{
 	}
 	
 	function setNombre(){
-		$nombre = $this->input->post('nombre');
+		$nombre = $this->input->post('nombre_proyecto');
 	}
 	
 	function setDescripcionAEV(){
@@ -46,7 +46,7 @@ class Proyecto extends CI_Model{
     function alta(){
         $this->load->database();
         $proyecto = array(
-			'nombre'=>$this->input->post('nombre'),
+			'nombre'=>$this->input->post('nombre_proyecto'),
 			'descripcionUsuario'=>$this->input->post('descripcionUsuario'),
 			'descripcionAEV'=>$this->input->post('descripcionAEV'));
 		$this->db->insert('Proyecto',$proyecto);
@@ -58,8 +58,6 @@ class Proyecto extends CI_Model{
 		$query = $this->db->query('SELECT LAST_INSERT_ID()');
 		$row = $query->row_array();
 		return $row['LAST_INSERT_ID()'];
-		/*$query = $this->db->query("SELECT LAST_INSERT_ID() as id");
-		return $query;*/
 	}
 }
 ?>

@@ -29,22 +29,25 @@ extends CI_Controller {
     }
 
     public function alta()
-    {	$this->load->library('session');
-		$this->load->model('proyecto');
+    {	$this->load->model('proyecto');
 		$this->load->model('estado');
 		
 		$array = array('username' => 'Pedro',
-		'idUsuario' => 1);
+		'idUsuario' => 2);
 		$this->session->set_userdata($array);	
 		
-		$this->proyecto->alta();
+		$this->proyecto->alta();	//Se registra el proyecto
+		$ultimoid = $this->proyecto->ultimo();	//Se obtiene el ID del ultimo proyecto registrado
 		
-		$ultimoid = $this->proyecto->ultimo();
-		
-		
-		echo 'ultimo id = ' . $ultimoid;
+		//Sesion estatica para pruebas
+		$this->load->library('session');
 		$usuario = $this->session->userdata('username');
 		$idUsuario = $this->session->userdata('idUsuario');
+		//Fin de Sesion estatica
+		
+		$this->estado->insert($ultimoid,$idUsuario);
+		
+		
 		echo '\n Todo bien ;) ' . $usuario . '  Id = '. $idUsuario;
 		
 		
