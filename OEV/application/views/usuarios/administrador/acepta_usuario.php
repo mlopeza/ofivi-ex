@@ -5,7 +5,7 @@
                             <li class="active"><a href="#tab1" data-toggle="tab">Tables</a></li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="tab1" style="min-width:2000px;">
+                            <div class="tab-pane active" id="tab1" style="min-width:2500px;">
 
                                 <div class="row-fluid">
                                     <!--Tabs2-->
@@ -14,7 +14,7 @@
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
                                                     <a class="accordion-toggle" data-toggle="collapse" href="#notification" data-original-title="">
-                                                        <i class="icon-th icon-white"></i> <span class="divider-vertical"></span>  Bordered table <i class="icon-chevron-down icon-white pull-right"></i>
+                                                        <i class="icon-th icon-white"></i> <span class="divider-vertical"></span>  Solicitudes de Acceso <i class="icon-chevron-down icon-white pull-right"></i>
                                                     </a>
                                                 </div>
                                                 <div id="notification" class="accordion-body collapse in">
@@ -35,67 +35,67 @@
                                                                     <th>AExtension</th>
                                                                     <th>UExtension</th>
                                                                     <th>UProyectos</th>
+                                                                    <th>ULegal</th>
 																						  <th>Cliente</th>
-																						  <th>Activo</th>
 																						  <th>Estatus</th>
 																						  <th>Acción</th>
                                                                 </tr>
                                                             </thead>
-                                                            <tbody>
+															<?php foreach($data->result() as $row){ ?>
+                                                                <tr>
+                                                                    <td><?php echo $row->Username; ?></td>
+                                                                    <td><?php echo $row->Campus; ?></td>
+                                                                    <td><?php echo $row->Escuela; ?></td>
+                                                                    <td><?php echo $row->Departamento; ?></td>
+                                                                    <td><?php echo $row->Nombre; ?></td>
+                                                                    <td><?php echo $row->ApellidoP; ?></td>
+                                                                    <td><?php echo $row->ApellidoM; ?></td>
+                                                                    <td><?php echo $row->email; ?></td>
+                                                                    <td>
+																		<?php
+																			echo "<select>";
+																			switch($row->Tipo_Usuario){
+																				case 'a':echo "<option>Administrador</option>"; 
+																						echo "<option>Usuario de Extensión</option><option>Administrador de Extensión</option><option>Profesor</option>";
+																						break;
+																				case 'u':echo "<option>Usuario de Extensión</option>"; 
+																						echo "<option>Administrador</option><option>Administrador de Extensión</option><option>Profesor</option>";
+																						break;
+																				case 'v':echo "<option>Administrador de Extensión</option>";
+																						echo "<option>Administrador</option><option>Usuario de Extensión</option><option>Profesor</option>";
+																						break;
+																				case 'p':echo "<option>Profesor</option>";
+																						echo "<option>Administrador</option><option>Usuario de Extensión</option><option>Administrador de Extensión</option>";
+																						break;
+																			} 
+																			echo "<select>";
 
-                                                                <tr class="odd">
-                                                                    <td>L00200888</td>
-                                                                    <td>Monterrey</td>
-                                                                    <td>Ingenieria y Ciencias</td>
-                                                                    <td>Ciencias Computacionales</td>
-                                                                    <td>Elda</td>
-                                                                    <td>Quiroga</td>
-                                                                    <td></td>
-                                                                    <td>equiroga@itesm.mx</td>
-                                                                    <td>Profesor</td>
-                                                                    <td>Sí</td>
-                                                                    <td>Sí</td>
-                                                                    <td>No</td>
-                                                                    <td>No</td>
-																						  <td>No</td>
-																						  <td>No</td>
-																						  <td>Pendiente</td>
+
+																		?>
+																	</td>
+                                                                    <td><?php echo evalua_tipo_boton(ord($row->Vista_Administrador)); ?></td>
+                                                                    <td><?php echo evalua_tipo_boton(ord($row->Vista_Supervisor_Extension)); ?></td>
+                                                                    <td><?php echo evalua_tipo_boton(ord($row->Vista_Usuario_Extension)); ?></td>
+                                                                    <td><?php echo evalua_tipo_boton(ord($row->Vista_Profesor)); ?></td>
+																	<td><?php echo evalua_tipo_boton(ord($row->Vista_Cliente)); ?></td>
+																	<td><?php echo evalua_tipo_boton(ord($row->Vista_Legal)); ?></td>
+																	<td>
+																		<?php 
+																				switch($row->Usuario_Aceptado){
+																						case 'a': echo "Aceptado";break;
+																						case 'e': echo "En espera";break;
+																						case 'r': echo "Rechazado";break;
+																				}
+
+																		?>
+
+																	</td>
 																						  <td style="text-align:center;">
 																						  		<button class="btn btn-primary">Aceptar</button>
 																						  		<button class="btn btn-danger">Rechazar</button>
 																						  </td>
                                                                 </tr>
-                                                                <tr class="even">
-                                                                    <td>L00200989</td>
-                                                                    <td>Monterrey</td>
-                                                                    <td>Ingenieria y Ciencias</td>
-                                                                    <td>Ciencias Computacionales</td>
-                                                                    <td>Luis Humberto</td>
-                                                                    <td>Gonzalez</td>
-                                                                    <td>Guerra</td>
-                                                                    <td>lgonzalez@itesm.mx</td>
-                                                                    <td>Profesor</td>
-                                                                    <td>Sí</td>
-                                                                    <td>No</td>
-                                                                    <td>No</td>
-                                                                    <td>No</td>
-																						  <td>No</td>
-																						  <td>
-																									<div class="btn-group">
-                                                                                <button class="btn btn-success"><i class="icon-ok icon-white"></i> Sí</button>
-                                                                                <button data-toggle="dropdown" class="btn btn-success dropdown-toggle"><span class="caret"></span></button>
-                                                                                <ul class="dropdown-menu">
-                                                                                    <li><a href="#" class="yes-button" data-original-title="">Sí</a></li>
-                                                                                    <li><a href="#" class="no-button" data-original-title="">No</a></li>
-                                                                                </ul>
-                                                                            </div>																						  
-																						  </td>
-																						  <td>Pendiente</td>
-																						  <td style="text-align:center;">
-																						  		<button class="btn btn-primary">Aceptar</button>
-																						  		<button class="btn btn-danger">Rechazar</button>
-																						  </td>
-                                                                </tr>
+															<? }; ?>
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr>
@@ -112,8 +112,8 @@
                                                                     <th>AExtension</th>
                                                                     <th>UExtension</th>
                                                                     <th>UProyectos</th>
+                                                                    <th>ULegal</th>
 																						  <th>Cliente</th>
-																						  <th>Activo</th>
 																						  <th>Estatus</th>
 																						  <th>Acción</th>
                                                                 </tr>

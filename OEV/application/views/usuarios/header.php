@@ -13,6 +13,8 @@
         <link class="links-css" href="<?php echo base_url("css/base.css"); ?>" rel="stylesheet">
          <!-- home page css -->
         <link href="<?php echo base_url("css/home-page.css"); ?>" rel="stylesheet">
+        <link href="<?php echo base_url("css/forms.css"); ?>" rel="stylesheet">
+
         <style type="text/css">
             body {
                 padding-top: 60px;

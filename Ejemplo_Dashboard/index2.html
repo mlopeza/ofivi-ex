@@ -11,6 +11,7 @@
         <link class="links-css" href="css/base.css" rel="stylesheet">
          <!-- home page css -->
         <link href="css/home-page.css" rel="stylesheet">
+                <link href="css/forms.css" rel="stylesheet">
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -27,7 +28,7 @@
         <link href="css/bootstrap-responsive.css" rel="stylesheet">
          <!-- media query css -->
         <link href="css/media-fluid.css" rel="stylesheet">
-
+<link href="css/bootstrap-wysihtml5.css" rel="stylesheet">
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -151,137 +152,130 @@
 
                     <div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab1" data-toggle="tab">Tables</a></li>
+                            <li class="active"><a href="#tab1" data-toggle="tab">Datos Básicos</a></li>
+                            <li><a href="#tab2" data-toggle="tab">Información de Contactos</a></li>
+                            <li><a href="#tab3" data-toggle="tab">Descripción del Cliente</a></li>
+                            <li><a href="#tab4" data-toggle="tab">Descripción de Usuario</a></li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane active" id="tab1" style="min-width:2000px;">
+                            <div class="tab-pane active" id="tab1">
 
+                                <!--/Tabs2-->
+
+
+                                <!--Tabs3-->
                                 <div class="row-fluid">
-                                    <!--Tabs2-->
-                                    <div class="span20">
+                                    <div class="span12">
                                         <div id="accordion1" class="accordion">
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
-                                                    <a class="accordion-toggle" data-toggle="collapse" href="#notification" data-original-title="">
-                                                        <i class="icon-th icon-white"></i> <span class="divider-vertical"></span>  Bordered table <i class="icon-chevron-down icon-white pull-right"></i>
+                                                    <a class="accordion-toggle" data-toggle="collapse" href="#control" data-original-title="">
+                                                        <i class="icon-list-alt icon-white"></i> <span class="divider-vertical"></span> Datos de la Empresa<i class="icon-chevron-down icon-white pull-right"></i>
                                                     </a>
                                                 </div>
-                                                <div id="notification" class="accordion-body collapse in">
+                                                <div id="control" class="accordion-body collapse in">
                                                     <div class="accordion-inner paddind">
-                                                        <table  class="table table-bordered table-striped pull-left" id="example" >
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Username</th>
-                                                                    <th>Campus</th>
-                                                                    <th>Escuela</th>
-                                                                    <th>Departamento</th>
-                                                                    <th>Nombre</th>
-                                                                    <th>Paterno</th>
-                                                                    <th>Materno</th>
-                                                                    <th>Correo</th>
-                                                                    <th>Tipo</th>
-                                                                    <th>Administrador</th>
-                                                                    <th>AExtension</th>
-                                                                    <th>UExtension</th>
-                                                                    <th>UProyectos</th>
-																						  <th>Cliente</th>
-																						  <th>Activo</th>
-																						  <th>Estatus</th>
-																						  <th>Acción</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-
-                                                                <tr class="odd">
-                                                                    <td>L00200888</td>
-                                                                    <td>Monterrey</td>
-                                                                    <td>Ingenieria y Ciencias</td>
-                                                                    <td>Ciencias Computacionales</td>
-                                                                    <td>Elda</td>
-                                                                    <td>Quiroga</td>
-                                                                    <td></td>
-                                                                    <td>equiroga@itesm.mx</td>
-                                                                    <td>Profesor</td>
-                                                                    <td>Sí</td>
-                                                                    <td>Sí</td>
-                                                                    <td>No</td>
-                                                                    <td>No</td>
-																						  <td>No</td>
-																						  <td>No</td>
-																						  <td>Pendiente</td>
-																						  <td style="text-align:center;">
-																						  		<button class="btn btn-primary">Aceptar</button>
-																						  		<button class="btn btn-danger">Rechazar</button>
-																						  </td>
-                                                                </tr>
-                                                                <tr class="even">
-                                                                    <td>L00200989</td>
-                                                                    <td>Monterrey</td>
-                                                                    <td>Ingenieria y Ciencias</td>
-                                                                    <td>Ciencias Computacionales</td>
-                                                                    <td>Luis Humberto</td>
-                                                                    <td>Gonzalez</td>
-                                                                    <td>Guerra</td>
-                                                                    <td>lgonzalez@itesm.mx</td>
-                                                                    <td>Profesor</td>
-                                                                    <td>Sí</td>
-                                                                    <td>No</td>
-                                                                    <td>No</td>
-                                                                    <td>No</td>
-																						  <td>No</td>
-																						  <td>
-																									<div class="btn-group">
-                                                                                <button class="btn btn-success"><i class="icon-ok icon-white"></i> Sí</button>
-                                                                                <button data-toggle="dropdown" class="btn btn-success dropdown-toggle"><span class="caret"></span></button>
-                                                                                <ul class="dropdown-menu">
-                                                                                    <li><a href="#" class="yes-button" data-original-title="">Sí</a></li>
-                                                                                    <li><a href="#" class="no-button" data-original-title="">No</a></li>
-                                                                                </ul>
-                                                                            </div>																						  
-																						  </td>
-																						  <td>Pendiente</td>
-																						  <td style="text-align:center;">
-																						  		<button class="btn btn-primary">Aceptar</button>
-																						  		<button class="btn btn-danger">Rechazar</button>
-																						  </td>
-                                                                </tr>
-                                                            </tbody>
-                                                            <tfoot>
-                                                                <tr>
-                                                                    <th>Username</th>
-                                                                    <th>Campus</th>
-                                                                    <th>Escuela</th>
-                                                                    <th>Departamento</th>
-                                                                    <th>Nombre</th>
-                                                                    <th>Paterno</th>
-                                                                    <th>Materno</th>
-                                                                    <th>Correo</th>
-                                                                    <th>Tipo</th>
-                                                                    <th>Administrador</th>
-                                                                    <th>AExtension</th>
-                                                                    <th>UExtension</th>
-                                                                    <th>UProyectos</th>
-																						  <th>Cliente</th>
-																						  <th>Activo</th>
-																						  <th>Estatus</th>
-																						  <th>Acción</th>
-                                                                </tr>
-                                                            </tfoot>
-                                                        </table>
-                                                        <br />
-
+                                                        <form class="form-horizontal">
+                                                            <fieldset>
+                                                                <div class="control-group">
+                                                                    <label for="focusedInput" class="control-label">Nombre de Proyecto.</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" value="" id="focusedInput" class="input-xlarge focused">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label for="selectError" class="control-label">Grupo</label>
+                                                                    <div class="controls">
+                                                                        <select id="Grupo">
+                                                                            <option>NA</option>
+                                                                            <option>FEMSA</option>
+                                                                        </select>
+                                                                        <span class="help-inline"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label for="selectError" class="control-label">Empresa</label>
+                                                                    <div class="controls">
+                                                                        <select id="Empresa">
+                                                                            <option>OXXO</option>
+                                                                        </select>
+                                                                        <span class="help-inline"></span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-actions">
+                                                                    <button class="btn btn-primary" type="submit">Save changes</button>
+                                                                    <button class="btn">Cancel</button>
+                                                                </div>
+                                                            </fieldset>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
 
                                         </div>
-                                    </div></div>
+                                    </div>
+                                 
+                                </div>
+                            </div>
+                            
+									<div class="tab-pane" id="tab2">
+                                <div class="row-fluid">
+                                    <div class="span6">
+                                        <div id="accordion1" class="accordion">
+                                            <div class="accordion-group">
+                                                <div class="accordion-heading">
+                                                    <a class="accordion-toggle" data-toggle="collapse" href="#event" data-original-title="">
+                                                        <i class="icon-bookmark icon-white"></i> <span class="divider-vertical"></span> Agregar Contacto <i class="icon-chevron-down icon-white pull-right"></i>
+                                                    </a>
+                                                </div>
+                                                <div id="event" class="accordion-body collapse in">
+                                                    <div class="accordion-inner" style="text-align:center">
+																			<div class="control-group">
+                                                         		<label for="focusedInput" class="control-label">Contactos</label>
+                                                               <div class="controls">
+                                                               	<input type="text" name="contactos" class='input' id="demo-input-local" name="blah"/>
+                                                               </div>
+                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
+                                        </div>
+                                    </div>
+                                    <!--/Tabs2-->
+
+
+                                    <!--Tabs3-->
+                                    <div class="span6">
+                                        <div id="accordion2" class="accordion">
+                                            <div class="accordion-group">
+                                                <div class="accordion-heading">
+                                                    <a class="accordion-toggle" data-toggle="collapse" href="#statements" data-original-title="">
+                                                        <i class="icon-globe icon-white"></i> <span class="divider-vertical"></span> Crear Contacto <i class="icon-chevron-down icon-white pull-right"></i>
+                                                    </a>
+                                                </div>
+                                                <div id="statements" class="accordion-body collapse in">
+                                                    <div class="accordion-inner">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="tab3">
+                                <textarea name="descripcion_cliente" class="textarea" placeholder="Descripción ..." style="width: 810px; height: 200px"></textarea>
+                            </div>
+                            <div class="tab-pane" id="tab4">
+                                <textarea name="descripcion_usuario" class="textarea" placeholder="Descripción ..." style="width: 810px; height: 200px"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
-          
 <!--------------------------------------------------------------------------END BODY---------------------------------------------------------------------->
 
             </div>
@@ -298,9 +292,16 @@
         <script src="js/jquery.dataTables.js"></script>
         <script src="js/jquery-ui.min.js"></script>
         <script src="js/button-utils.js"></script>
-
+        <script src="js/jquery.tokeninput.js"></script>
+        <script src="js/wysihtml5-0.3.0.js"></script>
+        <script src="js/bootstrap-wysihtml5.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        
         <script type="text/javascript">
+        
             $(document).ready(function(){
+            
+            
                 $('.togglemenuleft').click(function(){
                     $('#menu-left').toggleClass('span1');
                     $('#menu-left').toggleClass('icons-only');
@@ -319,13 +320,7 @@
                     $(this).addClass('active');
                 });
                 
-                // sort table 
-                $('#example').dataTable();
-                $('a.style').click(function(){
-                    var style = $(this).attr('href');
-                    $('.links-css').attr('href','css/' + style);
-                    return false;
-                });                
+         
                 // switch style 
 
                 $(".switcher").click(function(){
@@ -338,6 +333,48 @@
                     $(this).find('i').toggleClass('icon-circle-arrow-left');
                 });
             });
-        </script>
+            
+            //wysihtml5
+                $('.textarea').wysihtml5();
+                $('a.style').click(function(){
+                    var style = $(this).attr('href');
+                    $('.links-css').attr('href','css/' + style);
+                    return false;
+                });
+                 $("#demo-input-local").tokenInput([
+                {id: 7, name: "Ruby"},
+                {id: 11, name: "Python"},
+                {id: 13, name: "JavaScript"},
+                {id: 17, name: "ActionScript"},
+                {id: 19, name: "Scheme"},
+                {id: 23, name: "Lisp"},
+                {id: 29, name: "C#"},
+                {id: 31, name: "Fortran"},
+                {id: 37, name: "Visual Basic"},
+                {id: 41, name: "C"},
+                {id: 43, name: "C++"},
+                {id: 47, name: "Java"}
+            ]);   
+            </script>
+<script>
+    $(function(){
+      window.prettyPrint && prettyPrint();
+
+            
+      var startDate = new Date(2012,1,20);
+      var endDate = new Date(2012,1,25);
+      $('#end').datepicker()
+        .on('changeDate', function(ev){
+          if (ev.date.valueOf() > endDate.valueOf()){
+            $('#alert').show().find('strong').text('The start date can not be greater then the end date');
+          } else {
+            $('#alert').hide();
+            startDate = new Date(ev.date);
+            $('#startDate').text($('#end').data('date'));
+          }
+          $('#end').datepicker('hide');
+        });
+    });
+  </script>
     </body>
 </html>
