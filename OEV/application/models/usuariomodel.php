@@ -1,5 +1,5 @@
 <?php
-class Loginmodel extends CI_Model {
+class Usuariomodel extends CI_Model {
 
 	var $idUsuario = '' ;
 	var $idDepartamento = '' ;
@@ -13,7 +13,7 @@ class Loginmodel extends CI_Model {
 	var $Vista_Supervisor_Extension = '';
 	var $Vista_Usuario_Extension = '';
 	var $Vista_Legal = '';
-	var $Cliente = ''; //Todavía no se implementará.
+	var $Vista_Cliente = ''; //Todavía no se implementará.
  	var $Usuario_Activo = '';
 	var $password ='';
 	var $Usuario_Aceptado = '';
@@ -104,19 +104,31 @@ class Loginmodel extends CI_Model {
 				'Username' => $this->Username
             );
 		$this->db->where('idUsuario', $this->idUsuario);
-		$this->db->insert('usuario',$data);	 
+		$this->db->update('usuario',$data);	 
 	}
 	//Función para insertar un usuario a la tabla de usuarios.
-	function insertarUsuario($campus,$escuela,$departamento,$tipo){
+	function insertarUsuario(){
 		$this->load->database();
 		$arreglo = array(
 		'idUsuario'=>$this->idUsuario,
-		'password'=>hash('sha256',$this->password),
+		'idDepartamento'=>$this->idDepartamento,
+		'Username'=>$this->Username,
+		'Nombre'=>$this->Nombre,
+		'ApellidoP'=>$this->ApellidoP,
+		'ApellidoM'=>$this->ApellidoM,
 		'email'=>$this->email,
-		'campus'=>$campus,
-		'escuela'=>$escuela,
-		'departamento'=>$departamento,
-		'Tipo_Usuario'=>$tipo);
+		'password'=>$this->password,
+		'Tipo_Usuario'=>$this->Tipo_Usuario,
+		'Vista_Profesor'=>$this->Vista_Profesor,
+		'Vista_Administrador'=>$this->Vista_Administrador,
+		'Vista_Supervisor_Extension'=>$this->Vista_Supervisor_Extension,
+		'Vista_Usuario_Extension'=>$this->Vista_Usuario_Extension,
+		'Vista_Legal'=>$this->Vista_Legal,
+		'Vista_Cliente'=>$this->Vista_Cliente,
+		'Usuario_Activo'=>$this->Usuario_Activo,
+		'Usuario_Aceptado'=>$this->Usuario_Aceptado
+
+		);
 		$this->db->insert('usuario',$arreglo);
 		
 	}
@@ -166,6 +178,9 @@ class Loginmodel extends CI_Model {
 	function getTipoUsuario(){
 		return $this->Tipo_Usuario;
 	}
+	function getIdDepartamento(){
+		return $this->idDepartamento;
+	}
 	//Set de todos los atributos
 	function setUsername($param1){
 		$this->Username = $param1;
@@ -210,7 +225,10 @@ class Loginmodel extends CI_Model {
 		$this->Usuario_Activo = $param1;
 	}
 	function setpassword($param1){
-		$this->password = hash('sha256',$param1);
+		$this->password = hash('sha256',$param1);		
+	}
+	function setIdDepartamento($param1){
+		$this->idDepartamento = $param1;
 	}
 }
 ?>

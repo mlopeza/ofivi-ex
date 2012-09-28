@@ -94,11 +94,11 @@
                            </div>	
                            <div class="input">
                            	<select name="tipo-usuario" id="select-usuario">
-                           		<option>Tipo de Usuario</option>
-                           		<option>Administrador de Extensión</option>
-                           		<option>Usuario de Extensión</option>
-                           		<option>Usuario de Proyectos</option>
-                                <option>Usuario de Legal </option>
+                           		<option value= ''>Tipo de Usuario</option>
+                           		<option value='a'>Administrador de Extensión</option>
+                           		<option value='u'>Usuario de Extensión</option>
+                           		<option value='p'>Usuario de Proyectos</option>
+                                <option value='l'>Usuario de Legal </option>
                            	</select>
                            </div>	
                             <div class="actions">
