@@ -66,10 +66,12 @@ DROP TABLE IF EXISTS `SEVI`.`Usuario` ;
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Usuario` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT ,
   `idDepartamento` INT NOT NULL ,
+  `Username` VARCHAR(45) NOT NULL ,
   `Nombre` VARCHAR(40) NOT NULL ,
   `ApellidoP` VARCHAR(20) NOT NULL ,
   `ApellidoM` VARCHAR(20) NULL ,
   `email` VARCHAR(45) NOT NULL ,
+  `password` VARCHAR(80) NOT NULL DEFAULT 'Sin contraseña' ,
   `Tipo_Usuario` CHAR NOT NULL DEFAULT 'c' COMMENT 'p - Profesor\na - Administrador\nu - Usuario de extension\nv - Administrador de Extension\nl - Usuario de Legal\nc - Cliente' ,
   `Vista_Profesor` BIT NOT NULL DEFAULT 0 ,
   `Vista_Administrador` BIT NOT NULL DEFAULT 0 ,
@@ -81,6 +83,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Usuario` (
   `Usuario_Aceptado` CHAR NOT NULL DEFAULT 'e' ,
   PRIMARY KEY (`idUsuario`, `idDepartamento`) ,
   INDEX `Usuario_Departamento` (`idDepartamento` ASC) ,
+  UNIQUE INDEX `Username_UNIQUE` (`Username` ASC) ,
   CONSTRAINT `Usuario_Departamento`
     FOREIGN KEY (`idDepartamento` )
     REFERENCES `SEVI`.`Departamento` (`idDepartamento` )
