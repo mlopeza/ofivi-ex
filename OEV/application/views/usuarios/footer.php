@@ -16,6 +16,7 @@
         <script src="<?php echo base_url("js/jquery-ui.min.js");?>"></script>
         <script src="<?php echo base_url("js/button-utils.js");?>"></script>
         <script src="<?php echo base_url("js/jquery.dataTables.js");?>"></script>
+		<script src="<?php echo base_url("js/simple-search.js");?>"></script>
 
         <script type="text/javascript">
             $(document).ready(function(){
