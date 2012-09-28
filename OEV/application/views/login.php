@@ -14,11 +14,11 @@
         </style>
         <!--  styles -->
          <!-- bootstrap css -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="<?php echo base_url("css/bootstrap.min.css");?>" rel="stylesheet">
          <!-- base css -->
-        <link href="css/base.css" rel="stylesheet">
+        <link href="<?php echo base_url("css/base.css");?>" rel="stylesheet">
          <!-- login page css -->
-        <link href="css/login.css" rel="stylesheet">
+        <link href="<?php echo base_url("css/login.css");?>" rel="stylesheet">
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -31,7 +31,7 @@
             <div class="navbar-inner">
                 <div class="container-fluid">
                 	  <!--Logo del Sistema-->
-                    <a class="brand"><img src="img/logo-small.png" alt="logo" /></a>
+                    <a class="brand"><img src="<?php echo base_url("img/logo-small.png");?>" alt="logo" /></a>
                 </div>
             </div>
         </div>
@@ -43,9 +43,11 @@
                     <div class="accounts-form" id="signup">
                         <h2>Solicita una cuenta al administrador.</h2>
                         <hr class="small">
-
-                        <form id="auth-form" class="clearfix" autocomplete="off" method="POST" action="login.html">
-
+                        
+						<?php
+							$attributes = array('id' => 'auth-for', 'class' => 'clearfix' , 'autocomplete' => 'off');
+							echo form_open('logincontroller/signup',$attributes);
+						?>
                             <div class="input">
                                 <input type="text" maxlength="30" name="username" placeholder="Usuario" id="id_username" required>
                             </div>
@@ -62,11 +64,11 @@
 									<div class="input">
 										<select name="campus" id="select-escuela">
 											<option>Campus</option>
-                           		<option>Monterrey</option>
-                           		<option>Guadalajara</option>
-                           		<option>México</option>
-                           	</select>
-                           </div>
+                           					<option>Monterrey</option>
+                           					<option>Guadalajara</option>
+                           					<option>México</option>
+			                           	</select>
+            		               </div>
 									<div class="input">
                            	<select name="escuela" id="select-escuela">
                            		<option>Escuela</option>	
@@ -80,20 +82,23 @@
                            		<option>Ciencias Computacionales</option>
                            		<option>Arquitectura</option>
                            	</select>
-                           </div>
-                          <div class="input">
+                           </div>	
+                           <div class="input">
                            	<select name="tipo-usuario" id="select-usuario">
                            		<option>Tipo de Usuario</option>
                            		<option>Administrador de Extensión</option>
                            		<option>Usuario de Extensión</option>
                            		<option>Usuario de Proyectos</option>
+                                <option>Usuario de Legal </option>
                            	</select>
                            </div>	
                             <div class="actions">
                                 <input type="submit" class="btn btn-success" value="Solicitar Cuenta">
                             </div>
                             <p class="note"><span class="label label-warning">¿Ya tienes una cuenta?</span> &nbsp;<a href="#">Inicia Sesión</a></p>
-                        </form>
+							<?php
+								echo form_close();
+							?>	
                     </div>
                 </div>
                 <!--Finaliza Solicitud de Cuenta-->
@@ -103,8 +108,10 @@
                         <h2>Inicia sesión con tu cuenta.</h2>
                         <hr class="small">
 
-                        <form id="singup" class="clearfix" autocomplete="off" method="POST" action="index.html">
-
+						<?php
+							 $attributes2 = array('id' => 'login', 'class' => 'clearfix' , 'autocomplete' => 'off');
+							 echo form_open('logincontroller/login',$attributes2);
+						?>
                             <div class="input">
                                 <input type="text" maxlength="30" name="username" placeholder="Usuario" id="username" required>
                             </div>
@@ -123,11 +130,11 @@
             </div>
         </div>
 
-        <!-- Le javascript
+        <!-- JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url("js/jquery.min.js");?>"></script>
+        <script src="<?php echo base_url("js/bootstrap.min.js");?>"></script>
 
 			<!--Este apartado permite hacer el cambio entre la solicitud y el inicio de Sesion-->
         <script type="text/javascript">
