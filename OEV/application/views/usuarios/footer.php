@@ -12,13 +12,11 @@
         <script src="<?php echo base_url("js/charts/jquery.flot.js");?>"></script>
         <script src="<?php echo base_url("js/charts/jquery.flot.resize.js");?>"></script>
         <script src="<?php echo base_url("js/charts/jquery.flot.pie.js");?>"></script>
-        <script src="<?php echo base_url("js/charts/customcharts.js");?>"></script>
         <script src="<?php echo base_url("js/jquery-ui.min.js");?>"></script>
         <script src="<?php echo base_url("js/button-utils.js");?>"></script>
         <script src="<?php echo base_url("js/jquery.dataTables.js");?>"></script>
 		<script src="<?php echo base_url("js/simple-search.js");?>"></script>
 		<script src="<?php echo base_url("js/admin-users-util.js");?>"></script>
-		<script src="<?php echo base_url("js/js/wysihtml5-0.3.0.js");?>"></script>	
 		<script src="<?php echo base_url("js/bootstrap-wysihtml5.js");?>"></script>
 		<script src="<?php echo base_url("js/bootstrap-datepicker.js");?>"></script>
         <script src="<?php echo base_url("js/jquery.min.js");?>"></script>

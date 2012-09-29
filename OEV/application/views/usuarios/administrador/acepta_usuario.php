@@ -1,3 +1,5 @@
+<?php echo form_open_multipart(); ?>
+<?php echo form_close(); ?> 
 <div id="content" class="span9 section-body">
 
                     <div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
@@ -42,7 +44,7 @@
                                                             </thead>
 															<?php foreach($data->result() as $row){ ?>
                                                                 <tr>
-                                                                    <td id="username"><?php echo $row->Username; ?></td>
+                                                                    <td id="username" value="<?php echo $row->idUsuario; ?>"><?php echo $row->Username; ?></td>
                                                                     <td id="campus"><?php echo $row->Campus; ?></td>
                                                                     <td id="escuela"><?php echo $row->Escuela; ?></td>
                                                                     <td id="departamento" value="<?php echo $row->idDepartamento; ?>"><?php echo $row->Departamento; ?></td>

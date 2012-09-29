@@ -39,6 +39,7 @@
 
     </head>
     <body>
+	<input type="hidden" id="csrf_token" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
