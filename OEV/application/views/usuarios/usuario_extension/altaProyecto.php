@@ -9,7 +9,7 @@ echo form_open('altaProyecto/alta',$attributes);
                             <li class="active"><a href="#tab1" data-toggle="tab">Datos Básicos</a></li>
                             <li><a href="#tab2" data-toggle="tab">Información de Contactos</a></li>
                             <li><a href="#tab3" data-toggle="tab">Descripción del Cliente</a></li>
-                            <li><a href="#tab4" data-toggle="tab">Descripción de Usuario</a></li>
+                            <li><a href="#tab4" data-toggle="tab">Interpretación de Usuario</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab1">
