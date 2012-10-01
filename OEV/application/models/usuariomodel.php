@@ -104,6 +104,16 @@ class Usuariomodel extends CI_Model {
 		return FALSE;
 	}
 	
+
+
+	//Funcion para actualizar un usuario,proporcionando el id
+	//y un arreglo con los datos
+	function actualiza_usuario_array($id,$arreglo=array()){
+		$this->load->database();
+		$this->db->where('idUsuario', $id);
+		$this->db->update('Usuario', $arreglo);
+	}
+
 	//Función para hacerle un update a los datos.
 	function actualizarUsuario(){
 		$this->load->database();
@@ -128,6 +138,7 @@ class Usuariomodel extends CI_Model {
 		$this->db->where('idUsuario', $this->idUsuario);
 		$this->db->update('usuario',$data);	 
 	}
+
 	//Función para insertar un usuario a la tabla de usuarios.
 	function insertarUsuario(){
 		$this->load->database();
