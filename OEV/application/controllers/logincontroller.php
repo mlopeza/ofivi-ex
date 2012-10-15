@@ -7,6 +7,8 @@ class Logincontroller extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->view('login');
 	}
+	
+	//Funcion para solicitar una cuenta
 	public function signup()
 	{
 		$this->load->model('usuariomodel');
@@ -28,28 +30,56 @@ class Logincontroller extends CI_Controller {
 
 		}		
 	}	
+	//Funcion para loggearse.
 	public function login()
 	{
 		$this->load->model('usuariomodel');
 		$this->load->helper('security');		
+		$this->load->library('session');
+		$this->load->helper('url');
 		$this->usuariomodel->setUsername($this->input->post('username'));				
+		//se verifica que el usuario exista en la base de datos.
 		if($this->usuariomodel->encontrarUsuario()){
-
+			$vistas['vista'] = array(
+						'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
+						'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
+						'Administrador' => $this->usuariomodel->getVistaAdministrador(),
+						'Legal' => $this->usuariomodel->getVistaLegal(),
+						'Profesor' => $this->usuariomodel->getVistaProfesor() );
+			$newdata = array(
+        	           'username'  => $this->usuariomodel->getUsername(),
+            	       'email'     => $this->usuariomodel->getEmail(),
+					   'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
+		               );
+			//Se valida el login del usuario y  lo redirige a una vista que tenga permitido usar el usuario.
 			switch($this->usuariomodel->validLogin()){
 				case 0:
 					echo "Usuario No Logro Accesar";
+					$this->load->view('vistas/daccess');
 					break;
-				case 1:
-					echo "Vista Administrador";
+				case 1:					
+					$this->session->set_userdata($newdata);
+					$this->load->view('vistas/header',$vistas);					
+					$this->load->view('vistas/admin',$vistas);
+					$this->load->view('vistas/footer');					
 					break;
 				case 2:
-					echo "Vista Profesor";
+					$this->session->set_userdata($newdata);
+					$this->load->view('vistas/header');									
+		//			$this->load->view('vistas/profesor',$vistas);
+					$this->load->view('vistas/footer');					
 					break;
 				case 3:
-					echo "Vista Supervisor Extension";
+					$this->session->set_userdata($newdata);
+					$this->load->view('vistas/footer');				
+	//				$this->load->view('vistas/supervisor',$vistas);
+					$this->load->view('vistas/header');
 					break;
 				case 4:
-					echo "Vista Usuario de Extension";
+					$this->session->set_userdata($newdata);
+					$this->load->view('vistas/header');
+//					$this->load->view('vistas/userext',$vistas);
+					$this->load->view('vistas/footer');
 					break;
 				case 5:
 					echo "Usuario ciego D:";
