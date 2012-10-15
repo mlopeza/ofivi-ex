@@ -14,14 +14,15 @@
         <script src="<?php echo base_url("js/button-utils.js");?>"></script>
         <script src="<?php echo base_url("js/button-utils.js");?>"></script>
         <script src="<?php echo base_url("js/jquery.dataTables.js");?>"></script>
-		<script src="<?php echo base_url("js/simple-search.js");?>"></script>
-		<script src="<?php echo base_url("js/admin-users-util.js");?>"></script>
-		<script src="<?php echo base_url("js/bootstrap-wysihtml5.js");?>"></script>
-		<script src="<?php echo base_url("js/bootstrap-datepicker.js");?>"></script>
+		  <script src="<?php echo base_url("js/simple-search.js");?>"></script>
+		  <script src="<?php echo base_url("js/admin-users-util.js");?>"></script>
+		  <script src="<?php echo base_url("js/bootstrap-wysihtml5.js");?>"></script>
+		  <script src="<?php echo base_url("js/bootstrap-datepicker.js");?>"></script>
         <script src="<?php echo base_url("js/jquery.dataTables.js");?>"></script>
         <script src="<?php echo base_url("js/button-utils.js");?>"></script>
         <script src="<?php echo base_url("js/jquery.tokeninput.js");?>"></script>
         <script src="<?php echo base_url("js/wysihtml5-0.3.0.js");?>"></script>
+        <script src="<?php echo base_url("js/jquery.dataTables.js");?>"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $('.togglemenuleft').click(function(){
@@ -57,7 +58,14 @@
                     $(this).find('i').toggleClass('icon-circle-arrow-right');
                     $(this).find('i').toggleClass('icon-circle-arrow-left');
                 });
-
+                                // sort table 
+                $('#example').dataTable();
+                $('a.style').click(function(){
+                    var style = $(this).attr('href');
+                    $('.links-css').attr('href','css/' + style);
+                    return false;
+                });
+                // switch style 
             });
         </script>
     </body>
