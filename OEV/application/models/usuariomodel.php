@@ -46,7 +46,7 @@ class Usuariomodel extends CI_Model {
 			INNER JOIN Departamento d ON d.idDepartamento = u.idDepartamento
 			INNER JOIN Escuela e ON e.idEscuela = d.idEscuela
 			INNER JOIN Campus c ON e.idCampus = c.idCampus
-			WHERE u.Usuario_Aceptado <> \'a\'
+			WHERE u.Usuario_Aceptado = \'e\'
 			');
 		
 		return $query;

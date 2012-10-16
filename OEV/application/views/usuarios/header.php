@@ -14,6 +14,10 @@
          <!-- home page css -->
         <link href="<?php echo base_url("css/home-page.css"); ?>" rel="stylesheet">
         <link href="<?php echo base_url("css/forms.css"); ?>" rel="stylesheet">
+        <link href="<?php echo base_url("css/noty.css"); ?>" rel="stylesheet">
+        <link href="<?php echo base_url("css/noty-css/noty_theme_default.css"); ?>" rel="stylesheet">
+        <link href="<?php echo base_url("css/noty-css/jquery.noty.css"); ?>" rel="stylesheet">
+
         <style type="text/css">
             body {
                 padding-top: 60px;

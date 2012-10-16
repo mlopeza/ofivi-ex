@@ -34,31 +34,8 @@ class AceptaUsuarios extends CI_Controller {
 			unset($data['idUsuario']);
 			unset($data['s_token']);
 			$this->usuariomodel->actualiza_usuario_array($idUsuario,$data);
-			//Actualiza el Registro
-/*			$datum = array(
-				'Tipo_Usuario' => 'p',
-				'Username' => 'evesdrop_fake_hack_hack',
-				'Usuario_Aceptado' => 'a',
-				'Vista_Administrador'=> 0,
-				'Vista_Cliente'=> 0,
-				'Vista_Legal'=> 0,
-				'Vista_Profesor'=> 0,
-				'Vista_Supervisor_Extension'=> 0,
-				'Vista_Usuario_Extension'=> 0,
-				'idDepartamento'=> 1
-            );*/
-
-			echo json_encode($data);
+			echo json_encode($mensaje);
 		}
-
- 
- 	
-    
-		/*$posts = array();
-        foreach($_POST as $key => $value) {
-			$posts[$key] = $this->post($key);
-			echo "<p>Key: ".$key. " Value:" . $value . "</p>\n";
-        }*/
 	}
 
 }

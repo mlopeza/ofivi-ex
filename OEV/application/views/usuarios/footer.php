@@ -1,6 +1,7 @@
             </div>
             <footer>
                 <p><strong>&copy; Oficina de Extensión Virtual - 2012</strong></p>
+				<a href="#" class="success ex1 btn">Success</a>
             </footer>
         </div><!--/.fluid-container-->
 
@@ -16,6 +17,10 @@
         <script src="<?php echo base_url("js/bootstrap-datepicker.js");?>"></script>
         <script src="<?php echo base_url("js/jquery.dataTables.js");?>"></script>
         <script src="<?php echo base_url("js/jquery-ui.min.js");?>"></script>
+		<script src="<?php echo base_url("js/admin-users-util.js");?>"></script>
+		<script src="<?php echo base_url("js/button-utils.js");?>"></script>
+		<script src="<?php echo base_url("js/noty-script.js");?>"></script>
+		<script src="<?php echo base_url("js/jquery.noty.js");?>"></script>
 
         <script type="text/javascript">
             $(document).ready(function(){
