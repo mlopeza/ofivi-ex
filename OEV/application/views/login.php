@@ -5,7 +5,7 @@
         <title>OFIVEX</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
-        <meta name="author" content="Mario AdriÃ¡n LÃ³pez AlemÃ¡n" >
+        <meta name="author" content="Mario Adrián López Alemán" >
         <style type="text/css">
             body {
                 padding-top: 60px;
