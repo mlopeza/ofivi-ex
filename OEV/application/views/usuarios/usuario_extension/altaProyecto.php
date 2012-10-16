@@ -1,9 +1,9 @@
+
+<div id="content" class="span9 section-body">
 <?php
 $attributes = array('id' => 'auth-for', 'class' => 'clearfix' , 'autocomplete' => 'off');
 echo form_open('altaProyecto/alta',$attributes);
 ?>
-<div id="content" class="span9 section-body">
-
                     <div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1" data-toggle="tab">Datos Básicos</a></li>
@@ -13,10 +13,7 @@ echo form_open('altaProyecto/alta',$attributes);
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab1">
-
                                 <!--/Tabs2-->
-
-
                                 <!--Tabs3-->
                                 <div class="row-fluid">
                                     <div class="span12">
@@ -129,7 +126,7 @@ echo form_open('altaProyecto/alta',$attributes);
                             </div>
                         </div>
                     </div>
-                </div>
 <?php
 echo form_close();
 ?>
+                </div>
