@@ -63,7 +63,6 @@ class Grupo extends CI_Model {
 		$this->load->database();
 		//Se crea el arreglo con el cual se hara el update de la tabla.
 		$data = array(
-					'idGrupo'=> $this->idGrupo,
 					'nombre' => $this->nombre
             );
 
