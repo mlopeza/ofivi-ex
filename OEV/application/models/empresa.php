@@ -9,7 +9,7 @@ class Empresa extends CI_Model {
 	
 	//Declaración de variables e inicalización
 	
-	var $idGrupo= '';
+	var $idGrupo;
 	var $nombre='';
 	var $idEmpresa = '';
 	
@@ -42,7 +42,7 @@ class Empresa extends CI_Model {
 	
 	function find(){		
 		$this->load->database();
-		$query = $this->db->get_where('grupo', array('nombre' => $this->nombre));
+		$query = $this->db->get_where('empresa', array('nombre' => $this->nombre));
 		if ($query->num_rows() > 0)
 		{
    			$row = $query->row(); 
@@ -62,21 +62,21 @@ class Empresa extends CI_Model {
 		$this->load->database();
 		//Se crea el arreglo con el cual se hara el update de la tabla.
 		$data = array(
-					'nombre' => $this->nombre,			
+					'nombre' => $this->nombre,
+					'idGrupo' => $this->idGrupo			
             );
-		$this->db->where('idGrupo', $this->idGrupo);
-		$this->db->update('grupo',$data);	 	
+		$this->db->where('idEmpresa', $this->idEmpresa);
+		$this->db->update('empresa',$data);	 	
 	}
 	function insert(){
 		$this->load->database();
 		//Se crea el arreglo con el cual se hara el update de la tabla.
 		$data = array(
 					'idGrupo'=> $this->idGrupo,
-					'nombre' => $this->nombre,
-					'idEmpresa' =>$this->idEmpresa
+					'nombre' => $this->nombre
             );
 
-		$this->db->insert('grupo',$data);	 	
+		$this->db->insert('empresa',$data);	 	
 	}
 	//Función Select de nombres
 	function selectN(){

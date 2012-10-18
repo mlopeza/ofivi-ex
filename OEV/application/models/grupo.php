@@ -75,11 +75,21 @@ class Grupo extends CI_Model {
 		$query = $this->db->get_where('grupo',array('idGrupo'=>$id));
 		return $query->result();
 	}
+<<<<<<< HEAD
+	
+	function selectGrupos(){
+		$this->load->database();
+		$query = $this->db->get('grupo');
+		//$row = $query->row_array();
+		//return array($row);
+		return $query->result();
+=======
 
 	function getAllGroups(){
 		$this->load->database();
 		$query = $this->db->query('SELECT idGrupo,nombre FROM Grupo ORDER BY nombre ASC');
 		return $query;
+>>>>>>> 52a0e498342898920c57928c71231d12eea0e3ac
 	}
 		
 }
