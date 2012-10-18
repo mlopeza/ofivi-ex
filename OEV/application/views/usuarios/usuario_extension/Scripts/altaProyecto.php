@@ -2,7 +2,7 @@
 <script type="text/javascript" >
 	/*Logica de Creación de Proyecto*/
 	var contacto_telefono='<tr><td><input class="descripcion" type="text"></input></td><td><input class="telefono" type="text"></input></td><td><input class="extension" type="text"></input></td><td><button class="btn btn-danger"><i class="icon-warning-sign icon-white"></i>Borrar</button>></td></tr>'
-	var telefono_new='<tr></tr>';
+	var telefono_new="<tr></tr>";
 	$(document).ready(function(){
 		//Llena el primer campo
 		$("#Grupo").change(function() {
@@ -13,9 +13,8 @@
 
 		//Agrega un Nuevo campo para los telefonos
 		$("#contacto-nuevo-telefono").click(function(){
-			var o = $(telefono_new);
+			var o = $("<tr>").append("<td></td>");
 			console.log(o);
-			console.log(contacto_telefono);
 		});
 	});
 
