@@ -71,7 +71,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Usuario` (
   `ApellidoP` VARCHAR(20) NOT NULL ,
   `ApellidoM` VARCHAR(20) NULL ,
   `email` VARCHAR(45) NOT NULL ,
-  `password` VARCHAR(80) NOT NULL DEFAULT 'Sin contraseña' ,
+  `password` VARCHAR(140) NOT NULL DEFAULT 'Sin contraseña' ,
   `Tipo_Usuario` CHAR NOT NULL DEFAULT 'c' COMMENT 'p - Profesor\na - Administrador\nu - Usuario de extension\nv - Administrador de Extension\nl - Usuario de Legal\nc - Cliente' ,
   `Vista_Profesor` TINYINT NOT NULL DEFAULT 0 ,
   `Vista_Administrador` TINYINT NOT NULL DEFAULT 0 ,
@@ -240,7 +240,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `SEVI`.`Grupo` ;
 
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Grupo` (
-  `idGrupo` INT NOT NULL ,
+  `idGrupo` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`idGrupo`) )
 ENGINE = InnoDB;
@@ -252,7 +252,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `SEVI`.`Empresa` ;
 
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Empresa` (
-  `idEmpresa` INT NOT NULL ,
+  `idEmpresa` INT NOT NULL AUTO_INCREMENT ,
   `idGrupo` INT NOT NULL ,
   `nombre` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`idEmpresa`, `idGrupo`) ,
@@ -453,11 +453,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SEVI`;
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (1, 1, 'elda_quiroga', 'Elda', 'Quiroga', '', 'equiroga@itesm.mx', 'none', 'p', 1, 0, 0, 0, 0, 0, 1, 'e');
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (2, 1, 'L00203456', 'Juan Arturo', 'Nolazco', 'Flores', 'jnolazco@itesm.mx', 'none', 'p', 1, 1, 0, 0, 0, 0, 1, 'e');
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (3, 1, 'L00202020', 'Luis Humberto', 'Gonzalez', 'Guerra', 'lherrera@itesm.mx', 'none', 'p', 1, 0, 0, 1, 1, 0, 1, 'a');
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (4, 1, 'jorge_limon', 'Jorge', 'Limon', '', 'jlimon@itesm.mx', 'none', 'v', 0, 1, 1, 0, 0, 0, 1, 'a');
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (5, 1, 'evesdrop_fake_hack_hack', 'Eve', 'Fake', '', 'efake@itesm.mx', 'none', 'a', 0, 0, 0, 0, 0, 0, 0, 'r');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (1, 1, 'elda_quiroga', 'Elda', 'Quiroga', '', 'equiroga@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'p', 1, 0, 0, 0, 0, 0, 1, 'e');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (2, 1, 'L00203456', 'Juan Arturo', 'Nolazco', 'Flores', 'jnolazco@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'p', 1, 1, 0, 0, 0, 0, 1, 'e');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (3, 1, 'L00202020', 'Luis Humberto', 'Gonzalez', 'Guerra', 'lherrera@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'p', 1, 0, 0, 1, 1, 0, 1, 'a');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (4, 1, 'jorge_limon', 'Jorge', 'Limon', '', 'jlimon@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'v', 0, 1, 1, 0, 0, 0, 1, 'a');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (5, 1, 'evesdrop_fake_hack_hack', 'Eve', 'Fake', '', 'efake@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'a', 0, 0, 0, 0, 0, 0, 0, 'r');
 
 COMMIT;
 

@@ -1,9 +1,9 @@
+
+<div id="content" class="span9 section-body">
 <?php
 $attributes = array('id' => 'auth-for', 'class' => 'clearfix' , 'autocomplete' => 'off');
 echo form_open('altaProyecto/alta',$attributes);
 ?>
-<div id="content" class="span9 section-body">
-
                     <div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1" data-toggle="tab">Datos Básicos</a></li>
@@ -13,10 +13,7 @@ echo form_open('altaProyecto/alta',$attributes);
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab1">
-
                                 <!--/Tabs2-->
-
-
                                 <!--Tabs3-->
                                 <div class="row-fluid">
                                     <div class="span12">
@@ -41,8 +38,21 @@ echo form_open('altaProyecto/alta',$attributes);
                                                                     <label for="selectError" class="control-label">Grupo</label>
                                                                     <div class="controls">
                                                                         <select id="Grupo">
-                                                                            <option>NA</option>
-                                                                            <option>FEMSA</option>
+																		<?php
+																			$res = $data->result();
+																			if(sizeof($res) == 0){
+																				echo "<option id=\"0\">No hay Grupos Registrados</option>";
+																			}else{
+																				echo "<option id=\"0\"></option>";
+																				foreach($res as $row){ 
+																		 ?>
+	                                                                        <option id="<?php echo $row->idGrupo; ?>">
+																						     <?php  echo $row->nombre;  ?>
+																		    </option>
+																			<?php
+																				}	
+																			}
+																			?>
                                                                         </select>
                                                                         <span class="help-inline"></span>
                                                                     </div>
@@ -51,7 +61,6 @@ echo form_open('altaProyecto/alta',$attributes);
                                                                     <label for="selectError" class="control-label">Empresa</label>
                                                                     <div class="controls">
                                                                         <select id="Empresa">
-                                                                            <option>OXXO</option>
                                                                         </select>
                                                                         <span class="help-inline"></span>
                                                                     </div>
@@ -109,8 +118,73 @@ echo form_open('altaProyecto/alta',$attributes);
                                                     </a>
                                                 </div>
                                                 <div id="statements" class="accordion-body collapse in">
-                                                    <div class="accordion-inner">
-                                                        
+<div class="accordion-inner paddind">
+                                                        <form class="form-horizontal">
+                                                            <fieldset>
+                                                                <div class="control-group">
+                                                                    <label for="focusedInput" class="control-label">Nombre</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" value="" id="contacto-nombre" class="input-xlarge focused">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label for="focusedInput" class="control-label">Apellido Paterno</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" value="" id="contacto-ap" class="input-xlarge focused">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label for="focusedInput" class="control-label">Apellido Materno</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" value="" id="contacto-am" class="input-xlarge focused">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label for="focusedInput"  class="control-label">Correo Electrónico</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" value="" id="contacto-email" class="input-xlarge focused">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label for="optionsCheckbox2" class="control-label">Pregunta al Cliente</label>
+                                                                    <div class="controls">
+                                                                        <label class="checkbox">
+                                                                            <input type="checkbox" value="option1" id="optionsCheckbox2">
+                                                                            Se pueden enviar correos?
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+															<table class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Descripción</th>
+                                                                    <th>Telefono</th>
+                                                                    <th>Extensión</th>
+                                                                    <th>Acción</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="contacto-telefonos-body">
+                                                            </tbody>
+															<tfoot>
+															<tr>
+																<td colspan="4" style="text-align:right;">
+																</td>
+															</tr>
+															<tr>
+																<td colspan="4" style="text-align:right;">
+                                                                    <button class="btn btn-primary" type="button" id="contacto-nuevo-telefono">Nuevo</button>
+																</td>
+															</tr>
+															</tfoot>
+                                                        </table><br />
+                                                                <div class="form-actions">
+                                                                    <button class="btn btn-primary" type="button">Guardar</button>
+                                                                    <button class="btn">Cancelar</button>
+                                                                </div>
+                                                            </fieldset>
+                                                        </form>
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -129,7 +203,7 @@ echo form_open('altaProyecto/alta',$attributes);
                             </div>
                         </div>
                     </div>
-                </div>
 <?php
 echo form_close();
 ?>
+                </div>

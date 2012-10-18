@@ -1,4 +1,4 @@
-/*Cambia el color del boton y el Valor del Mismo
+/* Cambia el color del boton y el Valor del Mismo
 	Fue diseñado para la tabla de Aceptar-Rechazar
 	Pero puede Ser utilizado si se utilizan las mismas
 	clases
@@ -17,7 +17,6 @@ $(document).ready(function(){
 
 	/*Funcion para hacer la llamada AJAX al servidor con el Token de Seguridad*/
 	function user_selecter_ajax_helper(accept,parent){
-
 			/*Datos de la tabla con Respecto al usuario*/
 			var data={ 
 			's_token':$('#csrf_token').attr('value'),
@@ -31,7 +30,8 @@ $(document).ready(function(){
 			'Vista_Profesor':parseInt(get_real($.trim($(parent).find('#vista_profesor').text()))),
 			'Vista_Cliente':parseInt(get_real($.trim($(parent).find('#vista_cliente').text()))),
 			'Vista_Legal':parseInt(get_real($.trim($(parent).find('#vista_legal').text()))),
-			'Usuario_Aceptado':(accept?'a':'r')
+			'Usuario_Aceptado':(accept?'a':'r'),
+			'Usuario_Activo':(accept?1:0)
 			};
 
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
@@ -40,10 +40,20 @@ $(document).ready(function(){
 			     url: "aceptaUsuarios/insertData",
 			     data: data ,
 			     success: function(msg){
-						console.log($.parseJSON(msg));
+						var mensaje = $.parseJSON(msg);
+						//console.log($.parseJSON(msg));
+						if(mensaje['response'] ==  "true"){
+							noty({text: mensaje['mensaje'], type: 'success'});
+							//Elimina la fila del usuario aceptado, si es que se acepto
+							$(parent).remove();
+						}else{
+							noty({text: mensaje['mensaje']+"<br\>"+mensaje['errores'], type: 'error'});
+						}
+
 			     },
 				error: function(msg){
-						console.log($.parseJSON(msg));				
+						noty({text: "Ha habido un error en el sistema, intenetelo nuevamente.", type: 'error'});
+						//console.log($.parseJSON(msg));				
 				}
 			});
 	}

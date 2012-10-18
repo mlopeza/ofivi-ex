@@ -31,32 +31,10 @@ class Usuariomodel extends CI_Model {
         $query = $this->db->get('usuario');
         return $query->result();
     }
-
-	//Funcion que agrega una clausula where a la busqueda
-
-	function getUsuariosPendientes(){
-		$this->load->database();
-        $query = $this->db->query('
-			SELECT d.idDepartamento as idDepartamento,
-					d.Nombre as Departamento,
-					e.Nombre as Escuela, 
-					c.Nombre as Campus,
-					u.* 
-			FROM Usuario u
-			INNER JOIN Departamento d ON d.idDepartamento = u.idDepartamento
-			INNER JOIN Escuela e ON e.idEscuela = d.idEscuela
-			INNER JOIN Campus c ON e.idCampus = c.idCampus
-			WHERE u.Usuario_Aceptado <> \'a\'
-			');
-		
-		return $query;
-
-	}
-
 	//Función para validar que el usuario puso correctamente su contraseña.
 	function validLogin(){
 		$this->load->database();
-		if(hash('sha256',$this->input->post('password')) == $this->password && $this->Usuario_Activo == 1){
+		if(hash('sha512',$this->input->post('password')) == $this->password && $this->Usuario_Activo == 1){
 			if($this->Vista_Administrador)
 			return 1;
 			else if($this->Vista_Profesor)
@@ -65,8 +43,10 @@ class Usuariomodel extends CI_Model {
 			return 3;
 			else if($this->Vista_Usuario_Extension)
 			return 4;
-			else 
+			else if($this->Vista_Legal)		
 			return 5;
+			else 
+			return 6;
 		}
 		else
 		{
@@ -104,16 +84,6 @@ class Usuariomodel extends CI_Model {
 		return FALSE;
 	}
 	
-
-
-	//Funcion para actualizar un usuario,proporcionando el id
-	//y un arreglo con los datos
-	function actualiza_usuario_array($id,$arreglo=array()){
-		$this->load->database();
-		$this->db->where('idUsuario', $id);
-		$this->db->update('Usuario', $arreglo);
-	}
-
 	//Función para hacerle un update a los datos.
 	function actualizarUsuario(){
 		$this->load->database();
@@ -138,7 +108,6 @@ class Usuariomodel extends CI_Model {
 		$this->db->where('idUsuario', $this->idUsuario);
 		$this->db->update('usuario',$data);	 
 	}
-
 	//Función para insertar un usuario a la tabla de usuarios.
 	function insertarUsuario(){
 		$this->load->database();
@@ -258,7 +227,7 @@ class Usuariomodel extends CI_Model {
 		$this->Usuario_Activo = $param1;
 	}
 	function setpassword($param1){
-		$this->password = hash('sha256',$param1);		
+		$this->password = hash('sha512',$param1);		
 	}
 	function setIdDepartamento($param1){
 		$this->idDepartamento = $param1;
