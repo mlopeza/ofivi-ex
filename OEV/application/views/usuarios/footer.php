@@ -1,7 +1,6 @@
             </div>
             <footer>
                 <p><strong>&copy; Oficina de Extensión Virtual - 2012</strong></p>
-				<a href="#" class="success ex1 btn">Success</a>
             </footer>
         </div><!--/.fluid-container-->
 

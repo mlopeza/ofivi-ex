@@ -38,8 +38,10 @@ echo form_open('altaProyecto/alta',$attributes);
                                                                     <label for="selectError" class="control-label">Grupo</label>
                                                                     <div class="controls">
                                                                         <select id="Grupo">
-                                                                            <option>NA</option>
-                                                                            <option>FEMSA</option>
+																		<?php
+                                                                            echo "<option>NA</option>";
+	                                                                        echo "<option>FEMSA</option>";
+																		?>
                                                                         </select>
                                                                         <span class="help-inline"></span>
                                                                     </div>
