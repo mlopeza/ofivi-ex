@@ -75,7 +75,14 @@ class Grupo extends CI_Model {
 		$query = $this->db->get_where('grupo',array('idGrupo'=>$id));
 		return $query->result();
 	}
-
+	
+	function selectGrupos(){
+		$this->load->database();
+		$query = $this->db->get('grupo');
+		//$row = $query->row_array();
+		//return array($row);
+		return $query->result();
+	}
 		
 }
 ?>

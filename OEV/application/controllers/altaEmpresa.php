@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class altaProyecto
+class altaEmpresa
 extends CI_Controller {
 
     /**
@@ -22,33 +22,25 @@ extends CI_Controller {
     {
 		$this->load->helper('url');
         $this->load->helper('form');
+        $this->load->helper('array');
 		$this->load->view('usuarios/header');
 		$this->load->view('usuarios/usuario_extension/menu_extension');
-        $this->load->view('usuarios/usuario_extension/altaProyecto');
+        
+        $this->load->model('grupo');
+        
+        $grupos['grupos'] = $this->grupo->selectGrupos();        
+        $this->load->view('usuarios/usuario_extension/alta_Empresa' ,$grupos);
+        //$this->load->view('usuarios/usuario_extension/alta_Empresa');
 		$this->load->view('usuarios/footer');
     }
 
     public function alta()
-    {	$this->load->model('proyecto');
-		$this->load->model('estado');
+    {	$this->load->model('empresa');		
 		
-		
-		$this->proyecto->alta();	//Se registra el proyecto
-		$ultimoid = $this->proyecto->ultimo();	//Se obtiene el ID del ultimo proyecto registrado
-		
-		//Sesion estatica para pruebas
-		$this->load->library('session');
-		
-		$array = array('username' => 'Pedro',
-		'idUsuario' => 2);
-		$this->session->set_userdata($array);	
-		$usuario = $this->session->userdata('username');
-		$idUsuario = $this->session->userdata('idUsuario');
-		//Fin de Sesion estatica
-		
-		$this->estado->insert($ultimoid,$idUsuario);
-				
-		
+		echo $this->input->post('grupo');
+		$this->empresa->set_id_grupo($this->input->post('grupo'));
+		$this->empresa->set_nombre($this->input->post('nombre_empresa'));
+		$this->empresa->insert();	//Se registra el proyecto
     }
 }
 
