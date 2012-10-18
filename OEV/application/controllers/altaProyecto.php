@@ -38,7 +38,6 @@ extends CI_Controller {
 			//Regresa las empresas del Grupo
 			$this->load->model('empresa');
 			$resultado=$this->empresa->getEmpresasDeGrupo($data['idGrupo']);
-			
 			//Se envia el resultado
 			$mensaje = array('response'=>'true','mensaje'=>$resultado);
 			echo json_encode($mensaje);
