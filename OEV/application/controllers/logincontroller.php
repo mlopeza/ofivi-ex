@@ -77,7 +77,7 @@ class Logincontroller extends CI_Controller {
 		$this->load->helper('security');		
 		$this->load->library('session');
 		$this->load->helper('url');
-		$this->usuariomodel->setUsername($this->input->post('username'));				
+		$this->usuariomodel->setUsername($this->input->post('username'));
 		//se verifica que el usuario exista en la base de datos.
 		if($this->usuariomodel->encontrarUsuario()){
 			//Se valida el login del usuario y  lo redirige a una vista que tenga permitido usar el usuario.
@@ -98,6 +98,7 @@ class Logincontroller extends CI_Controller {
 						   'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
 			               );
 					$this->session->set_userdata($newdata);
+					$this->session->set_userdata($vistas);
 					$this->load->view('usuarios/header',$vistas);					
 					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
 					$this->load->view('usuarios/footer');					
@@ -149,6 +150,7 @@ class Logincontroller extends CI_Controller {
 					   'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
 		               );
 					$this->session->set_userdata($newdata);
+					$this->session->set_userdata($vistas);
 					$this->load->view('usuarios/header',$vistas);					
 					$this->load->view('usuarios/usuario_extension/menu_extension',$vistas);
 					$this->load->view('usuarios/footer');	

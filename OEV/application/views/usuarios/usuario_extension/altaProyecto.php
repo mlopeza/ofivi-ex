@@ -92,21 +92,32 @@ echo form_open('altaProyecto/alta',$attributes);
                                                     </a>
                                                 </div>
                                                 <div id="event" class="accordion-body collapse in">
-                                                    <div class="accordion-inner" style="text-align:center">
-																			<div class="control-group">
-                                                         		<label for="focusedInput" class="control-label">Contactos</label>
-                                                               <div class="controls">
-                                                               	<input type="text" name="contactos" class='input' id="demo-input-local" name="blah"/>
-                                                               </div>
-                                                         </div>
-                                                    </div>
+													<div class="accordion-inner paddind">
+                                                        <form class="form-horizontal">
+															<table class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Nombre</th>
+                                                                    <th>Telefonos</th>
+                                                                    <th>Acción</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="contactos-body">
+                                                            </tbody>
+															<tfoot>
+															<tr>
+																<td colspan="4" style="text-align:right;">
+																</td>
+															</tr>
+															</tfoot>
+                                                        </table><br />
+														</form>
+													</div>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <!--/Tabs2-->
-
 
                                     <!--Tabs3-->
                                     <div class="span6">
@@ -118,7 +129,7 @@ echo form_open('altaProyecto/alta',$attributes);
                                                     </a>
                                                 </div>
                                                 <div id="statements" class="accordion-body collapse in">
-<div class="accordion-inner paddind">
+												<div class="accordion-inner paddind">
                                                         <form class="form-horizontal">
                                                             <fieldset>
                                                                 <div class="control-group">
@@ -149,7 +160,7 @@ echo form_open('altaProyecto/alta',$attributes);
                                                                     <label for="optionsCheckbox2" class="control-label">Pregunta al Cliente</label>
                                                                     <div class="controls">
                                                                         <label class="checkbox">
-                                                                            <input type="checkbox" value="option1" id="optionsCheckbox2">
+                                                                            <input type="checkbox" value="option1" id="contacto-enviar">
                                                                             Se pueden enviar correos?
                                                                         </label>
                                                                     </div>
@@ -178,8 +189,8 @@ echo form_open('altaProyecto/alta',$attributes);
 															</tfoot>
                                                         </table><br />
                                                                 <div class="form-actions">
-                                                                    <button class="btn btn-primary" type="button">Guardar</button>
-                                                                    <button class="btn">Cancelar</button>
+                                                                    <button class="btn btn-primary" id="agrega-contacto-arreglo" type="button">Agregar</button>
+                                                                    <button class="btn">Limpiar</button>
                                                                 </div>
                                                             </fieldset>
                                                         </form>

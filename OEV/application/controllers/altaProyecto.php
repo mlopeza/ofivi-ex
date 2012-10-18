@@ -5,17 +5,24 @@ extends CI_Controller {
 
     public function index()
     {
+		//Sesiones
+
 		$this->load->helper('url');
         $this->load->helper('form');
-
+		$this->load->model('usuariomodel');
+		$this->load->helper('security');		
+		$this->load->library('session');
 		//Se carga el Modelo de Grupos
 		$this->load->model('grupo');
-
+		//Cargar la sesion		
+		$datos_usuario=$this->session->all_userdata();
+		$vista = array('vista'=>$datos_usuario['vista']);
 		//Se buscan todos los Grupos disponibles
 		$query['data']=$this->grupo->getAllGroups();
+		
 		//Se cargan las Vistas
-		$this->load->view('usuarios/header');
-		$this->load->view('usuarios/usuario_extension/menu_extension');
+		$this->load->view('usuarios/header',$vista);
+		$this->load->view('usuarios/usuario_extension/menu_extension',$vista);
         $this->load->view('usuarios/usuario_extension/altaProyecto',$query);
 		$this->load->view('usuarios/footer');
 		$this->load->view('usuarios/usuario_extension/Scripts/altaProyecto');
