@@ -1,4 +1,3 @@
-
 <script type="text/javascript" >
 	/*Logica de Creación de Proyecto*/
 	var contacto_telefono='<tr><td><input class="descripcion" type="text"></input></td><td><input class="telefono" type="text"></input></td><td><input class="extension" type="text"></input></td><td><button class="btn btn-danger"><i class="icon-warning-sign icon-white"></i>Borrar</button>></td></tr>'
