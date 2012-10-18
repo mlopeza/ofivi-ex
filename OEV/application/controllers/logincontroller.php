@@ -28,7 +28,48 @@ class Logincontroller extends CI_Controller {
 			$this->usuariomodel->insertarUsuario();
 		}		
 	}	
-
+	//Funcion para cambiar la vista.
+	public function cambioVista($nombre)
+	{
+		$this->load->library('session');
+		$this->load->model('usuariomodel');
+		$this->load->helper('url');
+		$usaurio = $this->session->userdata('username');		
+		$this->usuariomodel->encontrarUsuario();
+		$vistas['vista'] = array(
+							'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
+							'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
+							'Administrador' => $this->usuariomodel->getVistaAdministrador(),
+							'Legal' => $this->usuariomodel->getVistaLegal(),
+							'Profesor' => $this->usuariomodel->getVistaProfesor() );
+		if($nombre == 'Usuario'){
+					$this->load->view('usuarios/header',$vistas);					
+					$this->load->view('usuarios/usuario_extension/menu_extension',$vistas);
+					$this->load->view('usuarios/footer');			
+		}
+		else if( $nombre == 'Supervisor'){
+					$this->load->view('usuarios/header',$vistas);					
+//					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
+					$this->load->view('usuarios/footer');						
+		}
+		else if ($nombre == 'Administrador'){
+					$this->load->view('usuarios/header',$vistas);					
+					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
+					$this->load->view('usuarios/footer');			
+		}
+		else if ($nombre == 'Legal'){
+//					$this->load->view('usuarios/header',$vistas);					
+//					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
+//					$this->load->view('usuarios/footer');						
+					echo "prueba";
+		}
+		else if ($nombre == 'Profesor'){			
+					$this->load->view('usuarios/header',$vistas);					
+//					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
+					$this->load->view('usuarios/footer');					
+		}
+		
+	}
 	//Funcion para loggearse.
 	public function login()
 	{
@@ -61,7 +102,7 @@ class Logincontroller extends CI_Controller {
 					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
 					$this->load->view('usuarios/footer');					
 					break;
-				case 2:
+		/*		case 2:
 					$vistas['vista'] = array(
 						'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
 						'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
@@ -74,9 +115,9 @@ class Logincontroller extends CI_Controller {
 					   'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
 		               );
 					$this->session->set_userdata($newdata);
-					$this->load->view('usuarios/header',$vistas);									
-					$this->load->view('usuarios/profesor',$vistas);
-					$this->load->view('usuarios/footer');					
+					$this->load->view('vistas/header');									
+		//			$this->load->view('vistas/profesor',$vistas);
+					$this->load->view('vistas/footer');					
 					break;
 				case 3:
 					$vistas['vista'] = array(
@@ -91,10 +132,10 @@ class Logincontroller extends CI_Controller {
 					   'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
 		               );
 					$this->session->set_userdata($newdata);
-					$this->load->view('usuarios/header',$vistas);				
-					$this->load->view('usuarios/supervisor',$vistas);
-					$this->load->view('usuarios/footer');
-					break;
+					$this->load->view('vistas/footer');				
+	//				$this->load->view('vistas/supervisor',$vistas);
+					$this->load->view('vistas/header');
+					break;/*/
 				case 4:
 					$vistas['vista'] = array(
 						'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
@@ -112,7 +153,7 @@ class Logincontroller extends CI_Controller {
 					$this->load->view('usuarios/usuario_extension/menu_extension',$vistas);
 					$this->load->view('usuarios/footer');	
 					break;
-				case 5:
+				/*case 5:
 				$vistas['vista'] = array(
 						'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
 						'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
@@ -125,12 +166,13 @@ class Logincontroller extends CI_Controller {
 					   'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
 		               );
 					$this->session->set_userdata($newdata);
-					$this->load->view('usuarios/header',$vistas);
-					$this->load->view('usuarios/legal',$vistas);
-					$this->load->view('usuarios/footer');
-					break; 
-				 case 6:
+					$this->load->view('vistas/header');
+//					$this->load->view('vistas/legal',$vistas);
+					$this->load->view('vistas/footer');
 					break;
+				 case 6:
+					echo "Usuario ciego D:";
+					break;*/
 			}			
 				
 		}

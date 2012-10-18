@@ -5,7 +5,7 @@
         <title>OFIVEX</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
-        <meta name="author" content="Mario Adri�n L�pez Alem�n" >
+        <meta name="author" content="Mario Adrián López Alemán" >
 
  <!-- bootstrap css -->
         <link href="<?php echo base_url("css/bootstrap.min.css");?> " rel="stylesheet">
@@ -13,11 +13,6 @@
         <link class="links-css" href="<?php echo base_url("css/base.css"); ?>" rel="stylesheet">
          <!-- home page css -->
         <link href="<?php echo base_url("css/home-page.css"); ?>" rel="stylesheet">
-        <link href="<?php echo base_url("css/forms.css"); ?>" rel="stylesheet">
-        <link href="<?php echo base_url("css/noty.css"); ?>" rel="stylesheet">
-        <link href="<?php echo base_url("css/noty-css/noty_theme_default.css"); ?>" rel="stylesheet">
-        <link href="<?php echo base_url("css/noty-css/jquery.noty.css"); ?>" rel="stylesheet">
-
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -34,7 +29,7 @@
         <link href="<?php echo base_url("css/bootstrap-responsive.css");?>" rel="stylesheet">
          <!-- media query css -->
         <link href="<?php echo base_url("css/media-fluid.css");?>" rel="stylesheet">
-        <link href="<?php echo base_url("css/bootstrap-wysihtml5.css");?>" rel="stylesheet">
+
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -42,7 +37,6 @@
 
     </head>
     <body>
-	<input type="hidden" id="csrf_token" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
@@ -88,9 +82,14 @@
                         <li class="dropdown">
                         	<a href="#" style="text-align:center" data-toggle="dropdown" > <i class="icon-user icon-white"></i><div>Rol</div></a> 
                             <ul class="dropdown-menu">
-                                <li><a href="#"> Administrador de Extensión</a></li>
-                                <li><a href="#"> Usuario de Extensión</a></li>
-                                <li><a href="#"> Usuario de Proyecto </a></li>
+                            <!-- Se mdespliega las vistas a que tiene acceso y se redirige a esa vista al darle click-->
+                            	<?php 
+								foreach ($vista as $key=>$rol){
+									if($rol == 1){
+											echo "<li><a href=".base_url("index.php/logincontroller/cambioVista/".$key).">".$key."</a></li>";
+									}
+								}
+								?>            
                             </ul>
                         </li>
 						<!--Calendario de Usuario-->
@@ -105,11 +104,11 @@
                             <li class="dropdown">
 								<!--Nombre de Usuario-->
 								<!--Igual sería buena idea poner el Rol Actual del Usuario en Este apartado-->
-                                <a data-toggle="dropdown" href="#">Nombre De Usuario<b class="caret"></b></a>
+                                <a data-toggle="dropdown" href="#"><?php echo $this->session->userdata('username'); ?><b class="caret"></b></a>
                                <ul class="dropdown-menu">
                                     <li>
                                         <div class="modal-header">
-                                            <h3>Kostali Youssef - Admin</h3>
+                                            <h3><?php echo $this->session->userdata('nombre');?></h3>
                                         </div>
                                         <div class="modal-body">
                                             <div class="row">
@@ -118,7 +117,7 @@
  alt="avatar" /></div>
                                                 <div class="span3 pull-right">
 													<!--Cuenta de Usuario-->
-                                                    <h5>mail@gmail.com</h5>
+                                                    <h5><?php echo $this->session->userdata('email');?></h5>
 													<!--Acceder a la CUenta del Usuario-->
                                                     <a href="#" class="link-modal" >Account</a>
                                                 </div>
