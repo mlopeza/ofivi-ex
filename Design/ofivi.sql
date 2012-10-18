@@ -240,7 +240,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `SEVI`.`Grupo` ;
 
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Grupo` (
-  `idGrupo` INT NOT NULL ,
+  `idGrupo` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`idGrupo`) )
 ENGINE = InnoDB;

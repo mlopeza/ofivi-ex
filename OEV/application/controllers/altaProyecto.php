@@ -3,28 +3,20 @@
 class altaProyecto
 extends CI_Controller {
 
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     * 		http://example.com/index.php/welcome
-     *	- or -  
-     * 		http://example.com/index.php/welcome/index
-     *	- or -
-     * Since this controller is set as the default controller in 
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see http://codeigniter.com/user_guide/general/urls.html
-     */
     public function index()
     {
 		$this->load->helper('url');
         $this->load->helper('form');
+
+		//Se carga el Modelo de Grupos
+		$this->load->model('grupo');
+
+		//Se buscan todos los Grupos disponibles
+		$query['data']=$this->grupo->getAllGroups();
+		//Se cargan las Vistas
 		$this->load->view('usuarios/header');
 		$this->load->view('usuarios/usuario_extension/menu_extension');
-        $this->load->view('usuarios/usuario_extension/altaProyecto');
+        $this->load->view('usuarios/usuario_extension/altaProyecto',$query);
 		$this->load->view('usuarios/footer');
     }
 
