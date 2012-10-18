@@ -1,5 +1,5 @@
 <?php
-class Grupo extends CI_Model {
+class Empresa extends CI_Model {
 	
 	function __construct()
     {
@@ -86,6 +86,16 @@ class Grupo extends CI_Model {
 		return $query->result();
 	}
 
+	//Regresa las Empresas que pertenecen a cierto Grupo
+	function getEmpresasDeGrupo($idGrupo){
+		$this->load->database();
+		$query = $this->db->query('SELECT 
+									idEmpresa,nombre 
+									FROM Empresa
+									WHERE idGrupo='.$idGrupo.'
+									ORDER BY nombre ASC');
+		return $query->result();
+	}
 		
 }
 ?>

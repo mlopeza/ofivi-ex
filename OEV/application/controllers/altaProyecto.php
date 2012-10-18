@@ -18,30 +18,34 @@ extends CI_Controller {
 		$this->load->view('usuarios/usuario_extension/menu_extension');
         $this->load->view('usuarios/usuario_extension/altaProyecto',$query);
 		$this->load->view('usuarios/footer');
+		$this->load->view('usuarios/usuario_extension/Scripts/altaProyecto');
     }
 
     public function alta()
-    {	$this->load->model('proyecto');
-		$this->load->model('estado');
-		
-		
-		$this->proyecto->alta();	//Se registra el proyecto
-		$ultimoid = $this->proyecto->ultimo();	//Se obtiene el ID del ultimo proyecto registrado
-		
-		//Sesion estatica para pruebas
-		$this->load->library('session');
-		
-		$array = array('username' => 'Pedro',
-		'idUsuario' => 2);
-		$this->session->set_userdata($array);	
-		$usuario = $this->session->userdata('username');
-		$idUsuario = $this->session->userdata('idUsuario');
-		//Fin de Sesion estatica
-		
-		$this->estado->insert($ultimoid,$idUsuario);
-				
-		
+    {
     }
+
+	/*Regresa las empresas en Formato JSON*/
+	public function getEmpresas(){
+		//Obtiene la informacion del POST
+		$data = $this->input->post();
+		//echo var_dump($data);
+		if($data['idGrupo'] == null){
+			//Si no vienen Datos, regresa error
+			$mensaje = array('response'=>'false','mensaje'=>'Error al Buscar el Grupo.');
+			echo json_encode($mensaje);
+		}else{
+			//Regresa las empresas del Grupo
+			$this->load->model('empresa');
+			$resultado=$this->empresa->getEmpresasDeGrupo($data['idGrupo']);
+			
+			//Se envia el resultado
+			$mensaje = array('response'=>'true','mensaje'=>$resultado);
+			echo json_encode($mensaje);
+		}
+	}
+
+
 }
 
 /* End of file welcome.php */

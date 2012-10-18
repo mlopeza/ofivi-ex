@@ -39,8 +39,13 @@ echo form_open('altaProyecto/alta',$attributes);
                                                                     <div class="controls">
                                                                         <select id="Grupo">
 																		<?php
-                                                                            echo "<option>NA</option>";
-	                                                                        echo "<option>FEMSA</option>";
+																			foreach($data->result() as $row){ ?>
+	                                                                        echo "<option id="<?echo $row->idGrupo;?>">
+																						<?echo $row->nombre;?>
+																				  </option>";
+																			<?php
+																				}
+																			?>
 																		?>
                                                                         </select>
                                                                         <span class="help-inline"></span>
@@ -50,7 +55,6 @@ echo form_open('altaProyecto/alta',$attributes);
                                                                     <label for="selectError" class="control-label">Empresa</label>
                                                                     <div class="controls">
                                                                         <select id="Empresa">
-                                                                            <option>OXXO</option>
                                                                         </select>
                                                                         <span class="help-inline"></span>
                                                                     </div>
