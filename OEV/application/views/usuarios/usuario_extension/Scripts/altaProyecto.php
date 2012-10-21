@@ -135,6 +135,7 @@
 								mensaje=$.parseJSON(msg);
 							if(mensaje['response'] == "true"){
 								noty({text: mensaje['mensaje'], type: 'success'});
+								setTimeout(function() { location.reload(); }, 3000);
 							}else{
 								noty({text: mensaje['mensaje'], type: 'error'});
 								$(this).removeClass('disabled-button');
@@ -146,8 +147,6 @@
 				}
 			});
 			//Carga nuevamente la pagina
-			setTimeout(function() { location.reload(); }, 3000);
-
 		});
 
 	});

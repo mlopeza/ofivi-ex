@@ -92,8 +92,8 @@ class Proyecto extends CI_Model{
 		foreach($nuevos as $c){
 			$data[]=array('idProyecto'=>$idProyecto,'idContacto'=>$c);
 		}
-
-		$this->db->insert_batch('Contacto_Proyecto', $data); 
+		if(sizeof($data) > 0)
+			$this->db->insert_batch('Contacto_Proyecto', $data); 
 	}
 }
 ?>
