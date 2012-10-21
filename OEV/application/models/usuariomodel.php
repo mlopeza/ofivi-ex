@@ -55,10 +55,9 @@ class Usuariomodel extends CI_Model {
 		
 	}
 	//Función find para poder buscar solo un usuario dependiendo de su id.
-	function encontrarUsuario(){
+	function encontrarUsuarioVista($usuario){
 		$this->load->database();
-		$query = $this->db->get_where('usuario', array('Username' => $this->Username));
-				
+		$query = $this->db->get_where('usuario', array('Username' => $usuario));
 		if ($query->num_rows() > 0)
 		{
    			$row = $query->row(); 
@@ -84,6 +83,34 @@ class Usuariomodel extends CI_Model {
 		return FALSE;
 	}
 	
+	function encontrarUsuario(){
+		$this->load->database();
+		$query = $this->db->get_where('usuario', array('Username' => $this->Username));
+		if ($query->num_rows() > 0)
+		{
+   			$row = $query->row(); 
+			$this->Username = $row->Username;
+   			$this->idUsuario = $row->idUsuario;
+   			$this->idDepartamento = $row->idDepartamento;
+   			$this->Nombre = $row->Nombre;
+   			$this->ApellidoP = $row->ApellidoP;
+			$this->ApellidoM = $row->ApellidoM;
+			$this->password = $row->password;			
+			$this->email = $row->email;
+			$this->Tipo_Usuario = $row->Tipo_Usuario;
+			$this->Usuario_Aceptado = $row->Usuario_Aceptado;
+			$this->Usuario_Activo = $row->Usuario_Activo;
+			$this->Vista_Administrador = $row->Vista_Administrador;
+			$this->Vista_Profesor = $row->Vista_Profesor;
+			$this->Vista_Supervisor_Extension = $row->Vista_Supervisor_Extension;
+			$this->Vista_Usuario_Extension = $row->Vista_Usuario_Extension;
+			$this->Vista_Legal = $row->Vista_Legal;
+			return TRUE;
+		}
+		else
+		return FALSE;
+	}
+
 	//Función para hacerle un update a los datos.
 	function actualizarUsuario(){
 		$this->load->database();
@@ -253,6 +280,15 @@ class Usuariomodel extends CI_Model {
 		return $query;
 
 	}
+
+    //Funcion para actualizar un usuario,proporcionando el id
+    //y un arreglo con los datos
+    function actualiza_usuario_array($id,$arreglo=array()){
+        $this->load->database();
+        $this->db->where('idUsuario', $id);
+        $this->db->update('Usuario', $arreglo);
+    }
+
 
 }
 ?>

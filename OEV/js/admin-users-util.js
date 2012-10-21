@@ -19,7 +19,7 @@ $(document).ready(function(){
 	function user_selecter_ajax_helper(accept,parent){
 			/*Datos de la tabla con Respecto al usuario*/
 			var data={ 
-			's_token':$('#csrf_token').attr('value'),
+			's_token':$('#s_token').attr('value'),
 			'Username':$(parent).find('#username').text(),
 			'idUsuario': parseInt($(parent).find('#username').attr('value')),
 			'idDepartamento':parseInt($(parent).find('#departamento').attr('value')),

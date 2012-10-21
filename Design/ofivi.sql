@@ -156,17 +156,55 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `SEVI`.`Grupo`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `SEVI`.`Grupo` ;
+
+CREATE  TABLE IF NOT EXISTS `SEVI`.`Grupo` (
+  `idGrupo` INT NOT NULL AUTO_INCREMENT ,
+  `nombre` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`idGrupo`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SEVI`.`Empresa`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `SEVI`.`Empresa` ;
+
+CREATE  TABLE IF NOT EXISTS `SEVI`.`Empresa` (
+  `idEmpresa` INT NOT NULL AUTO_INCREMENT ,
+  `idGrupo` INT NOT NULL ,
+  `nombre` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`idEmpresa`, `idGrupo`) ,
+  INDEX `Empresa_Grupo` (`idGrupo` ASC) ,
+  CONSTRAINT `Empresa_Grupo`
+    FOREIGN KEY (`idGrupo` )
+    REFERENCES `SEVI`.`Grupo` (`idGrupo` )
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `SEVI`.`Proyecto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `SEVI`.`Proyecto` ;
 
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Proyecto` (
   `idProyecto` INT NOT NULL AUTO_INCREMENT ,
+  `idEmpresa` INT NOT NULL ,
   `nombre` VARCHAR(45) NOT NULL ,
   `descripcionUsuario` BLOB NOT NULL ,
   `descripcionAEV` BLOB NOT NULL ,
-  `Proyecto_Activo` BIT NOT NULL DEFAULT 1 ,
-  PRIMARY KEY (`idProyecto`) )
+  `Proyecto_Activo` TINYINT NOT NULL DEFAULT 1 ,
+  PRIMARY KEY (`idProyecto`, `idEmpresa`) ,
+  INDEX `Proyecto_Empresa` (`idEmpresa` ASC) ,
+  CONSTRAINT `Proyecto_Empresa`
+    FOREIGN KEY (`idEmpresa` )
+    REFERENCES `SEVI`.`Empresa` (`idEmpresa` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -229,37 +267,6 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Usuario_Proyecto` (
   CONSTRAINT `UP_Usuario`
     FOREIGN KEY (`idUsuario` )
     REFERENCES `SEVI`.`Usuario` (`idUsuario` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `SEVI`.`Grupo`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `SEVI`.`Grupo` ;
-
-CREATE  TABLE IF NOT EXISTS `SEVI`.`Grupo` (
-  `idGrupo` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`idGrupo`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `SEVI`.`Empresa`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `SEVI`.`Empresa` ;
-
-CREATE  TABLE IF NOT EXISTS `SEVI`.`Empresa` (
-  `idEmpresa` INT NOT NULL AUTO_INCREMENT ,
-  `idGrupo` INT NOT NULL ,
-  `nombre` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`idEmpresa`, `idGrupo`) ,
-  INDEX `Empresa_Grupo` (`idGrupo` ASC) ,
-  CONSTRAINT `Empresa_Grupo`
-    FOREIGN KEY (`idGrupo` )
-    REFERENCES `SEVI`.`Grupo` (`idGrupo` )
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -413,6 +420,33 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Usuario_Area` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `SEVI`.`Reporte`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `SEVI`.`Reporte` ;
+
+CREATE  TABLE IF NOT EXISTS `SEVI`.`Reporte` (
+  `idReporte` INT NOT NULL ,
+  `idUsuario` INT NOT NULL ,
+  `idProyecto` INT NOT NULL ,
+  `Reporte` BLOB NOT NULL ,
+  `reporteFinal` TINYINT NOT NULL DEFAULT 0 ,
+  PRIMARY KEY (`idReporte`, `idUsuario`, `idProyecto`) ,
+  INDEX `reporte_usuario` (`idUsuario` ASC) ,
+  INDEX `reporte_proyecto` (`idProyecto` ASC) ,
+  CONSTRAINT `reporte_usuario`
+    FOREIGN KEY (`idUsuario` )
+    REFERENCES `SEVI`.`Usuario` (`idUsuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `reporte_proyecto`
+    FOREIGN KEY (`idProyecto` )
+    REFERENCES `SEVI`.`Proyecto` (`idProyecto` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -458,6 +492,24 @@ INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (3, 1, 'L00202020', 'Luis Humberto', 'Gonzalez', 'Guerra', 'lherrera@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'p', 1, 0, 0, 1, 1, 0, 1, 'a');
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (4, 1, 'jorge_limon', 'Jorge', 'Limon', '', 'jlimon@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'v', 0, 1, 1, 0, 0, 0, 1, 'a');
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (5, 1, 'evesdrop_fake_hack_hack', 'Eve', 'Fake', '', 'efake@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'a', 0, 0, 0, 0, 0, 0, 0, 'r');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SEVI`.`Grupo`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SEVI`;
+INSERT INTO `SEVI`.`Grupo` (`idGrupo`, `nombre`) VALUES (1, 'OXXO');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SEVI`.`Empresa`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SEVI`;
+INSERT INTO `SEVI`.`Empresa` (`idEmpresa`, `idGrupo`, `nombre`) VALUES (1, 1, 'Empresa 1');
 
 COMMIT;
 

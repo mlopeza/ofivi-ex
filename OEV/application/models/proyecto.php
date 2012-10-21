@@ -59,5 +59,41 @@ class Proyecto extends CI_Model{
 		$row = $query->row_array();
 		return $row['LAST_INSERT_ID()'];
 	}
+
+
+	function altaProyecto($idEmpresa,$Nombre,$descripcionU,$descripcionAEV){
+		//Descripciones de Usuario, preparando para guardarse en BLOB
+		$d1 = mysql_real_escape_string($descripcionU);
+		$d2 = mysql_real_escape_string($descripcionAEV);
+		$data = array(
+	   		'nombre' => $Nombre ,
+   			'idEmpresa' => $idEmpresa ,
+   			'descripcionUsuario' => $d1,
+   			'descripcionAEV' => $d2,
+   			'Proyecto_Activo' => 1
+		);
+		$this->db->insert('Proyecto', $data);
+		$id = $this->db->query("SELECT LAST_INSERT_ID() as idProyecto;")->result();
+
+		//Regresa el id del Proyecto Recien Creado
+		return $id[0]->idProyecto;					
+	}
+
+
+	//Agrega los contactos al proyecto
+	function agregaContactos($viejos,$nuevos,$idProyecto){
+		$data = array();
+		//Obtiene los datos de los contactos viejos
+		
+		foreach($viejos as $c){
+			$data[]=array('idProyecto'=>$idProyecto,'idContacto'=>$c['id']);
+		}
+
+		foreach($nuevos as $c){
+			$data[]=array('idProyecto'=>$idProyecto,'idContacto'=>$c);
+		}
+
+		$this->db->insert_batch('Contacto_Proyecto', $data); 
+	}
 }
 ?>

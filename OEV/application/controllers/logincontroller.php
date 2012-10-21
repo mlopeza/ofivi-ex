@@ -15,6 +15,7 @@ class Logincontroller extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->model('departamento');
 		$this->departamento->set_nombre($this->input->post('departamento'));		
+		$this->load->helper('url');
 		//Se busca el departamento para poder agregarlo a tabla de usaurios.
 		if($this->departamento->find()){			
 			$this->usuariomodel->setIdDepartamento($this->departamento->get_id_departamento());
@@ -26,7 +27,8 @@ class Logincontroller extends CI_Controller {
 			$this->usuariomodel->setUsuarioActivo(0);
 			$this->usuariomodel->setUsuarioAceptado('e');
 			$this->usuariomodel->insertarUsuario();
-		}		
+		}
+		$this->load->view('register_sucess');
 	}	
 	//Funcion para cambiar la vista.
 	public function cambioVista($nombre)
@@ -34,8 +36,8 @@ class Logincontroller extends CI_Controller {
 		$this->load->library('session');
 		$this->load->model('usuariomodel');
 		$this->load->helper('url');
-		$usaurio = $this->session->userdata('username');		
-		$this->usuariomodel->encontrarUsuario();
+		$usuario = $this->session->userdata('username');		
+		$this->usuariomodel->encontrarUsuarioVista($usuario);
 		$vistas['vista'] = array(
 							'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
 							'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
@@ -70,6 +72,19 @@ class Logincontroller extends CI_Controller {
 		}
 		
 	}
+
+	public function logout(){
+		$this->load->helper('url');
+		$this->load->helper('security');		
+		$this->load->library('session');
+		$data = array();
+		$this->session->set_userdata($data);
+		$this->session->sess_destroy();
+		redirect(base_url("index.php/logincontroller"), 'location'); 
+		
+	}
+
+
 	//Funcion para loggearse.
 	public function login()
 	{

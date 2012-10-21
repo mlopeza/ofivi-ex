@@ -7,8 +7,14 @@ class AceptaUsuarios extends CI_Controller {
 		$this->load->helper('administrador');
 		$this->load->model('usuariomodel');
         $this->load->helper('form');
+		$this->load->helper('security');		
+		$this->load->library('session');
+		//Toma las variables de la session
+		$vista= array('vista'=>$this->session->userdata('vista'));
 		$query['data']=$this->usuariomodel->getUsuariosPendientes();
-		$this->load->view('usuarios/header');
+		
+		//Manda los datos al header
+		$this->load->view('usuarios/header',$vista);
 		$this->load->view('usuarios/administrador/menu_administrador');
 		$this->load->view('usuarios/administrador/acepta_usuario',$query);
 		$this->load->view('usuarios/footer');

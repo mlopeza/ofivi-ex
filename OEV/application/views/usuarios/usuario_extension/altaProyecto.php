@@ -1,9 +1,7 @@
 
 <div id="content" class="span9 section-body">
-<?php
-$attributes = array('id' => 'auth-for', 'class' => 'clearfix' , 'autocomplete' => 'off');
-echo form_open('altaProyecto/alta',$attributes);
-?>
+<?php echo form_open_multipart(); ?>
+<?php echo form_close(); ?> 
                     <div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1" data-toggle="tab">Datos Básicos</a></li>
@@ -66,7 +64,7 @@ echo form_open('altaProyecto/alta',$attributes);
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-actions">
-                                                                    <button class="btn btn-primary" type="submit">Guardar</button>
+                                                                    <button class="btn btn-primary" id="GuardarTodo" type="button">Guardar</button>
                                                                     <button class="btn">Cancelar</button>
                                                                 </div>
                                                             </fieldset>
@@ -94,6 +92,22 @@ echo form_open('altaProyecto/alta',$attributes);
                                                 <div id="event" class="accordion-body collapse in">
 													<div class="accordion-inner paddind">
                                                         <form class="form-horizontal">
+														<table class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Contactos Guardados</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="contactos-body-guardados">
+															<tr><td><input type="text" style="min-width:400px;" class='input' id="demo-input-local" name="blah" /><br /></td></tr>
+                                                            </tbody>
+															<tfoot>
+															<tr>
+																<td>
+																</td>
+															</tr>
+															</tfoot>
+                                                        </table><br /><br />
 															<table class="table table-bordered">
                                                             <thead>
                                                                 <tr>
@@ -207,14 +221,11 @@ echo form_open('altaProyecto/alta',$attributes);
                             </div>
 
                             <div class="tab-pane" id="tab3">
-                                <textarea id="descripcionUsuario" name="descripcionUsuario" class="textarea" placeholder="Descripción ..." style="width: 810px; height: 200px"></textarea>
+                                <textarea id="descripcionCliente" name="descripcionUsuario" class="textarea" placeholder="Descripción ..." style="width: 810px; height: 400px"></textarea>
                             </div>
                             <div class="tab-pane" id="tab4">
-                                <textarea id="descripcionAEV" name="descripcionAEV" class="textarea" placeholder="Descripción ..." style="width: 810px; height: 200px"></textarea>
+                                <textarea id="descripcionUsuario" name="descripcionAEV" class="textarea" placeholder="Descripción ..." style="width: 810px; height: 400px"></textarea>
                             </div>
                         </div>
                     </div>
-<?php
-echo form_close();
-?>
                 </div>

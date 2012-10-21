@@ -22,14 +22,21 @@ extends CI_Controller {
 		
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
-		$this->load->view('usuarios/usuario_extension/menu_extension',$vista);
+		$this->load->view('usuarios/usuario_extension/menu_extension');
         $this->load->view('usuarios/usuario_extension/altaProyecto',$query);
 		$this->load->view('usuarios/footer');
 		$this->load->view('usuarios/usuario_extension/Scripts/altaProyecto');
     }
 
-    public function alta()
+	//Regresa los contactos dando como parametro una empresa
+    public function getContactos()
     {
+//		$data = $this->input->post();
+		$data = $this->input->get();
+		$this->load->model('contacto_model');
+		$resultado=$this->contacto_model->getContactosDeEmpresa($data['idEmpresa'],$data['q']);
+		error_log(json_encode($data), 0);
+		echo json_encode($resultado);
     }
 
 	/*Regresa las empresas en Formato JSON*/
@@ -51,8 +58,24 @@ extends CI_Controller {
 		}
 	}
 
+	public function guardaProyecto(){
+		try{
+		$data = $this->input->post();
+		$this->load->model('contacto_model');
+		$this->load->model('proyecto');
+		$oldContactos = empty($data['oldContactos'])? array() :$data['oldContactos'];
+		$newContactos = empty($data['newContactos'])? array() :$data['newContactos'];
+		//Crea los nuevos contactos y regresa un arreglo con sus identificadores
+		$arregloContactos = $this->contacto_model->creaContactosConTelefono($data['newContactos'],$data['idEmpresa']);
+		//Crea el Proyecto
+		$idProyecto = $this->proyecto->altaProyecto($data['idEmpresa'],$data['nombre_proyecto'],$data['descripcionCliente'],$data['descripcionUsuario']);
+		//Asigna los contactos al proyecto
+        $this->proyecto->agregaContactos($data['oldContactos'],$arregloContactos,$idProyecto);
+			echo json_encode(array('response'=>'true','mensaje'=>"El proyecto se creó correctamente."));
+
+		}catch(Exception $e){
+			echo json_encode(array('response'=>'false','mensaje'=>"Hubo un error en el Sistema, favor de intentarlo mas tarde.".$e->getMessage()));
+		}
+	}
 
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

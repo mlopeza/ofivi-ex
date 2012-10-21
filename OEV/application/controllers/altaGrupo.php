@@ -22,7 +22,13 @@ extends CI_Controller {
     {
 		$this->load->helper('url');
         $this->load->helper('form');
-		$this->load->view('usuarios/header');
+
+		$this->load->library('session');
+
+		$datos_usuario=$this->session->all_userdata();
+		$vista = array('vista'=>$datos_usuario['vista']);
+
+		$this->load->view('usuarios/header',$vista);
 		$this->load->view('usuarios/usuario_extension/menu_extension');
         $this->load->view('usuarios/usuario_extension/alta_Grupo');
 		$this->load->view('usuarios/footer');
@@ -30,9 +36,10 @@ extends CI_Controller {
 
     public function alta()
     {	$this->load->model('grupo');		
-		
+		$this->load->helper('url');
 		$this->grupo->set_nombre($this->input->post('nombre_grupo'));
 		$this->grupo->insert();	//Se registra el proyecto
+		redirect('altaGrupo', 'location'); 
     }
 }
 

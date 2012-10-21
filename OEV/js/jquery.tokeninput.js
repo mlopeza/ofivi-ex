@@ -25,9 +25,9 @@ var DEFAULT_SETTINGS = {
     processPrePopulate: false,
 
     // Display settings
-    hintText: "Type in a search term",
-    noResultsText: "No results",
-    searchingText: "Searching...",
+    hintText: "Introduce un Nombre",
+    noResultsText: "Sin Resultados",
+    searchingText: "Buscando...",
     deleteText: "&times;",
     animateDropdown: true,
     theme: null,
@@ -39,7 +39,7 @@ var DEFAULT_SETTINGS = {
     // Tokenization settings
     tokenLimit: null,
     tokenDelimiter: ",",
-    preventDuplicates: false,
+    preventDuplicates: true,
     tokenValue: "id",
 
     // Callbacks

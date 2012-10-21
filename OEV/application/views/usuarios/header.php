@@ -32,6 +32,10 @@
 
         <link href="<?php echo base_url("css/bootstrap-wysihtml5.css");?>" rel="stylesheet">
         <link href="<?php echo base_url("css/bootstrap-responsive.css");?>" rel="stylesheet">
+        <link href="<?php echo base_url("css/forms.css"); ?>" rel="stylesheet">
+        <link href="<?php echo base_url("css/noty.css"); ?>" rel="stylesheet">
+        <link href="<?php echo base_url("css/noty-css/noty_theme_default.css"); ?>" rel="stylesheet">
+        <link href="<?php echo base_url("css/noty-css/jquery.noty.css"); ?>" rel="stylesheet"
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -128,7 +132,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <a href="#" class="btn btn-info pull-left">Modificar Perfil</a>
-                                            <a class="btn btn-info" href="login.html">Cerrar Sesión</a>
+                                            <a class="btn btn-info" href="<?php echo base_url("index.php/logincontroller/logout");?>">Cerrar Sesión</a>
                                         </div>
 
                                     </li>

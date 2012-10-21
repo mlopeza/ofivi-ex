@@ -23,7 +23,13 @@ extends CI_Controller {
 		$this->load->helper('url');
         $this->load->helper('form');
         $this->load->helper('array');
-		$this->load->view('usuarios/header');
+		$this->load->helper('security');		
+		$this->load->library('session');
+
+		$datos_usuario=$this->session->all_userdata();
+		$vista = array('vista'=>$datos_usuario['vista']);
+
+		$this->load->view('usuarios/header',$vista);
 		$this->load->view('usuarios/usuario_extension/menu_extension');
         
         $this->load->model('grupo');
@@ -36,11 +42,12 @@ extends CI_Controller {
 
     public function alta()
     {	$this->load->model('empresa');		
-		
-		echo $this->input->post('grupo');
+		$this->load->helper('url');		
 		$this->empresa->set_id_grupo($this->input->post('grupo'));
 		$this->empresa->set_nombre($this->input->post('nombre_empresa'));
 		$this->empresa->insert();	//Se registra el proyecto
+		redirect('altaEmpresa', 'location'); 
+		
     }
 }
 
