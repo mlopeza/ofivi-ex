@@ -61,7 +61,7 @@ class Proyecto extends CI_Model{
 	}
 
 
-	function altaProyecto($idEmpresa,$Nombre,$descripcionU,$descripcionAEV){
+	function altaProyecto($idEmpresa,$Nombre,$descripcionU,$descripcionAEV,$iniciadoPor){
 		//Descripciones de Usuario, preparando para guardarse en BLOB
 		$d1 = mysql_real_escape_string($descripcionU);
 		$d2 = mysql_real_escape_string($descripcionAEV);
@@ -70,7 +70,8 @@ class Proyecto extends CI_Model{
    			'idEmpresa' => $idEmpresa ,
    			'descripcionUsuario' => $d1,
    			'descripcionAEV' => $d2,
-   			'Proyecto_Activo' => 1
+   			'Proyecto_Activo' => 1,
+   			'iniciadoPor' => $iniciadoPor
 		);
 		$this->db->insert('Proyecto', $data);
 		$id = $this->db->query("SELECT LAST_INSERT_ID() as idProyecto;")->result();
