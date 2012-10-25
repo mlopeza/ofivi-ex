@@ -96,5 +96,14 @@ class Proyecto extends CI_Model{
 		if(sizeof($data) > 0)
 			$this->db->insert_batch('Contacto_Proyecto', $data); 
 	}
+	
+	/*
+	 * Regresa un arreglo con todos los proyectos
+	 */
+	 function selectProyectos(){
+		$this->load->database();
+		$query = $this->db->get('proyecto');
+		return $query->result();
+	}
 }
 ?>
