@@ -35,7 +35,7 @@
         <link href="<?php echo base_url("css/forms.css"); ?>" rel="stylesheet">
         <link href="<?php echo base_url("css/noty.css"); ?>" rel="stylesheet">
         <link href="<?php echo base_url("css/noty-css/noty_theme_default.css"); ?>" rel="stylesheet">
-        <link href="<?php echo base_url("css/noty-css/jquery.noty.css"); ?>" rel="stylesheet"
+        <link href="<?php echo base_url("css/noty-css/jquery.noty.css"); ?>" rel="stylesheet">
 
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>

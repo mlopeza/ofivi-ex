@@ -95,5 +95,20 @@ class Proyecto extends CI_Model{
 		if(sizeof($data) > 0)
 			$this->db->insert_batch('Contacto_Proyecto', $data); 
 	}
+	//Función findAll par regresar todos los datos de la tabla.
+	function findAll(){
+		$this->load->database();
+		$query = $this->db->get('proyecto');
+		return $query->result();
+	}
+	
+	function findPA($empresa,$activo){
+		$this->load->database();
+		$query = $this->db->query('SELECT idProyecto, nombre
+								   From Proyecto
+								   WHERE idEmpresa = '.$empresa.' AND
+								   Proyecto_Activo = '.$activo );
+		return $query->result();
+	}
 }
 ?>

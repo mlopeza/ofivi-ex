@@ -10,6 +10,7 @@
                                             <li><a href="<?php echo base_url("index.php/altaProyecto");?>">Alta de Proyecto</a></li>
                                             <li><a href="<?php echo base_url("index.php/altaGrupo");?>">Alta de Grupo</a></li>
                                             <li><a href="<?php echo base_url("index.php/altaEmpresa");?>">Alta de Empresa</a></li>
+                                            <li><a href="<?php echo base_url("index.php/avancesproyecto");?>">Reporte de proyecto</a></li> 
                                         </ul>
                                     </div>
                                 </div>
