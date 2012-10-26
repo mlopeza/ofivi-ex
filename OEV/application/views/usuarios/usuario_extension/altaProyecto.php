@@ -99,7 +99,7 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="contactos-body-guardados">
-															<tr><td><input type="text" style="min-width:400px;" class='input' id="demo-input-local" name="blah" /><br /></td></tr>
+															<tr><td><input type="text" style="max-width:400px;" class='input' id="demo-input-local" name="blah" /><br /></td></tr>
                                                             </tbody>
 															<tfoot>
 															<tr>
@@ -171,6 +171,18 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="control-group">
+                                                                    <label for="focusedInput"  class="control-label">Puesto</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" value="" id="contacto-puesto" class="input-xlarge focused">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label for="focusedInput"  class="control-label">Departamento</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" value="" id="contacto-departamento" class="input-xlarge focused">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
                                                                     <label for="optionsCheckbox2" class="control-label">Pregunta al Cliente</label>
                                                                     <div class="controls">
                                                                         <label class="checkbox">
@@ -183,8 +195,10 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th>Descripción</th>
+                                                                    <th>Lada</th>
                                                                     <th>Telefono</th>
-                                                                    <th>Extensión</th>
+                                                                    <th>ext</th>
+                                                                    <th>Extra</th>
                                                                     <th>Acción</th>
                                                                 </tr>
                                                             </thead>
@@ -192,11 +206,11 @@
                                                             </tbody>
 															<tfoot>
 															<tr>
-																<td colspan="4" style="text-align:right;">
+																<td colspan="6" style="text-align:right;">
 																</td>
 															</tr>
 															<tr>
-																<td colspan="4" style="text-align:right;">
+																<td colspan="6" style="text-align:right;">
                                                                     <button class="btn btn-primary" type="button" id="contacto-nuevo-telefono">Nuevo</button>
 																</td>
 															</tr>

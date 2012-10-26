@@ -9,7 +9,7 @@
 
 		//Agrega un Nuevo campo para los telefonos
 		$("#contacto-nuevo-telefono").click(function(){
-			var o = $('<tr><td><input class="descripcion" type="text" style="max-width:100px;"></input></td><td><input class="telefono" style="max-width:100px;" type="text"></input></td><td><input class="extension" type="text" style="max-width:100px;"></input></td><td><button class="btn btn-danger remove-telefono" type="button"><i class="icon-remove icon-white"></i></button></td></tr>');
+			var o = $('<tr><td><input class="descripcion" type="text" style="max-width:100px;"></input></td><td><input class="lada" style="max-width:25px;" type="text"></input></td><td><input class="telefono" style="max-width:50px;" type="text"></input></td><td><input class="extension" type="text" style="max-width:30px;"></input></td><td><input class="descripcionExtra" type="text" style="max-width:50px;"></input></td><td><button class="btn btn-danger remove-telefono" type="button"><i class="icon-remove icon-white"></i></button></td></tr>');
 			$("#contacto-telefonos-body").append(o);
 		});
 
@@ -52,6 +52,8 @@
 						telefonos[index]["descripcion"] = $(nodo).find('.descripcion').val();
 						telefonos[index]["telefono"] = $(nodo).find('.telefono').val();
 						telefonos[index]["extension"] = $(nodo).find('.extension').val();
+						telefonos[index]["lada"] = $(nodo).find('.lada').val();
+						telefonos[index]["descripcionExtra"] = $(nodo).find('.descripcionExtra').val();
 						atelefonos=atelefonos+telefonos[index]["telefono"];
 	
 						if(telefonos[index]["extension"] == ""){
@@ -69,6 +71,8 @@
 					apellidom: $("#contacto-am").val(),
 					recibe:$("#contacto-enviar").is(':checked'),
 					email:$("#contacto-email").val(),
+                    puesto:$("#contacto-puesto").val(),
+                    departamento:$("#contacto-departamento").val(),
 					telefonos:JSON.stringify(telefonos)
 			});
 
@@ -83,6 +87,8 @@
 			$("#contacto-am").val("");
 			$("#contacto-enviar").attr('checked', false);
 			$("#contacto-email").val("");
+			$("#contacto-departamento").val("");
+			$("#contacto-puesto").val("");
 			$("#contacto-telefonos-body").empty();
 		});
 			
@@ -100,6 +106,7 @@
 
 			nombre_proyecto=$("#nombre_proyecto").val();
 			idEmpresa=$("#Empresa").children('option').filter(':selected').attr('id');
+			idUsuario=$("#idUsuario-sistema").attr('idUsuario');
 			idGrupo=$("#Grupo").children('option').filter(':selected').attr('id');
 			var new_contactos = {};			
 			$.each($("#contactos-body").children(),function(index,a){
@@ -108,6 +115,8 @@
 				new_contactos[index]['ApellidoP']=$(a).attr('apellidop');
 				new_contactos[index]['ApellidoM']=$(a).attr('apellidom');
 				new_contactos[index]['email']=$(a).attr('email');
+				new_contactos[index]['departamento']=$(a).attr('departamento');
+				new_contactos[index]['puesto']=$(a).attr('puesto');
 				new_contactos[index]['Recibe_Correos']=$(a).attr('recibe');
 				new_contactos[index]['telefonos']=$.parseJSON($(a).attr('telefonos'));
 			});
@@ -118,6 +127,7 @@
 			var data={ 
 			'nombre_proyecto':nombre_proyecto,
 			'idEmpresa':idEmpresa,
+            'iniciadoPor':idUsuario,
 			'idGrupo':idGrupo,
 			'newContactos':new_contactos,
 			'oldContactos':oldContactos,
@@ -210,14 +220,18 @@
 			$("#contacto-am").val($(nodo).attr('apellidom'));
 			$("#contacto-enviar").attr('checked', $(nodo).attr('recibe'));
 			$("#contacto-email").val($(nodo).attr('email'));
+            $("#contacto-puesto").val($(nodo).attr('puesto'));
+            $("#contacto-departamento").val($(nodo).attr('departamento'));
 			nodos = $.parseJSON($(nodo).attr('telefonos'));
 
 			//Se iteran los telefonos y se agregan al body nuevamente
 			$.each(nodos,function(index,value){
-				var o = $('<tr><td><input class="descripcion" type="text" style="max-width:100px;"></input></td><td><input class="telefono" style="max-width:100px;" type="text"></input></td><td><input class="extension" type="text" style="max-width:100px;"></input></td><td><button class="btn btn-danger remove-telefono" type="button"><i class="icon-remove icon-white"></i></button></td></tr>');
+				var o = $('<tr><td><input class="descripcion" type="text" style="max-width:100px;"></input></td><td><input class="lada" style="max-width:25px;" type="text"></input></td><td><input class="telefono" style="max-width:50px;" type="text"></input></td><td><input class="extension" type="text" style="max-width:30px;"></input></td><td><input class="descripcionExtra" type="text" style="max-width:50px;"></input></td><td><button class="btn btn-danger remove-telefono" type="button"><i class="icon-remove icon-white"></i></button></td></tr>');
 						$(o).find('.descripcion').val(value["descripcion"]);
 						$(o).find('.telefono').val(value["telefono"]);
 						$(o).find('.extension').val(value["extension"]);
+						$(o).find('.lada').val(value["lada"]);
+						$(o).find('.descripcionExtra').val(value["descripcionExtra"]);
 				$("#contacto-telefonos-body").append(o);
 			});
 			

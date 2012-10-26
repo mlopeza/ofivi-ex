@@ -61,7 +61,7 @@ class Proyecto extends CI_Model{
 	}
 
 
-	function altaProyecto($idEmpresa,$Nombre,$descripcionU,$descripcionAEV){
+	function altaProyecto($idEmpresa,$Nombre,$descripcionU,$descripcionAEV,$iniciadoPor){
 		//Descripciones de Usuario, preparando para guardarse en BLOB
 		$d1 = mysql_real_escape_string($descripcionU);
 		$d2 = mysql_real_escape_string($descripcionAEV);
@@ -70,7 +70,8 @@ class Proyecto extends CI_Model{
    			'idEmpresa' => $idEmpresa ,
    			'descripcionUsuario' => $d1,
    			'descripcionAEV' => $d2,
-   			'Proyecto_Activo' => 1
+   			'Proyecto_Activo' => 1,
+   			'iniciadoPor' => $iniciadoPor
 		);
 		$this->db->insert('Proyecto', $data);
 		$id = $this->db->query("SELECT LAST_INSERT_ID() as idProyecto;")->result();
@@ -95,6 +96,7 @@ class Proyecto extends CI_Model{
 		if(sizeof($data) > 0)
 			$this->db->insert_batch('Contacto_Proyecto', $data); 
 	}
+<<<<<<< HEAD
 	//Función findAll par regresar todos los datos de la tabla.
 	function findAll(){
 		$this->load->database();
@@ -108,6 +110,15 @@ class Proyecto extends CI_Model{
 								   From Proyecto
 								   WHERE idEmpresa = '.$empresa.' AND
 								   Proyecto_Activo = '.$activo );
+=======
+	
+	/*
+	 * Regresa un arreglo con todos los proyectos
+	 */
+	 function selectProyectos(){
+		$this->load->database();
+		$query = $this->db->get('proyecto');
+>>>>>>> f5354bd06b372e1f1dc12e3c3a3377c8f04efc52
 		return $query->result();
 	}
 }

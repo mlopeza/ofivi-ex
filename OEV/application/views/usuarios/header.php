@@ -111,7 +111,7 @@
                             <li class="dropdown">
 								<!--Nombre de Usuario-->
 								<!--Igual sería buena idea poner el Rol Actual del Usuario en Este apartado-->
-                                <a data-toggle="dropdown" href="#"><?php echo $this->session->userdata('username'); ?><b class="caret"></b></a>
+                                <a data-toggle="dropdown" id="idUsuario-sistema" idUsuario="<?php echo $this->session->userdata('idUsuario'); ?>" href="#"><?php echo $this->session->userdata('username'); ?><b class="caret"></b></a>
                                <ul class="dropdown-menu">
                                     <li>
                                         <div class="modal-header">

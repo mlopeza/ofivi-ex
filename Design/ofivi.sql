@@ -100,9 +100,11 @@ DROP TABLE IF EXISTS `SEVI`.`Usuario_Telefono` ;
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Usuario_Telefono` (
   `idTelefono` INT NOT NULL AUTO_INCREMENT ,
   `idUsuario` INT NOT NULL ,
+  `lada` VARCHAR(10) NOT NULL ,
   `telefono` VARCHAR(45) NOT NULL ,
   `extension` VARCHAR(45) NULL ,
   `descripcion` VARCHAR(45) NOT NULL ,
+  `descripcionExtra` VARCHAR(255) NULL ,
   PRIMARY KEY (`idTelefono`, `idUsuario`) ,
   INDEX `telefono_usuario` (`idUsuario` ASC) ,
   CONSTRAINT `telefono_usuario`
@@ -198,11 +200,18 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Proyecto` (
   `descripcionUsuario` BLOB NOT NULL ,
   `descripcionAEV` BLOB NOT NULL ,
   `Proyecto_Activo` TINYINT NOT NULL DEFAULT 1 ,
+  `iniciadoPor` INT(11) NOT NULL ,
   PRIMARY KEY (`idProyecto`, `idEmpresa`) ,
   INDEX `Proyecto_Empresa` (`idEmpresa` ASC) ,
+  INDEX `Proyecto_Usuario` (`iniciadoPor` ASC) ,
   CONSTRAINT `Proyecto_Empresa`
     FOREIGN KEY (`idEmpresa` )
     REFERENCES `SEVI`.`Empresa` (`idEmpresa` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `Proyecto_Usuario`
+    FOREIGN KEY (`iniciadoPor` )
+    REFERENCES `SEVI`.`Usuario` (`idUsuario` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -310,6 +319,8 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Contacto` (
   `email` VARCHAR(45) NOT NULL ,
   `Contacto_Activo` TINYINT NOT NULL DEFAULT 0 ,
   `Recibe_Correos` SMALLINT NOT NULL DEFAULT 0 ,
+  `puesto` VARCHAR(45) NULL ,
+  `departamento` VARCHAR(45) NULL ,
   PRIMARY KEY (`idContacto`, `idEmpresa`) ,
   INDEX `Contacto_Empresa` (`idEmpresa` ASC) ,
   CONSTRAINT `Contacto_Empresa`
@@ -352,9 +363,11 @@ DROP TABLE IF EXISTS `SEVI`.`Contacto_Telefono` ;
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Contacto_Telefono` (
   `idTelefono` INT NOT NULL AUTO_INCREMENT ,
   `idContacto` INT NOT NULL ,
+  `lada` VARCHAR(10) NOT NULL ,
   `telefono` VARCHAR(45) NOT NULL ,
   `extension` VARCHAR(45) NULL ,
   `descripcion` VARCHAR(45) NOT NULL ,
+  `descripcionExtra` VARCHAR(255) NULL ,
   PRIMARY KEY (`idTelefono`, `idContacto`) ,
   INDEX `Telefono_Contacto` (`idContacto` ASC) ,
   CONSTRAINT `Telefono_Contacto`

@@ -50,7 +50,11 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = '';
 $db['default']['username'] = 'root';
+<<<<<<< HEAD
 $db['default']['password'] = '';
+=======
+$db['default']['password'] = 'cbtis20eme';
+>>>>>>> f5354bd06b372e1f1dc12e3c3a3377c8f04efc52
 $db['default']['database'] = 'sevi';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

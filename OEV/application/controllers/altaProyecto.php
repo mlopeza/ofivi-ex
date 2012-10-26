@@ -68,7 +68,7 @@ extends CI_Controller {
 		//Crea los nuevos contactos y regresa un arreglo con sus identificadores
 		$arregloContactos = $this->contacto_model->creaContactosConTelefono($newContactos,$data['idEmpresa']);
 		//Crea el Proyecto
-		$idProyecto = $this->proyecto->altaProyecto($data['idEmpresa'],$data['nombre_proyecto'],$data['descripcionCliente'],$data['descripcionUsuario']);
+		$idProyecto = $this->proyecto->altaProyecto($data['idEmpresa'],$data['nombre_proyecto'],$data['descripcionCliente'],$data['descripcionUsuario'],$data['iniciadoPor']);
 		//Asigna los contactos al proyecto
         $this->proyecto->agregaContactos($oldContactos,$arregloContactos,$idProyecto);
 			echo json_encode(array('response'=>'true','mensaje'=>"El proyecto se creó correctamente."));
