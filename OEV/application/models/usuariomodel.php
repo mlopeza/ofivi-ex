@@ -289,6 +289,58 @@ class Usuariomodel extends CI_Model {
         $this->db->update('Usuario', $arreglo);
     }
 
+    //Regresa lso profesores que cumplen con una lista de Areas
+    function getUsuariosAreas($lista){
+        $this->load->database();
+        $this->db->select('u.idUsuario, u.Nombre, u.ApellidoP, u.ApellidoM, u.email, u.Tipo_Usuario, d.nombre as Departamento,c.Nombre as Campus, e.Nombre as Escuela');
+        $this->db->from('Usuario u');
+        $this->db->join('Departamento d','d.idDepartamento = u.idDepartamento','inner');
+        $this->db->join('Escuela e','e.idEscuela = d.idEscuela','inner');
+        $this->db->join('Campus c','c.idCampus = e.idCampus','inner');
+        $this->db->order_by("Campus", "asc"); 
+        $this->db->order_by("Escuela", "asc"); 
+        $this->db->order_by("Departamento", "asc"); 
+        $this->db->where_in('u.idUsuario',$this->getListaUsuariosArea($lista));
+        return $this->db->get()->result();
 
+    }
+
+    //Funcion Recursiva para verificar si los Profesores pertenecen a Varias Areas de Conocimiento
+    function getListaUsuariosArea($lista){
+        $this->load->database();
+        $query = "SELECT idUsuario FROM Usuario_Area WHERE idArea_Conocimiento=".$lista[0];
+        unset($lista[0]);
+        foreach($lista as $elemento){
+            $query="SELECT idUsuario FROM Usuario_Area WHERE idArea_Conocimiento = ".$elemento." AND idUsuario IN(".$query.")";
+        }
+        $contador = 0;
+        $q=array();
+        foreach($this->db->query($query)->result() as $fila){
+            $q[$contador] = $fila->idUsuario;
+            $contador++;
+        }
+        return sizeof($q) == 0? array('-1'):$q;
+    }
+
+    function getUsuariosName($nombre){
+		$this->load->database();
+        $query = $this->db->query('
+			SELECT CONCAT (Nombre, " ",ApellidoP," ",ApellidoM," ",email) as name
+			FROM Usuario
+			WHERE 
+				Nombre like "%'.$nombre.'%" OR
+				ApellidoP like "%'.$nombre.'%" OR
+				ApellidoM like "%'.$nombre.'%"
+			');
+		return $query->result();
+    }
 }
+
+
+
+
+
+
+
 ?>
+

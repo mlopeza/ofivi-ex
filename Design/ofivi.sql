@@ -385,7 +385,7 @@ DROP TABLE IF EXISTS `SEVI`.`Grupo_Area` ;
 
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Grupo_Area` (
   `idGrupo_Area` INT NOT NULL AUTO_INCREMENT ,
-  `nombre` VARCHAR(45) NOT NULL ,
+  `nombre` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`idGrupo_Area`) )
 ENGINE = InnoDB;
 
@@ -439,9 +439,10 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `SEVI`.`Reporte` ;
 
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Reporte` (
-  `idReporte` INT NOT NULL ,
+  `idReporte` INT NOT NULL AUTO_INCREMENT ,
   `idUsuario` INT NOT NULL ,
   `idProyecto` INT NOT NULL ,
+  `Titulo` VARCHAR(50) NOT NULL DEFAULT 'Sin Titulo' ,
   `Reporte` BLOB NOT NULL ,
   `reporteFinal` TINYINT NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`idReporte`, `idUsuario`, `idProyecto`) ,
@@ -459,6 +460,27 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Reporte` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Placeholder table for view `SEVI`.`Vista_Usuarios_Area`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SEVI`.`Vista_Usuarios_Area` (`Nombre` INT, `ApellidoP` INT, `ApellidoM` INT, `email` INT, `Tipo_Usuario` INT, `Departamento` INT, `Campus` INT, `Escuela` INT, `idArea_Conocimiento` INT);
+
+-- -----------------------------------------------------
+-- View `SEVI`.`Vista_Usuarios_Area`
+-- -----------------------------------------------------
+DROP VIEW IF EXISTS `SEVI`.`Vista_Usuarios_Area` ;
+DROP TABLE IF EXISTS `SEVI`.`Vista_Usuarios_Area`;
+USE `SEVI`;
+CREATE  OR REPLACE VIEW `SEVI`.`Vista_Usuarios_Area` AS
+SELECT u.Nombre, u.ApellidoP, u.ApellidoM, u.email, u.Tipo_Usuario, d.nombre as Departamento,
+            c.Nombre as Campus, e.Nombre as Escuela, ua.idArea_Conocimiento
+FROM Usuario u
+INNER JOIN Departamento d ON u.idDepartamento = d.idDepartamento
+INNER JOIN Escuela e ON e.idEscuela = d.idEscuela
+INNER JOIN Campus c ON c.idCampus = e.idCampus
+INNER JOIN Usuario_Area ua ON u.idUsuario = ua.idUsuario
+;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
@@ -523,6 +545,42 @@ COMMIT;
 START TRANSACTION;
 USE `SEVI`;
 INSERT INTO `SEVI`.`Empresa` (`idEmpresa`, `idGrupo`, `nombre`) VALUES (1, 1, 'Empresa 1');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SEVI`.`Grupo_Area`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SEVI`;
+INSERT INTO `SEVI`.`Grupo_Area` (`idGrupo_Area`, `nombre`) VALUES (1, 'Tecnologias de la Infromación y la comunicación');
+INSERT INTO `SEVI`.`Grupo_Area` (`idGrupo_Area`, `nombre`) VALUES (2, 'Medicina');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SEVI`.`Area_Conocimiento`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SEVI`;
+INSERT INTO `SEVI`.`Area_Conocimiento` (`idArea_Conocimiento`, `idGrupo_Area`, `area`) VALUES (1, 1, 'Redes');
+INSERT INTO `SEVI`.`Area_Conocimiento` (`idArea_Conocimiento`, `idGrupo_Area`, `area`) VALUES (2, 1, 'Sistemas Operativos');
+INSERT INTO `SEVI`.`Area_Conocimiento` (`idArea_Conocimiento`, `idGrupo_Area`, `area`) VALUES (3, 1, 'Sistemas Embebidos');
+INSERT INTO `SEVI`.`Area_Conocimiento` (`idArea_Conocimiento`, `idGrupo_Area`, `area`) VALUES (4, 2, 'Medicina General');
+INSERT INTO `SEVI`.`Area_Conocimiento` (`idArea_Conocimiento`, `idGrupo_Area`, `area`) VALUES (5, 2, 'Gastro Enterologia');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SEVI`.`Usuario_Area`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SEVI`;
+INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (1, 1);
+INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (1, 2);
+INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (1, 3);
+INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (2, 1);
+INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (2, 3);
 
 COMMIT;
 
