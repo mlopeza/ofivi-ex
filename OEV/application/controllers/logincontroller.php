@@ -67,7 +67,7 @@ class Logincontroller extends CI_Controller {
 		}
 		else if ($nombre == 'Profesor'){			
 					$this->load->view('usuarios/header',$vistas);					
-//					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
+					$this->load->view('usuarios/usuario_proyecto/menu_uproyecto',$vistas);
 					$this->load->view('usuarios/footer');					
 		}
 		
