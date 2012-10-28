@@ -96,7 +96,6 @@ class Proyecto extends CI_Model{
 		if(sizeof($data) > 0)
 			$this->db->insert_batch('Contacto_Proyecto', $data); 
 	}
-<<<<<<< HEAD
 	//Función findAll par regresar todos los datos de la tabla.
 	function findAll(){
 		$this->load->database();
@@ -106,11 +105,12 @@ class Proyecto extends CI_Model{
 	
 	function findPA($empresa,$activo){
 		$this->load->database();
-		$query = $this->db->query('SELECT idProyecto, nombre
-								   From Proyecto
-								   WHERE idEmpresa = '.$empresa.' AND
-								   Proyecto_Activo = '.$activo );
-=======
+				$query = $this->db->query('SELECT idProyecto, nombre
+										   From Proyecto
+										   WHERE idEmpresa = '.$empresa.' AND
+										   Proyecto_Activo = '.$activo );
+			return $query->result();
+	}
 	
 	/*
 	 * Regresa un arreglo con todos los proyectos
@@ -118,8 +118,47 @@ class Proyecto extends CI_Model{
 	 function selectProyectos(){
 		$this->load->database();
 		$query = $this->db->get('proyecto');
->>>>>>> f5354bd06b372e1f1dc12e3c3a3377c8f04efc52
 		return $query->result();
 	}
+	function getCA($idProyecto,$activo){
+		$this->load->database();
+		$query = $this->db->query(' Select c.idContacto, c.Nombre, c.ApellidoP, c.ApellidoM
+									FROM contacto as c, contacto_proyecto as cp, proyecto as p
+									WHERE p.idProyecto = cp.idProyecto AND
+									cp.idContacto = c.idContacto AND
+									p.Proyecto_Activo =' .$activo.' AND
+									p.idProyecto = '.$idProyecto );
+		return $query->result();
 }
+	function getUA($idProyecto,$activo){
+		$this->load->database();
+		$query = $this->db->query(' Select c.idUsuario, c.Nombre, c.ApellidoP, c.ApellidoM
+									FROM usuario as c, usuario_proyecto as cp, proyecto as p
+									WHERE p.idProyecto = cp.idProyecto AND
+									cp.idUsuario = c.idUsuario AND
+									p.Proyecto_Activo =' .$activo.' AND
+									p.idProyecto = '.$idProyecto );
+		return $query->result();
+}
+	function getCATPA($idProyecto,$activo){
+		$this->load->database();
+		$query = $this->db->query(' Select c.Categoria
+									From categoria as c, categoria_proyecto as cp, proyecto as p
+									Where p.Proyecto_Activo = '.$activo.'  AND
+									p.idProyecto = cp.idProyecto AND
+									cp.idCategoria = c.idCategoria AND
+									p.idProyecto =  '.$idProyecto  );
+		return $query->result();
+}
+function getEA($idProyecto,$activo){
+		$this->load->database();
+		$query = $this->db->query(' Select e.idEstado, e.tiempoActualizacion, e.Estado, u.Nombre, u.ApellidoP, u.ApellidoM
+									FROM estado as e, proyecto as p, usuario as u
+									WHERE p.idProyecto ='.$idProyecto.' 
+										  e.idProyecto = p.idProyecto AND
+										  p.Proyecto_Activo ='.$activo.'  AND
+										  e.idUsuario = u.idUsuario '  );
+		return $query->result();
+}
+
 ?>

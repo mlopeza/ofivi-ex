@@ -136,26 +136,25 @@ class Usuariomodel extends CI_Model {
 		$this->db->update('usuario',$data);	 
 	}
 	//Función para insertar un usuario a la tabla de usuarios.
-	function insertarUsuario(){
+	function insertarUsuario($idDepartamento,$username,$nombre,$apellido_paterno,$apellido_materno,$email,$password,$tipo_usuario,$usuario_activo,$usuario_aceptado){
 		$this->load->database();
 		$arreglo = array(
-		'idUsuario'=>$this->idUsuario,
-		'idDepartamento'=>$this->idDepartamento,
-		'Username'=>$this->Username,
-		'Nombre'=>$this->Nombre,
-		'ApellidoP'=>$this->ApellidoP,
-		'ApellidoM'=>$this->ApellidoM,
-		'email'=>$this->email,
-		'password'=>$this->password,
-		'Tipo_Usuario'=>$this->Tipo_Usuario,
-		'Vista_Profesor'=>$this->Vista_Profesor,
-		'Vista_Administrador'=>$this->Vista_Administrador,
-		'Vista_Supervisor_Extension'=>$this->Vista_Supervisor_Extension,
-		'Vista_Usuario_Extension'=>$this->Vista_Usuario_Extension,
-		'Vista_Legal'=>$this->Vista_Legal,
-		'Vista_Cliente'=>$this->Vista_Cliente,
-		'Usuario_Activo'=>$this->Usuario_Activo,
-		'Usuario_Aceptado'=>$this->Usuario_Aceptado
+		'idDepartamento'=>$idDepartamento,
+		'Username'=>$username,
+		'Nombre'=>$nombre,
+		'ApellidoP'=>$apellido_paterno,
+		'ApellidoM'=>$apellido_materno,
+		'email'=>$email,
+		'password'=>hash('sha512',$password),
+		'Tipo_Usuario'=>$tipo_usuario,
+		'Vista_Profesor'=>0,
+		'Vista_Administrador'=>0,
+		'Vista_Supervisor_Extension'=>0,
+		'Vista_Usuario_Extension'=>0,
+		'Vista_Legal'=>0,
+		'Vista_Cliente'=>0,
+		'Usuario_Activo'=>0,
+		'Usuario_Aceptado'=>'e'
 
 		);
 		$this->db->insert('usuario',$arreglo);

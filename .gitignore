@@ -4,8 +4,6 @@
 .yardoc
 _yardoc
 doc/
-<<<<<<< HEAD
 database.php
-=======
-database.php
->>>>>>> f5354bd06b372e1f1dc12e3c3a3377c8f04efc52
+
+

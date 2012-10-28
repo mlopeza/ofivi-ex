@@ -67,6 +67,13 @@ class contacto_model extends CI_Model {
 
 		return $arregloContactos;
 	}
-
+	//Funcion que regresa los contactos de cierta empresa
+	function getContactosEmpresa($idEmpresa){
+		$this->load->database();
+		$query=$this->db->query('SELECT CONCAT( Nombre, " ", ApellidoP, " ", ApellidoM ) AS nombre, idContacto,puesto,departamento
+						  FROM contacto
+						  Where idEmpresa ='. $idEmpresa);
+		return $query->result();
+	}
 }
 ?>
