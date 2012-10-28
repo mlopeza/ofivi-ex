@@ -96,7 +96,7 @@
 																						  		<button class="btn btn-danger reject-user">Rechazar</button>
 																						  </td>
                                                                 </tr>
-															<? }; ?>
+															<?php }; ?>
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr>

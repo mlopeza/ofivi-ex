@@ -7,17 +7,8 @@
                                 <div class="accordion-body collapse dropdown" id="collapseOne">
                                     <div class="accordion-inner">
                                         <ul class="nav nav-list">
-<<<<<<< HEAD
-                                            <li><a href="<?php echo base_url("index.php/altaProyecto");?>">Alta de Proyecto</a></li>
-                                            <li><a href="<?php echo base_url("index.php/altaGrupo");?>">Alta de Grupo</a></li>
-                                            <li><a href="<?php echo base_url("index.php/altaEmpresa");?>">Alta de Empresa</a></li>
-                                            <li><a href="<?php echo base_url("index.php/avancesproyecto");?>">Reporte de proyecto</a></li> 
-=======
-                                            <li><a href="<?php echo base_url("altaProyecto");?>">Alta de Proyecto</a></li>
-                                            <li><a href="<?php echo base_url("altaGrupo");?>">Alta de Grupo</a></li>
-                                            <li><a href="<?php echo base_url("altaEmpresa");?>">Alta de Empresa</a></li>
-                                            <li><a href="<?php echo base_url("asignaProyecto");?>">Asigna Proyectos</a></li>
->>>>>>> 438942de42d1df33faf35268c115664622614f04
+                                            <li><a href="<?php echo base_url("arProyecto");?>">Proyectos Pendientes</a></li>
+                                            <li><a href="<?php echo base_url("generaReporte");?>">Generar Reporte</a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -120,6 +120,7 @@ class Proyecto extends CI_Model{
 		$query = $this->db->get('proyecto');
 		return $query->result();
 	}
+<<<<<<< HEAD
 	function getCA($idProyecto,$activo){
 		$this->load->database();
 		$query = $this->db->query(' Select c.idContacto, c.Nombre, c.ApellidoP, c.ApellidoM
@@ -129,6 +130,84 @@ class Proyecto extends CI_Model{
 									p.Proyecto_Activo =' .$activo.' AND
 									p.idProyecto = '.$idProyecto );
 		return $query->result();
+=======
+
+  /*Regresa todos los proyectos que inicio un usuario
+        idUsuario    El id del Usuario
+        activo       Si el proyecto est activo o no.
+    */
+	function getProyectosIniciados($idUsuario,$activo){
+		$this->load->database();
+        return $this->db->query("
+                                SELECT idProyecto,p.nombre as Proyecto,e.nombre as Empresa,g.nombre as Grupo
+                                FROM Proyecto p
+                                INNER JOIN Empresa e ON e.idEmpresa = p.idEmpresa
+                                INNER JOIN Grupo g ON g.idGrupo = e.idGrupo
+                                WHERE iniciadoPor='".$idUsuario."' AND Proyecto_Activo = ".$activo."
+                                ORDER BY Grupo,Empresa,Proyecto
+                                ")->result();
+	}
+
+    function getAsignados($idProyecto){
+        $this->load->database();
+        $this->db->select('up.tiempo_solicitud,up.tiempo_respuesta,up.acepto,u.idUsuario, u.Nombre, u.ApellidoP, u.ApellidoM, u.email, u.Tipo_Usuario, d.nombre as Departamento,c.Nombre as Campus, e.Nombre as Escuela');
+        $this->db->from('Usuario u');
+        $this->db->join('Departamento d','d.idDepartamento = u.idDepartamento','inner');
+        $this->db->join('Escuela e','e.idEscuela = d.idEscuela','inner');
+        $this->db->join('Campus c','c.idCampus = e.idCampus','inner');
+        $this->db->join('Usuario_Proyecto up','up.idUsuario = u.idUsuario AND up.activa = 1 AND up.idProyecto='.$idProyecto,'inner');
+        $this->db->order_by("Campus", "asc"); 
+        $this->db->order_by("Escuela", "asc"); 
+        $this->db->order_by("Departamento", "asc");
+        return $this->db->get()->result();
+    }
+
+    function setProfesor($data){
+        $this->load->database();
+        if(sizeof($this->db->get('Usuario_Proyecto')->result()) != 0){
+            $this->db->delete('Usuario_Proyecto',$data);
+            $this->db->insert('Usuario_Proyecto',$data);
+        }else{
+            $this->db->insert('Usuario_Proyecto',$data);
+        }
+    }
+
+    //Pone la asignacion como inactiva
+    function eliminaAsignacion($data){
+        $this->load->database();
+        $this->db->where($data);
+        $this->db->update('Usuario_Proyecto', array('activa'=>0)); 
+    }
+
+	function getProyectosAsignados($idUsuario,$activo){
+		$this->load->database();
+        return $this->db->query("
+                                SELECT up.idProyecto,p.nombre as Proyecto,e.nombre as Empresa,g.nombre as Grupo
+                                FROM Usuario_Proyecto up
+                                INNER JOIN Proyecto p ON up.idProyecto = p.idProyecto
+                                INNER JOIN Empresa e ON e.idEmpresa = p.idEmpresa
+                                INNER JOIN Grupo g ON g.idGrupo = e.idGrupo
+                                WHERE up.idUsuario=".$idUsuario." AND up.activa = ".$activo." AND up.acepto = 0
+                                ORDER BY Grupo,Empresa,Proyecto
+                                ")->result();
+	}
+
+    function getDescripciones($idProyecto){
+		$this->load->database();
+        return $this->db->query("
+                                SELECT descripcionUsuario as cliente,descripcionAEV as usuario
+                                FROM Proyecto
+                                WHERE idProyecto=".$idProyecto." AND Proyecto_Activo = 1
+                                ")->result();
+
+    }
+
+    function setRespuesta($idProyecto,$data){
+		$this->load->database();
+        $this->db->where(array('idProyecto'=>$idProyecto));
+        $this->db->update('Usuario_Proyecto',$data);
+    }
+>>>>>>> 438942de42d1df33faf35268c115664622614f04
 }
 	function getUA($idProyecto,$activo){
 		$this->load->database();
