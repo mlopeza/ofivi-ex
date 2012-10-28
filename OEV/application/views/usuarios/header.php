@@ -32,14 +32,9 @@
         <link href="<?php echo base_url("css/forms.css"); ?>" rel="stylesheet">
         <link href="<?php echo base_url("css/noty.css"); ?>" rel="stylesheet">
         <link href="<?php echo base_url("css/noty-css/noty_theme_default.css"); ?>" rel="stylesheet">
-<<<<<<< HEAD
-        <link href="<?php echo base_url("css/noty-css/jquery.noty.css"); ?>" rel="stylesheet">
-
-=======
         <link href="<?php echo base_url("css/noty-css/jquery.noty.css"); ?>" rel="stylesheet"
         <link href="<?php echo base_url("css/media-fluid.css");?>" rel="stylesheet">
         <link href="<?php echo base_url("css/jquery-ui-bootstrap-1.8.16.custom.css");?> " rel="stylesheet">
->>>>>>> 438942de42d1df33faf35268c115664622614f04
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

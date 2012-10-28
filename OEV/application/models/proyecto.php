@@ -120,7 +120,6 @@ class Proyecto extends CI_Model{
 		$query = $this->db->get('proyecto');
 		return $query->result();
 	}
-<<<<<<< HEAD
 	function getCA($idProyecto,$activo){
 		$this->load->database();
 		$query = $this->db->query(' Select c.idContacto, c.Nombre, c.ApellidoP, c.ApellidoM
@@ -130,7 +129,7 @@ class Proyecto extends CI_Model{
 									p.Proyecto_Activo =' .$activo.' AND
 									p.idProyecto = '.$idProyecto );
 		return $query->result();
-=======
+	}
 
   /*Regresa todos los proyectos que inicio un usuario
         idUsuario    El id del Usuario
@@ -207,7 +206,6 @@ class Proyecto extends CI_Model{
         $this->db->where(array('idProyecto'=>$idProyecto));
         $this->db->update('Usuario_Proyecto',$data);
     }
->>>>>>> 438942de42d1df33faf35268c115664622614f04
 }
 	function getUA($idProyecto,$activo){
 		$this->load->database();
