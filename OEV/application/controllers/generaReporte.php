@@ -29,9 +29,10 @@ extends CI_Controller {
 		//Cargar la sesion		
 		$datos_usuario=$this->session->all_userdata();
 		$vista = array('vista'=>$datos_usuario['vista']);
+		$usuario = $datos_usuario['idUsuario'];
 		
 		//Obtener lista de proyectos
-		$proyectos['proyectos'] = $this->proyecto->selectProyectos();
+		$proyectos['proyectos'] = $this->proyecto->selectProyectos($usuario);
 		
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
