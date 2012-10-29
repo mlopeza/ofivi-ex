@@ -18,15 +18,8 @@ class Logincontroller extends CI_Controller {
 		$this->load->helper('url');
 		//Se busca el departamento para poder agregarlo a tabla de usaurios.
 		if($this->departamento->find()){			
-			$this->usuariomodel->setIdDepartamento($this->departamento->get_id_departamento());
-			$this->usuariomodel->setUsername($this->input->post('username'));
-		    $this->usuariomodel->setNombre($this->input->post('nombre'));
-			$this->usuariomodel->setApellidoP($this->input->post('apellido-paterno'));
-			$this->usuariomodel->setPassword($this->input->post('password'));
-			$this->usuariomodel->setTipoUsuario($this->input->post('tipo-usuario'));
-			$this->usuariomodel->setUsuarioActivo(0);
-			$this->usuariomodel->setUsuarioAceptado('e');
-			$this->usuariomodel->insertarUsuario();
+			$this->usuariomodel->insertarUsuario(
+			$this->departamento->get_id_departamento(),$this->input->post('username'),$this->input->post('nombre'),	$this->input->post('apellido_paterno'),$this->input->post('apellido_materno'),$this->input->post('email'),$this->input->post('password'),$this->input->post('tipo-usuario'),0,'e');
 		}
 		$this->load->view('register_sucess');
 	}	
@@ -67,7 +60,7 @@ class Logincontroller extends CI_Controller {
 		}
 		else if ($nombre == 'Profesor'){			
 					$this->load->view('usuarios/header',$vistas);					
-//					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
+					$this->load->view('usuarios/usuario_proyecto/menu_uproyecto',$vistas);
 					$this->load->view('usuarios/footer');					
 		}
 		

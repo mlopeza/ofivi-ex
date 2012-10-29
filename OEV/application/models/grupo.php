@@ -90,6 +90,19 @@ class Grupo extends CI_Model {
 		$query = $this->db->query('SELECT idGrupo,nombre FROM Grupo ORDER BY nombre ASC');
 		return $query;
 	}
+	//Function que regresa todo los grupos que tengan un pryecto ya sea activo o inactivo
+	//$activo es una variable que indicara  si se requiere buscar un proyecto activo o inactivo.
+	function getGPA($activo){
+		$this->load->database();
+		$qry = "SELECT DISTINCT g.idGrupo, g.nombre
+				FROM Grupo AS g, Empresa e, Proyecto AS p
+				WHERE g.idGrupo = e.idGrupo
+				AND p.idEmpresa = e.idEmpresa
+				AND p.Proyecto_Activo =".$activo."
+				ORDER BY g.idGrupo";
+		$query = $this->db->query($qry);
+		return $query->result();		
+	}
 		
 }
 ?>

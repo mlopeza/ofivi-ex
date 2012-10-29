@@ -182,6 +182,7 @@
 			     data: data ,
 			     success: function(msg){
 						var mensaje = $.parseJSON(msg);
+						console.log(mensaje);
 						if(mensaje['response'] ==  "true"){
 								//Agrega las Empresas al nodo seleccionado
 								var sEmpresas = $('#Empresa');

@@ -6,8 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="Mario Adrián López Alemán" >
-
- <!-- bootstrap css -->
+<!-- bootstrap css -->
         <link href="<?php echo base_url("css/bootstrap.min.css");?> " rel="stylesheet">
          <!-- base css -->
         <link class="links-css" href="<?php echo base_url("css/base.css"); ?>" rel="stylesheet">
@@ -28,15 +27,14 @@
          <!-- responsive css -->
         <link href="<?php echo base_url("css/bootstrap-responsive.css");?>" rel="stylesheet">
          <!-- media query css -->
-        <link href="<?php echo base_url("css/media-fluid.css");?>" rel="stylesheet">
-
         <link href="<?php echo base_url("css/bootstrap-wysihtml5.css");?>" rel="stylesheet">
         <link href="<?php echo base_url("css/bootstrap-responsive.css");?>" rel="stylesheet">
         <link href="<?php echo base_url("css/forms.css"); ?>" rel="stylesheet">
         <link href="<?php echo base_url("css/noty.css"); ?>" rel="stylesheet">
         <link href="<?php echo base_url("css/noty-css/noty_theme_default.css"); ?>" rel="stylesheet">
         <link href="<?php echo base_url("css/noty-css/jquery.noty.css"); ?>" rel="stylesheet"
-
+        <link href="<?php echo base_url("css/media-fluid.css");?>" rel="stylesheet">
+        <link href="<?php echo base_url("css/jquery-ui-bootstrap-1.8.16.custom.css");?> " rel="stylesheet">
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
