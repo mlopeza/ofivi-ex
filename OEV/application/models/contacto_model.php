@@ -68,6 +68,7 @@ class contacto_model extends CI_Model {
 		return $arregloContactos;
 	}
 
+<<<<<<< HEAD
 	//Funcion que regresa los contactos de cierta empresa
 	function getContactosEmpresa($idEmpresa){
 		$this->load->database();
@@ -77,6 +78,8 @@ class contacto_model extends CI_Model {
 		return $query->result();
 	}
 
+=======
+>>>>>>> master
 	function getContactosDeEmpresaCompletos($idEmpresa){
 		$this->load->database();
 		$this->db->select("c.*");
