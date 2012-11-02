@@ -1,3 +1,4 @@
+        <link href="<?php echo base_url("css/projectAdvances.css"); ?>" rel="stylesheet">
 <br />
 Activo<input type="radio" name="estado" id="activo" value="1">
 Inactivo<input type="radio" name="estado" id="inactivo" value="0"><br />
@@ -9,7 +10,7 @@ Inactivo<input type="radio" name="estado" id="inactivo" value="0"><br />
 		echo "<select id = 'sproyecto'></select>\n";
 ?>
 <div>
-<table class="table table-bordered">
+<table id='showThis' class="table table-bordered">
 	<tr>
 		<td>
         	Contacto
@@ -21,7 +22,7 @@ Inactivo<input type="radio" name="estado" id="inactivo" value="0"><br />
     </tr>
 	<tr>
 		<td>
-        	Profesor
+        	Usuarios
     	</td>
         <td>
         	<ul name='profesor'>			
@@ -36,8 +37,10 @@ Inactivo<input type="radio" name="estado" id="inactivo" value="0"><br />
         </td>
     </tr>            
 </table></div><div>
-<table border='1'>
+
+<table id='showThis2' border='1'>
 	<th>
     	Status
     </th>
-</table></div>
+</table>
+</div>

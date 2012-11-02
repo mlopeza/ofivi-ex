@@ -21,17 +21,21 @@ class Avancesproyecto extends CI_Controller {
 		//echo var_dump($data);
 		if($data['idGrupo'] == null){
 			//Si no vienen Datos, regresa error
-			$mensaje = array('response'=>'false','mensaje'=>'Error al Buscar el Grupo.');
+			$mensaje = array('response'=>'false','mensaje'=>'Error al Buscar las Empresas.');
 			echo json_encode($mensaje);
 		}else{
 			//Regresa las empresas del Grupo
 			$this->load->model('empresa');
-			$resultado=$this->empresa->getEPA(1,$data['idGrupo']);
+			$resultado=$this->empresa->getEPA($data['activo'],$data['idGrupo']);
 			//Regresa las empresas del Grupo
 			$this->load->model('proyecto');
-			$resultado2=$this->proyecto->findPA($resultado[0]->idEmpresa,1);
+			$resultado2=$this->proyecto->findPA($resultado[0]->idEmpresa,$data['activo']);
+			//Regresa a categoria del proyecto.
+			$resultado3=$this->proyecto->getCATP($resultado2[0]->idProyecto);
+			$resultado4=$this->proyecto->getUA($resultado2[0]->idProyecto);
+			$resultado5=$this->proyecto->getCA($resultado2[0]->idProyecto);
 			//Se envia el resultado			
-			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2);
+			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5);
 			echo json_encode($mensaje);
 		}
 	}
@@ -42,14 +46,18 @@ class Avancesproyecto extends CI_Controller {
 		//echo var_dump($data);
 		if($data['idEmpresa'] == null){
 			//Si no vienen Datos, regresa error
-			$mensaje = array('response'=>'false','mensaje'=>'Error al Buscar el sd.');
+			$mensaje = array('response'=>'false','mensaje'=>'Error al Buscar los Proyectos.');
 			echo json_encode($mensaje);
 		}else{
 			//Regresa las empresas del Grupo
 			$this->load->model('proyecto');
-			$resultado=$this->proyecto->findPA($data['idEmpresa'],1);
+			$resultado=$this->proyecto->findPA($data['idEmpresa'],$data['activo']);
+			//Regresa a categoria del proyecto.
+			$resultado2=$this->proyecto->getCATP($resultado[0]->idProyecto);
+			$resultado3=$this->proyecto->getUA($resultado[0]->idProyecto);
+			$resultado4=$this->proyecto->getCA($resultado[0]->idProyecto);
 			//Se envia el resultado
-			$mensaje = array('response'=>'true','mensaje'=>$resultado);
+			$mensaje = array('response'=>'true','mensaje'=>$resultado,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5);
 			echo json_encode($mensaje);
 		}
 	}
@@ -60,20 +68,24 @@ class Avancesproyecto extends CI_Controller {
 		//echo var_dump($data);
 		if($data['activo'] === null){
 			//Si no vienen Datos, regresa error
-			$mensaje = array('response'=>'false','mensaje'=>'Error al Buscar el Grupo.');
+			$mensaje = array('response'=>'false','mensaje'=>'Error al Buscar los Grupos.');
 			echo json_encode($mensaje);
 		}else{
 			//Regresa el grupo
 			$this->load->model('grupo');
-			$grupo=$this->grupo->getGPA(1);
+			$grupo=$this->grupo->getGPA($data['activo']);
 			//Regresa las empresas del Grupo
 			$this->load->model('empresa');
-			$resultado=$this->empresa->getEPA($data['activo'],1);
+			$resultado=$this->empresa->getEPA($data['activo'],$grupo[0]->idGrupo);
 			//Regresa los proyectos de la empresa
 			$this->load->model('proyecto');
-			$resultado2=$this->proyecto->findPA($resultado[0]->idEmpresa,1);
+			$resultado2=$this->proyecto->findPA($resultado[0]->idEmpresa,$data['activo']);
+			//Regresa a categoria del proyecto.
+			$resultado3=$this->proyecto->getCATP($resultado2[0]->idProyecto);
+			$resultado4=$this->proyecto->getUA($resultado2[0]->idProyecto);
+			$resultado5=$this->proyecto->getCA($resultado2[0]->idProyecto);
 			//Se envia el resultado		
-			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'grupo'=>$grupo);
+			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'grupo'=>$grupo,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5);
 			echo json_encode($mensaje);
 		}
 	}

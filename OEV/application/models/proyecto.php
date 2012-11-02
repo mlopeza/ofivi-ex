@@ -120,18 +120,19 @@ class Proyecto extends CI_Model{
 		$query = $this->db->get('proyecto');
 		return $query->result();
 	}
-	function getCA($idProyecto,$activo){
+	/*
+	 * Funcion que regresa los contactos del cierto proyecto.
+	 */
+	function getCA($idProyecto){
 		$this->load->database();
-		$query = $this->db->query(' Select c.idContacto, c.Nombre, c.ApellidoP, c.ApellidoM
-									FROM contacto as c, contacto_proyecto as cp, proyecto as p
-									WHERE p.idProyecto = cp.idProyecto AND
-									cp.idContacto = c.idContacto AND
-									p.Proyecto_Activo =' .$activo.' AND
-									p.idProyecto = '.$idProyecto );
+		$query = $this->db->query(' Select c.idContacto, CONCAT(c.Nombre," ", c.ApellidoP," ", c.ApellidoM) as nombre
+									FROM contacto as c, contacto_proyecto as cp
+									WHERE  cp.idProyecto = '.$idProyecto.' AND
+									cp.idContacto = c.idContacto  ' );
 		return $query->result();
 	}
 
-  /*Regresa todos los proyectos que inicio un usuario
+     /*Regresa todos los proyectos que inicio un usuario
         idUsuario    El id del Usuario
         activo       Si el proyecto est activo o no.
     */
@@ -206,36 +207,45 @@ class Proyecto extends CI_Model{
         $this->db->where(array('idProyecto'=>$idProyecto));
         $this->db->update('Usuario_Proyecto',$data);
     }
-}
-	function getUA($idProyecto,$activo){
+
+	/*
+	*
+	*
+	*/
+	function getUA($idProyecto){
 		$this->load->database();
-		$query = $this->db->query(' Select c.idUsuario, c.Nombre, c.ApellidoP, c.ApellidoM
+		$query = $this->db->query(' Select c.idUsuario, CONCAT(c.Nombre, " ", c.ApellidoP," ", c.ApellidoM) as nombre
 									FROM usuario as c, usuario_proyecto as cp, proyecto as p
 									WHERE p.idProyecto = cp.idProyecto AND
 									cp.idUsuario = c.idUsuario AND
-									p.Proyecto_Activo =' .$activo.' AND
 									p.idProyecto = '.$idProyecto );
 		return $query->result();
 }
-	function getCATPA($idProyecto,$activo){
+
+
+
+
+	function getCATP($idProyecto){
 		$this->load->database();
 		$query = $this->db->query(' Select c.Categoria
-									From categoria as c, categoria_proyecto as cp, proyecto as p
-									Where p.Proyecto_Activo = '.$activo.'  AND
-									p.idProyecto = cp.idProyecto AND
-									cp.idCategoria = c.idCategoria AND
-									p.idProyecto =  '.$idProyecto  );
+									From categoria as c, categoria_proyecto as cp
+									Where '.$idProyecto.' = cp.idProyecto AND
+									cp.idCategoria = c.idCategoria' );
 		return $query->result();
 }
-function getEA($idProyecto,$activo){
+
+
+
+
+
+function getEA($idProyecto){
 		$this->load->database();
 		$query = $this->db->query(' Select e.idEstado, e.tiempoActualizacion, e.Estado, u.Nombre, u.ApellidoP, u.ApellidoM
 									FROM estado as e, proyecto as p, usuario as u
 									WHERE p.idProyecto ='.$idProyecto.' 
 										  e.idProyecto = p.idProyecto AND
-										  p.Proyecto_Activo ='.$activo.'  AND
 										  e.idUsuario = u.idUsuario '  );
 		return $query->result();
 }
-
+}
 ?>

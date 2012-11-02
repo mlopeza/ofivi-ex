@@ -1,5 +1,6 @@
 <script  type="text/javascript" >
 	$(document).ready(function(){
+		
 		//Llena el primer campo
 		$("#sgrupo").change(function() {
 						getEmpresas($(this).children('option').filter(':selected').attr('id'),$(this));			
@@ -28,14 +29,24 @@
 								var sGrupo = $('#sgrupo');								
 								var sEmpresas = $('#sempresa');
 								var sProyectos = $('#sproyecto');
+								var sCategoria = $('[name = "categoria"]');
+								var sContactos = $('[name = "contacto"]');
+								var sProfesor = $('[name="profesor"]');
 								//Elimina nodos
 								$(sGrupo).empty();
 								$(sEmpresas).empty();
 								$(sProyectos).empty();
+								$(sCategoria).empty();
+								$(sProfesor).empty();
+								$(sContactos).empty();
 								//Agrega los nodos que se buscaron
 								appendGrupo(mensaje['grupo'],sGrupo);
 								appendEmpresas(mensaje['mensaje'],sEmpresas);													
-							appendProyectos(mensaje['proyectos'],sProyectos);
+							    appendProyectos(mensaje['proyectos'],sProyectos);
+								appendCategoria(mensaje['categoria'],sCategoria);
+								appendProfesor(mensaje['usuario'],sProfesor);
+								appendContacto(mensaje['contacto'],sContactos);
+							$('#showThis').attr("style","display:inline-table");
 						}else{
 							noty({text: mensaje['mensaje'], type: 'error'});
 						}
@@ -67,13 +78,21 @@
 								//Agrega las Empresas al nodo seleccionado
 								var sEmpresas = $('#sempresa');
 								var sProyectos = $('#sproyecto');
+								var sCategoria = $('[name = "categoria"]');
+								var sContactos = $('[name = "contacto"]');
+								var sProfesor = $('[name="profesor"]');
 								//Elimina nodos
 								$(sEmpresas).empty();
 								$(sProyectos).empty();
+								$(sCategoria).empty();
+								$(sProfesor).empty();
+								$(sContactos).empty();
 								//Agrega los nodos que se buscaron
-								appendEmpresas(mensaje['mensaje'],sEmpresas);
-							 	console.log(mensaje['proyectos']);							
+								appendEmpresas(mensaje['mensaje'],sEmpresas);			
 								appendProyectos(mensaje['proyectos'],sProyectos);
+								appendCategoria(mensaje['categoria'],sCategoria);
+								appendProfesor(mensaje['usuario'],sProfesor);
+								appendContacto(mensaje['contacto'],sContactos);
 						}else{
 							noty({text: mensaje['mensaje'], type: 'error'});
 						}
@@ -104,11 +123,19 @@
 						if(mensaje['response'] ==  "true"){
 								//Agrega las Empresas al nodo seleccionado
 								var sProyectos = $('#sproyecto');
-								//Elimina nodos
-
+								var sCategoria = $('[name = "categoria"]');
+								var sContactos = $('[name = "contacto"]');
+								var sProfesor = $('[name="profesor"]');
+								//Elimina nodo
 								$(sProyectos).empty();
+								$(sCategoria).empty();
+								$(sProfesor).empty();
+								$(sContactos).empty();
 								//Agrega los nodos que se buscaron
 								appendProyecto(mensaje['mensaje'],sProyectos);
+								appendCategoria(mensaje['categoria'],sCategoria);
+								appendProfesor(mensaje['usuario'],sProfesor);
+								appendContacto(mensaje['contacto'],sContactos);
 						}else{
 							noty({text: mensaje['mensaje'], type: 'error'});
 						}
@@ -149,8 +176,33 @@
 			});
 		}
 	}		
-
-		
+	function appendCategoria(nodos,elemento){
+		if(nodos.length == 0){
+			$(elemento).append('No tiene categoria asignada');
+		}else{
+			$(nodos).each(function(index,nodo){
+			       $(elemento).append(nodo['Categoria']);
+			});
+		}
+	}	
+	function appendProfesor(nodos,elemento){
+		if(nodos.length == 0){
+			$(elemento).append($("<li>").append("No tiene usuarios asignados").attr('id','0'));
+		}else{
+			$(nodos).each(function(index,nodo){
+				$(elemento).append($("<li>").append(nodo['nombre']).attr('id',nodo['idUsuario']));
+			});
+		}
+	}		
+	function appendContacto(nodos,elemento){
+		if(nodos.length == 0){
+			$(elemento).append($("<li>").append("No hay contactos registrados").attr('id','0'));
+		}else{
+			$(nodos).each(function(index,nodo){
+				$(elemento).append($("<li>").append(nodo['nombre']).attr('id',nodo['idContacto']));
+			});
+		}
+	}	
 	});
 
 </script>
