@@ -97,7 +97,7 @@ class Empresa extends CI_Model {
 		return $query->result();
 	}
 
-<<<<<<< HEAD
+
 	//Function que regresa las empresas que cuentan con proyectos activos.
 	//$ativo hace rreferencia a si se desea buscar un 
 	function getEPA($activo, $grupo){
@@ -112,8 +112,6 @@ class Empresa extends CI_Model {
 	}		
 
 
-=======
->>>>>>> master
 	//Regresa las Empresas que pertenecen a cierto Grupo
 	function getProyectosDeEmpresa($idEmpresa){
 		$this->load->database();
@@ -125,11 +123,6 @@ class Empresa extends CI_Model {
 		return $query->result();
 	}
 
-
-<<<<<<< HEAD
-=======
-
-		
->>>>>>> master
 }
 ?>
+
