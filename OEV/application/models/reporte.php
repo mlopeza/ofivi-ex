@@ -84,5 +84,21 @@ class Reporte extends CI_Model{
 			'reporteFinal' => $this->reporteFinal);
 		$this->db->where('idReporte', $this->idReporte);
 		$this->db->update('reporte',$arreglo);
+	 }
+	
+	/*
+	 * Busca los reportes que escribio el usuario 
+	 * y aquellos de los que es responsable del proyecto
+	 */
+	function getReportes($usuario)
+	{
+		$this->load->database();
+		$this->db->select('up.idUsuario, r.idUsuario autor, p.nombre proyecto, p.idProyecto, r.titulo, r.reporte');
+		$this->db->from('usuario_proyecto up');
+		$this->db->join('proyecto p','up.idProyecto = p.idProyecto AND up.idUsuario = '.$usuario.'','inner');
+		$this->db->join('reporte r','p.idProyecto = r.idProyecto AND ((up.Responsable = 0 AND r.idUsuario = up.idUsuario) OR (up.Responsable <> 0))');
+		$this->db->order_by("p.nombre, r.idReporte, r.titulo");
+		$query = $this->db->get();
+		return $query->result();
 	}
 }

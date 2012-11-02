@@ -113,11 +113,14 @@ class Proyecto extends CI_Model{
 	}
 	
 	/*
-	 * Regresa un arreglo con todos los proyectos
+	 * Regresa un arreglo con todos los proyectos en los que pertenece un usuario
 	 */
-	 function selectProyectos(){
+	 function selectProyectos($usuario){
 		$this->load->database();
-		$query = $this->db->get('proyecto');
+		$this->db->select('p.idProyecto, p.nombre');
+		$this->db->from('proyecto p');
+		$this->db->join('usuario_proyecto up','up.idProyecto = p.idProyecto AND up.idUsuario = '.$usuario.'','inner');
+		$query = $this->db->get();
 		return $query->result();
 	}
 	/*

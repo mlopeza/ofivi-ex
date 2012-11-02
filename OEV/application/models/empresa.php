@@ -96,6 +96,8 @@ class Empresa extends CI_Model {
 									ORDER BY nombre ASC');
 		return $query->result();
 	}
+
+
 	//Function que regresa las empresas que cuentan con proyectos activos.
 	//$ativo hace rreferencia a si se desea buscar un 
 	function getEPA($activo, $grupo){
@@ -108,5 +110,19 @@ class Empresa extends CI_Model {
 								   Order by e.idEmpresa');
 		return $query->result();
 	}		
+
+
+	//Regresa las Empresas que pertenecen a cierto Grupo
+	function getProyectosDeEmpresa($idEmpresa){
+		$this->load->database();
+		$query = $this->db->query('SELECT 
+									idProyecto,nombre 
+									FROM Proyecto
+									WHERE idEmpresa='.$idEmpresa.'
+									ORDER BY nombre ASC');
+		return $query->result();
+	}
+
 }
 ?>
+
