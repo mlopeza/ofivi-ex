@@ -4,7 +4,7 @@
 	clases
 */
 $(document).ready(function(){
-	$(".yes-button").click(function() {
+	$(".yes-button").live("click",function() {
 		nodo=$(this).parent().parent().parent().children(":first");
 		nodo.addClass("btn-success");
 		nodo.removeClass("btn-danger");
@@ -13,7 +13,7 @@ $(document).ready(function(){
 		nodo.html("<i class=\"icon-ok icon-white\"></i> Sí");
 	});                
                 
-	$(".no-button").click(function() {
+	$(".no-button").live("click",function() {
 		nodo=$(this).parent().parent().parent().children(":first");
 		nodo.removeClass("btn-success")
 		nodo.addClass("btn-danger");

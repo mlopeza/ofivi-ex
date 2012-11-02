@@ -96,6 +96,20 @@ class Empresa extends CI_Model {
 									ORDER BY nombre ASC');
 		return $query->result();
 	}
+
+	//Regresa las Empresas que pertenecen a cierto Grupo
+	function getProyectosDeEmpresa($idEmpresa){
+		$this->load->database();
+		$query = $this->db->query('SELECT 
+									idProyecto,nombre 
+									FROM Proyecto
+									WHERE idEmpresa='.$idEmpresa.'
+									ORDER BY nombre ASC');
+		return $query->result();
+	}
+
+
+
 		
 }
 ?>
