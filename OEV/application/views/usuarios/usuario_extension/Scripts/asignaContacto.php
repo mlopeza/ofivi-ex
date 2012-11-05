@@ -3,7 +3,7 @@
 	/*Logica de Creación de Proyecto*/
 	$(document).ready(function(){
         //Inicializa la tabla
-        oTable = $('#tabla-contactos').dataTable( );
+        oTable = $('#tabla-contactos').dataTable();
 		//Llena el primer campo
 		$("#Grupo").change(function() {
 			getElementos($(this).children('option').filter(':selected').attr('id'),$(this),"getEmpresas","Grupo","Empresa",false);

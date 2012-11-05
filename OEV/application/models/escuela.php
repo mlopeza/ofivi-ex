@@ -95,5 +95,33 @@ class Escuela extends CI_Model {
 		$query = $this->db->get_where('escuela',array('idCampus'=>$id));
 		return $query->result();
 	}
+
+    //Elimina una Escuela
+    function deleteEscuela($idEscuela){
+        $this->load->database();
+        $this->db->delete('Escuela',$idEscuela);
+    }
+
+    //Elimina una Escuela
+    function insertaEscuela($data){
+        $this->load->database();
+        if(isset($data['idEscuela'])){
+            $this->db->where('idEscuela',$data['idEscuela']);
+            unset($data['idEscuela']);
+            unset($data['idCampus']);
+            $this->db->update('Escuela',$data);
+        }else{
+            $this->db->insert('Escuela',$data);
+        }
+    }
+
+    //Regresa todos los departamentos
+    function getDepartamentos($data){
+        $this->load->database();
+        $this->db->where($data);
+        $query=$this->db->get('Departamento');
+        return $query->result();
+
+    }
 }
 ?>
