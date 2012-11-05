@@ -7,21 +7,35 @@ class Logincontroller extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->view('login');
+		$this->load->view('Script/validarUsername.html');		
 	}
 	
 	//Funcion para solicitar una cuenta
 	public function signup()
 	{
-		$this->load->model('usuariomodel');
-		$this->load->model('departamento');
-		$this->departamento->set_nombre($this->input->post('departamento'));		
-		$this->load->helper('url');
-		//Se busca el departamento para poder agregarlo a tabla de usaurios.
-		if($this->departamento->find()){			
-			$this->usuariomodel->insertarUsuario(
-			$this->departamento->get_id_departamento(),$this->input->post('username'),$this->input->post('nombre'),	$this->input->post('apellido_paterno'),$this->input->post('apellido_materno'),$this->input->post('email'),$this->input->post('password'),$this->input->post('tipo-usuario'),0,'e');
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+        $this->load->database();
+		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[usuario.Username]');
+		$this->form_validation->set_rules('password', 'Password', 'required|matches[password_confirm]|trim');
+		$this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[usuario.email]');
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('register_failed');
 		}
-		$this->load->view('register_sucess');
+		else{
+			$this->load->model('usuariomodel');
+			$this->load->model('departamento');
+			$this->departamento->set_nombre($this->input->post('departamento'));		
+			$this->load->helper('url');
+			//Se busca el departamento para poder agregarlo a tabla de usaurios.
+			if($this->departamento->find()){			
+				$this->usuariomodel->insertarUsuario(
+				$this->departamento->get_id_departamento(),$this->input->post('username'),$this->input->post('nombre'),	$this->input->post('apellido_paterno'),$this->input->post('apellido_materno'),$this->input->post('email'),$this->input->post('password'),$this->input->post('tipo-usuario'),0,'e');
+			}
+			$this->load->view('register_sucess');
+		}
 	}	
 	//Funcion para cambiar la vista.
 	public function cambioVista($nombre)
@@ -182,7 +196,6 @@ class Logincontroller extends CI_Controller {
 					$this->load->view('vistas/footer');
 					break;
 				 case 6:
-					echo "Usuario ciego D:";
 					break;*/
 			}			
 				
@@ -190,5 +203,26 @@ class Logincontroller extends CI_Controller {
 		else
 		$this->load->view('login_failed');
 	}
+	/*Regresa las empresas en Formato JSON*/
+	public function validaUsername(){
+		//Obtiene la informacion del POST
+		$data = $this->input->post();
+		//echo var_dump($data);
+		if($data['usuario'] == null){
+			//Si no vienen Datos, regresa error
+			$mensaje = array('response'=>'false','mensaje'=>'Error al recibir informacion.');
+			echo json_encode($mensaje);
+		}else{
+			//Regresa las empresas del Grupo
+			$this->load->model('usuariomodel');
+			$this->usuariomodel->setUsername($data['usuario']);
+			$resultado=!($this->usuariomodel->encontrarUsuario());
+			//Se envia el resultado
+			$mensaje = array('response'=>'true','mensaje'=>$resultado);
+			echo json_encode($mensaje);
+		}
+	}
+		
+	
 }
 ?>

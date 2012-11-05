@@ -5,6 +5,12 @@
 		$("#sgrupo").change(function() {
 						getEmpresas($(this).children('option').filter(':selected').attr('id'),$(this));			
 		});
+	    $("#sempresa").change(function() {
+						getProyectos($(this).children('option').filter(':selected').attr('id'),$(this));			
+		});
+		$("#sproyecto").change(function() {
+						getInfo($(this).children('option').filter(':selected').attr('id'),$(this));			
+		});
 		$('[name="estado"]').change(function() {
 						getGrupo($(this).val());						
 		});
@@ -23,7 +29,6 @@
 			     success: function(msg){
 
 						var mensaje = $.parseJSON(msg);
-
 						if(mensaje['response'] ==  "true"){
 								//Agrega las Empresas al nodo seleccionado
 								var sGrupo = $('#sgrupo');								
@@ -114,7 +119,7 @@
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
-			     url: "avancesproyecto/getProyecto",
+			     url: "avancesproyecto/getProyectos",
 			     data: data ,
 			     success: function(msg){
 					 	console.log(msg);
@@ -132,7 +137,45 @@
 								$(sProfesor).empty();
 								$(sContactos).empty();
 								//Agrega los nodos que se buscaron
-								appendProyecto(mensaje['mensaje'],sProyectos);
+								appendProyectos(mensaje['mensaje'],sProyectos);
+								appendCategoria(mensaje['categoria'],sCategoria);
+								appendProfesor(mensaje['usuario'],sProfesor);
+								appendContacto(mensaje['contacto'],sContactos);
+						}else{
+							noty({text: mensaje['mensaje'], type: 'error'});
+						}
+
+			     },
+				error: function(msg){
+						noty({text: "Ha habido un error en el sistema, intentelo nuevamente.", type: 'error'});
+				}
+			});
+	}
+	function getInfo(idProyecto,elemento){
+			/*Datos de la tabla con Respecto al usuario*/
+			var data={ 
+			's_token':$('#s_token').attr('value'),
+			'idProyecto':idProyecto,
+			'activo':$('[name="estado"]').val(),			
+			};
+			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
+			$.ajax({
+			     type: "POST",
+			     url: "avancesproyecto/getInfo",
+			     data: data ,
+			     success: function(msg){
+						var mensaje = $.parseJSON(msg);
+						console.log(mensaje);
+						if(mensaje['response'] ==  "true"){
+								//Agrega las Empresas al nodo seleccionado
+								var sCategoria = $('[name = "categoria"]');
+								var sContactos = $('[name = "contacto"]');
+								var sProfesor = $('[name="profesor"]');
+								//Elimina nodo
+								$(sCategoria).empty();
+								$(sProfesor).empty();
+								$(sContactos).empty();
+								//Agrega los nodos que se buscaron
 								appendCategoria(mensaje['categoria'],sCategoria);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);

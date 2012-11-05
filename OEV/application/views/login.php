@@ -5,7 +5,7 @@
         <title>OFIVEX</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
-        <meta name="author" content="Mario Adrián López Alemán" >
+        <meta name="author" content="Mario Adriï¿½n Lï¿½pez Alemï¿½n" >
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -19,7 +19,9 @@
         <link href="<?php echo base_url("css/base.css");?>" rel="stylesheet">
          <!-- login page css -->
         <link href="<?php echo base_url("css/login.css");?>" rel="stylesheet">
-        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <link href="<?php echo base_url("css/noty.css"); ?>" rel="stylesheet">
+        <link href="<?php echo base_url("css/noty-css/noty_theme_default.css"); ?>" rel="stylesheet">
+        <link href="<?php echo base_url("css/noty-css/jquery.noty.css"); ?>" rel="stylesheet"
         <!--[if lt IE 9]>
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -144,6 +146,7 @@
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="<?php echo base_url("js/jquery.min.js");?>"></script>
         <script src="<?php echo base_url("js/bootstrap.min.js");?>"></script>
+        <script src="<?php echo base_url("js/jquery.noty.js");?>"></script>
 
 			<!--Este apartado permite hacer el cambio entre la solicitud y el inicio de Sesion-->
         <script type="text/javascript">
