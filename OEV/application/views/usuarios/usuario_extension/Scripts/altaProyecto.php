@@ -101,9 +101,6 @@
 			if($(this).hasClass('disabled-button')){
 					return;
 			}
-			//No permite que se toque el boton
-			$(this).addClass('disabled-button');
-
 			nombre_proyecto=$("#nombre_proyecto").val().trim();
 			idEmpresa=$("#Empresa").children('option').filter(':selected').attr('id');
 			idUsuario=$("#idUsuario-sistema").attr('idUsuario');
@@ -144,6 +141,8 @@
                 return;
             }
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
+			//No permite que se toque el boton
+			$(this).addClass('disabled-button');
 			$.ajax({
 			     type: "POST",
 			     url: "altaProyecto/guardaProyecto",
