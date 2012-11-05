@@ -104,7 +104,7 @@
 			//No permite que se toque el boton
 			$(this).addClass('disabled-button');
 
-			nombre_proyecto=$("#nombre_proyecto").val();
+			nombre_proyecto=$("#nombre_proyecto").val().trim();
 			idEmpresa=$("#Empresa").children('option').filter(':selected').attr('id');
 			idUsuario=$("#idUsuario-sistema").attr('idUsuario');
 			idGrupo=$("#Grupo").children('option').filter(':selected').attr('id');
@@ -136,6 +136,11 @@
 			};
             if(idEmpresa == "" || idEmpresa == undefined || idEmpresa <= 0){
                 noty({text: "No se ha seleccionado una empresa.", type: 'error'});
+                return;
+            }
+
+            if(nombre_proyecto == ""){
+                noty({text: "El proyecto no tiene Nombre.", type: 'error'});
                 return;
             }
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
