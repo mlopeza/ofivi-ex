@@ -30,39 +30,28 @@ class Logincontroller extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->helper('url');
 		$usuario = $this->session->userdata('username');		
+        $vistas['vista'] = $this->session->userdata('vistas');		
 		$this->usuariomodel->encontrarUsuarioVista($usuario);
-		$vistas['vista'] = array(
-							'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
-							'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
-							'Administrador' => $this->usuariomodel->getVistaAdministrador(),
-							'Legal' => $this->usuariomodel->getVistaLegal(),
-							'Profesor' => $this->usuariomodel->getVistaProfesor() );
+        $datos_usuario=$this->session->all_userdata();
+        $vista = array('vista'=>$datos_usuario['vista']);
+		$this->load->view('usuarios/header',$vista);					
 		if($nombre == 'Usuario'){
-					$this->load->view('usuarios/header',$vistas);					
-					$this->load->view('usuarios/usuario_extension/menu_extension',$vistas);
-					$this->load->view('usuarios/footer');			
+					$this->load->view('usuarios/usuario_extension/menu_extension',$vistas);			
 		}
 		else if( $nombre == 'Supervisor'){
-					$this->load->view('usuarios/header',$vistas);					
-//					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
-					$this->load->view('usuarios/footer');						
+
 		}
 		else if ($nombre == 'Administrador'){
-					$this->load->view('usuarios/header',$vistas);					
 					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
-					$this->load->view('usuarios/footer');			
 		}
 		else if ($nombre == 'Legal'){
-//					$this->load->view('usuarios/header',$vistas);					
-//					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
-//					$this->load->view('usuarios/footer');						
 					echo "prueba";
 		}
 		else if ($nombre == 'Profesor'){			
-					$this->load->view('usuarios/header',$vistas);					
 					$this->load->view('usuarios/usuario_proyecto/menu_uproyecto',$vistas);
-					$this->load->view('usuarios/footer');					
 		}
+
+        $this->load->view('usuarios/footer');						
 		
 	}
 

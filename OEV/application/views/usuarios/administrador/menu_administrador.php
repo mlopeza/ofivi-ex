@@ -1,5 +1,4 @@
 <div id="menu-left" class="span3">
-
                     <div class="sidebar-nav">
                         <ul class="nav nav-list">
                             <li><a href="index.html" class="current active" data-original-title=""><i class="icon-th-large icon-white"></i><span> Inicio</span></a></li>
@@ -8,7 +7,8 @@
                                 <div class="accordion-body collapse dropdown" id="collapseOne">
                                     <div class="accordion-inner">
                                         <ul class="nav nav-list">
-                                            <li><a href="<?php echo base_url("index.php/aceptaUsuarios");?>">Solicitudes Actuales</a></li>
+                                            <li><a href="<?php echo base_url("/aceptaUsuarios");?>">Solicitudes Actuales</a></li>
+                                            <li><a href="<?php echo base_url("/organizacion");?>">Organización del Sistema Tecnológico</a></li>
                                         </ul>
                                     </div>
                                 </div>
