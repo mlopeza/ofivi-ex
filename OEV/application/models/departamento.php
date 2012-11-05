@@ -93,5 +93,31 @@ class Departamento extends CI_Model {
 		$query = $this->db->get_where('departamento',array('idEscuela'=>$id));
 		return $query->result();
 	}		
+
+    //Elimina un Departamento
+    function deleteDepartamento($data){
+        if(isset($data['idDepartamento'])){
+            echo json_encode($data);
+            $this->load->database();
+            $this->db->delete('Departamento',$data);
+        }
+    }
+
+    //Inserta un Departamento
+    function insertaDepartamento($data){
+        $this->load->database();
+        if(isset($data['idDepartamento'])){
+            $this->db->where('idDepartamento',$data['idDepartamento']);
+            unset($data['idEscuela']);
+            unset($data['idDepartamento']);
+            $this->db->update('Departamento',$data);
+        }else{
+            $this->db->insert('Departamento',$data);
+        }
+    }
+
+
 }
+
+
 ?>

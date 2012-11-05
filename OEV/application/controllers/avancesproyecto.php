@@ -6,7 +6,9 @@ class Avancesproyecto extends CI_Controller {
 	{
 		$this->load->helper('url');
 		$this->load->library('session');
-		$this->load->view('usuarios/header');
+        $datos_usuario=$this->session->all_userdata();
+        $vista = array('vista'=>$datos_usuario['vista']);
+		$this->load->view('usuarios/header',$vista);
 		$this->load->view('usuarios/usuario_extension/menu_extension');
 		$this->load->view('usuarios/usuario_extension/avances_proyecto');
 		$this->load->view('usuarios/footer');
@@ -21,7 +23,7 @@ class Avancesproyecto extends CI_Controller {
 		//echo var_dump($data);
 		if($data['idGrupo'] == null){
 			//Si no vienen Datos, regresa error
-			$mensaje = array('response'=>'false','mensaje'=>'Error al Buscar las Empresas.');
+			$mensaje = array('response'=>'false','mensaje'=>'No se ha seleccionado ningúna empresa.');
 			echo json_encode($mensaje);
 		}else{
 			//Regresa las empresas del Grupo
@@ -86,7 +88,7 @@ class Avancesproyecto extends CI_Controller {
 		//Obtiene la informacion del POST
 		$data = $this->input->post();
 		//echo var_dump($data);
-		if($data['activo'] === null){
+		if($data['activo'] === null || !isset($data['activo'])){
 			//Si no vienen Datos, regresa error
 			$mensaje = array('response'=>'false','mensaje'=>'Error al Buscar los Grupos.');
 			echo json_encode($mensaje);

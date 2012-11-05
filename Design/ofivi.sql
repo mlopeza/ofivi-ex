@@ -24,7 +24,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `SEVI`.`Escuela` ;
 
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Escuela` (
-  `idEscuela` INT NOT NULL ,
+  `idEscuela` INT NOT NULL AUTO_INCREMENT ,
   `idCampus` INT NOT NULL ,
   `Nombre` VARCHAR(45) NOT NULL ,
   `Ubicacion` VARCHAR(45) NOT NULL ,
@@ -323,7 +323,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Contacto` (
   `ApellidoP` VARCHAR(20) NOT NULL ,
   `ApellidoM` VARCHAR(20) NULL ,
   `email` VARCHAR(45) NOT NULL ,
-  `Contacto_Activo` TINYINT NOT NULL DEFAULT 0 ,
+  `Contacto_Activo` TINYINT NOT NULL DEFAULT 1 ,
   `Recibe_Correos` SMALLINT NOT NULL DEFAULT 0 ,
   `puesto` VARCHAR(45) NULL ,
   `departamento` VARCHAR(45) NULL ,
@@ -531,8 +531,9 @@ USE `SEVI`;
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (1, 1, 'elda_quiroga', 'Elda', 'Quiroga', '', 'equiroga@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'p', 1, 0, 0, 0, 0, 0, 1, 'e');
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (2, 1, 'L00203456', 'Juan Arturo', 'Nolazco', 'Flores', 'jnolazco@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'p', 1, 1, 0, 0, 0, 0, 1, 'e');
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (3, 1, 'L00202020', 'Luis Humberto', 'Gonzalez', 'Guerra', 'lherrera@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'p', 1, 0, 0, 1, 1, 0, 1, 'a');
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (4, 1, 'jorge_limon', 'Jorge', 'Limon', '', 'jlimon@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'v', 1, 1, 0, 1, 0, 0, 1, 'a');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (4, 1, 'jorge_limon', 'Jorge', 'Limon', '', 'jlimon@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'v', 1, 1, 1, 1, 1, 1, 1, 'a');
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (5, 1, 'evesdrop_fake_hack_hack', 'Eve', 'Fake', '', 'efake@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'a', 0, 0, 0, 0, 0, 0, 0, 'r');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (6, 1, 'L00902890', 'Jenny', NULL, '', 'No mail', 'ce8a7bda5bb05a8e0bf1b7166335cad2a9ed79504ac5ec694c2c0286efa94d1913963130a1af41e6bffbf9c2c5036439985cdf67cc1ac6ee00a3faba3065ee58', 'a', 1, 1, 1, 1, 0, 0, 1, 'a');
 
 COMMIT;
 
@@ -587,6 +588,7 @@ INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (1
 INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (1, 3);
 INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (2, 1);
 INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (2, 3);
+INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (4, 1);
 
 COMMIT;
 

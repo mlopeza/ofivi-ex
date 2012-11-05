@@ -67,6 +67,7 @@ class Campus extends CI_Model {
 		$this->db->where('idCampus', $this->idCampus);
 		$this->db->update('campus',$data);	 	
 	}
+
 	function insert(){
 		$this->load->database();
 		//Se crea el arreglo con el cual se hara el update de la tabla.
@@ -79,6 +80,7 @@ class Campus extends CI_Model {
 
 		$this->db->insert('campus',$data);	 	
 	}
+
 	//Función Select de Nombres
 	function selectN(){
 		$this->load->database();
@@ -88,6 +90,37 @@ class Campus extends CI_Model {
 		return $query->result();
 	}
 
-		
+    //Regresa todos los campus disponibles
+    function getAll(){
+        $this->load->database();
+        $query=$this->db->get('Campus');
+        return $query->result();
+    }		
+
+    function saveCampus($data){
+        $this->load->database();
+        if(isset($data['idCampus'])){
+            $this->db->where('idCampus',$data['idCampus']);
+            $this->db->update('Campus',$data);
+        }else{
+            $this->db->insert('Campus',$data);
+        }
+    }
+
+    function deleteCampus($data){
+        $this->load->database();
+        if(isset($data['idCampus'])){
+            $this->db->delete('Campus',$data);
+        }
+    }
+
+    function getEscuelas($campus){
+        $this->load->database();
+        if(isset($campus['idCampus'])){
+            $this->db->where($campus);
+            $query=$this->db->get('Escuela');
+            return $query->result();
+        }
+    }
 }
 ?>

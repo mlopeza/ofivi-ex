@@ -32,13 +32,14 @@ extends CI_Controller {
 		$usuario = $datos_usuario['idUsuario'];
 		
 		//Obtener lista de proyectos
-		$proyectos['proyectos'] = $this->proyecto->selectProyectos($usuario);
+		$proyectos['proyectos'] = $this->proyecto->selectProyectosAceptados($usuario);
 		
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
-		$this->load->view('usuarios/usuario_extension/menu_extension');
-        $this->load->view('usuarios/usuario_extension/genera_Reporte',$proyectos);
+		$this->load->view('usuarios/usuario_proyecto/menu_uproyecto');
+        $this->load->view('usuarios/usuario_proyecto/genera_Reporte',$proyectos);
 		$this->load->view('usuarios/footer');
+		$this->load->view('usuarios/usuario_proyecto/Scripts/generaReporteScript');
 		//$this->load->view('usuarios/usuario_extension/Scripts/altaProyecto');
     }
     
@@ -67,3 +68,4 @@ extends CI_Controller {
 		redirect('generaReporte', 'location'); 
 	}
 }
+
