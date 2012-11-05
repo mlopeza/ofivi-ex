@@ -134,7 +134,10 @@
 			'descripcionCliente':descripcion_cliente,
 			'descripcionUsuario':descripcion_usuario
 			};
-			console.log(data);
+            if(idEmpresa == "" || idEmpresa == undefined){
+                noty({text: "No se ha seleccionado una empresa.", type: 'error'});
+                return;
+            }
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
