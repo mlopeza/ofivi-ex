@@ -32,7 +32,7 @@ extends CI_Controller {
 		$usuario = $datos_usuario['idUsuario'];
 		
 		//Obtener lista de proyectos
-		$proyectos['proyectos'] = $this->proyecto->selectProyectos($usuario);
+		$proyectos['proyectos'] = $this->proyecto->selectProyectosAceptados($usuario);
 		
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);

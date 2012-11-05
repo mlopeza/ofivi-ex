@@ -123,6 +123,21 @@ class Proyecto extends CI_Model{
 		$query = $this->db->get();
 		return $query->result();
 	}
+
+	/*
+	 * Regresa un arreglo con todos los proyectos en los que pertenece un usuario y que son aceptados
+	 */
+	 function selectProyectosAceptados($usuario){
+		$this->load->database();
+		$this->db->select('p.idProyecto, p.nombre');
+		$this->db->from('proyecto p');
+		$this->db->join('usuario_proyecto up','up.idProyecto = p.idProyecto AND up.acepto = 1 AND up.idUsuario = '.$usuario.'','inner');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+
+
 	/*
 	 * Funcion que regresa los contactos del cierto proyecto.
 	 */
