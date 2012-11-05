@@ -134,7 +134,7 @@
 			'descripcionCliente':descripcion_cliente,
 			'descripcionUsuario':descripcion_usuario
 			};
-            if(idEmpresa == "" || idEmpresa == undefined){
+            if(idEmpresa == "" || idEmpresa == undefined || idEmpresa <= 0){
                 noty({text: "No se ha seleccionado una empresa.", type: 'error'});
                 return;
             }
