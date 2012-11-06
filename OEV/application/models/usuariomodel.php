@@ -370,6 +370,44 @@ class Usuariomodel extends CI_Model {
 
         return $matriz;
     }
+
+    function getAllUserData($data){
+        $this->load->database();
+        $this->db->where($data);
+        $userdata = array();
+        $userdata['usuario'] = $this->db->get('Usuario');
+        $userdata['usuario'] = $userdata['usuario']->result();
+        $userdata['usuario'] = $userdata['usuario'][0];
+        $this->db->where($data);
+        $userdata['telefonos'] = $this->db->get('Usuario_Telefono');
+        $userdata['telefonos'] = $userdata['telefonos']->result();
+        return $userdata;
+    }
+
+    //Elimina un telefono
+    function deleteTelefono($data){
+        $this->load->database();
+        $this->db->delete('Usuario_Telefono',$data);
+        
+    }
+
+    //Guarda los datos del usuario
+    function savePerfil($data){
+        $this->load->database();
+        $this->db->where('idUsuario',$data['usuario']['idUsuario']);
+        $this->db->update('Usuario',$data['usuario']);
+
+        foreach($data['telefonos'] as $telefono){
+            if(isset($telefono['idTelefono'])){
+                $this->db->where('idTelefono',$telefono['idTelefono']);
+                $this->db->update('Usuario_Telefono',$telefono);
+            }else{
+                $telefono['idUsuario']=$data['usuario']['idUsuario'];
+                $this->db->insert('Usuario_Telefono',$telefono);
+            }
+        }
+        
+    }
 }
 ?>
 

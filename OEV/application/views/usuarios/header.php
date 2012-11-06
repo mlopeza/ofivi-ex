@@ -129,7 +129,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="#" class="btn btn-info pull-left">Modificar Perfil</a>
+                                            <a href="<?php echo base_url("/modificarPerfil");?>" class="btn btn-info pull-left">Modificar Perfil</a>
                                             <a class="btn btn-info" href="<?php echo base_url("index.php/logincontroller/logout");?>">Cerrar Sesión</a>
                                         </div>
 
