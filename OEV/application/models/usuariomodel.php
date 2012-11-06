@@ -344,6 +344,27 @@ class Usuariomodel extends CI_Model {
 	$this->db->where('email', $email);
 	$this->db->update('usuario', $data);	
 	}
+
+	function getEspecialidad($usuario){
+        $this->load->database();
+        $grupos= $this->db->query('
+            SELECT idGrupo_Area,nombre 
+            FROM Grupo_Area g
+        ')->result();
+
+        $matriz;
+        for($i=0;$i<sizeof($grupos);$i++){
+            $matriz[$i][0]=$grupos[$i];
+            $matriz[$i][1]=$this->db->query('
+			 SELECT Area_Conocimiento.idArea_Conocimiento,area,COALESCE(usuario_area.idUsuario,0) as tiene_especialidad
+            FROM Area_Conocimiento
+			LEFT JOIN usuario_area ON area_conocimiento.idArea_Conocimiento = usuario_area.idArea_Conocimiento
+	AND usuario_area.idUsuario = '.$usuario.'
+            WHERE Area_Conocimiento.idGrupo_Area = '.$grupos[$i]->idGrupo_Area)->result(); 
+        }
+
+        return $matriz;
+    }
 }
 ?>
 
