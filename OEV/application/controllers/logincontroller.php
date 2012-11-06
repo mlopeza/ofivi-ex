@@ -16,11 +16,15 @@ class Logincontroller extends CI_Controller {
 		$this->load->model('departamento');
 		$this->departamento->set_nombre($this->input->post('departamento'));		
 		$this->load->helper('url');
+        //Mails
+        $this->load->helper('mail');
+
 		//Se busca el departamento para poder agregarlo a tabla de usaurios.
 		if($this->departamento->find()){			
 			$this->usuariomodel->insertarUsuario(
 			$this->departamento->get_id_departamento(),$this->input->post('username'),$this->input->post('nombre'),	$this->input->post('apellido_paterno'),$this->input->post('apellido_materno'),$this->input->post('email'),$this->input->post('password'),$this->input->post('tipo-usuario'),0,'e');
 		}
+        enviaMail($this,$this->input->post('email'),"Bienvenido a OFIVEX",mensajeRegistro($this->input->post('nombre'),$this->input->post('username'),$this->input->post('password')));
 		$this->load->view('register_sucess');
 	}	
 	//Funcion para cambiar la vista.
