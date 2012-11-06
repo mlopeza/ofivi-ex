@@ -7,26 +7,37 @@ class Logincontroller extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->view('login');
+		$this->load->view('Script/validarUsername.html');		
 	}
-	
+
 	//Funcion para solicitar una cuenta
 	public function signup()
 	{
-		$this->load->model('usuariomodel');
-		$this->load->model('departamento');
-		$this->departamento->set_nombre($this->input->post('departamento'));		
-		$this->load->helper('url');
-        //Mails
-        $this->load->helper('mail');
-
-		//Se busca el departamento para poder agregarlo a tabla de usaurios.
-		if($this->departamento->find()){			
-			$this->usuariomodel->insertarUsuario(
-			$this->departamento->get_id_departamento(),$this->input->post('username'),$this->input->post('nombre'),	$this->input->post('apellido_paterno'),$this->input->post('apellido_materno'),$this->input->post('email'),$this->input->post('password'),$this->input->post('tipo-usuario'),0,'e');
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		$this->load->database();
+		$this->form_validation->set_rules('username', 'Username', 'required|is_unique[usuario.Username]');
+		$this->form_validation->set_rules('password', 'Password', 'required|matches[password_confirm]|trim');
+		$this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[usuario.email]');
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('register_failed');
 		}
-        enviaMail($this,$this->input->post('email'),"Bienvenido a OFIVEX",mensajeRegistro($this->input->post('nombre'),$this->input->post('username'),$this->input->post('password')));
-		$this->load->view('register_sucess');
+		else{
+			$this->load->model('usuariomodel');
+			$this->load->model('departamento');
+			$this->departamento->set_nombre($this->input->post('departamento'));		
+			$this->load->helper('url');
+			//Se busca el departamento para poder agregarlo a tabla de usaurios.
+			if($this->departamento->find()){			
+				$this->usuariomodel->insertarUsuario(
+						$this->departamento->get_id_departamento(),$this->input->post('username'),$this->input->post('nombre'),	$this->input->post('apellido_paterno'),$this->input->post('apellido_materno'),$this->input->post('email'),$this->input->post('password'),$this->input->post('tipo-usuario'),0,'e');
+			}
+			$this->load->view('register_sucess');
+		}
 	}	
+
 	//Funcion para cambiar la vista.
 	public function cambioVista($nombre)
 	{
@@ -34,29 +45,29 @@ class Logincontroller extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->helper('url');
 		$usuario = $this->session->userdata('username');		
-        $vistas['vista'] = $this->session->userdata('vistas');		
+		$vistas['vista'] = $this->session->userdata('vistas');		
 		$this->usuariomodel->encontrarUsuarioVista($usuario);
-        $datos_usuario=$this->session->all_userdata();
-        $vista = array('vista'=>$datos_usuario['vista']);
+		$datos_usuario=$this->session->all_userdata();
+		$vista = array('vista'=>$datos_usuario['vista']);
 		$this->load->view('usuarios/header',$vista);					
 		if($nombre == 'Usuario'){
-					$this->load->view('usuarios/usuario_extension/menu_extension',$vistas);			
+			$this->load->view('usuarios/usuario_extension/menu_extension',$vistas);			
 		}
 		else if( $nombre == 'Supervisor'){
 
 		}
 		else if ($nombre == 'Administrador'){
-					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
+			$this->load->view('usuarios/administrador/menu_administrador',$vistas);
 		}
 		else if ($nombre == 'Legal'){
-					echo "prueba";
+			echo "prueba";
 		}
 		else if ($nombre == 'Profesor'){			
-					$this->load->view('usuarios/usuario_proyecto/menu_uproyecto',$vistas);
+			$this->load->view('usuarios/usuario_proyecto/menu_uproyecto',$vistas);
 		}
 
-        $this->load->view('usuarios/footer');						
-		
+		$this->load->view('usuarios/footer');						
+
 	}
 
 	public function logout(){
@@ -67,7 +78,7 @@ class Logincontroller extends CI_Controller {
 		$this->session->set_userdata($data);
 		$this->session->sess_destroy();
 		redirect(base_url("index.php/logincontroller"), 'location'); 
-		
+
 	}
 
 
@@ -87,101 +98,121 @@ class Logincontroller extends CI_Controller {
 					$this->load->view('login_failed');
 					break;
 				case 1:					
-						$vistas['vista'] = array(
+					$vistas['vista'] = array(
 							'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
 							'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
 							'Administrador' => $this->usuariomodel->getVistaAdministrador(),
 							'Legal' => $this->usuariomodel->getVistaLegal(),
 							'Profesor' => $this->usuariomodel->getVistaProfesor() );
-						$newdata = array(
-                            'idUsuario' => $this->usuariomodel->getidUsuario(),
-        	           		'username'  => $this->usuariomodel->getUsername(),
-	            	       'email'     => $this->usuariomodel->getEmail(),
-						   'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
-			               );
+					$newdata = array(
+							'idUsuario' => $this->usuariomodel->getidUsuario(),
+							'username'  => $this->usuariomodel->getUsername(),
+							'email'     => $this->usuariomodel->getEmail(),
+							'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
+							);
 					$this->session->set_userdata($newdata);
 					$this->session->set_userdata($vistas);
 					$this->load->view('usuarios/header',$vistas);					
 					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
 					$this->load->view('usuarios/footer');					
 					break;
-		/*		case 2:
-					$vistas['vista'] = array(
-						'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
-						'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
-						'Administrador' => $this->usuariomodel->getVistaAdministrador(),
-						'Legal' => $this->usuariomodel->getVistaLegal(),
-						'Profesor' => $this->usuariomodel->getVistaProfesor() );
-					$newdata = array(
-        	           'username'  => $this->usuariomodel->getUsername(),
-            	       'email'     => $this->usuariomodel->getEmail(),
-					   'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
-		               );
-					$this->session->set_userdata($newdata);
-					$this->load->view('vistas/header');									
-		//			$this->load->view('vistas/profesor',$vistas);
+					/*		case 2:
+							$vistas['vista'] = array(
+							'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
+							'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
+							'Administrador' => $this->usuariomodel->getVistaAdministrador(),
+							'Legal' => $this->usuariomodel->getVistaLegal(),
+							'Profesor' => $this->usuariomodel->getVistaProfesor() );
+							$newdata = array(
+							'username'  => $this->usuariomodel->getUsername(),
+							'email'     => $this->usuariomodel->getEmail(),
+							'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
+							);
+							$this->session->set_userdata($newdata);
+							$this->load->view('vistas/header');									
+					//			$this->load->view('vistas/profesor',$vistas);
 					$this->load->view('vistas/footer');					
 					break;
-				case 3:
+					case 3:
 					$vistas['vista'] = array(
-						'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
-						'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
-						'Administrador' => $this->usuariomodel->getVistaAdministrador(),
-						'Legal' => $this->usuariomodel->getVistaLegal(),
-						'Profesor' => $this->usuariomodel->getVistaProfesor() );
+					'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
+					'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
+					'Administrador' => $this->usuariomodel->getVistaAdministrador(),
+					'Legal' => $this->usuariomodel->getVistaLegal(),
+					'Profesor' => $this->usuariomodel->getVistaProfesor() );
 					$newdata = array(
-        	           'username'  => $this->usuariomodel->getUsername(),
-            	       'email'     => $this->usuariomodel->getEmail(),
-					   'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
-		               );
+					'username'  => $this->usuariomodel->getUsername(),
+					'email'     => $this->usuariomodel->getEmail(),
+					'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
+					);
 					$this->session->set_userdata($newdata);
 					$this->load->view('vistas/footer');				
-	//				$this->load->view('vistas/supervisor',$vistas);
+					//				$this->load->view('vistas/supervisor',$vistas);
 					$this->load->view('vistas/header');
 					break;/*/
-				case 4:
-					$vistas['vista'] = array(
+						case 4:
+						$vistas['vista'] = array(
 						'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
 						'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
 						'Administrador' => $this->usuariomodel->getVistaAdministrador(),
 						'Legal' => $this->usuariomodel->getVistaLegal(),
 						'Profesor' => $this->usuariomodel->getVistaProfesor() );
-					$newdata = array(
-        	           'username'  => $this->usuariomodel->getUsername(),
-            	       'email'     => $this->usuariomodel->getEmail(),
-					   'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
-		               );
-					$this->session->set_userdata($newdata);
-					$this->session->set_userdata($vistas);
-					$this->load->view('usuarios/header',$vistas);					
-					$this->load->view('usuarios/usuario_extension/menu_extension',$vistas);
-					$this->load->view('usuarios/footer');	
-					break;
-				/*case 5:
-				$vistas['vista'] = array(
-						'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
-						'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
-						'Administrador' => $this->usuariomodel->getVistaAdministrador(),
-						'Legal' => $this->usuariomodel->getVistaLegal(),
-						'Profesor' => $this->usuariomodel->getVistaProfesor() );
-					$newdata = array(
-        	           'username'  => $this->usuariomodel->getUsername(),
-            	       'email'     => $this->usuariomodel->getEmail(),
-					   'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
-		               );
-					$this->session->set_userdata($newdata);
-					$this->load->view('vistas/header');
-//					$this->load->view('vistas/legal',$vistas);
+						$newdata = array(
+						'username'  => $this->usuariomodel->getUsername(),
+						'email'     => $this->usuariomodel->getEmail(),
+						'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
+						);
+						$this->session->set_userdata($newdata);
+						$this->session->set_userdata($vistas);
+						$this->load->view('usuarios/header',$vistas);					
+						$this->load->view('usuarios/usuario_extension/menu_extension',$vistas);
+						$this->load->view('usuarios/footer');	
+						break;
+					/*case 5:
+					  $vistas['vista'] = array(
+					  'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
+					  'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
+					  'Administrador' => $this->usuariomodel->getVistaAdministrador(),
+					  'Legal' => $this->usuariomodel->getVistaLegal(),
+					  'Profesor' => $this->usuariomodel->getVistaProfesor() );
+					  $newdata = array(
+					  'username'  => $this->usuariomodel->getUsername(),
+					  'email'     => $this->usuariomodel->getEmail(),
+					  'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
+					  );
+					  $this->session->set_userdata($newdata);
+					  $this->load->view('vistas/header');
+					//					$this->load->view('vistas/legal',$vistas);
 					$this->load->view('vistas/footer');
 					break;
-				 case 6:
-					echo "Usuario ciego D:";
+					case 6:
 					break;*/
 			}			
-				
+
 		}
 		else
-		$this->load->view('login_failed');
+			$this->load->view('login_failed');
 	}
+	/*Regresa las empresas en Formato JSON*/
+	public function validaUsername(){
+		//Obtiene la informacion del POST
+		$data = $this->input->post();
+		//echo var_dump($data);
+		if($data['usuario'] == null){
+			//Si no vienen Datos, regresa error
+			$mensaje = array('response'=>'false','mensaje'=>'Error al recibir informacion.');
+			echo json_encode($mensaje);
+		}else{
+			//Regresa las empresas del Grupo
+			$this->load->model('usuariomodel');
+			$this->usuariomodel->setUsername($data['usuario']);
+			$resultado=!($this->usuariomodel->encontrarUsuario());
+			//Se envia el resultado
+			$mensaje = array('response'=>'true','mensaje'=>$resultado);
+			echo json_encode($mensaje);
+		}
+	}
+
+
 }
 ?>

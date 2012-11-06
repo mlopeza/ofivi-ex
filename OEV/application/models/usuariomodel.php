@@ -111,6 +111,7 @@ class Usuariomodel extends CI_Model {
 		return FALSE;
 	}
 
+
 	//Función para hacerle un update a los datos.
 	function actualizarUsuario(){
 		$this->load->database();
@@ -338,13 +339,16 @@ class Usuariomodel extends CI_Model {
 			');
 		return $query->result();
     }
+
+	function actualizarInfo($email,$password){
+	$this->load->database();
+	$data = array(
+               'password' => $password
+            );
+
+	$this->db->where('email', $email);
+	$this->db->update('usuario', $data);	
+	}
 }
-
-
-
-
-
-
-
 ?>
 

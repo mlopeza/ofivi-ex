@@ -59,7 +59,27 @@ class Avancesproyecto extends CI_Controller {
 			$resultado3=$this->proyecto->getUA($resultado[0]->idProyecto);
 			$resultado4=$this->proyecto->getCA($resultado[0]->idProyecto);
 			//Se envia el resultado
-			$mensaje = array('response'=>'true','mensaje'=>$resultado,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5);
+			$mensaje = array('response'=>'true','mensaje'=>$resultado,'categoria'=>$resultado2,'usuario'=>$resultado3,'contacto'=>$resultado4);
+			echo json_encode($mensaje);
+		}
+	}
+		public function getInfo(){
+		//Obtiene la informacion del POST
+		$data = $this->input->post();
+		//echo var_dump($data);
+		if($data['idProyecto'] == null){
+			//Si no vienen Datos, regresa error
+			$mensaje = array('response'=>'false','mensaje'=>'Error al Buscar los Proyectos.');
+			echo json_encode($mensaje);
+		}else{
+			//Regresa las empresas del Grupo
+			$this->load->model('proyecto');
+			//Regresa a categoria del proyecto.
+			$resultado2=$this->proyecto->getCATP($data['idProyecto']);
+			$resultado3=$this->proyecto->getUA($data['idProyecto']);
+			$resultado4=$this->proyecto->getCA($data['idProyecto']);
+			//Se envia el resultado
+			$mensaje = array('response'=>'true','categoria'=>$resultado2,'usuario'=>$resultado3,'contacto'=>$resultado4);
 			echo json_encode($mensaje);
 		}
 	}
