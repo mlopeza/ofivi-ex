@@ -40,6 +40,7 @@ $(document).ready(function(){
 			     url: "aceptaUsuarios/insertData",
 			     data: data ,
 			     success: function(msg){
+                        console.log(msg);
 						var mensaje = $.parseJSON(msg);
 						//console.log($.parseJSON(msg));
 						if(mensaje['response'] ==  "true"){

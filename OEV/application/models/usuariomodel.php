@@ -287,6 +287,11 @@ class Usuariomodel extends CI_Model {
         $this->load->database();
         $this->db->where('idUsuario', $id);
         $this->db->update('Usuario', $arreglo);
+
+        //Regresa los datos del usuario
+        $this->db->where('idUsuario', $id);
+        $query=$this->db->get('Usuario');
+        return $query->result();
     }
 
     //Regresa lso profesores que cumplen con una lista de Areas
