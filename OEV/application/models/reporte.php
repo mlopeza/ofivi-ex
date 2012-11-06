@@ -37,6 +37,10 @@ class Reporte extends CI_Model{
 		return $this->reporteFinal;
 	}
     
+	function setIdReporte($param){
+		$this->idReporte = $param;
+	}
+    
 	function setIdUsuario($param){
 		$this->idUsuario = $param;
 	}
@@ -90,15 +94,27 @@ class Reporte extends CI_Model{
 	 * Busca los reportes que escribio el usuario 
 	 * y aquellos de los que es responsable del proyecto
 	 */
-	function getReportes($usuario)
+	function getReportesDeProyecto($usuario,$proyecto)
 	{
 		$this->load->database();
-		$this->db->select('up.idUsuario, r.idUsuario autor, p.nombre proyecto, p.idProyecto, r.titulo, r.reporte');
+		$this->db->select("r.idreporte, u.nombre, u.apellidop, r.titulo");
 		$this->db->from('usuario_proyecto up');
-		$this->db->join('proyecto p','up.idProyecto = p.idProyecto AND up.idUsuario = '.$usuario.'','inner');
-		$this->db->join('reporte r','p.idProyecto = r.idProyecto AND ((up.Responsable = 0 AND r.idUsuario = up.idUsuario) OR (up.Responsable <> 0))');
-		$this->db->order_by("p.nombre, r.idReporte, r.titulo");
+		$this->db->join('reporte r','up.idProyecto = r.idProyecto AND r.idProyecto = '.$proyecto.' AND up.idusuario = '.$usuario.' AND ((up.Responsable = 0 AND r.idUsuario = up.idUsuario) OR (up.Responsable <> 0))');
+		$this->db->join('usuario u','r.idusuario = u.idusuario');
+		$this->db->order_by("r.idReporte, r.titulo");
 		$query = $this->db->get();
 		return $query->result();
+	}
+
+	/*
+	 * Busca los datos del reporte
+	 */
+	function getDescripcionReporte($param){
+		$this->load->database();
+		$this->db->select('Reporte as contenido');
+		$this->db->from('reporte');
+		$this->db->where('idReporte',$param);
+		return $this->db->get()->result();
+		
 	}
 }
