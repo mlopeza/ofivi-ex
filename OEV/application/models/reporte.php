@@ -105,6 +105,20 @@ class Reporte extends CI_Model{
 		$query = $this->db->get();
 		return $query->result();
 	}
+	
+	/*
+	 * Busca los reportes que escribio el usuario 
+	 */
+	function getReportesDeProyectoAutor($usuario,$proyecto)
+	{
+		$this->load->database();
+		$this->db->select("r.idreporte, u.nombre, u.apellidop, r.titulo");
+		$this->db->from('reporte r');
+		$this->db->join('usuario u','r.idusuario = u.idusuario AND r.idProyecto = '.$proyecto.' AND r.idusuario = '.$usuario);
+		$this->db->order_by("r.idReporte, r.titulo");
+		$query = $this->db->get();
+		return $query->result();
+	}
 
 	/*
 	 * Busca los datos del reporte
@@ -117,4 +131,17 @@ class Reporte extends CI_Model{
 		return $this->db->get()->result();
 		
 	}
+	
+	/*
+	 * Actualiza descripcion del reporte
+	 * Recibe el id del reporte
+	 * idRep
+	 */
+	function modificaReporte($idRep){
+		$this->load->database();
+		$arreglo = array(
+			'Reporte' => $this->Reporte);
+		$this->db->where('idReporte', $idRep);
+		$this->db->update('reporte',$arreglo);
+	 }	
 }
