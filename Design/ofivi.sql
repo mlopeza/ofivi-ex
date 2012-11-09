@@ -474,7 +474,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `SEVI`.`Documento` ;
 
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Documento` (
-  `idDocumento` INT NOT NULL ,
+  `idDocumento` INT NOT NULL AUTO_INCREMENT ,
   `idProyecto` INT NOT NULL ,
   `Titulo` VARCHAR(255) NOT NULL ,
   `Archivo` BLOB NOT NULL ,
@@ -489,6 +489,60 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Documento` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SEVI`.`jqcalendar`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `SEVI`.`jqcalendar` ;
+
+CREATE  TABLE IF NOT EXISTS `SEVI`.`jqcalendar` (
+  `Id` INT NOT NULL AUTO_INCREMENT ,
+  `idUsuario` INT NOT NULL ,
+  `Subject` VARCHAR(1000) NULL ,
+  `Location` VARCHAR(500) NULL ,
+  `Description` VARCHAR(1000) NULL ,
+  `StartTime` DATETIME NULL ,
+  `EndTime` DATETIME NULL ,
+  `IsAllDayEvent` SMALLINT NOT NULL ,
+  `Color` VARCHAR(200) NULL ,
+  `RecurringRule` VARCHAR(500) NULL ,
+  PRIMARY KEY (`Id`, `idUsuario`) ,
+  INDEX `fk_jqcalendar_1` (`idUsuario` ASC) ,
+  CONSTRAINT `fk_jqcalendar_1`
+    FOREIGN KEY (`idUsuario` )
+    REFERENCES `SEVI`.`Usuario` (`idUsuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 4;
+
+
+-- -----------------------------------------------------
+-- Table `SEVI`.`jqcalendar`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `SEVI`.`jqcalendar` ;
+
+CREATE  TABLE IF NOT EXISTS `SEVI`.`jqcalendar` (
+  `Id` INT NOT NULL AUTO_INCREMENT ,
+  `idUsuario` INT NOT NULL ,
+  `Subject` VARCHAR(1000) NULL ,
+  `Location` VARCHAR(500) NULL ,
+  `Description` VARCHAR(1000) NULL ,
+  `StartTime` DATETIME NULL ,
+  `EndTime` DATETIME NULL ,
+  `IsAllDayEvent` SMALLINT NOT NULL ,
+  `Color` VARCHAR(200) NULL ,
+  `RecurringRule` VARCHAR(500) NULL ,
+  PRIMARY KEY (`Id`, `idUsuario`) ,
+  INDEX `fk_jqcalendar_1` (`idUsuario` ASC) ,
+  CONSTRAINT `fk_jqcalendar_1`
+    FOREIGN KEY (`idUsuario` )
+    REFERENCES `SEVI`.`Usuario` (`idUsuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 4;
 
 
 -- -----------------------------------------------------
