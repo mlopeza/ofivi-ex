@@ -492,6 +492,60 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `SEVI`.`jqcalendar`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `SEVI`.`jqcalendar` ;
+
+CREATE  TABLE IF NOT EXISTS `SEVI`.`jqcalendar` (
+  `Id` INT NOT NULL AUTO_INCREMENT ,
+  `idUsuario` INT NOT NULL ,
+  `Subject` VARCHAR(1000) NULL ,
+  `Location` VARCHAR(500) NULL ,
+  `Description` VARCHAR(1000) NULL ,
+  `StartTime` DATETIME NULL ,
+  `EndTime` DATETIME NULL ,
+  `IsAllDayEvent` SMALLINT NOT NULL ,
+  `Color` VARCHAR(200) NULL ,
+  `RecurringRule` VARCHAR(500) NULL ,
+  PRIMARY KEY (`Id`, `idUsuario`) ,
+  INDEX `fk_jqcalendar_1` (`idUsuario` ASC) ,
+  CONSTRAINT `fk_jqcalendar_1`
+    FOREIGN KEY (`idUsuario` )
+    REFERENCES `SEVI`.`Usuario` (`idUsuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 4;
+
+
+-- -----------------------------------------------------
+-- Table `SEVI`.`jqcalendar`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `SEVI`.`jqcalendar` ;
+
+CREATE  TABLE IF NOT EXISTS `SEVI`.`jqcalendar` (
+  `Id` INT NOT NULL AUTO_INCREMENT ,
+  `idUsuario` INT NOT NULL ,
+  `Subject` VARCHAR(1000) NULL ,
+  `Location` VARCHAR(500) NULL ,
+  `Description` VARCHAR(1000) NULL ,
+  `StartTime` DATETIME NULL ,
+  `EndTime` DATETIME NULL ,
+  `IsAllDayEvent` SMALLINT NOT NULL ,
+  `Color` VARCHAR(200) NULL ,
+  `RecurringRule` VARCHAR(500) NULL ,
+  PRIMARY KEY (`Id`, `idUsuario`) ,
+  INDEX `fk_jqcalendar_1` (`idUsuario` ASC) ,
+  CONSTRAINT `fk_jqcalendar_1`
+    FOREIGN KEY (`idUsuario` )
+    REFERENCES `SEVI`.`Usuario` (`idUsuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 4;
+
+
+-- -----------------------------------------------------
 -- Placeholder table for view `SEVI`.`Vista_Usuarios_Area`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SEVI`.`Vista_Usuarios_Area` (`Nombre` INT, `ApellidoP` INT, `ApellidoM` INT, `email` INT, `Tipo_Usuario` INT, `Departamento` INT, `Campus` INT, `Escuela` INT, `idArea_Conocimiento` INT);
