@@ -3,6 +3,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 CREATE SCHEMA IF NOT EXISTS `SEVI` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `timesql` DEFAULT CHARACTER SET latin1 ;
 USE `SEVI` ;
 
 -- -----------------------------------------------------
@@ -468,6 +469,29 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `SEVI`.`Documento`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `SEVI`.`Documento` ;
+
+CREATE  TABLE IF NOT EXISTS `SEVI`.`Documento` (
+  `idDocumento` INT NOT NULL ,
+  `idProyecto` INT NOT NULL ,
+  `Titulo` VARCHAR(255) NOT NULL ,
+  `Archivo` BLOB NOT NULL ,
+  `esLegal` TINYINT NOT NULL DEFAULT 0 ,
+  `esPropuesta` TINYINT NOT NULL DEFAULT 0 ,
+  `estaAceptado` TINYINT NOT NULL DEFAULT 0 ,
+  PRIMARY KEY (`idDocumento`, `idProyecto`) ,
+  INDEX `fk_Documento_1` (`idProyecto` ASC) ,
+  CONSTRAINT `fk_Documento_1`
+    FOREIGN KEY (`idProyecto` )
+    REFERENCES `SEVI`.`Proyecto` (`idProyecto` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Placeholder table for view `SEVI`.`Vista_Usuarios_Area`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SEVI`.`Vista_Usuarios_Area` (`Nombre` INT, `ApellidoP` INT, `ApellidoM` INT, `email` INT, `Tipo_Usuario` INT, `Departamento` INT, `Campus` INT, `Escuela` INT, `idArea_Conocimiento` INT);
@@ -487,6 +511,28 @@ INNER JOIN Escuela e ON e.idEscuela = d.idEscuela
 INNER JOIN Campus c ON c.idCampus = e.idCampus
 INNER JOIN Usuario_Area ua ON u.idUsuario = ua.idUsuario
 ;
+USE `timesql` ;
+
+-- -----------------------------------------------------
+-- Table `timesql`.`jqcalendar`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `timesql`.`jqcalendar` ;
+
+CREATE  TABLE IF NOT EXISTS `timesql`.`jqcalendar` (
+  `Id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `Subject` VARCHAR(1000) CHARACTER SET 'utf8' NULL DEFAULT NULL ,
+  `Location` VARCHAR(200) CHARACTER SET 'utf8' NULL DEFAULT NULL ,
+  `Description` VARCHAR(255) CHARACTER SET 'utf8' NULL DEFAULT NULL ,
+  `StartTime` DATETIME NULL DEFAULT NULL ,
+  `EndTime` DATETIME NULL DEFAULT NULL ,
+  `IsAllDayEvent` SMALLINT(6) NOT NULL ,
+  `Color` VARCHAR(200) CHARACTER SET 'utf8' NULL DEFAULT NULL ,
+  `RecurringRule` VARCHAR(500) CHARACTER SET 'utf8' NULL DEFAULT NULL ,
+  PRIMARY KEY (`Id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 12
+DEFAULT CHARACTER SET = latin1;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
