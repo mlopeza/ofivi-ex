@@ -19,9 +19,10 @@ extends CI_Controller {
         $areas = $this->usuariomodel->getEspecialidad($datos_usuario['username']);
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
-		$this->load->view('usuarios/usuario_extension/menu_extension');
+		$this->load->view('usuarios/usuario_proyecto/menu_uproyecto');
         $this->load->view('usuarios/usuario_extension/actualizaEspecialidad',array('areas'=>$areas));
 		$this->load->view('usuarios/footer');
+		$this->load->view('usuarios/usuario_proyecto/Scripts/asignaEspecialidad');
     }
 	public function actualizar()
 	{

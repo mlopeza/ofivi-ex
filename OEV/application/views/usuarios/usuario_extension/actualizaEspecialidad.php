@@ -58,9 +58,9 @@
                                                                    
                                                             ?>
                                                             </div>
+                                                            <div class="form-actions">
+                                                                    <button id="aceptar-proyecto" class="btn btn-primary" type="submit">Actualizar</button>
                                                             </div>
-                                                            <div>
-                                                            <input type="submit"  id="submit" value="Actualizar" />
                                                             </div>
 															<?php
                                                                 echo form_close();
