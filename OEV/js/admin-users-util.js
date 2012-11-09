@@ -13,7 +13,10 @@ $(document).ready(function(){
 	$(".reject-user").click(function() {
 		user_selecter_ajax_helper(false,$(this).parent().parent());
 	});   
-
+	$(".rechazar-usuario").click(function() {
+        rejectUser($(this).parent().parent());
+	});
+      
 
 	/*Funcion para hacer la llamada AJAX al servidor con el Token de Seguridad*/
 	function user_selecter_ajax_helper(accept,parent){
@@ -58,6 +61,39 @@ $(document).ready(function(){
 				}
 			});
 	}
+	/*Funcion para hacer la llamada AJAX al servidor con el Token de Seguridad*/
+	function rejectUser(parent){
+/*Datos de la tabla con Respecto al usuario*/
+			var data={ 
+			's_token':$('#s_token').attr('value'),
+			'idUsuario': parseInt($(parent).find('#username').attr('value'))
+			};
+			console.log(parseInt($(parent).find('#username').attr('value')));
+			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
+			$.ajax({
+			     type: "POST",
+			     url: "bajaUsuarios/dardeBaja",
+			     data: data ,
+			     success: function(msg){
+                        console.log(msg);
+						var mensaje = $.parseJSON(msg);
+						//console.log($.parseJSON(msg));
+						if(mensaje['response'] ==  "true"){
+							noty({text: mensaje['mensaje'], type: 'success'});
+							//Elimina la fila del usuario aceptado, si es que se acepto
+							$(parent).remove();
+						}else{
+							noty({text: mensaje['mensaje']+"<br\>"+mensaje['errores'], type: 'error'});
+						}
+
+			     },
+				error: function(msg){
+						noty({text: "Ha habido un error en el sistema, intenetelo nuevamente.", type: 'error'});
+						//console.log($.parseJSON(msg));				
+				}
+			});
+	}
+	
 
 	/*Regresa 1 o 0 dependiendo de si es un si o no al servidor*/
 	function get_real( value ){

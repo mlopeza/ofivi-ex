@@ -22,6 +22,7 @@
                                             <li><a href="<?php echo base_url("altaGrupo");?>">Alta de Grupo</a></li>
                                             <li><a href="<?php echo base_url("altaEmpresa");?>">Alta de Empresa</a></li>
                                             <li><a href="<?php echo base_url("creaContacto");?>">Contactos</a></li>
+                                            <li><a href="<?php echo base_url("actualizaEspecialidad");?>">Actualiza Especilidad</a></li>
                                         </ul>
                                     </div>
                                 </div>

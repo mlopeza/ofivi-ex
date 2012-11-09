@@ -280,7 +280,34 @@ class Usuariomodel extends CI_Model {
 		return $query;
 
 	}
+	function darDeBaja($idUsuario){
+		$this->load->database();
+		$data = array('Usuario_Activo' => 0);
+		$this->db->where('idUsuario', $idUsuario);
+		$this->db->update('usuario', $data); 
+	}
+	
+	function getUsuariosActivos(){
+		$this->load->database();
+        $query = $this->db->query('
+			SELECT d.idDepartamento as idDepartamento,
+					d.Nombre as Departamento,
+					e.Nombre as Escuela, 
+					c.Nombre as Campus, 
+					CONCAT(u.Nombre," ", u.ApellidoP, " ", u.ApellidoM) as Nombre,
+					u.email as Email,
+					u.idUsuario as idUsuario,
+					u.Username as Usuario
+			FROM Usuario u
+			INNER JOIN Departamento d ON d.idDepartamento = u.idDepartamento
+			INNER JOIN Escuela e ON e.idEscuela = d.idEscuela
+			INNER JOIN Campus c ON e.idCampus = c.idCampus
+			WHERE u.Usuario_Activo = 1
+			');
 
+		return $query;
+
+	}
     //Funcion para actualizar un usuario,proporcionando el id
     //y un arreglo con los datos
     function actualiza_usuario_array($id,$arreglo=array()){
@@ -350,6 +377,11 @@ class Usuariomodel extends CI_Model {
 	$this->db->update('usuario', $data);	
 	}
 
+	function obtenId($usuario){
+		$this->load->database();
+		$query = $this->db->query('SELECT idUsuario FROM usuario WHERE username="'.$usuario.'"')->result();
+		return $query[0]->idUsuario;
+	}
 	function getEspecialidad($usuario){
         $this->load->database();
         $grupos= $this->db->query('
@@ -364,12 +396,26 @@ class Usuariomodel extends CI_Model {
 			 SELECT Area_Conocimiento.idArea_Conocimiento,area,COALESCE(usuario_area.idUsuario,0) as tiene_especialidad
             FROM Area_Conocimiento
 			LEFT JOIN usuario_area ON area_conocimiento.idArea_Conocimiento = usuario_area.idArea_Conocimiento
-	AND usuario_area.idUsuario = '.$usuario.'
+	AND usuario_area.idUsuario = '.$this->obtenId($usuario).'
             WHERE Area_Conocimiento.idGrupo_Area = '.$grupos[$i]->idGrupo_Area)->result(); 
         }
 
         return $matriz;
     }
+	
+	function deleteEspecialidad($usuario){
+	 $this->load->database();
+	 $this->db->delete('usuario_area', array('idUsuario' => $usuario));
+	}
+	function agregaEspecialidad($especialidad,$usuario){
+		$this->load->database();
+		$data = array(
+		   'idUsuario' => $usuario ,
+		   'idArea_Conocimiento' => $especialidad 
+		);
+		
+		$this->db->insert('usuario_area', $data); 
+	}
 }
 ?>
 
