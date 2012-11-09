@@ -474,7 +474,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `SEVI`.`Documento` ;
 
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Documento` (
-  `idDocumento` INT NOT NULL ,
+  `idDocumento` INT NOT NULL AUTO_INCREMENT ,
   `idProyecto` INT NOT NULL ,
   `Titulo` VARCHAR(255) NOT NULL ,
   `Archivo` BLOB NOT NULL ,
