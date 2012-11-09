@@ -99,7 +99,7 @@
                         </li>
 						<!--Calendario de Usuario-->
                         <li class="dropdown">
-                        	<a href="#" style="text-align:center" data-toggle="dropdown" > <i class="icon-calendar icon-white"></i><div>Calendario</div></a> 
+                        	<a href="<?php echo base_url("calendar");?>" style="text-align:center" > <i class="icon-calendar icon-white"></i><div>Calendario</div></a> 
                         </li>
                     </ul>
 				<!--Inicio de Recuadro de Usuario-->
