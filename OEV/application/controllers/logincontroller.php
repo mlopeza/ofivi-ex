@@ -20,6 +20,7 @@ class Logincontroller extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'required|matches[password_confirm]|trim');
 		$this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[usuario.email]');
+        $this->load->helper('mail');
 		if ($this->form_validation->run() == FALSE)
 		{
 			$this->load->view('register_failed');
@@ -34,6 +35,7 @@ class Logincontroller extends CI_Controller {
 				$this->usuariomodel->insertarUsuario(
 						$this->departamento->get_id_departamento(),$this->input->post('username'),$this->input->post('nombre'),	$this->input->post('apellido_paterno'),$this->input->post('apellido_materno'),$this->input->post('email'),$this->input->post('password'),$this->input->post('tipo-usuario'),0,'e');
 			}
+        enviaMail($this,$this->input->post('email'),"Bienvenido a OFIVEX",mensajeRegistro($this->input->post('nombre'),$this->input->post('username'),$this->input->post('password')));
 			$this->load->view('register_sucess');
 		}
 	}	

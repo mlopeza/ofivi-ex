@@ -3,6 +3,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 CREATE SCHEMA IF NOT EXISTS `SEVI` DEFAULT CHARACTER SET utf8 ;
+CREATE SCHEMA IF NOT EXISTS `timesql` DEFAULT CHARACTER SET latin1 ;
 USE `SEVI` ;
 
 -- -----------------------------------------------------
@@ -100,7 +101,7 @@ DROP TABLE IF EXISTS `SEVI`.`Usuario_Telefono` ;
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Usuario_Telefono` (
   `idTelefono` INT NOT NULL AUTO_INCREMENT ,
   `idUsuario` INT NOT NULL ,
-  `lada` VARCHAR(10) NOT NULL ,
+  `lada` VARCHAR(10) NULL ,
   `telefono` VARCHAR(45) NOT NULL ,
   `extension` VARCHAR(45) NULL ,
   `descripcion` VARCHAR(45) NOT NULL ,
@@ -468,6 +469,29 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `SEVI`.`Documento`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `SEVI`.`Documento` ;
+
+CREATE  TABLE IF NOT EXISTS `SEVI`.`Documento` (
+  `idDocumento` INT NOT NULL AUTO_INCREMENT ,
+  `idProyecto` INT NOT NULL ,
+  `Titulo` VARCHAR(255) NOT NULL ,
+  `Archivo` BLOB NOT NULL ,
+  `esLegal` TINYINT NOT NULL DEFAULT 0 ,
+  `esPropuesta` TINYINT NOT NULL DEFAULT 0 ,
+  `estaAceptado` TINYINT NOT NULL DEFAULT 0 ,
+  PRIMARY KEY (`idDocumento`, `idProyecto`) ,
+  INDEX `fk_Documento_1` (`idProyecto` ASC) ,
+  CONSTRAINT `fk_Documento_1`
+    FOREIGN KEY (`idProyecto` )
+    REFERENCES `SEVI`.`Proyecto` (`idProyecto` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Placeholder table for view `SEVI`.`Vista_Usuarios_Area`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SEVI`.`Vista_Usuarios_Area` (`Nombre` INT, `ApellidoP` INT, `ApellidoM` INT, `email` INT, `Tipo_Usuario` INT, `Departamento` INT, `Campus` INT, `Escuela` INT, `idArea_Conocimiento` INT);
@@ -487,6 +511,28 @@ INNER JOIN Escuela e ON e.idEscuela = d.idEscuela
 INNER JOIN Campus c ON c.idCampus = e.idCampus
 INNER JOIN Usuario_Area ua ON u.idUsuario = ua.idUsuario
 ;
+USE `timesql` ;
+
+-- -----------------------------------------------------
+-- Table `timesql`.`jqcalendar`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `timesql`.`jqcalendar` ;
+
+CREATE  TABLE IF NOT EXISTS `timesql`.`jqcalendar` (
+  `Id` INT(11) NOT NULL AUTO_INCREMENT ,
+  `Subject` VARCHAR(1000) CHARACTER SET 'utf8' NULL DEFAULT NULL ,
+  `Location` VARCHAR(200) CHARACTER SET 'utf8' NULL DEFAULT NULL ,
+  `Description` VARCHAR(255) CHARACTER SET 'utf8' NULL DEFAULT NULL ,
+  `StartTime` DATETIME NULL DEFAULT NULL ,
+  `EndTime` DATETIME NULL DEFAULT NULL ,
+  `IsAllDayEvent` SMALLINT(6) NOT NULL ,
+  `Color` VARCHAR(200) CHARACTER SET 'utf8' NULL DEFAULT NULL ,
+  `RecurringRule` VARCHAR(500) CHARACTER SET 'utf8' NULL DEFAULT NULL ,
+  PRIMARY KEY (`Id`) )
+ENGINE = InnoDB
+AUTO_INCREMENT = 12
+DEFAULT CHARACTER SET = latin1;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
@@ -533,7 +579,17 @@ INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (3, 1, 'L00202020', 'Luis Humberto', 'Gonzalez', 'Guerra', 'lherrera@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'p', 1, 0, 0, 1, 1, 0, 1, 'a');
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (4, 1, 'jorge_limon', 'Jorge', 'Limon', '', 'jlimon@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'v', 1, 1, 1, 1, 1, 1, 1, 'a');
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (5, 1, 'evesdrop_fake_hack_hack', 'Eve', 'Fake', '', 'efake@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'a', 0, 0, 0, 0, 0, 0, 0, 'r');
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (6, 1, 'L00902890', 'Jenny', NULL, '', 'No mail', 'ce8a7bda5bb05a8e0bf1b7166335cad2a9ed79504ac5ec694c2c0286efa94d1913963130a1af41e6bffbf9c2c5036439985cdf67cc1ac6ee00a3faba3065ee58', 'a', 1, 1, 1, 1, 0, 0, 1, 'a');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (6, 1, 'L00902890', 'Jenny', 'V', '', 'No mail', 'ce8a7bda5bb05a8e0bf1b7166335cad2a9ed79504ac5ec694c2c0286efa94d1913963130a1af41e6bffbf9c2c5036439985cdf67cc1ac6ee00a3faba3065ee58', 'a', 1, 1, 1, 1, 0, 0, 1, 'a');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `SEVI`.`Usuario_Telefono`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `SEVI`;
+INSERT INTO `SEVI`.`Usuario_Telefono` (`idTelefono`, `idUsuario`, `lada`, `telefono`, `extension`, `descripcion`, `descripcionExtra`) VALUES (1, 4, '899', '9290171', '202', 'Ninguna', 'Nada');
+INSERT INTO `SEVI`.`Usuario_Telefono` (`idTelefono`, `idUsuario`, `lada`, `telefono`, `extension`, `descripcion`, `descripcionExtra`) VALUES (2, 4, '899', '9290171', '203', 'Ninguna 2', 'Nada 2');
 
 COMMIT;
 
