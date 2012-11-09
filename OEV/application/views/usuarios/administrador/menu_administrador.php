@@ -8,6 +8,7 @@
                                     <div class="accordion-inner">
                                         <ul class="nav nav-list">
                                             <li><a href="<?php echo base_url("/aceptaUsuarios");?>">Solicitudes Actuales</a></li>
+                                            <li><a href="<?php echo base_url("/bajaUsuarios");?>">Baja de Usuarios</a></li>
                                             <li><a href="<?php echo base_url("/organizacion");?>">Organización del Sistema Tecnológico</a></li>
                                         </ul>
                                     </div>

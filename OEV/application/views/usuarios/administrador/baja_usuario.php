@@ -14,7 +14,7 @@
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
                                                     <a class="accordion-toggle" data-toggle="collapse" href="#notification" data-original-title="">
-                                                        <i class="icon-th icon-white"></i> <span class="divider-vertical"></span>  Solicitudes de Acceso <i class="icon-chevron-down icon-white pull-right"></i>
+                                                        <i class="icon-th icon-white"></i> <span class="divider-vertical"></span>  Usuarios Actuales <i class="icon-chevron-down icon-white pull-right"></i>
                                                     </a>
                                                 </div>
                                                 <div id="notification" class="accordion-body collapse in">

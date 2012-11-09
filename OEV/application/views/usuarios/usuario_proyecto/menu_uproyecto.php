@@ -8,7 +8,28 @@
                                     <div class="accordion-inner">
                                         <ul class="nav nav-list">
                                             <li><a href="<?php echo base_url("arProyecto");?>">Proyectos Pendientes</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+							<li class="accordion-menu">
+                                <a href="#collapseTwo" data-toggle="collapse" class="accordion-toggle"><i class="icon-signal"></i><span>Datos de Usuario<i class="icon-chevron-down pull-right"></i></span></a>
+                                <div class="accordion-body collapse dropdown" id="collapseTwo">
+                                    <div class="accordion-inner">
+                                        <ul class="nav nav-list">
+                                            <li><a href="<?php echo base_url("actualizaEspecialidad");?>">Especialidades del Usuario</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+							<li class="accordion-menu">
+                                <a href="#collapseThree" data-toggle="collapse" class="accordion-toggle"><i class="icon-signal"></i><span>Reportes<i class="icon-chevron-down pull-right"></i></span></a>
+                                <div class="accordion-body collapse dropdown" id="collapseThree">
+                                    <div class="accordion-inner">
+                                        <ul class="nav nav-list">
                                             <li><a href="<?php echo base_url("generaReporte");?>">Generar Reporte</a></li>
+                                            <li><a href="<?php echo base_url("");?>">Editar Reporte</a></li>
+                                            <li><a href="<?php echo base_url("verReportes");?>">Ver Reportes</a></li>
                                         </ul>
                                     </div>
                                 </div>
