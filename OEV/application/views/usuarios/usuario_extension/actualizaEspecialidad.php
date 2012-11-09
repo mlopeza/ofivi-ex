@@ -1,4 +1,23 @@
-<div class="span4">
+<div id="content" class="span9 section-body">
+
+                    <div id="section-body" class="tabbable">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab">Modificar Reportes</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab1">
+
+                                <div class="row-fluid">
+                                    <!--Tabs2-->
+                                    <div class="span12">
+                                        <div id="accordion1" class="accordion">
+                                            <div class="accordion-group">
+                                                <div class="accordion-heading">
+                                                    <a class="accordion-toggle" data-toggle="collapse" href="#notification" data-original-title="">
+                                                        <i class="icon-th icon-white"></i> <span class="divider-vertical"></span> Proyectos <i class="icon-chevron-down icon-white pull-right"></i>
+                                                    </a>
+                                                </div>                                                            
+
                                                             <!--Grupos y Areas para las llamadas-->
 															<?php
                                                                 $attributes = array('id' => 'auth-for', 'class' => 'clearfix' , 'autocomplete' => 'off');
@@ -46,3 +65,16 @@
 															<?php
                                                                 echo form_close();
 															?>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div> <!--  end row-fluid -->
+                            </div>
+                        </div>
+                    </div>
+                </div>

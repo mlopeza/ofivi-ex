@@ -28,7 +28,7 @@
                                     <div class="accordion-inner">
                                         <ul class="nav nav-list">
                                             <li><a href="<?php echo base_url("generaReporte");?>">Generar Reporte</a></li>
-                                            <li><a href="<?php echo base_url("");?>">Editar Reporte</a></li>
+                                            <li><a href="<?php echo base_url("modificarReportes");?>">Editar Reporte</a></li>
                                             <li><a href="<?php echo base_url("verReportes");?>">Ver Reportes</a></li>
                                         </ul>
                                     </div>
