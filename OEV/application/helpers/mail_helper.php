@@ -8,6 +8,7 @@ if ( ! function_exists('enviaMail'))
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.gmail.com',
             'smtp_port' => 465,
+            'mailtype'  => 'html', 
             'smtp_user' => 'ofivex@gmail.com',
             'smtp_pass' => 'oficinadeextensionvirtual2012',
         );
@@ -19,7 +20,8 @@ if ( ! function_exists('enviaMail'))
 
         $o->email->subject($asunto);
         $o->email->message($mensaje);
-        $o->email->send();
+        return $o->email->send();
+        
     }   
 }
 
@@ -53,5 +55,23 @@ if ( ! function_exists('mensajeAlta'))
     }   
 }
 
-
+if ( ! function_exists('mensajeRecordatorio1'))
+{
+    function mensajeRecordatorio1($r)
+    {
+        
+        $mensaje = " Hola <strong>".$r[0]->Nombre." ".$r[0]->ApellidoP."</strong> tus actividades que empezaran dentro de la proxima hora son:\n\n";
+        
+        //Crea lso recordatorios
+        foreach($r as $rec){
+            $mensaje = $mensaje."<strong>Nombre :</strong>".$rec->Subject."\n".
+                        "<strong>Inicio:</strong>".$rec->StartTime."\n".
+                        "<strong>Fin:</strong>".$rec->EndTime."\n".
+                        ($rec->Location != ""?"<strong>Lugar:</strong>".$rec->Location."\n":"").
+                        ($rec->Description != ""?"<strong>Descripcion:</strong>".$rec->Description."\n":"").
+                        ($rec->isAllDayEvent == "1"?"<strong><em>Todo el día</em></strong>":"")."\n";
+        }
+        return $mensaje;
+    }   
+}
 ?>
