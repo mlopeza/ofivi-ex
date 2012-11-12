@@ -23,10 +23,10 @@ extends CI_Controller {
 		
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
-		$this->load->view('usuarios/usuario_proyecto/menu_uproyecto');
-        $this->load->view('usuarios/usuario_proyecto/subir_ContratoLegal',$proyectos);
+		$this->load->view('usuarios/usuario_legal/menu_legal');
+        $this->load->view('usuarios/usuario_legal/subir_ContratoLegal',$proyectos);
 		$this->load->view('usuarios/footer');
-		$this->load->view('usuarios/usuario_proyecto/Scripts/subirContratoLegal');
+		$this->load->view('usuarios/usuario_legal/Scripts/subirContratoLegal');
     }
     
     function do_upload()
@@ -48,8 +48,9 @@ extends CI_Controller {
 		$this->documento->setTitulo($this->input->post('tituloContrato'));
 		$this->documento->setArchivo($file);
 		$this->documento->setEsLegal(1);
-		$aceptada = $this->input->post('esAceptada') == 1 ? 1 : 0;
-		$this->documento->setEstaAceptado($aceptada);
+		//$aceptada = $this->input->post('esAceptada') == 1 ? 1 : 0;
+		//El contrato legal esta aceptado por defacto
+		$this->documento->setEstaAceptado(1);
 		
 		$this->documento->insert();
 		redirect('subirContratoLegal', 'location'); 

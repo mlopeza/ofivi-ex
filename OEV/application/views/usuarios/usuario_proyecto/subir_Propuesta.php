@@ -1,20 +1,24 @@
-<div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
-                    
+<div id="content" class="span9 section-body">
+
+                    <div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab">Propuestas</a></li>
+                        </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab1">
 
-                                
                                 <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="accordion3" class="accordion">
+                                    <!--Tabs2-->
+                                    <div class="span7">
+                                        <div id="accordion1" class="accordion">
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
-                                                    <a class="accordion-toggle" data-toggle="collapse" href="#event" data-original-title="">
-                                                        <i class="icon-comment icon-white"></i> <span class="divider-vertical"></span>Agregar Propuesta de proyecto<i class="icon-chevron-down icon-white pull-right"></i>
+                                                    <a class="accordion-toggle" data-toggle="collapse" href="#notification" data-original-title="">
+                                                        <i class="icon-th icon-white"></i> <span class="divider-vertical"></span>  Subir Propuesta <i class="icon-chevron-down icon-white pull-right"></i>
                                                     </a>
                                                 </div>
                                                 <div id="notification" class="accordion-body collapse in">
-													<div class="accordion-inner paddind">
+                                                    <div class="accordion-inner paddind">
                                                     <!--Elemento 1-->
                                                     <table class="table table-bordered">
                                                             <thead>
@@ -65,12 +69,6 @@
 															<input type="text"  id="tituloPropuesta" name="tituloPropuesta" value="" class="input-xlarge focused">
 															<span class="help-inline"></span>
 														</div>
-														<div class="controls">
-															<label class="checkbox">
-                                                            <input type="checkbox" name="esAceptada" value="1" id="esAceptada">
-																¿Aceptada?
-                                                            </label>
-                                                        </div>
 													</div>
 													<div class="control-group">
 														<label for="archivoPropuesta" class="control-label">Archivo de la propuesta</label>
@@ -87,17 +85,13 @@
 													<?php
 														echo form_close();
 													?>
-													<!----------------->
-												</div>
-											</div>
-										</div>
-                                    </div>
-								</div>
-							</div>
-							
-						</div>
-						</div>
-						</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div></div>
+                            </div>
+                        </div>
                     </div>
-      
-</div>
+                </div>

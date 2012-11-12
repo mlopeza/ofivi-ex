@@ -48,8 +48,8 @@ extends CI_Controller {
 		$this->documento->setTitulo($this->input->post('tituloPropuesta'));
 		$this->documento->setArchivo($file);
 		$this->documento->setEsPropuesta(1);
-		$aceptada = $this->input->post('esAceptada') == 1 ? 1 : 0;
-		$this->documento->setEstaAceptado($aceptada);
+		//$aceptada = $this->input->post('esAceptada') == 1 ? 1 : 0;
+		//$this->documento->setEstaAceptado($aceptada);
 		
 		$this->documento->insert();
 		redirect('subirPropuesta', 'location'); 
