@@ -51,16 +51,23 @@
 											<!--------------->
 											<div id="notification" class="accordion-body collapse in">
 												<div class="accordion-inner paddind">
+													<!--?php echo $error;? -->
+
+													<?php
+														$attributes = array('id' => 'subir-propuesta', 'class' => 'clearfix' , 'autocomplete' => 'off');
+														//echo form_open('subirPropuesta/do_upload',$attributes);
+														echo form_open_multipart('subirPropuesta/do_upload',$attributes);
+													?>
 													<div class="control-group">
 														<label for="tituloPropuesta" class="control-label">Titulo de la propuesta</label>
 														<div class="controls">
-															<input type="hidden" id='idProyectoPropuesta' value=''/>
+															<input type="hidden" id='idProyectoPropuesta' name='idProyectoPropuesta' value=''/>
 															<input type="text"  id="tituloPropuesta" name="tituloPropuesta" value="" class="input-xlarge focused">
 															<span class="help-inline"></span>
 														</div>
 														<div class="controls">
 															<label class="checkbox">
-                                                            <input type="checkbox" name="reporteFinal" value="1" id="reporteFinal">
+                                                            <input type="checkbox" name="esAceptada" value="1" id="esAceptada">
 																¿Aceptada?
                                                             </label>
                                                         </div>
@@ -68,15 +75,18 @@
 													<div class="control-group">
 														<label for="archivoPropuesta" class="control-label">Archivo de la propuesta</label>
 														<div class="controls">
-															<input type="file"  id="tituloPropuesta" name="tituloPropuesta">
+															<input type="file"  id="archivoPropuesta" name="archivoPropuesta">
 															<span class="help-inline"></span>
 														</div>
 														
 													</div>
 													<div class="form-actions">
-														<button class="btn btn-primary" id="GuardarTodo" type="button">Guardar</button>
+														<button class="btn btn-primary" id="uploadFile" type="button">Subir archivo</button>
 														<button class="btn">Cancelar</button>
 													</div>
+													<?php
+														echo form_close();
+													?>
 													<!----------------->
 												</div>
 											</div>

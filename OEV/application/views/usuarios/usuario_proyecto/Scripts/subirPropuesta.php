@@ -13,99 +13,19 @@
                 $(this).attr("style","background-color:whiteSmoke;");
                 proyecto_global=$(this).attr('idproyecto');
                 
-                $("#idReporteHidden").val(reporte_global);
-    
-                //getReportesProyecto(proyecto_global);
-            });
+	            console.log("idProyecto = "+proyecto_global);
+                $("#idProyectoPropuesta").val(proyecto_global);
+        });
+	
+		//Guarda los cambios al reporte
+        $("#uploadFile").click(function(){
+            if(proyecto_global==-1){
+				noty({text: "No se ha escogido ningún proyecto.", type: 'error'});
+                return;
+            }
+            
+            noty({text: "Se subio la propuesta.", type: 'success'});
+            $("#subir-propuesta").submit();
+        });
 	});
-		
-	// Obtiene los reportes de un proyecto
-	function getReportesProyecto(proyecto_global){
-            //Busca los reportes de un Proyecto
-            console.log("Get Reportes del Proyecto");
-            data={'idProyecto':proyecto_global};
-			$.ajax({
-			     type: "POST",
-			     url: "verReportes/reportesDeProyecto",
-			     data: data,
-			     success: function(msg){
-								console.log("msg "+msg);
-								mensaje=$.parseJSON(msg);
-								//Berifica que el proyecto tenga reportes
-								if(mensaje['mensaje'] == null || mensaje['mensaje'] == ""){
-									noty({text: "No hay reportes para este proyecto", type: 'warning'});
-									nodo=$("#reportes-actuales-body");
-									$(nodo).empty();
-									$('iframe').contents().find('.wysihtml5-editor').html("Seleccione reporte...");
-								}else{
-									console.log("mensaje "+mensaje);
-									if(mensaje['response'] == "false"){
-										noty({text: mensaje['mensaje'], type: 'error'});
-									}else{
-										agregaReporteTabla2(mensaje['mensaje']);
-									}
-								}
-			     },
-				error: function(msg){
-						noty({text: "Ha habido un error en el sistema, intentelo nuevamente.", type: 'error'});
-				}
-			});
-    }
-    
-    function agregaReporteTabla2(lista){
-
-        nodo=$("#reportes-actuales-body");
-        $(nodo).empty();
-        $.each(lista,function(index,elemento){
-            
-            $(nodo).append("<tr class='colorea-reporte' idreporte='"+elemento['idreporte']+"' class='tabla-reportes'><td>"+
-			elemento['nombre']+" "+elemento['apellidop']+"</td><td>"+
-			elemento['titulo']+"</td></tr>");
-             
-        
-        });
-    }
-		
-	// Obtiene la descripcion del reportes
-	function getReporte(reporte_global,contenido){
-            //Busca los reportes 
-            console.log("Get Reporte");
-            console.log(reporte_global);
-            data={'idReporte':reporte_global};
-			$.ajax({
-			     type: "POST",
-			     url: "verReportes/getReporte",
-			     data: data,
-			     success: function(msg){
-								console.log(msg);
-								mensaje=$.parseJSON(msg);
-							if(mensaje['response'] == "false"){
-								noty({text: mensaje['mensaje'], type: 'error'});
-							}else{
-								//Linea que agrega el contenido del reporte
-                                $(contenido).contents().find('.wysihtml5-editor').html(mensaje['mensaje'][0]['contenido']);
-                            }
-			     },
-				error: function(msg){
-						noty({text: "Ha habido un error en el sistema, intentelo nuevamente.", type: 'error'});
-				}
-			});
-			console.log("Fin de getReporte");
-    }
-    
-    
-    /*
-    function agregaReporteAreaTexto(lista){
-
-        nodo=$("#reportes-actuales-body");
-        $(nodo).empty();
-        $.each(lista,function(index,elemento){
-            
-            //$(nodo).append("<tr class='colorea-reporte' idReporte='"+elemento['idReporte']+" class='tabla-proyectos'><td>"+
-			//elemento['nombre']+" "+elemento['apellidop']+"</td><td>"+
-			//elemento['titulo']+"</td></tr>");
-             
-        
-        });
-    }*/
 </script>

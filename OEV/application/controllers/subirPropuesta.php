@@ -28,4 +28,30 @@ extends CI_Controller {
 		$this->load->view('usuarios/footer');
 		$this->load->view('usuarios/usuario_proyecto/Scripts/subirPropuesta');
     }
+    
+    function do_upload()
+	{
+		$this->load->model('documento');
+		$this->load->helper('url');
+
+		
+		if($_FILES["archivoPropuesta"]["size"] > 0){
+			$tmpName = $_FILES["archivoPropuesta"]['tmp_name'];
+			$fp = fopen($tmpName, 'r');
+			$file = fread($fp, filesize($tmpName));
+			$file = addslashes($file);
+			fclose($fp);
+		}
+		$data = $this->input->post();
+		
+		$this->documento->setIdProyecto($this->input->post('idProyectoPropuesta'));
+		$this->documento->setTitulo($this->input->post('tituloPropuesta'));
+		$this->documento->setArchivo($file);
+		$this->documento->setEsPropuesta(1);
+		$aceptada = $this->input->post('esAceptada') == 1 ? 1 : 0;
+		$this->documento->setEstaAceptado($aceptada);
+		
+		$this->documento->insert();
+		redirect('subirPropuesta', 'location'); 
+	}
 }
