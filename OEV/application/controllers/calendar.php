@@ -19,8 +19,7 @@ extends CI_Controller {
 		$vista = array('vista'=>$datos_usuario['vista']);
 		$usuario = $datos_usuario['idUsuario'];
 		//Se buscan todos los proyectos relacionados al usuario
-		$proyectos['proyectos'] = $this->proyecto->selectProyectos($usuario);
-		
+		$proyectos['proyectos'] = $this->proyecto->selectProyectos($usuario);		
 
 		$this->load->view('usuarios/header',$vista);
 		//$this->load->view('usuarios/usuario_proyecto/menu_uproyecto');
