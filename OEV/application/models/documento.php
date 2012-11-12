@@ -66,7 +66,7 @@ class Documento extends CI_Model{
 	
 	function setEsLegal($param)
 	{
-		$esLegal = $param;
+		$this->esLegal = $param;
 	}
 	
 	function setEsPropuesta($param)

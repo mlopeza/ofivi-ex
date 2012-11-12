@@ -10,7 +10,7 @@
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
                                                     <a class="accordion-toggle" data-toggle="collapse" href="#event" data-original-title="">
-                                                        <i class="icon-comment icon-white"></i> <span class="divider-vertical"></span>Agregar Propuesta de proyecto<i class="icon-chevron-down icon-white pull-right"></i>
+                                                        <i class="icon-comment icon-white"></i> <span class="divider-vertical"></span>Agregar Contrato de proyecto<i class="icon-chevron-down icon-white pull-right"></i>
                                                     </a>
                                                 </div>
                                                 <div id="notification" class="accordion-body collapse in">
@@ -54,28 +54,28 @@
 													<!--?php echo $error;? -->
 
 													<?php
-														$attributes = array('id' => 'subir-propuesta', 'class' => 'clearfix' , 'autocomplete' => 'off');
-														//echo form_open('subirPropuesta/do_upload',$attributes);
-														echo form_open_multipart('subirPropuesta/do_upload',$attributes);
+														$attributes = array('id' => 'subir-contrato', 'class' => 'clearfix' , 'autocomplete' => 'off');
+														//echo form_open('subirContrato/do_upload',$attributes);
+														echo form_open_multipart('subirContratoLegal/do_upload',$attributes);
 													?>
 													<div class="control-group">
-														<label for="tituloPropuesta" class="control-label">Titulo de la propuesta</label>
+														<label for="tituloContrato" class="control-label">Titulo del contrato</label>
 														<div class="controls">
-															<input type="hidden" id='idProyectoPropuesta' name='idProyectoPropuesta' value=''/>
-															<input type="text"  id="tituloPropuesta" name="tituloPropuesta" value="" class="input-xlarge focused">
+															<input type="hidden" id='idProyectoContrato' name='idProyectoContrato' value=''/>
+															<input type="text"  id="tituloContrato" name="tituloContrato" value="" class="input-xlarge focused">
 															<span class="help-inline"></span>
 														</div>
 														<div class="controls">
 															<label class="checkbox">
                                                             <input type="checkbox" name="esAceptada" value="1" id="esAceptada">
-																¿Aceptada?
+																¿Aceptado?
                                                             </label>
                                                         </div>
 													</div>
 													<div class="control-group">
-														<label for="archivoPropuesta" class="control-label">Archivo de la propuesta</label>
+														<label for="archivoContrato" class="control-label">Archivo del contrato</label>
 														<div class="controls">
-															<input type="file"  id="archivoPropuesta" name="archivoPropuesta">
+															<input type="file"  id="archivoContrato" name="archivoContrato">
 															<span class="help-inline"></span>
 														</div>
 														
