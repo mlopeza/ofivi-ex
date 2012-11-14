@@ -73,6 +73,7 @@ console.log(msg);
 			var data={ 
 			's_token':$('#s_token').attr('value'),
 			'idGrupo':idGrupo,
+			'username':$('[name="username"]').val(),
 			'activo':$('[name="estado"]').val(),
 			};
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/

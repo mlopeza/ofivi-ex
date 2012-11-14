@@ -1,4 +1,4 @@
-<?php
+	<?php
 class Grupo extends CI_Model {
 	
 	function __construct()
