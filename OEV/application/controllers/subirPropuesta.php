@@ -37,6 +37,10 @@ extends CI_Controller {
 		
 		if($_FILES["archivoPropuesta"]["size"] > 0){
 			$tmpName = $_FILES["archivoPropuesta"]['tmp_name'];
+			$fileSize = $_FILES['archivoPropuesta']['size'];
+			$file_info = pathinfo($_FILES['archivoPropuesta']['name']);
+			$fileExt = pathinfo($_FILES['archivoPropuesta']['name'], PATHINFO_EXTENSION); //Obtiene la extension del archivo
+			$fileType = $_FILES['archivoPropuesta']['type'];
 			$fp = fopen($tmpName, 'r');
 			$file = fread($fp, filesize($tmpName));
 			$file = addslashes($file);
@@ -48,6 +52,9 @@ extends CI_Controller {
 		$this->documento->setTitulo($this->input->post('tituloPropuesta'));
 		$this->documento->setArchivo($file);
 		$this->documento->setEsPropuesta(1);
+		$this->documento->setType($fileType);
+		$this->documento->setSize($fileSize);
+		$this->documento->setExtension($fileExt);
 		//$aceptada = $this->input->post('esAceptada') == 1 ? 1 : 0;
 		//$this->documento->setEstaAceptado($aceptada);
 		
