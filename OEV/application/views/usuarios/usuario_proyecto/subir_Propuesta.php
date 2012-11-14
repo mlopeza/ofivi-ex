@@ -80,7 +80,6 @@
 													</div>
 													<div class="form-actions">
 														<button class="btn btn-primary" id="uploadFile" type="button">Subir archivo</button>
-														<button class="btn">Cancelar</button>
 													</div>
 													<?php
 														echo form_close();

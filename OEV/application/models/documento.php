@@ -8,6 +8,9 @@ class Documento extends CI_Model{
 	var $esLegal = 0;
 	var $esPropuesta = 0;
 	var $estaAceptado = 0;
+	var $Type = '';
+	var $Size = 0;
+	var $Extension = '';
 	
 	function getIdDocumento()
 	{
@@ -44,6 +47,21 @@ class Documento extends CI_Model{
 		return $this->estaAceptado;
 	}
 	
+	function getType()
+	{
+		return $this->Type;
+	}
+	
+	function getSize()
+	{
+		return $this->Size;
+	}
+	
+	function getExtension()
+	{
+		return $this->Extension;
+	}
+	
 	function setIdDocumento($param)
 	{
 		$this->idDocumento = $param;
@@ -78,6 +96,21 @@ class Documento extends CI_Model{
 	{
 		$this->estaAceptado = $param;
 	}
+	
+	function setType($param)
+	{
+		 $this->Type = $param;
+	}
+	
+	function setSize($param)
+	{
+		 $this->Size = $param;
+	}
+	
+	function setExtension($param)
+	{
+		 $this->Extension = $param;
+	}
 
 	/*
 	 * Guarda el archivo de la propuesta en la base de datos
@@ -92,7 +125,10 @@ class Documento extends CI_Model{
 			'Archivo' => $this->Archivo,
 			'esLegal' => $this->esLegal,
 			'esPropuesta' => $this->esPropuesta,
-			'estaAceptado' => $this->estaAceptado);
+			'estaAceptado' => $this->estaAceptado,
+			'Type' => $this->Type,
+			'Size' => $this->Size,
+			'Extension' => $this->Extension);
 		$this->db->insert('documento',$data);
 	}
 }
