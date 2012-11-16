@@ -1,5 +1,5 @@
 <?php
-class Avancesproyecto extends CI_Controller {
+class avancesProyecto extends CI_Controller {
 
 	//Metodo que carga la página donde el usuario podrá loggearse o soliticitar una cuenta.
 	public function index()
@@ -9,10 +9,10 @@ class Avancesproyecto extends CI_Controller {
         $datos_usuario=$this->session->all_userdata();
         $vista = array('vista'=>$datos_usuario['vista']);
 		$this->load->view('usuarios/header',$vista);
-		$this->load->view('usuarios/administrador/menu_administrador');
-		$this->load->view('usuarios/administrador/avances_proyecto');
+		$this->load->view('usuarios/supervisor_extension/menu_supervisor');
+		$this->load->view('usuarios/supervisor_extension/avances_proyecto');
 		$this->load->view('usuarios/footer');
-		$this->load->view('usuarios/administrador/Scripts/avancesProyecto');
+		$this->load->view('usuarios/supervisor_extension/Scripts/avancesProyecto');
 		
 	}
 	
