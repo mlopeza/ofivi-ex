@@ -12,6 +12,7 @@ extends CI_Controller {
 		$this->load->model('grupo_area_model');
 		$this->load->model('proyecto');
 		$this->load->helper('security');		
+		$this->load->model('usuariomodel');
 
 		$this->load->library('session');
 		//Cargar la sesion		
@@ -19,7 +20,7 @@ extends CI_Controller {
 		$vista = array('vista'=>$datos_usuario['vista']);
 
         //Regresa los proyectos iniciados por el usuario y que esten activos
-        $proyectos=$this->proyecto->getProyectosAsignados($datos_usuario['idUsuario'],1);
+        $proyectos=$this->proyecto->getProyectosAsignados($this->usuariomodel->obtenId($datos_usuario['username']),1);
         $areas = $this->grupo_area_model->getGruposyAreas();
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);

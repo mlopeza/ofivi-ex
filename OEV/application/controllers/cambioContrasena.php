@@ -22,16 +22,17 @@ class CambioContrasena extends CI_Controller {
 		$this->form_validation->set_rules('password_conf', 'Password Confirmation', 'required');
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->usuariomodel->actualizarInfo($this->input->post('susuario'),$this->input->post('password'));
-			$resultado = array("pass"=>$this->input->post('password'));
-			// subject
-			$titulo = 'Cambio de Contraseña';
-			// message
-			// Para enviar un correo HTML mail, la cabecera Content-type debe fijarse
-			$cabeceras  = 'MIME-Version: 1.0' . "\r\n";
-			$cabeceras .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-			// Mail it
-			mail($this->input->post('susuario'), $titulo, $this->load->view('/usuarios/administrador/mailContrasena',$resultado,'TRUE'), $cabeceras);
+	        $this->load->helper('mail');
+			$this->usuariomodel->actualizarInfo($this->input->post('susuario'),$this->input->post('password'));	
+            enviaMail($this,$this->usuariomodel->obtenEmail($this->input->post('susuario')),
+					  "Información de cuenta de OFIVEX",
+					  mensajeContrasena(
+					  	$this->usuariomodel->obtenNombre(
+							$this->input->post('susuario')
+						),
+						$this->input->post('password')
+					)
+			);            
 		}
 		else
 		{

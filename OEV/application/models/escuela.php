@@ -119,9 +119,8 @@ class Escuela extends CI_Model {
     function getDepartamentos($data){
         $this->load->database();
         $this->db->where($data);
-        $query=$this->db->get('Departamento');
+        $query=$this->db->get('departamento');
         return $query->result();
-
-    }
+    }	
 }
 ?>

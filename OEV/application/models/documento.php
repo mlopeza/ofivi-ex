@@ -131,5 +131,15 @@ class Documento extends CI_Model{
 			'Extension' => $this->Extension);
 		$this->db->insert('documento',$data);
 	}
+	function getDocument($idDocument){
+		$this->load->database();
+		$query = $this->db->get_where('documento', array('idProyecto' => $idDocument));
+		return $query->result();
+	}
+	function getDocumentDownload($idProyecto,$esLegal){
+		$this->load->database();
+		$query = $this->db->get_where('documento', array('idProyecto' => $idProyecto,'esLegal'=>$esLegal));
+		return $query->result();
+	}
 }
 ?>
