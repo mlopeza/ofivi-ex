@@ -37,6 +37,11 @@ extends CI_Controller {
 		
 		if($_FILES["archivoContrato"]["size"] > 0){
 			$tmpName = $_FILES["archivoContrato"]['tmp_name'];
+			$tmpName = $_FILES["archivoContrato"]['tmp_name'];
+			$fileSize = $_FILES['archivoContrato']['size'];
+			$file_info = pathinfo($_FILES['archivoContrato']['name']);
+			$fileExt = pathinfo($_FILES['archivoContrato']['name'], PATHINFO_EXTENSION); //Obtiene la extension del archivo
+			$fileType = $_FILES['archivoContrato']['type'];
 			$fp = fopen($tmpName, 'r');
 			$file = fread($fp, filesize($tmpName));
 			$file = addslashes($file);
@@ -48,11 +53,16 @@ extends CI_Controller {
 		$this->documento->setTitulo($this->input->post('tituloContrato'));
 		$this->documento->setArchivo($file);
 		$this->documento->setEsLegal(1);
+		$this->documento->setType($fileType);
+		$this->documento->setSize($fileSize);
+		$this->documento->setExtension($fileExt);
 		//$aceptada = $this->input->post('esAceptada') == 1 ? 1 : 0;
 		//El contrato legal esta aceptado por defacto
 		$this->documento->setEstaAceptado(1);
 		
+		$this->documento->deleteContratos();
 		$this->documento->insert();
+		sleep(3);
 		redirect('subirContratoLegal', 'location'); 
 	}
 }

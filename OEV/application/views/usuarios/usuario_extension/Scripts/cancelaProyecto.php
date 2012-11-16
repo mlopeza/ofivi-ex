@@ -14,7 +14,7 @@
                 proyecto_global=$(this).attr('idproyecto');
                 
 	            console.log("idProyecto = "+proyecto_global);
-                $("#idProyectoContrato").val(proyecto_global);
+                $("#idProyectoCancelar").val(proyecto_global);
         });
 	
 		//Guarda los cambios al reporte
@@ -24,9 +24,8 @@
                 return;
             }
             
-            noty({text: "Se subio el contrato.", type: 'success'});
-            setTimeout(function() { location.reload(); }, 3000);
-            $("#subir-contrato").submit();
+            noty({text: "Se cancelo el proyecto.", type: 'success'});
+            $("#cancelar-proyecto").submit();
         });
 	});
 </script>

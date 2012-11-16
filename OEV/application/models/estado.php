@@ -7,45 +7,46 @@ Class Estado extends CI_Model{
 	var $estado = '';
 	
 	function getIdProyecto(){
-		return $idProyecto;
+		return $this->idProyecto;
 	}
 	
 	function getTiempoActualizacion(){
-		return $tiempoActualizacion;
+		return $this->tiempoActualizacion;
 	}
 	
 	function getIdUsuario(){
-		return $idUsuario;
+		return $this->idUsuario;
 	}
 	
 	function getEstado(){
-		return $estado;
+		return $this->estado;
 	}
 	
-	function setIdProyecto(){
-		$idProyecto = $this->input->post('idProyecto');
+	function setIdProyecto($param){
+		$this->idProyecto = $param;
 	}
 	
-	function setIdUsuario(){
-		$idUsuario = $this->input->post('idUsuario');
+	function setIdUsuario($param){
+		$this->idUsuario = $param;
 	}
 	
-	function setTiempoActualizacion(){
-		$tiempoActualizacion = $this->input->post('tiempoActualizacion');
+	function setTiempoActualizacion($param){
+		$this->tiempoActualizacion = $param;
 	}
 	
-	function setEstado(){
-		$estado = $this->input->post('estado');
+	function setEstado($param){
+		$this->estado = $param;
 	}
 	
-	function insert($proyectoid,$usuarioid){
+	function insert(){
 		$this->load->database();
-		$estado = array(
-			'idProyecto' => $proyectoid,
-			'idUsuario'=> $usuarioid,
-			'estado' => 'Registrado');
-		$this->db->insert('Estado',$estado);			
+		$data = array(
+			'idProyecto' => $this->idProyecto,
+			'idUsuario'=> $this->idUsuario,
+			'estado' => $this->estado);
+		$this->db->insert('Estado',$data);			
 	}
+
 	function getAllEstados($idProyecto){
 		$this->load->database();
 		$qry = "SELECT CONCAT(u.nombre,' ' ,u.apellidoP,' ',u.apellidoM) as nombre, e.estado, e.tiempoActualizacion as fecha
@@ -56,5 +57,6 @@ Class Estado extends CI_Model{
 		return $query->result();
 	}
 			
+
 }
 ?>
