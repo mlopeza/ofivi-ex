@@ -131,5 +131,27 @@ class Documento extends CI_Model{
 			'Extension' => $this->Extension);
 		$this->db->insert('documento',$data);
 	}
+	
+	/*
+	 * Elimina las propuestas de un proyecto
+	 */
+	 function deletePropuestas()
+	 {
+		 $this->load->database();
+		 $this->db->where('idProyecto',$this->idProyecto);
+		 $this->db->where('esPropuesta',1);
+		 $this->db->delete('documento');
+	 }
+	
+	/*
+	 * Elimina las contratos legales de un proyecto
+	 */
+	 function deleteContratos()
+	 {
+		 $this->load->database();
+		 $this->db->where('idProyecto',$this->idProyecto);
+		 $this->db->where('esLegal',1);
+		 $this->db->delete('documento');
+	 }
 }
 ?>

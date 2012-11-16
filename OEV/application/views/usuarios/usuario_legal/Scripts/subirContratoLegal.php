@@ -25,7 +25,6 @@
             }
             
             noty({text: "Se subio el contrato.", type: 'success'});
-            setTimeout(function() { location.reload(); }, 3000);
             $("#subir-contrato").submit();
         });
 	});

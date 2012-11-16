@@ -65,12 +65,6 @@
 															<input type="text"  id="tituloContrato" name="tituloContrato" value="" class="input-xlarge focused">
 															<span class="help-inline"></span>
 														</div>
-														<div class="controls">
-															<label class="checkbox">
-                                                            <input type="checkbox" name="esAceptada" value="1" id="esAceptada">
-																¿Aceptado?
-                                                            </label>
-                                                        </div>
 													</div>
 													<div class="control-group">
 														<label for="archivoContrato" class="control-label">Archivo del contrato</label>

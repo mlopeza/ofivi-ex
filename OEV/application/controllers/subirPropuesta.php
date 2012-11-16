@@ -58,7 +58,9 @@ extends CI_Controller {
 		//$aceptada = $this->input->post('esAceptada') == 1 ? 1 : 0;
 		//$this->documento->setEstaAceptado($aceptada);
 		
+		$this->documento->deletePropuestas();
 		$this->documento->insert();
+		sleep(3);
 		redirect('subirPropuesta', 'location'); 
 	}
 }
