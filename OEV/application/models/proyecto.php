@@ -265,5 +265,16 @@ function getEA($idProyecto){
 										  e.idUsuario = u.idUsuario '  );
 		return $query->result();
 }
+	
+	/*
+	 * Modifica si un proyecto esta activo o no
+	 */
+	function modificarActivo($proyecto,$activo)
+	{
+		$this->load->database();
+		$data = array('Proyecto_Activo'=>$activo);
+		$this->db->where('idProyecto',$proyecto);
+		$this->db->update('proyecto',$data);
+	}
 }
 ?>

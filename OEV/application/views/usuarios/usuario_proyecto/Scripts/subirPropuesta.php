@@ -25,7 +25,6 @@
             }
             
             noty({text: "Se subio la propuesta.", type: 'success'});
-            setTimeout(function() { location.reload(); }, 3000);
             $("#subir-propuesta").submit();
         });
 	});

@@ -1,25 +1,31 @@
-<div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
-                    
+<div id="content" class="span9 section-body">
+
+                    <div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#tab1" data-toggle="tab">Cancelar Proyectos</a></li>
+                        </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab1">
 
-                                
                                 <div class="row-fluid">
-                                    <div class="span8">
-                                        <div id="accordion3" class="accordion">
+                                    <!--Tabs2-->
+                                    <div class="span7">
+                                        <div id="accordion1" class="accordion">
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
-                                                    <a class="accordion-toggle" data-toggle="collapse" href="#event" data-original-title="">
-                                                        <i class="icon-comment icon-white"></i> <span class="divider-vertical"></span>Agregar Contrato de proyecto<i class="icon-chevron-down icon-white pull-right"></i>
+                                                    <a class="accordion-toggle" data-toggle="collapse" href="#notification" data-original-title="">
+                                                        <i class="icon-th icon-white"></i> <span class="divider-vertical"></span>  Cancelar Proyecto <i class="icon-chevron-down icon-white pull-right"></i>
                                                     </a>
                                                 </div>
                                                 <div id="notification" class="accordion-body collapse in">
-													<div class="accordion-inner paddind">
+                                                    <div class="accordion-inner paddind">
                                                     <!--Elemento 1-->
                                                     <table class="table table-bordered">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Proyectos Actuales</th>
+                                                                    <th>Grupo</th>
+                                                                    <th>Empresa</th>
+                                                                    <th>Proyecto</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="proyectos-body">
@@ -34,7 +40,9 @@
                                                                 foreach($proyectos as $proyecto){
                                                             ?>
                                                                 <tr class="colorea-proyecto" idProyecto="<?php echo $proyecto->idProyecto; ?>" class="tabla-proyectos">
-                                                                       <td><?php echo $proyecto->nombre; ?></td>
+                                                                       <td><?php echo $proyecto->Grupo; ?></td>
+                                                                       <td><?php echo $proyecto->Empresa; ?></td>
+                                                                       <td><?php echo $proyecto->Proyecto; ?></td>
                                                                 </tr>
                                                             <?php }
                                                             ?>
@@ -54,50 +62,23 @@
 													<!--?php echo $error;? -->
 
 													<?php
-														$attributes = array('id' => 'subir-contrato', 'class' => 'clearfix' , 'autocomplete' => 'off');
-														//echo form_open('subirContrato/do_upload',$attributes);
-														echo form_open_multipart('subirContratoLegal/do_upload',$attributes);
+														$attributes = array('id' => 'cancelar-proyecto', 'class' => 'clearfix' , 'autocomplete' => 'off');
+														echo form_open('cancelaProyecto/cancelar',$attributes);
 													?>
-													<div class="control-group">
-														<label for="tituloContrato" class="control-label">Titulo del contrato</label>
-														<div class="controls">
-															<input type="hidden" id='idProyectoContrato' name='idProyectoContrato' value=''/>
-															<input type="text"  id="tituloContrato" name="tituloContrato" value="" class="input-xlarge focused">
-															<span class="help-inline"></span>
-														</div>
-														<div class="controls">
-															<label class="checkbox">
-                                                            <input type="checkbox" name="esAceptada" value="1" id="esAceptada">
-																¿Aceptado?
-                                                            </label>
-                                                        </div>
-													</div>
-													<div class="control-group">
-														<label for="archivoContrato" class="control-label">Archivo del contrato</label>
-														<div class="controls">
-															<input type="file"  id="archivoContrato" name="archivoContrato">
-															<span class="help-inline"></span>
-														</div>
-														
-													</div>
 													<div class="form-actions">
-														<button class="btn btn-primary" id="uploadFile" type="button">Subir archivo</button>
-														<button class="btn">Cancelar</button>
+														<input type="hidden" id='idProyectoCancelar' name='idProyectoCancelar' value=''/>
+														<button class="btn btn-primary" id="uploadFile" type="button">Cancelar Proyecto</button>
 													</div>
 													<?php
 														echo form_close();
 													?>
-													<!----------------->
-												</div>
-											</div>
-										</div>
-                                    </div>
-								</div>
-							</div>
-							
-						</div>
-						</div>
-						</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div></div>
+                            </div>
+                        </div>
                     </div>
-      
-</div>
+                </div>
