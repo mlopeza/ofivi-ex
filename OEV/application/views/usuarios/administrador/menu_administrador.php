@@ -14,6 +14,16 @@
                                     </div>
                                 </div>
                             </li>
+							<li class="accordion-menu">
+                                <a href="#collapseTwo" data-toggle="collapse" class="accordion-toggle"><i class="icon-signal"></i><span>Vista de Clientes<i class="icon-chevron-down pull-right"></i></span></a>
+                                <div class="accordion-body collapse dropdown" id="collapseTwo">
+                                    <div class="accordion-inner">
+                                        <ul class="nav nav-list">
+                                            <li><a href="<?php echo base_url("/areasClientes");?>">Categorías Mostradas</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
                         <div class="togglemenuleft"><a class="toggle-menu" data-original-title=""><i class="icon-circle-arrow-left icon-white"></i></a></div>
                     </div>
