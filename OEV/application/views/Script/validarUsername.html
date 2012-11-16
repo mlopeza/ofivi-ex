@@ -5,6 +5,14 @@
 		$("#id_username").blur(function(){
 			validateUsername($(this).val());						
 		});
+		$('[name = "campus"]').change(function() {
+						getEscuela($(this).val());						
+		});
+		$('[name = "escuela"]').change(function() {
+						getDepartamento($(this).val());						
+		});
+		
+		
 		
 	function validateUsername(valor){
 			/*Username a verificar si se encuentra*/
@@ -37,6 +45,94 @@
 				}
 			});
 	}
+	function getEscuela(escuela){
+			/*Datos de la tabla con Respecto al usuario*/
+			var data={ 
+			's_token':$('#s_token').attr('value'),
+			'escuela':escuela,
+			};
+			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
+			$.ajax({
+			     type: "POST",
+			     url: "logincontroller/getEscuela",
+			     data: data ,
+			     success: function(msg){
+						var mensaje = $.parseJSON(msg);
+						console.log(mensaje);
+						if(mensaje['response'] ==  "true"){
+								//Agrega las Empresas al nodo seleccionado
+								var sEscuela = $('[name = "escuela"]');
+								var sDepartamento = $('[name = "departamento"]');
+								
+								//Elimina nodo
+								$(sEscuela).empty();
+								$(sDepartamento).empty();
+
+								//Agrega los nodos que se								 buscaron
+								appendEscuela(mensaje['escuela'],sEscuela);
+								appendDepartamento(mensaje['departamento'],sDepartamento);
+							
+						}else{
+							noty({text: mensaje['mensaje'], type: 'error'});
+						}
+
+			     },
+				error: function(msg){
+						noty({text: "Ha habido un error en el sistema, intentelo nuevamente.", type: 'error'});
+				}
+			});
+	}
+	function getDepartamento(departamento){
+			/*Datos de la tabla con Respecto al usuario*/
+			var data={ 
+			's_token':$('#s_token').attr('value'),
+			'departamento':departamento,
+			};
+			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
+			$.ajax({
+			     type: "POST",
+			     url: "logincontroller/getDepartamento",
+			     data: data ,
+			     success: function(msg){
+						var mensaje = $.parseJSON(msg);
+						console.log(mensaje);
+						if(mensaje['response'] ==  "true"){
+								//Agrega las Empresas al nodo seleccionado
+								var sDepartamento = $('[name = "departamento"]');								
+								//Elimina nodo
+								$(sDepartamento).empty();
+
+								//Agrega los nodos que se								 buscaron
+								appendDepartamento(mensaje['departamento'],sDepartamento);
+							
+						}else{
+							noty({text: mensaje['mensaje'], type: 'error'});
+						}
+
+			     },
+				error: function(msg){
+						noty({text: "Ha habido un error en el sistema, intentelo nuevamente.", type: 'error'});
+				}
+			});
+	}
+	function appendEscuela(nodos,elemento){
+		if(nodos.length == 0){
+			$(elemento).append($("<option>").append("No hay Escuelas").attr('value','0'));
+		}else{
+			$(nodos).each(function(index,nodo){
+				$(elemento).append($("<option>").append(nodo['Nombre']).attr('value',nodo['idEscuela']));
+			});
+		}
+	}	
+	function appendDepartamento(nodos,elemento){
+		if(nodos.length == 0){
+			$(elemento).append($("<option>").append("No hay Departamentos").attr('value','0'));
+		}else{
+			$(nodos).each(function(index,nodo){
+				$(elemento).append($("<option>").append(nodo['nombre']).attr('value',nodo['idDepartamento']));
+			});
+		}
+	}			
 	});
 
 </script>

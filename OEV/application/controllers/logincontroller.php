@@ -6,7 +6,9 @@ class Logincontroller extends CI_Controller {
 	{
 		$this->load->helper('form');
 		$this->load->helper('url');
-		$this->load->view('login');
+		$this->load->model('campus');
+		$array=array("campus"=>$this->campus->selectN());
+		$this->load->view('login',$array);
 		$this->load->view('Script/validarUsername.html');		
 	}
 
@@ -118,7 +120,7 @@ class Logincontroller extends CI_Controller {
 					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
 					$this->load->view('usuarios/footer');					
 					break;
-					/*		case 2:
+							case 2:
 							$vistas['vista'] = array(
 							'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
 							'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
@@ -131,9 +133,9 @@ class Logincontroller extends CI_Controller {
 							'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
 							);
 							$this->session->set_userdata($newdata);
-							$this->load->view('vistas/header');									
-					//			$this->load->view('vistas/profesor',$vistas);
-					$this->load->view('vistas/footer');					
+					$this->load->view('usuarios/header',$vistas);								
+								$this->load->view('usuarios\usuario_proyecto\menu_uproyecto',$vistas);
+					$this->load->view('usuarios/footer');			
 					break;
 					case 3:
 					$vistas['vista'] = array(
@@ -149,7 +151,7 @@ class Logincontroller extends CI_Controller {
 					);
 					$this->session->set_userdata($newdata);
 					$this->load->view('vistas/footer');				
-					//				$this->load->view('vistas/supervisor',$vistas);
+					$this->load->view('vistas/supervisor',$vistas);
 					$this->load->view('vistas/header');
 					break;/*/
 						case 4:
@@ -214,7 +216,49 @@ class Logincontroller extends CI_Controller {
 			echo json_encode($mensaje);
 		}
 	}
+/*Regresa las empresas en Formato JSON*/
+	public function getEscuela(){
+		//Obtiene la informacion del POST
+		$data = $this->input->post();
+		//echo var_dump($data);
+		if($data['escuela'] == null){
+			//Si no vienen Datos, regresa error
+			$mensaje = array('response'=>'false','mensaje'=>'Error al Buscar los Proyectos.');
+			echo json_encode($mensaje);
+		}else{
+			//Regresa las empresas del Grupo
+			$this->load->model('campus');
+			$resultado=$this->campus->getEscuelas(array("idCampus"=>$data['escuela']));
+			//Regresa a categoria del proyecto.
+			$this->load->model('escuela');
+			$resultado2=$this->escuela->getDepartamentos(array("idEscuela"=>$resultado[0]->idEscuela));
+	
+			//Se envia el resultado
+			$mensaje = array('response'=>'true','escuela'=>$resultado,'departamento'=>$resultado2);
+			echo json_encode($mensaje);
+		}
+	}
 
+
+/*Regresa las empresas en Formato JSON*/
+	public function getDepartamento(){
+		//Obtiene la informacion del POST
+		$data = $this->input->post();
+		//echo var_dump($data);
+		if($data['departamento'] == null){
+			//Si no vienen Datos, regresa error
+			$mensaje = array('response'=>'false','mensaje'=>'Error al Buscar los Proyectos.');
+			echo json_encode($mensaje);
+		}else{
+			//Regresa a categoria del proyecto.
+			$this->load->model('escuela');
+			$resultado2=$this->escuela->getDepartamentos(array("idEscuela"=>$data['departamento']));
+	
+			//Se envia el resultado
+			$mensaje = array('response'=>'true','departamento'=>$resultado2);
+			echo json_encode($mensaje);
+		}
+	}
 
 }
 ?>

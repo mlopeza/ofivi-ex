@@ -47,7 +47,7 @@
                         <hr class="small">
                         
 						<?php
-							$attributes = array('id' => 'auth-for', 'class' => 'clearfix' , 'autocomplete' => 'off');
+							$attributes = array('id' => 'auth-for', 'class' => 'clearfix' , 'autocomplete' => 'off', 'name'=> 'forma');
 							echo form_open('logincontroller/signup',$attributes);
 						?>
                             <div class="input">
@@ -74,24 +74,19 @@
                             </div>
 									<div class="input">
 										<select name="campus" id="select-escuela">
-											<option>Campus</option>
-                           					<option>Monterrey</option>
-                           					<option>Guadalajara</option>
-                           					<option>México</option>
+                                    <?php foreach($campus as $camp){
+										echo "<option value=".$camp->idCampus.">".$camp->Nombre."</option>";}
+											?>
 			                           	</select>
             		               </div>
 									<div class="input">
                            	<select name="escuela" id="select-escuela">
-                           		<option>Escuela</option>	
-                           		<option>Ingenieria</option>
-                           		<option>Ciencias Políticas</option>
+                           		<option>Escuela</option>	                           	
                            	</select>
                            </div>
 									<div class="input">
                            	<select name="departamento" id="select-escuela">
                            		<option>Departamento</option>
-                           		<option>Ciencias Computacionales</option>
-                           		<option>Arquitectura</option>
                            	</select>
                            </div>	
                            <div class="input">
@@ -104,7 +99,7 @@
                            	</select>
                            </div>	
                             <div class="actions">
-                                <input type="submit" class="btn btn-success" value="Solicitar Cuenta">
+                                <input type="submit" class="btn btn-success" value="Solicitar Cuenta" name="submit">
                             </div>
                             <p class="note"><span class="label label-warning">¿Ya tienes una cuenta?</span> &nbsp;<a href="#">Inicia Sesión</a></p>
 							<?php

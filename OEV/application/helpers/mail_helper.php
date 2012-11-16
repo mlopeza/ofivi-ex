@@ -74,4 +74,18 @@ if ( ! function_exists('mensajeRecordatorio1'))
         return $mensaje;
     }   
 }
+if ( ! function_exists('mensajeContrasena'))
+{
+    function mensajeContrasena($r,$password)
+    {
+        
+        $mensaje = " Hola <strong>".$r[0]->Nombre." ".$r[0]->ApellidoP."</strong> se te mando el correo con motivo de avisarte que la contraseña. Tu nueva contraseña será: <br/> <br/>";
+        
+        //Crea lso recordatorios
+        
+        $mensaje = $mensaje."<strong>Contraseña :</strong>".$password."\n";
+        
+        return $mensaje;
+    }   
+}
 ?>

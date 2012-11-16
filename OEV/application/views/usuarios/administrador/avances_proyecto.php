@@ -54,6 +54,15 @@ Inactivo<input type="radio" name="estado" id="inactivo" value="0"><br />
         <td name='categoria'>
         </td>
     </tr>            
+    <tr>
+    	<td>
+        	Documentos
+        </td>
+        <td>
+        	<ul name='documento'>
+            </ul>
+        </td>
+    </tr>
 </table></div><div>
 <br />
 <table id='showThis2' class="table table-bordered">

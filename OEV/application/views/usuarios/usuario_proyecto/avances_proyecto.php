@@ -28,6 +28,7 @@ Inactivo<input type="radio" name="estado" id="inactivo" value="0"><br />
 		echo "<select id = 'sproyecto'></select>\n";
 ?>
 <div>
+<input type='hidden' name='username' value='<?php echo $this->session->userdata('username');?>' />
 <table id='showThis' class="table table-bordered">
 	<tr>
 		<td>

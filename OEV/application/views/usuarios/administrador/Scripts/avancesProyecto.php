@@ -27,7 +27,7 @@
 			     url: "avancesproyecto/getGrupos",
 			     data: data ,
 			     success: function(msg){
-console.log(msg);
+						console.log(msg);
 						var mensaje = $.parseJSON(msg);
 						if(mensaje['response'] ==  "true"){
 								//Agrega las Empresas al nodo seleccionado
@@ -38,6 +38,7 @@ console.log(msg);
 								var sContactos = $('[name = "contacto"]');
 								var sProfesor = $('[name="profesor"]');
 								var sEstados = $('#sestados');
+								var sDocumentos = $('[name = "documento"]');
 								//Elimina nodos
 								$(sGrupo).empty();
 								$(sEmpresas).empty();
@@ -46,6 +47,7 @@ console.log(msg);
 								$(sProfesor).empty();
 								$(sContactos).empty();
 								$(sEstados).empty();
+								$(sDocumentos).empty();
 								//Agrega los nodos que se buscaron
 								appendGrupo(mensaje['grupo'],sGrupo);
 								appendEmpresas(mensaje['mensaje'],sEmpresas);													
@@ -54,6 +56,7 @@ console.log(msg);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
 								appendEstado(mensaje['estado'],sEstados);
+								appendDocument(mensaje['documento'],sDocumentos);
 							$('#showThis').attr("style","display:inline-table");
 							$('#showThis2').attr("style","display:inline-table");
 						}else{
@@ -91,6 +94,8 @@ console.log(msg);
 								var sContactos = $('[name = "contacto"]');
 								var sProfesor = $('[name="profesor"]');
 								var sEstados = $('#sestados');
+								var sDocumentos = $('[name = "documento"]');
+								
 								//Elimina nodos
 								$(sEmpresas).empty();
 								$(sProyectos).empty();
@@ -98,6 +103,8 @@ console.log(msg);
 								$(sProfesor).empty();
 								$(sContactos).empty();
 								$(sEstados).empty();
+								$(sDocumentos).empty();
+								
 								//Agrega los nodos que se buscaron
 								appendEmpresas(mensaje['mensaje'],sEmpresas);			
 								appendProyectos(mensaje['proyectos'],sProyectos);
@@ -105,6 +112,8 @@ console.log(msg);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
 																appendEstado(mensaje['estado'],sEstados);
+																								appendDocument(mensaje['documento'],sDocumentos);
+
 
 						}else{
 							noty({text: mensaje['mensaje'], type: 'error'});
@@ -140,18 +149,24 @@ console.log(msg);
 								var sContactos = $('[name = "contacto"]');							
 								var sProfesor = $('[name="profesor"]');								
 								var sEstados = $('#sestados');
+								var sDocumentos = $('[name = "documento"]');
+								
 								//Elimina nodo
 								$(sProyectos).empty();
 								$(sCategoria).empty();
 								$(sProfesor).empty();
 								$(sContactos).empty();
 								$(sEstados).empty();
+								$(sDocumentos).empty();
+								
 								//Agrega los nodos que se buscaron
 								appendProyectos(mensaje['mensaje'],sProyectos);
 								appendCategoria(mensaje['categoria'],sCategoria);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
 								appendEstado(mensaje['estado'],sEstados);
+								appendDocument(mensaje['documento'],sDocumentos);
+								
 						
 						}else{
 							noty({text: mensaje['mensaje'], type: 'error'});
@@ -183,14 +198,20 @@ console.log(msg);
 								var sCategoria = $('[name = "categoria"]');
 								var sContactos = $('[name = "contacto"]');
 								var sProfesor = $('[name="profesor"]');
+								var sDocumentos = $('[name = "documento"]');
+								
 								//Elimina nodo
 								$(sCategoria).empty();
 								$(sProfesor).empty();
 								$(sContactos).empty();
-								//Agrega los nodos que se buscaron
+																$(sDocumentos).empty();
+
+								//Agrega los nodos que se								 buscaron
 								appendCategoria(mensaje['categoria'],sCategoria);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
+								appendDocument(mensaje['documento'],sDocumentos);
+								
 						}else{
 							noty({text: mensaje['mensaje'], type: 'error'});
 						}
@@ -246,6 +267,35 @@ console.log(msg);
 		}else{
 			$(nodos).each(function(index,nodo){
 				$(elemento).append($("<li>").append(nodo['nombre']).attr('id',nodo['idUsuario']));
+			});
+		}
+	}	
+	function appendDocument(nodos,elemento){
+		if(nodos.length == 0){
+			$(elemento).append($("<li>").append("No tiene documentos guardados").attr('id','0'));
+		}else{
+			$(nodos).each(function(index,nodo){
+				if(nodo['esLegal']){
+				$(elemento)
+					.append($("<li>")
+						.append($("<a href>")
+							.append("Legal")
+							.attr("href","avancesProyecto/do_download/1/"+nodo['idProyecto'])
+								)
+								.attr({'id':nodo['idDocumento']})
+							
+						);
+				}
+				else
+				{
+					$(elemento)
+					.append($("<li>")
+						.append($("<a>")
+							.append("Propuesta")
+								.attr({'id':nodo['idDocumento']})
+							).attr("href","avancesProyecto/do_download/0/"+nodo['idProyecto'])
+						);
+				}
 			});
 		}
 	}		

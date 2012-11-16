@@ -1,5 +1,5 @@
 <?php
-class Avancesproyecto extends CI_Controller {
+class AvancesproyectoP extends CI_Controller {
 
 	//Metodo que carga la página donde el usuario podrá loggearse o soliticitar una cuenta.
 	public function index()
@@ -9,12 +9,13 @@ class Avancesproyecto extends CI_Controller {
         $datos_usuario=$this->session->all_userdata();
         $vista = array('vista'=>$datos_usuario['vista']);
 		$this->load->view('usuarios/header',$vista);
-		$this->load->view('usuarios/administrador/menu_administrador');
-		$this->load->view('usuarios/administrador/avances_proyecto');
+		$this->load->view('usuarios/usuario_proyecto/menu_extension');
+		$this->load->view('usuarios/usuario_proyecto/avances_proyecto');
 		$this->load->view('usuarios/footer');
-		$this->load->view('usuarios/administrador/Scripts/avancesProyecto');
+		$this->load->view('usuarios/usuario_proyecto/Scripts/avancesProyecto');
 		
 	}
+
 	
 	/*Regresa las empresas en Formato JSON*/
 	public function getEmpresas(){
@@ -28,7 +29,7 @@ class Avancesproyecto extends CI_Controller {
 		}else{
 			//Regresa las empresas del Grupo
 			$this->load->model('empresa');
-			$resultado=$this->empresa->getEPA($data['activo'],$data['idGrupo']);			
+			$resultado=$this->empresa->getEPA($data['activo'],$data['idGrupo']);
 			//Regresa las empresas del Grupo
 			$this->load->model('proyecto');
 			$resultado2=$this->proyecto->findPA($resultado[0]->idEmpresa,$data['activo']);
@@ -36,13 +37,10 @@ class Avancesproyecto extends CI_Controller {
 			$resultado3=$this->proyecto->getCATP($resultado2[0]->idProyecto);
 			$resultado4=$this->proyecto->getUA($resultado2[0]->idProyecto);
 			$resultado5=$this->proyecto->getCA($resultado2[0]->idProyecto);
-			$this->load->model('estado');
+						$this->load->model('estado');
 			$resultado6=$this->estado->getAllEstados($resultado2[0]->idProyecto);
-			$this->load->model('documento');
-			$resultado7=$this->documento->getDocument($resultado2[0]->idProyecto);
-			
 			//Se envia el resultado			
-			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5,'estado'=>$resultado6,'documento'=>$resultado7);
+			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5,'estado'=>$resultado6);
 			echo json_encode($mensaje);
 		}
 	}
@@ -64,11 +62,9 @@ class Avancesproyecto extends CI_Controller {
 			$resultado3=$this->proyecto->getUA($resultado[0]->idProyecto);
 			$resultado4=$this->proyecto->getCA($resultado[0]->idProyecto);
 			$this->load->model('estado');
-			$resultado6=$this->estado->getAllEstados($resultado[0]->idProyecto);	
-			$this->load->model('documento');
-			$resultado7=$this->documento->getDocument($resultado[0]->idProyecto);		
+			$resultado6=$this->estado->getAllEstados($resultado[0]->idProyecto);			
 			//Se envia el resultado
-			$mensaje = array('response'=>'true','mensaje'=>$resultado,'categoria'=>$resultado2,'usuario'=>$resultado3,'contacto'=>$resultado4,'estado'=>$resultado6,'documento'=>$resultado7);
+			$mensaje = array('response'=>'true','mensaje'=>$resultado,'categoria'=>$resultado2,'usuario'=>$resultado3,'contacto'=>$resultado4,'estado'=>$resultado6);
 			echo json_encode($mensaje);
 		}
 	}
@@ -89,10 +85,8 @@ class Avancesproyecto extends CI_Controller {
 			$resultado4=$this->proyecto->getCA($data['idProyecto']);
 						$this->load->model('estado');
 			$resultado6=$this->estado->getAllEstados($data['idProyecto']);
-			$this->load->model('documento');
-			$resultado7=$this->documento->getDocument($data['idProyecto']);
 			//Se envia el resultado
-			$mensaje = array('response'=>'true','categoria'=>$resultado2,'usuario'=>$resultado3,'contacto'=>$resultado4,'estado'=>$resultado6,'documento'=>$resultado7);
+			$mensaje = array('response'=>'true','categoria'=>$resultado2,'usuario'=>$resultado3,'contacto'=>$resultado4,'estado'=>$resultado6);
 			echo json_encode($mensaje);
 		}
 	}
@@ -110,7 +104,6 @@ class Avancesproyecto extends CI_Controller {
 			$this->load->model('grupo');
 			$grupo=$this->grupo->getGPA($data['activo']);
 			//Regresa las empresas del Grupo
-			if(!empty($grupo)){
 			$this->load->model('empresa');
 			$resultado=$this->empresa->getEPA($data['activo'],$grupo[0]->idGrupo);
 			//Regresa los proyectos de la empresa
@@ -123,30 +116,10 @@ class Avancesproyecto extends CI_Controller {
 			//Regresa los estados del proyecto.
 			$this->load->model('estado');
 			$resultado6=$this->estado->getAllEstados($resultado2[0]->idProyecto);
-			$this->load->model('documento');
-			$resultado7=$this->documento->getDocument($resultado2[0]->idProyecto);			
 			//Se envia el resultado		
-			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'grupo'=>$grupo,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5,'estado'=>$resultado6,'documento'=>$resultado7);}
-			else{
-				$mensaje = array('response'=>'false','mensaje'=>'No existen proyectos en la base de datos.');}
+			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'grupo'=>$grupo,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5,'estado'=>$resultado6);
 			echo json_encode($mensaje);
 		}
-	}
-	function do_download($esLegal,$idProyecto)
-	{
-		$this->load->model('documento');
-		$this->load->helper('url');
-
-		$documento=$this->documento->getDocument($idProyecto,$esLegal);
-		$size = $documento[0]->Size;
-		$type = $documento[0]->Extension;
-		$name = $documento[0]->Titulo;
-		$content = $documento[0]->Archivo;
-
-		header("Content-length: ".$size."");
-		header("Content-type: ".$type."");
-		header('Content-Disposition: attachment; filename="'.$name.'"');
-		echo $content;
 	}
 }
 ?>

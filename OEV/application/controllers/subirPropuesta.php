@@ -14,10 +14,11 @@ extends CI_Controller {
 		$this->load->library('session');
 		//Se carga el Modelo de Proyecto
 		$this->load->model('proyecto');
+		$this->load->model('usuariomodel');
 		//Cargar la sesion y se obtiene el id del usuario
 		$datos_usuario=$this->session->all_userdata();
 		$vista = array('vista'=>$datos_usuario['vista']);
-		$usuario = $datos_usuario['idUsuario'];
+		$usuario = $this->usuariomodel->obtenId($datos_usuario['username']);
 		//Se buscan todos los proyectos relacionados al usuario
 		$proyectos['proyectos'] = $this->proyecto->selectProyectosAceptados($usuario);
 		
@@ -64,3 +65,4 @@ extends CI_Controller {
 		redirect('subirPropuesta', 'location'); 
 	}
 }
+?>

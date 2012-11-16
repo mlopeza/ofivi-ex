@@ -370,10 +370,10 @@ class Usuariomodel extends CI_Model {
 	function actualizarInfo($email,$password){
 	$this->load->database();
 	$data = array(
-               'password' => $password
+               'password' => hash('sha512',$password)
             );
 
-	$this->db->where('email', $email);
+	$this->db->where('Username', $email);
 	$this->db->update('usuario', $data);	
 	}
 
@@ -381,6 +381,16 @@ class Usuariomodel extends CI_Model {
 		$this->load->database();
 		$query = $this->db->query('SELECT idUsuario FROM usuario WHERE username="'.$usuario.'"')->result();
 		return $query[0]->idUsuario;
+	}
+	function obtenEmail($usuario){
+		$this->load->database();
+		$query = $this->db->query('SELECT email FROM usuario WHERE username="'.$usuario.'"')->result();
+		return $query[0]->email;
+	}
+	function obtenNombre($usuario){
+		$this->load->database();
+		$query = $this->db->query('SELECT Nombre,ApellidoP FROM usuario WHERE username="'.$usuario.'"')->result();
+		return $query;
 	}
 	function getEspecialidad($usuario){
         $this->load->database();

@@ -46,5 +46,17 @@ Class Estado extends CI_Model{
 			'estado' => $this->estado);
 		$this->db->insert('Estado',$data);			
 	}
+
+	function getAllEstados($idProyecto){
+		$this->load->database();
+		$qry = "SELECT CONCAT(u.nombre,' ' ,u.apellidoP,' ',u.apellidoM) as nombre, e.estado, e.tiempoActualizacion as fecha
+				From usuario as u, estado as e
+				WHERE e.idProyecto = ".$idProyecto." AND
+				u. idUsuario = e.idUsuario";
+		$query = $this->db->query($qry);
+		return $query->result();
+	}
+			
+
 }
 ?>
