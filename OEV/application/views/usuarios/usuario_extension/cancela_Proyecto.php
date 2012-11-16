@@ -2,7 +2,7 @@
 
                     <div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#tab1" data-toggle="tab">Propuestas</a></li>
+                            <li class="active"><a href="#tab1" data-toggle="tab">Cancelar Proyectos</a></li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab1">
