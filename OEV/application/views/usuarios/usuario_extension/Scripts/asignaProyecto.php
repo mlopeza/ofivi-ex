@@ -36,8 +36,7 @@
                 });
 
                 $(this).attr("style","background-color:whiteSmoke;");
-                proyecto_global=$(this).attr('idproyecto');
-    
+                proyecto_global=$(this).attr('idproyecto');    
                 getAsignadosProyecto();
             });
             //Obtiene los Ids de las areas a las cuales esta asignado el profesor

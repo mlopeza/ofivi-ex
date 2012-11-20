@@ -197,8 +197,8 @@
                                                                     <th>Descripción</th>
                                                                     <th>Lada</th>
                                                                     <th>Telefono</th>
-                                                                    <th>ext</th>
-                                                                    <th>Extra</th>
+                                                                    <th>Ext.</th>
+                                                                    <th>SubExt.</th>
                                                                     <th>Acción</th>
                                                                 </tr>
                                                             </thead>

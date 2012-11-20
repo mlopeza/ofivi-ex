@@ -53,6 +53,20 @@
                     <a class="brand" href="index.html"><img src="<?php echo base_url("img/logo-small.png");?>" alt="logo" /></a>
                     <ul class="nav pull-left bar-root">
                         <li class="divider-vertical"></li>
+						<!--Cambio de Rol del Usuario-->
+                        <li class="dropdown">
+                        	<a href="#" style="text-align:center" data-toggle="dropdown" > <i class="icon-user icon-white"></i><div>Rol</div></a> 
+                            <ul class="dropdown-menu">
+                            <!-- Se mdespliega las vistas a que tiene acceso y se redirige a esa vista al darle click-->
+                            	<?php 
+								foreach ($vista as $key=>$rol){
+									if($rol == 1){
+											echo "<li><a href=".base_url("index.php/logincontroller/cambioVista/".$key).">".$key."</a></li>";
+									}
+								}
+								?>            
+                            </ul>
+                        </li>
 						<!--Los Proyectos actuales-->
                         <li class="dropdown">
                         <a style="text-align:center" href="#" data-toggle="dropdown" ><i class="icon-folder-open icon-white"></i><span class="label label-info">2</span><div>Proyectos</div></a> 
@@ -66,20 +80,6 @@
                                 <li><a href="inbox.html"><img src="<?php echo base_url("img/small/thumb4.png");?>" alt="" /> Subject : Tasks <p class='help-block'><small>From: ab.alhyane@gmail.com</small></p><span class="label">19/01/2012</span></a></li>
                                 <li class="divider"></li>
                                 <li class="active"><a href="inbox.html"> Show All </a></li>
-                            </ul>
-                        </li>
-						<!--Cambio de Rol del Usuario-->
-                        <li class="dropdown">
-                        	<a href="#" style="text-align:center" data-toggle="dropdown" > <i class="icon-user icon-white"></i><div>Rol</div></a> 
-                            <ul class="dropdown-menu">
-                            <!-- Se mdespliega las vistas a que tiene acceso y se redirige a esa vista al darle click-->
-                            	<?php 
-								foreach ($vista as $key=>$rol){
-									if($rol == 1){
-											echo "<li><a href=".base_url("index.php/logincontroller/cambioVista/".$key).">".$key."</a></li>";
-									}
-								}
-								?>            
                             </ul>
                         </li>
 						<!--Calendario de Usuario-->

@@ -123,6 +123,22 @@ class Empresa extends CI_Model {
 		return $query->result();
 	}
 
+	function saveEmpresa($data){
+		$this->load->database();
+		if(isset($data['idEmpresa'])){
+			$this->db->where('idEmpresa',$data['idEmpresa']);
+			$this->db->update('Empresa',array('nombre'=>$data['nombre']));
+		}else{
+			$this->db->insert('Empresa',$data);
+		}
+	}
+
+	function deleteEmpresa($data){
+		$this->load->database();
+		$this->db->where($data);
+		$this->db->update('Empresa',array('activo'=>0));
+	}
+
 }
 ?>
 

@@ -90,6 +90,32 @@ class Grupo extends CI_Model {
 		$query = $this->db->query('SELECT idGrupo,nombre FROM Grupo ORDER BY nombre ASC');
 		return $query;
 	}
+
+	function getAllGroups2(){
+		$this->load->database();
+		$query = $this->db->query('SELECT idGrupo,nombre FROM Grupo where activo = 1 ORDER BY nombre ASC');
+		return $query->result();
+	}
+
+	function getEmpresas($idGrupo){
+		$this->load->database();
+		$this->db->where(array('idGrupo'=>$idGrupo,'activo'=>1));
+		$query = $this->db->get('Empresa');
+		return $query->result();
+	}
+
+
+	//Guarda un grupo en la base de datos
+	function saveGrupo($data){
+		$this->load->database();
+		if(isset($data['idGrupo'])){
+			$this->db->where('idGrupo',$data['idGrupo']);
+			$this->db->update('Grupo',array('nombre'=>$data['nombre']));
+		}else{
+			$this->db->insert('Grupo',array('nombre'=>$data['nombre']));
+		}
+	}
+
 	//Function que regresa todo los grupos que tengan un pryecto ya sea activo o inactivo
 	//$activo es una variable que indicara  si se requiere buscar un proyecto activo o inactivo.
 	function getGPA($activo){
@@ -103,6 +129,24 @@ class Grupo extends CI_Model {
 		$query = $this->db->query($qry);
 		return $query->result();		
 	}
-		
+
+	//Pone como inactivo un Grupo
+	function deleteGrupo($data){
+		$this->load->database();
+		$this->db->where($data);
+		$this->db->update('Grupo',array('activo'=>0));
+	}
+
+
+	//Regresa todos los Grupos con su empresa
+	function getJerarquia(){
+		$this->load->database();
+		$this->db->select('g.nombre as Grupo, e.nombre as Empresa');
+		$this->db->from('Grupo g');
+		$this->db->join('Empresa e','g.idGrupo = e.idGrupo AND e.activo = 1','inner');
+		$this->db->where('g.activo = 1');
+		$query = $this->db->get();
+		return $query->result();
+	}	
 }
 ?>
