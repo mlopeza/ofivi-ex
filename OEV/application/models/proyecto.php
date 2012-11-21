@@ -111,6 +111,27 @@ class Proyecto extends CI_Model{
 										   Proyecto_Activo = '.$activo );
 			return $query->result();
 	}
+	function findPAP($empresa,$activo,$idUsuario){
+		$this->load->database();
+				$query = $this->db->query('SELECT idProyecto, nombre
+										   From Proyecto, Estado
+										   WHERE idEmpresa = '.$empresa.' AND
+										   Proyecto.idProyecto = Estado.idProyecto AND
+										   Estado.idProyecto = '.$idUsuario.' AND										   
+										   Proyecto_Activo = '.$activo );
+			return $query->result();
+	}
+	function findPAU($empresa,$activo,$idUsuario){
+		$this->load->database();
+				$query = $this->db->query('SELECT idProyecto, nombre
+										   From Proyecto, Estado
+										   WHERE idEmpresa = '.$empresa.' AND
+										   Proyecto.idProyecto = Estado.idProyecto AND
+										   Estado.idProyecto = '.$idUsuario.' AND										   
+										   Estado.estado = "Iniciado" AND
+										   Proyecto_Activo = '.$activo );
+			return $query->result();
+	}
 	
 	/*
 	 * Regresa un arreglo con todos los proyectos en los que pertenece un usuario

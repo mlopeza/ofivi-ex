@@ -103,6 +103,33 @@ class Grupo extends CI_Model {
 		$query = $this->db->query($qry);
 		return $query->result();		
 	}
+	function getGPAP($activo,$idUsuario){
+		$this->load->database();
+		$qry = "SELECT DISTINCT g.idGrupo, g.nombre
+				FROM Grupo AS g, Empresa e, Proyecto AS p ,Estado est
+				WHERE g.idGrupo = e.idGrupo
+				AND p.idEmpresa = e.idEmpresa
+				AND p.Proyecto_Activo =".$activo."
+				AND est.idUsuario =".$idUsuario."
+				AND est.idProyecto = p.idProyecto
+				ORDER BY g.idGrupo";
+		$query = $this->db->query($qry);
+		return $query->result();		
+	}
+	function getGPAU($activo,$idUsuario){
+		$this->load->database();
+		$qry = "SELECT DISTINCT g.idGrupo, g.nombre
+				FROM Grupo AS g, Empresa e, Proyecto AS p ,Estado est
+				WHERE g.idGrupo = e.idGrupo
+				AND p.idEmpresa = e.idEmpresa
+				AND p.Proyecto_Activo =".$activo."
+				AND est.idUsuario =".$idUsuario."
+				AND est.idProyecto = p.idProyecto
+				AND est.estado = 'Iniciado'
+				ORDER BY g.idGrupo";
+		$query = $this->db->query($qry);
+		return $query->result();		
+	}
 		
 }
 ?>
