@@ -166,6 +166,7 @@ DROP TABLE IF EXISTS `SEVI`.`Grupo` ;
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Grupo` (
   `idGrupo` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
+  `activo` TINYINT NULL DEFAULT '1' ,
   PRIMARY KEY (`idGrupo`) )
 ENGINE = InnoDB;
 
@@ -179,6 +180,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Empresa` (
   `idEmpresa` INT NOT NULL AUTO_INCREMENT ,
   `idGrupo` INT NOT NULL ,
   `nombre` VARCHAR(45) NOT NULL ,
+  `activo` TINYINT NULL DEFAULT 1 ,
   PRIMARY KEY (`idEmpresa`, `idGrupo`) ,
   INDEX `Empresa_Grupo` (`idGrupo` ASC) ,
   CONSTRAINT `Empresa_Grupo`
@@ -631,7 +633,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SEVI`;
-INSERT INTO `SEVI`.`Grupo` (`idGrupo`, `nombre`) VALUES (1, 'OXXO');
+INSERT INTO `SEVI`.`Grupo` (`idGrupo`, `nombre`, `activo`) VALUES (1, 'OXXO', NULL);
 
 COMMIT;
 
@@ -640,7 +642,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SEVI`;
-INSERT INTO `SEVI`.`Empresa` (`idEmpresa`, `idGrupo`, `nombre`) VALUES (1, 1, 'Empresa 1');
+INSERT INTO `SEVI`.`Empresa` (`idEmpresa`, `idGrupo`, `nombre`, `activo`) VALUES (1, 1, 'Empresa 1', NULL);
 
 COMMIT;
 

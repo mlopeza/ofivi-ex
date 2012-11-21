@@ -119,7 +119,7 @@
 							 echo form_open('logincontroller/login',$attributes2);
 						?>
                             <div class="input">
-                                <input type="text" maxlength="30" name="username" placeholder="Usuario" id="username" required>
+                                <input type="text" maxlength="30" name="username" placeholder="Nómina" id="username" required>
                             </div>
                             <div class="input">
                                 <input type="password" id="password" name="password" placeholder="Contraseña" required>
@@ -128,7 +128,7 @@
                             <div class="actions">
                                 <input type="submit" class="btn btn-success" value="Iniciar Sesión">
                             </div>
-                            <p class="note"><span class="label label-info"> ¿Necesitas una cuenta? </span>  &nbsp; <a href="#"> Solicitala!</a> </p>
+                            <p class="note"><span class="label label-info"> ¿Necesitas una cuenta? </span>  &nbsp; <a href="#"> Solicítala!</a> </p>
                         </form>
                     </div>
                 </div> 
