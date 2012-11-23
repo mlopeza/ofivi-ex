@@ -2,6 +2,10 @@
 	/*Logica de Creación de Proyecto*/
 	$(document).ready(function(){
 		//Llena el primer campo
+		
+		//Selecciona lo que el mensaje get trae
+		seleccionaOpciones();
+
 		$("#Grupo").change(function() {
 			getEmpresas($(this).children('option').filter(':selected').attr('id'),$(this));			
 		});
@@ -176,7 +180,7 @@
 
 	//Regresa las empresas que pertenecen a un Grupo y las
 	//Inserta en el OptionS List
-	function getEmpresas(idGrupo,elemento){
+	function getEmpresas(idGrupo,elemento,accion){
 			/*Datos de la tabla con Respecto al usuario*/
 			var data={ 
 			's_token':$('#s_token').attr('value'),
@@ -197,6 +201,10 @@
 								$(sEmpresas).empty();
 								//Agrega los nodos que se buscaron
 								appendEmpresas(mensaje['mensaje'],sEmpresas);
+								//Si es el inicio, se selecciona la Empresa que se definio anteriormente
+								if(accion == 1){
+									sEmpresas.children().filter("[id=<?php echo $idEmpresa;?>]").attr('selected','selected');
+								}
 						}else{
 							noty({text: mensaje['mensaje'], type: 'error'});
 						}
@@ -244,5 +252,11 @@
 				$("#contacto-telefonos-body").append(o);
 			});
 			
+	}
+
+	//Manda pedir la informacion necesaria
+	function seleccionaOpciones(){
+		$("#Grupo").children().filter("[id=<?php echo $idGrupo;?>]").attr('selected','selected');
+		getEmpresas(<?php echo $idGrupo;?>,$("#Grupo"),1);
 	}
 </script>

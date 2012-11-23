@@ -115,7 +115,29 @@
                         		                                        </form>
                         		                                        <div class="form-actions">
                         		                                            <button id="guardar-empresa" class="btn btn-primary" type="button">Guardar</button>
-                        		                                            <button id="limpiar-empresa" class="btn" type="button">Limpiar</button><br/><br/>
+                        		                                            <button id="limpiar-empresa" class="btn" type="button">Limpiar</button>
+                        		                                        </div>
+                            		   </div>
+                        		    </div>
+                        		</div>
+		                    </div>
+                		    <div id="accordion4" class="accordion">
+                		        <div class="accordion-group">
+                		            <div class="accordion-heading">
+                		                <a href="#event101" data-toggle="collapse" class="accordion-toggle" data-original-title="">
+                		                    <i class="icon-th-large icon-white"></i> <span class="divider-vertical"></span> Crear Proyecto <span id="EtiquetaEmpresa"></span> <i class="icon-chevron-down icon-white pull-right"></i>
+                		                </a>
+                		            </div>
+                		            <div class="accordion-body in collapse" id="event101" style="height: auto;">
+										<div class="accordion-inner paddind" style="overflow: auto;">
+																		<fieldset>
+																		<table class="table table-bordered pull-left">
+																		<thead><tr><th>Grupo</th><th>Empresa</th></tr></thead>
+																		<tbody><tr><td id="grupo-creacion" idgrupo="-1" ></td><td idempresa="-1" id="empresa-creacion"></td></tr></tbody>
+																		</table>
+																		<br/><br/>
+																		</fieldset>
+                        		                                        <div class="form-actions">
                         		                                            <button id="crear-proyecto" class="btn btn-danger" type="button">Crear Proyecto</button>
                         		                                        </div>
                             		   </div>

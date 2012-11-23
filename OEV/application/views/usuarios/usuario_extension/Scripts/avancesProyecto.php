@@ -20,14 +20,15 @@
 			var data={ 
 			's_token':$('#s_token').attr('value'),
 			'activo':valor,
+			'idUsuario':$("#idUsuario").val(),			
 			};
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
-			     url: "avancesproyecto/getGrupos",
+			     url: "avancesproyectoU/getGrupos",
 			     data: data ,
 			     success: function(msg){
-console.log(msg);
+						console.log(msg);
 						var mensaje = $.parseJSON(msg);
 						if(mensaje['response'] ==  "true"){
 								//Agrega las Empresas al nodo seleccionado
@@ -38,6 +39,7 @@ console.log(msg);
 								var sContactos = $('[name = "contacto"]');
 								var sProfesor = $('[name="profesor"]');
 								var sEstados = $('#sestados');
+								var sDocumentos = $('[name="documento"]');
 								//Elimina nodos
 								$(sGrupo).empty();
 								$(sEmpresas).empty();
@@ -46,6 +48,7 @@ console.log(msg);
 								$(sProfesor).empty();
 								$(sContactos).empty();
 								$(sEstados).empty();
+								$(sDocumentos).empty();
 								//Agrega los nodos que se buscaron
 								appendGrupo(mensaje['grupo'],sGrupo);
 								appendEmpresas(mensaje['mensaje'],sEmpresas);													
@@ -54,6 +57,7 @@ console.log(msg);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
 								appendEstado(mensaje['estado'],sEstados);
+								appendDocumentos(mensaje['documento'],sDocumentos);
 							$('#showThis').attr("style","display:inline-table");
 							$('#showThis2').attr("style","display:inline-table");
 						}else{
@@ -74,11 +78,12 @@ console.log(msg);
 			's_token':$('#s_token').attr('value'),
 			'idGrupo':idGrupo,
 			'activo':$('[name="estado"]').val(),
+			'idUsuario':$("#idUsuario").val(),
 			};
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
-			     url: "avancesproyecto/getEmpresas",
+			     url: "avancesproyectoU/getEmpresas",
 			     data: data ,
 			     success: function(msg){
 
@@ -91,6 +96,7 @@ console.log(msg);
 								var sContactos = $('[name = "contacto"]');
 								var sProfesor = $('[name="profesor"]');
 								var sEstados = $('#sestados');
+								var sDocumentos = $('[name="documento"]');
 								//Elimina nodos
 								$(sEmpresas).empty();
 								$(sProyectos).empty();
@@ -98,13 +104,15 @@ console.log(msg);
 								$(sProfesor).empty();
 								$(sContactos).empty();
 								$(sEstados).empty();
+								$(sDocumentos).empty();
 								//Agrega los nodos que se buscaron
 								appendEmpresas(mensaje['mensaje'],sEmpresas);			
 								appendProyectos(mensaje['proyectos'],sProyectos);
 								appendCategoria(mensaje['categoria'],sCategoria);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
-																appendEstado(mensaje['estado'],sEstados);
+								appendEstado(mensaje['estado'],sEstados);
+								appendDocumentos(mensaje['documento'],sDocumentos);
 
 						}else{
 							noty({text: mensaje['mensaje'], type: 'error'});
@@ -123,11 +131,12 @@ console.log(msg);
 			's_token':$('#s_token').attr('value'),
 			'idEmpresa':idEmpresa,
 			'activo':$('[name="estado"]').val(),			
+			'idUsuario':$("#idUsuario").val(),
 			};
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
-			     url: "avancesproyecto/getProyectos",
+			     url: "avancesproyectoU/getProyectos",
 			     data: data ,
 			     success: function(msg){
 					 	console.log(msg);
@@ -140,18 +149,21 @@ console.log(msg);
 								var sContactos = $('[name = "contacto"]');							
 								var sProfesor = $('[name="profesor"]');								
 								var sEstados = $('#sestados');
+								var sDocumentos = $('[name="documento"]');
 								//Elimina nodo
 								$(sProyectos).empty();
 								$(sCategoria).empty();
 								$(sProfesor).empty();
 								$(sContactos).empty();
 								$(sEstados).empty();
+								$(sDocumentos).empty();
 								//Agrega los nodos que se buscaron
 								appendProyectos(mensaje['mensaje'],sProyectos);
 								appendCategoria(mensaje['categoria'],sCategoria);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
 								appendEstado(mensaje['estado'],sEstados);
+								appendDocumentos(mensaje['documento'],sDocumentos);
 						
 						}else{
 							noty({text: mensaje['mensaje'], type: 'error'});
@@ -168,12 +180,12 @@ console.log(msg);
 			var data={ 
 			's_token':$('#s_token').attr('value'),
 			'idProyecto':idProyecto,
-			'activo':$('[name="estado"]').val(),			
+			'activo':$('[name="estado"]').val(),						
 			};
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
-			     url: "avancesproyecto/getInfo",
+			     url: "avancesproyectoU/getInfo",
 			     data: data ,
 			     success: function(msg){
 						var mensaje = $.parseJSON(msg);
@@ -183,14 +195,20 @@ console.log(msg);
 								var sCategoria = $('[name = "categoria"]');
 								var sContactos = $('[name = "contacto"]');
 								var sProfesor = $('[name="profesor"]');
+								var sEstados = $('#sestados');
+								var sDocumentos = $('[name="documento"]');
 								//Elimina nodo
 								$(sCategoria).empty();
 								$(sProfesor).empty();
 								$(sContactos).empty();
+								$(sEstados).empty();
+								$(sDocumentos).empty();
 								//Agrega los nodos que se buscaron
 								appendCategoria(mensaje['categoria'],sCategoria);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
+								appendEstado(mensaje['estado'],sEstados);
+								appendDocumentos(mensaje['documento'],sDocumentos);
 						}else{
 							noty({text: mensaje['mensaje'], type: 'error'});
 						}
@@ -245,7 +263,31 @@ console.log(msg);
 			$(elemento).append($("<li>").append("No tiene usuarios asignados").attr('id','0'));
 		}else{
 			$(nodos).each(function(index,nodo){
-				$(elemento).append($("<li>").append(nodo['nombre']).attr('id',nodo['idUsuario']));
+				$(elemento).append($("<li>")
+									.append($("<a>")
+									.append(nodo['nombre'])
+											.attr({'name':nodo['idUsuario'],'href':'1','class':'clsVentanaIFrame','rel':'prueba'})));
+			});
+		}
+	}		
+	function appendDocumentos(nodos,elemento){
+		if(nodos.length == 0){
+			$(elemento).append($("<li>").append("No tiene usuarios asignados").attr('id','0'));
+		}else{
+			$(nodos).each(function(index,nodo){
+				if(nodo['esLegal']){
+				$(elemento).append($("<li>")
+									.append($("<a>")
+									.append("Propuesta")
+											.attr({'href':'/OEV/avancesproyectoU/do_download/1/'+nodo['idProyecto'],'rel':'prueba'})));
+				}
+				else
+				{
+					$(elemento).append($("<li>")
+									.append($("<a>")
+									.append("Legal")
+											.attr({'href':'/OEV/avancesproyectoU/do_download/0/'+nodo['idProyecto'],'rel':'prueba'})));
+				}
 			});
 		}
 	}		
@@ -254,7 +296,10 @@ console.log(msg);
 			$(elemento).append($("<li>").append("No hay contactos registrados").attr('id','0'));
 		}else{
 			$(nodos).each(function(index,nodo){
-				$(elemento).append($("<li>").append(nodo['nombre']).attr('id',nodo['idContacto']));
+				$(elemento).append($("<li>")
+									.append($("<a>")
+									.append(nodo['nombre'])
+											.attr({'name':nodo['idContacto'],'href':'0','class':'clsVentanaIFrame','rel':'Información del profesor'})));
 			});
 		}
 	}	

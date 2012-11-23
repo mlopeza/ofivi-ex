@@ -110,6 +110,29 @@ class Empresa extends CI_Model {
 								   Order by e.idEmpresa');
 		return $query->result();
 	}		
+	function getEPAP($activo, $grupo,$idUsuario){
+		$this->load->database();
+		$query = $this->db->query('SELECT DISTINCT e.idEmpresa, e.nombre
+								   From Empresa as e, Proyecto as P, Estado as est
+								   WHERE e.idEmpresa = p.idEmpresa AND
+								   p.Proyecto_Activo = '.$activo.' AND
+								   e.idGrupo = '.$grupo.' AND
+								   est.idUsuario = '.$idUsuario.' AND
+								   est.idProyecto = p.idProyecto
+								   Order by e.idEmpresa');
+		return $query->result();
+	}		
+	function getEPAU($activo, $grupo,$idUsuario){
+		$this->load->database();
+		$query = $this->db->query('SELECT DISTINCT e.idEmpresa, e.nombre
+								   From Empresa as e, Proyecto as P
+								   WHERE e.idEmpresa = p.idEmpresa AND
+								   p.Proyecto_Activo = '.$activo.' AND
+								   e.idGrupo = '.$grupo.' AND
+								   p.iniciadoPor = '.$idUsuario.' 
+								   Order by e.idEmpresa');
+		return $query->result();
+	}		
 
 
 	//Regresa las Empresas que pertenecen a cierto Grupo
@@ -130,6 +153,8 @@ class Empresa extends CI_Model {
 			$this->db->update('Empresa',array('nombre'=>$data['nombre']));
 		}else{
 			$this->db->insert('Empresa',$data);
+			$query=$this->db->query("select LAST_INSERT_ID() as idEmpresa;");
+			return $query->result();
 		}
 	}
 

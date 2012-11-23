@@ -28,7 +28,6 @@ Inactivo<input type="radio" name="estado" id="inactivo" value="0"><br />
 		echo "<select id = 'sproyecto'></select>\n";
 ?>
 <div>
-<input type='hidden' name='username' value='<?php echo $this->session->userdata('username');?>' />
 <table id='showThis' class="table table-bordered">
 	<tr>
 		<td>
@@ -55,6 +54,15 @@ Inactivo<input type="radio" name="estado" id="inactivo" value="0"><br />
         <td name='categoria'>
         </td>
     </tr>            
+    <tr>
+    	<td>
+        	Documentos
+        </td>
+        <td>
+        	<ul name='documento'>
+            </ul>
+        </td>
+    </tr>
 </table></div><div>
 <br />
 <table id='showThis2' class="table table-bordered">
@@ -70,6 +78,9 @@ Inactivo<input type="radio" name="estado" id="inactivo" value="0"><br />
     <tbody id='sestados'>
     </tbody>
 </table>
+<?php
+echo "<input type='hidden' id='idUsuario' value=".$this->session->userdata('idUsuario')."  />";
+?>
 <br />
 <br />
 </div>

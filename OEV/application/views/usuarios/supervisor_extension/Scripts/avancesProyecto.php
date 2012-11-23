@@ -266,7 +266,10 @@
 			$(elemento).append($("<li>").append("No tiene usuarios asignados").attr('id','0'));
 		}else{
 			$(nodos).each(function(index,nodo){
-				$(elemento).append($("<li>").append(nodo['nombre']).attr('id',nodo['idUsuario']));
+				$(elemento).append($("<li>")
+									.append($("<a>")
+									.append(nodo['nombre'])
+											.attr({'name':nodo['idUsuario'],'href':'1','class':'clsVentanaIFrame','rel':'prueba'})));
 			});
 		}
 	}	
@@ -304,7 +307,10 @@
 			$(elemento).append($("<li>").append("No hay contactos registrados").attr('id','0'));
 		}else{
 			$(nodos).each(function(index,nodo){
-				$(elemento).append($("<li>").append(nodo['nombre']).attr('id',nodo['idContacto']));
+				$(elemento).append($("<li>")
+									.append($("<a>")
+									.append(nodo['nombre'])
+											.attr({'name':nodo['idContacto'],'href':'0','class':'clsVentanaIFrame','rel':'Información del profesor'})));
 			});
 		}
 	}	
