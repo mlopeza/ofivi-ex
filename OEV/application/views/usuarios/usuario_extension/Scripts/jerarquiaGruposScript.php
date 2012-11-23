@@ -90,7 +90,6 @@
 			}
 			data.nombre = nombre;
 			ajaxCall('jerarquiaGrupos/saveGrupo',data,function(response){
-				console.log(response);
 				response = $.parseJSON(response);
 				noty({text: "El grupo "+nombre+" se ha guardado con éxito", type: 'success'});
 				limpiarGrupo();
@@ -131,7 +130,6 @@
 			}
 			data.nombre = nombre;
 			ajaxCall('jerarquiaGrupos/saveEmpresa',data,function(response){
-				console.log(response);
 				response = $.parseJSON(response);
 				noty({text: "La Empresa "+nombre+" se ha guardado con éxito", type: 'success'});
 				limpiarGrupo();
@@ -194,7 +192,6 @@
 		cleanTable(gTable);
 		cleanTable(eTable);
 		ajaxCall("jerarquiaGrupos/getGrupos",undefined,function(data){
-			console.log(data);
 			//COnvierte los datos JSON en objeto
 			data = $.parseJSON(data);
 			$.each(data,function(index,value){
@@ -212,7 +209,6 @@
 		//Elimina todo lo que haya en la tabla de Grupos
 		cleanTable(lTable);
 		ajaxCall("jerarquiaGrupos/getLista",undefined,function(data){
-			console.log(data);
 			//COnvierte los datos JSON en objeto
 			data = $.parseJSON(data);
 			$.each(data,function(index,value){
@@ -228,7 +224,6 @@
 		//Elimina todo lo que haya en la tabla de Grupos
 		cleanTable(eTable);
 		ajaxCall("jerarquiaGrupos/getEmpresas",{'idGrupo':idGrupo},function(data){
-			console.log(data);
 			//COnvierte los datos JSON en objeto
 			data = $.parseJSON(data);
 			$.each(data,function(index,value){
