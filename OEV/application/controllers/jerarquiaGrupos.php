@@ -58,8 +58,8 @@ extends CI_Controller {
     {
 		$data = $this->input->post();
 		$this->load->model('empresa');
-		$this->empresa->saveEmpresa($data);
-		echo json_encode(array("mensaje"=>"Acción relizada con éxito"));
+		$result=$this->empresa->saveEmpresa($data);
+		echo json_encode($result[0]);
     }
 
 	//Pone inactivo un Grupo

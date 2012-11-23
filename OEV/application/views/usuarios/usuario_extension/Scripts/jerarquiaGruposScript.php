@@ -2,18 +2,42 @@
     var gTable;
     var eTable;
     var lTable;
+	idGrupoGlobal = -1;
+	idEmpresaGlobal = -1;
 	$(document).ready(function(){
+				//La ventana de Procesando
+					$(document).ajaxStart( 
+						$.blockUI({ 
+		    		        theme:     true, 
+		    		        title:    'OFIVEX', 
+		    		        message:  '<p>Procesando.</p>'
+		        		})
+					).ajaxStop(
+						$.unblockUI
+					);
 		//Inicializa las tablas
         gTable = $('#tabla-grupos').dataTable();
         eTable = $('#tabla-empresas').dataTable();
         lTable = $('#tabla-lista').dataTable();
+
+
 
 		//Trae todos los grupos de la base de datos
 		getGrupos();
 		getLista();
 
 	$("#crear-proyecto").click(function(){
-		window.location.replace("altaProyecto");
+		grupo=$("#grupo-creacion").attr('idGrupo');
+		empresa=$("#empresa-creacion").attr('idEmpresa');
+		if(grupo == -1){
+			noty({text: "No se ha seleccionado ningún Grupo.", type: 'error'});
+			return;
+		}
+		if(empresa == -1){
+            noty({text: "No se ha seleccioando ninguna Empresa.", type: 'error'});
+			return;
+		}
+		window.location.replace("altaProyecto?idGrupo="+grupo+"&idEmpresa="+empresa);
 	});
 	$("#actualizar-lista").click(getLista);
     //Remueve un grupo de la base de datos
@@ -56,7 +80,7 @@
                             noty({text: "La Empresa se ha eliminado.", type: 'success'});
 							limpiarGrupo();
 							limpiarEmpresa();
-							getGrupos();
+							getEmpresas();
                         });
                         $noty.close();
                     } 
@@ -79,6 +103,13 @@
 		//Manda el Grupo para Guardarlo en la base de datos
 		$("#guardar-grupo").click(function(){
 			data = {}
+			$("#grupo-creacion").html("");
+			$("#grupo-creacion").attr('idGrupo',"-1");
+			$("#empresa-creacion").html("");
+			$("#empresa-creacion").attr('idEmpresa',"-1");
+			$("#empresa-grupo-input").val("");
+			$("#empresa-grupo-input").attr('idGrupo',"");
+			idGrupoGlobal = -1;
 			nombre = $("#grupo-input").val().trim();
 			idGrupo = $("#grupo-input").attr('idGrupo');
 			if(idGrupo != "" && idGrupo != undefined)
@@ -131,10 +162,12 @@
 			data.nombre = nombre;
 			ajaxCall('jerarquiaGrupos/saveEmpresa',data,function(response){
 				response = $.parseJSON(response);
+				$("#empresa-input").attr('idEmpresa',response['idEmpresa']);
+				getEmpresas();
+				idEmpresaGlobal=response['idEmpresa'];
+				$("#empresa-creacion").html("").html(nombre);
+				$("#empresa-creacion").attr('idEmpresa',response['idEmpresa']);
 				noty({text: "La Empresa "+nombre+" se ha guardado con éxito", type: 'success'});
-				limpiarGrupo();
-				limpiarEmpresa();
-				getGrupos();
 			});
 
 		});
@@ -151,19 +184,41 @@
 		//Trae todas las empresas relacionadas con elGrupo al que se le dio click
 		$('#tabla-grupos tbody tr').live("click",function () {
 			// Obtiene la posicion de a lo que se dio click
+			limpiarEmpresa();
 			idGrupo = $(this).find('button').filter(':first').attr('id');
-			getEmpresas(idGrupo);
+			idGrupoGlobal = idGrupo;
+			getEmpresas();
 			var aPos = gTable.fnGetPosition( this );
 			$("#empresa-grupo-input").val(gTable.fnGetData(aPos[0])[aPos][0]);
 			$("#empresa-grupo-input").attr('idGrupo',idGrupo);
-            $.each($(".colorea-proyecto"),function(index,elemento){
+            $.each($("#tabla-grupos tbody tr"),function(index,elemento){
                     $(elemento).attr("style","");
             });
-
+			$("#grupo-creacion").html("").html((gTable.fnGetData(aPos[0])[aPos][0]));
+			$("#grupo-creacion").attr('idGrupo',idGrupo);
             $(this).attr("style","background-color:whiteSmoke;");
-
+			$("#empresa-creacion").html("");
+			$("#empresa-creacion").attr("idEmpresa","-1");
+			idEmpresaGlobal = -1;
+			
 
 		});
+
+		//Obtiene el Id de la empresa que se ha seleccionado y se le colorea
+		$('#tabla-empresas tbody tr').live("click",function () {
+			idEmpresa = $(this).find('button').filter(':first').attr('id');
+			var aPos = gTable.fnGetPosition( this );
+			$("#empresa-creacion").html("").html((eTable.fnGetData(aPos[0])[aPos][0]));
+			$("#empresa-creacion").attr("idEmpresa",idEmpresa);
+            $.each($("#tabla-empresas tbody tr"),function(index,elemento){
+                    $(elemento).attr("style","");
+            });
+            $(this).attr("style","background-color:whiteSmoke;");
+			$("#empresa-input").val("");
+			$("#empresa-input").attr('idEmpresa',"");
+			$("#EtiquetaEmpresa").html("");
+		});
+
 
 	});
 
@@ -178,8 +233,6 @@
 
 	//Limpia los campos de Grupo
 	function limpiarEmpresa(){
-		$("#empresa-grupo-input").val("");
-		$("#empresa-grupo-input").attr('idGrupo',"");
 		$("#empresa-input").val("");
 		$("#empresa-input").attr('idEmpresa',"");
 		$("#EtiquetaEmpresa").html("");
@@ -220,11 +273,11 @@
 
 
 	/*Busca los Grupos en la Base de datos*/
-	function getEmpresas(idGrupo){
+	function getEmpresas(){
 		//Elimina todo lo que haya en la tabla de Grupos
 		cleanTable(eTable);
-		ajaxCall("jerarquiaGrupos/getEmpresas",{'idGrupo':idGrupo},function(data){
-			//COnvierte los datos JSON en objeto
+		ajaxCall("jerarquiaGrupos/getEmpresas",{'idGrupo':idGrupoGlobal},function(data){
+			//Convierte los datos JSON en objeto
 			data = $.parseJSON(data);
 			$.each(data,function(index,value){
                 id = value.idEmpresa;
@@ -233,6 +286,7 @@
 				delete value.activo;
                 insertElement(eTable,id,value,"Empresa")                
             });
+    	    $(".editEmpresa").filter("[id="+idEmpresaGlobal+"]").parent().parent().attr("style","background-color:whiteSmoke;");
 		});
 
 	}
