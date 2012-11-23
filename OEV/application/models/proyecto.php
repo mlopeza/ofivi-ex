@@ -345,9 +345,9 @@ function getEA($idProyecto){
 		$this->load->database();
 		$this->db->trans_start();
 			$this->db->where('idProyecto',$idProyecto);
-			$this->db->delete('Proyecto');
-			$this->db->where('idProyecto',$idProyecto);
 			$this->db->delete('Contacto_Proyecto');
+			$this->db->where('idProyecto',$idProyecto);
+			$this->db->delete('Proyecto');
 		$this->db->trans_complete();
 	}
 
