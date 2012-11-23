@@ -67,7 +67,7 @@
                 		                </a>
                 		            </div>
                 		            <div class="accordion-body in collapse" id="event" style="height: auto;">
-                		                <div class="accordion-inner paddind">
+                		                <div class="accordion-inner paddind" style="overflow: auto;"> 
                 		                                    <!--Elemento 2-->
                 		                                               <form class="form-vertical">
                 		                                               <fieldset>

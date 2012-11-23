@@ -19,6 +19,7 @@
                                     <div class="accordion-inner">
                                         <ul class="nav nav-list">
                                             <li><a href="<?php echo base_url("altaProyecto");?>">Alta de Proyecto</a></li>
+                                            <li><a href="<?php echo base_url("altaProyecto/listaProyectos");?>">Edita Proyecto</a></li>
                                             <li><a href="<?php echo base_url("asignaProyecto");?>">Asigna Proyectos</a></li>
                                             <li><a href="<?php echo base_url("asignaContacto");?>">Asigna Contacto a Proyecto</a></li>
                                         </ul>

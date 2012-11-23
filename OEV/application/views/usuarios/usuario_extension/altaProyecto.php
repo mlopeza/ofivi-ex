@@ -1,7 +1,9 @@
 
 <div id="content" class="span9 section-body">
+<input type="hidden" value="" id="idProyecto">
 <?php echo form_open_multipart(); ?>
 <?php echo form_close(); ?> 
+
                     <div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1" data-toggle="tab">Datos Básicos</a></li>
@@ -9,10 +11,17 @@
                             <li><a href="#tab3" data-toggle="tab">Descripción del Cliente</a></li>
                             <li><a href="#tab4" data-toggle="tab">Interpretación de Usuario</a></li>
                         </ul>
+
                         <div class="tab-content">
+								<div style="margin-bottom:5px;padding:5px;background: #333333;text-shadow: 1px 1px #222222;color: #FFFFFF;font-size:large">
+									<span style="font-weight:bold;margin-left:20px;">Grupo:</span>
+									<span  class="Grupo-Breadcrumb"></span>
+									<span style="font-weight:bold;margin-left:20px;">Empresa:</span>
+									<span  class="Empresa-Breadcrumb"></span>
+									<span style="font-weight:bold;margin-left:20px;">Proyecto:</span>
+									<span  class="Proyecto-Breadcrumb"></span>
+								</div>
                             <div class="tab-pane active" id="tab1">
-                                <!--/Tabs2-->
-                                <!--Tabs3-->
                                 <div class="row-fluid">
                                     <div class="span12">
                                         <div id="accordion1" class="accordion">
@@ -23,7 +32,7 @@
                                                     </a>
                                                 </div>
                                                 <div id="control" class="accordion-body collapse in">
-                                                    <div class="accordion-inner paddind">
+                                                    <div class="accordion-inner paddind" style="overflow: auto;"> 
                                                         <form class="form-horizontal">
                                                             <fieldset>
                                                                 <div class="control-group">
@@ -64,8 +73,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-actions">
-                                                                    <button class="btn btn-primary" id="GuardarTodo" type="button">Guardar</button>
-                                                                    <button class="btn">Cancelar</button>
+                                                                    <button class="btn btn-primary GuardarTodo" id="GuardarTodo" type="button">Guardar Proyecto</button>
                                                                 </div>
                                                             </fieldset>
                                                         </form>
@@ -90,7 +98,8 @@
                                                     </a>
                                                 </div>
                                                 <div id="event" class="accordion-body collapse in">
-													<div class="accordion-inner paddind">
+													<div class="accordion-inner paddind" style="overflow: auto;"> 
+														<fieldset>
                                                         <form class="form-horizontal">
 														<table class="table table-bordered">
                                                             <thead>
@@ -107,25 +116,12 @@
 																</td>
 															</tr>
 															</tfoot>
-                                                        </table><br /><br />
-															<table class="table table-bordered">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Nombre</th>
-                                                                    <th>Telefonos</th>
-                                                                    <th>Acción</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="contactos-body">
-                                                            </tbody>
-															<tfoot>
-															<tr>
-																<td colspan="4" style="text-align:right;">
-																</td>
-															</tr>
-															</tfoot>
-                                                        </table><br />
+                                                        </table>
 														</form>
+														</fieldset>
+																<div class="form-actions">
+                                                                    <button class="btn btn-primary GuardarTodo" id="GuardarTodo" type="button">Guardar Proyecto</button>
+                                                                </div>
 													</div>
                                                 </div>
                                             </div>
@@ -143,7 +139,7 @@
                                                     </a>
                                                 </div>
                                                 <div id="statements" class="accordion-body collapse in">
-												<div class="accordion-inner paddind">
+												<div class="accordion-inner paddind" style="overflow: auto;"> 
                                                         <form class="form-horizontal">
                                                             <fieldset>
                                                                 <div class="control-group">
@@ -217,8 +213,7 @@
 															</tfoot>
                                                         </table><br />
                                                                 <div class="form-actions">
-                                                                    <button class="btn btn-primary" id="agrega-contacto-arreglo" type="button">Agregar</button>
-                                                                    <button class="btn">Limpiar</button>
+                                                                    <button class="btn btn-primary" id="agrega-contacto-arreglo" type="button">Guardar Contacto</button>
                                                                 </div>
                                                             </fieldset>
                                                         </form>
@@ -235,10 +230,19 @@
                             </div>
 
                             <div class="tab-pane" id="tab3">
+								<fieldset>
                                 <textarea id="descripcionCliente" name="descripcionUsuario" class="textarea" placeholder="Descripción ..." style="width: 810px; height: 400px"></textarea>
+												<div class="form-actions">
+                                                                    <button class="btn btn-primary GuardarTodo" id="GuardarTodo" type="button">Guardar Proyecto</button>
+                                                                </div>
                             </div>
+
                             <div class="tab-pane" id="tab4">
+								<fieldset>
                                 <textarea id="descripcionUsuario" name="descripcionAEV" class="textarea" placeholder="Descripción ..." style="width: 810px; height: 400px"></textarea>
+												<div class="form-actions">
+                                                                    <button class="btn btn-primary GuardarTodo" id="GuardarTodo" type="button">Guardar Proyecto</button>
+                                                                </div>
                             </div>
                         </div>
                     </div>

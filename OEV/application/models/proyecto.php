@@ -40,6 +40,7 @@ class Proyecto extends CI_Model{
     
     function __construct()
     {
+        $this->load->database();
         parent::__construct();
     }
 
@@ -61,7 +62,7 @@ class Proyecto extends CI_Model{
 	}
 
 
-	function altaProyecto($idEmpresa,$Nombre,$descripcionU,$descripcionAEV,$iniciadoPor){
+	function altaProyecto($idEmpresa,$Nombre,$descripcionU,$descripcionAEV,$iniciadoPor,$idProyecto){
 		//Descripciones de Usuario, preparando para guardarse en BLOB
 		$d1 = mysql_real_escape_string($descripcionU);
 		$d2 = mysql_real_escape_string($descripcionAEV);
@@ -73,11 +74,18 @@ class Proyecto extends CI_Model{
    			'Proyecto_Activo' => 1,
    			'iniciadoPor' => $iniciadoPor
 		);
-		$this->db->insert('Proyecto', $data);
-		$id = $this->db->query("SELECT LAST_INSERT_ID() as idProyecto;")->result();
-
+		$id=-100;
+		if($idProyecto >=0){
+			$this->db->where('idProyecto',$idProyecto);
+			$this->db->update('Proyecto',$data);
+			$id=$idProyecto;
+		}else{
+			$this->db->insert('Proyecto', $data);
+			$idx = $this->db->query("SELECT LAST_INSERT_ID() as idProyecto;")->result();
+			$id=$idx[0]->idProyecto;
+		}
 		//Regresa el id del Proyecto Recien Creado
-		return $id[0]->idProyecto;					
+		return $id;					
 	}
 
 
@@ -93,8 +101,13 @@ class Proyecto extends CI_Model{
 		foreach($nuevos as $c){
 			$data[]=array('idProyecto'=>$idProyecto,'idContacto'=>$c);
 		}
-		if(sizeof($data) > 0)
-			$this->db->insert_batch('Contacto_Proyecto', $data); 
+		if(sizeof($data) > 0){
+			$this->db->trans_start();
+				$this->db->where('idProyecto',$idProyecto);
+				$this->db->delete('Contacto_Proyecto');
+				$this->db->insert_batch('Contacto_Proyecto', $data);
+			$this->db->trans_complete();
+		}
 	}
 	//Función findAll par regresar todos los datos de la tabla.
 	function findAll(){
@@ -294,6 +307,54 @@ function getEA($idProyecto){
 		$data = array('Proyecto_Activo'=>$activo);
 		$this->db->where('idProyecto',$proyecto);
 		$this->db->update('proyecto',$data);
+	}
+
+	/*
+	*	Busca todos los proyectos iniciados por un usuario
+	*
+	*/
+
+	function getProyectosUsuario($idUsuario){
+		$this->load->database();
+		$this->db->select("g.nombre as Grupo,g.idGrupo ,e.nombre as Empresa,e.idEmpresa,p.idProyecto,p.nombre as Proyecto");
+		$this->db->from('Proyecto p');
+		$this->db->join('Empresa e','p.idEmpresa = e.idEmpresa','inner');
+		$this->db->join('Grupo g','g.idGrupo = e.idGrupo','inner');
+		$this->db->where('p.iniciadoPor',$idUsuario);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	//Elimina un Proyecto de la base de datos
+	function deleteProyecto($idProyecto){
+		if(!isset($idProyecto))
+			return;
+		$this->load->database();
+		$this->db->trans_start();
+			$this->db->where('idProyecto',$idProyecto);
+			$this->db->delete('Proyecto');
+			$this->db->where('idProyecto',$idProyecto);
+			$this->db->delete('Contacto_Proyecto');
+		$this->db->trans_complete();
+	}
+
+
+	//Regresa un Proyecto
+	function getProyecto($idProyecto){
+		$this->load->database();
+		$this->db->where('idProyecto',$idProyecto);
+		$query=$this->db->get('Proyecto');
+		return $query->result();
+	}
+
+	//Regresa los contactos del Proyecto;
+	function getContactos($idProyecto){
+		$this->load->database();
+		$query = $this->db->query('
+				SELECT c.idContacto as id, CONCAT (Nombre, " ",ApellidoP," ",ApellidoM," ",email) as name
+				From Contacto c
+				INNER JOIN Contacto_Proyecto cp ON c.idContacto = cp.idContacto AND cp.idProyecto='.$idProyecto.' ');
+		return $query->result();
 	}
 }
 ?>
