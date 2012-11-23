@@ -465,6 +465,17 @@ class Usuariomodel extends CI_Model {
         }
         
     }
+	function regresaInformacion($idUsuario){
+		$this->load->database();
+		$query=$this->db->query("
+				select d.nombre as departamento,e.Nombre as escuela,c.Nombre as campus, CONCAT (u.Nombre,' ',u.ApellidoP, ' ',u.ApellidoM) as nombre, u.email
+				from departamento as d, escuela as e, campus as c, usuario as u
+				where d.idEscuela = e.idEscuela AND
+				e.idCampus = c.idCampus AND
+				u.idDepartamento = d.idDepartamento AND
+				u.idUsuario = ".$idUsuario)->result();
+		return $query;
+	}
 
 }
 ?>

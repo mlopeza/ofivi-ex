@@ -125,13 +125,11 @@ class Empresa extends CI_Model {
 	function getEPAU($activo, $grupo,$idUsuario){
 		$this->load->database();
 		$query = $this->db->query('SELECT DISTINCT e.idEmpresa, e.nombre
-								   From Empresa as e, Proyecto as P, Estado as est
+								   From Empresa as e, Proyecto as P
 								   WHERE e.idEmpresa = p.idEmpresa AND
 								   p.Proyecto_Activo = '.$activo.' AND
 								   e.idGrupo = '.$grupo.' AND
-								   est.idUsuario = '.$idUsuario.' AND
-								   est.idProyecto = p.idProyecto AND
-								   est.estado = "Iniciado" AND
+								   p.iniciadoPor = '.$idUsuario.' 
 								   Order by e.idEmpresa');
 		return $query->result();
 	}		

@@ -1,4 +1,6 @@
 <link href="<?php echo base_url("css/projectAdvances.css"); ?>" rel="stylesheet">
+<link href="<?php echo base_url("css/ventanas-modales.css"); ?>" rel="stylesheet">
+
 <div id="content" class="span9 section-body">
                     <div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
                         <ul class="nav nav-tabs">
@@ -30,39 +32,39 @@ Inactivo<input type="radio" name="estado" id="inactivo" value="0"><br />
 <div>
 <table id='showThis' class="table table-bordered">
 	<tr>
-		<td>
+		<th>
         	Contacto
-    	</td>
+    	</th>
         <td>
         	<ul name='contacto'>			
 			</ul> 
         </td>
     </tr>
 	<tr>
-		<td>
+		<th>
         	Usuarios
-    	</td>
+    	</th>
         <td>
         	<ul name='profesor'>			
 			</ul> 
         </td>
     </tr>
 	<tr>
-		<td>
+		<th>
         	Categoría
-    	</td>
+    	</th>
         <td name='categoria'>
         </td>
-    </tr>            
-    <tr>
-    	<td>
+    </tr>    
+    	<tr>
+		<th>
         	Documentos
+    	</th>
+        <td >
+        <ul name='documento'>
+        </ul>
         </td>
-        <td>
-        	<ul name='documento'>
-            </ul>
-        </td>
-    </tr>
+    </tr>            
 </table></div><div>
 <br />
 <table id='showThis2' class="table table-bordered">
@@ -91,3 +93,4 @@ Inactivo<input type="radio" name="estado" id="inactivo" value="0"><br />
                         </div>
                     </div>
                 </div>
+	

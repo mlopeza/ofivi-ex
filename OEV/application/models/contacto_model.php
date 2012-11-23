@@ -182,6 +182,15 @@ class contacto_model extends CI_Model {
         $this->load->database();
         $this->db->insert('Contacto_Proyecto', array('idProyecto' => $idProyecto,'idContacto'=>$idContacto));
    }
-
+	function regresaInformacion($idContacto){
+		$this->load->database();
+		$query=$this->db->query("
+				select g.nombre as grupo,e.Nombre as empresa, CONCAT (u.Nombre,' ',u.ApellidoP, ' ',u.ApellidoM) as nombre, u.email,u.departamento as departamento, u.puesto as puesto, CONCAT('(',t.lada,')',t.telefono) as telefono,t.extension as extension
+				from grupo as g, empresa as e,  contacto as u, contacto_telefono as t
+				where g.idGrupo = e.idGrupo AND
+				u.idEmpresa = e.idEmpresa AND
+				u.idContacto = ".$idContacto)->result();
+		return $query;
+	}
 }
 ?>

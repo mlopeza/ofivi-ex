@@ -13,6 +13,7 @@ class avancesProyecto extends CI_Controller {
 		$this->load->view('usuarios/supervisor_extension/avances_proyecto');
 		$this->load->view('usuarios/footer');
 		$this->load->view('usuarios/supervisor_extension/Scripts/avancesProyecto');
+				$this->load->view('usuarios/usuario_extension/Scripts/ventanas-modales');
 		
 	}
 	

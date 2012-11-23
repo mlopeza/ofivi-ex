@@ -146,13 +146,11 @@ class Grupo extends CI_Model {
 	function getGPAU($activo,$idUsuario){
 		$this->load->database();
 		$qry = "SELECT DISTINCT g.idGrupo, g.nombre
-				FROM Grupo AS g, Empresa e, Proyecto AS p ,Estado est
+				FROM Grupo AS g, Empresa e, Proyecto AS p 
 				WHERE g.idGrupo = e.idGrupo
 				AND p.idEmpresa = e.idEmpresa
 				AND p.Proyecto_Activo =".$activo."
-				AND est.idUsuario =".$idUsuario."
-				AND est.idProyecto = p.idProyecto
-				AND est.estado = 'Iniciado'
+				AND p.iniciadoPor = ".$idUsuario." 
 				ORDER BY g.idGrupo";
 		$query = $this->db->query($qry);
 		return $query->result();		
