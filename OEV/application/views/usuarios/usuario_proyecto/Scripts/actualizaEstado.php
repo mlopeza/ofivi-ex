@@ -61,7 +61,7 @@
 									noty({text: "No hay estados para este proyecto", type: 'warning'});
 									//nodo=$("#reportes-actuales-body");
 									//$(nodo).empty();
-									$("#estadoActual").val("Seleccione reporte...");
+									$("#estadoActual").val("No hay estado");
 								}else{
 									console.log("mensaje "+mensaje);
 									if(mensaje['response'] == "false"){

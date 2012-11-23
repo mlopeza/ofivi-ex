@@ -19,7 +19,7 @@ extends CI_Controller {
 		$vista = array('vista'=>$datos_usuario['vista']);
 		$usuario = $datos_usuario['idUsuario'];
 		//Se buscan todos los proyectos relacionados al usuario
-		$proyectos['proyectos'] = $this->proyecto->getProyectosAceptados($usuario);
+		$proyectos['proyectos'] = $this->proyecto->getProyectosIniciados($usuario,1);
 		
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
@@ -49,7 +49,7 @@ extends CI_Controller {
 		
 		$this->estado->insert();
 		sleep(3);
-		redirect('actualizaEstado', 'location'); 
+		redirect('actualizaEstadoUE', 'location'); 
 	}
 	
 	function getEstadoProyecto()
