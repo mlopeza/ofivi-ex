@@ -24,7 +24,7 @@ extends CI_Controller {
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
 		$this->load->view('usuarios/usuario_extension/menu_extension');
-        $this->load->view('usuarios/usuario_proyecto/actualiza_Estado',$proyectos);
+        $this->load->view('usuarios/usuario_extension/actualiza_Estado',$proyectos);
 		$this->load->view('usuarios/footer');
 		$this->load->view('usuarios/usuario_proyecto/Scripts/actualizaEstado');
     }
