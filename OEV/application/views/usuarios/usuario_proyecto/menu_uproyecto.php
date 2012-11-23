@@ -9,6 +9,7 @@
                                         <ul class="nav nav-list">
                                             <li><a href="<?php echo base_url("arProyecto");?>">Proyectos Pendientes</a></li>
                                             <li><a href="<?php echo base_url("subirPropuesta");?>">Subir Propuesta</a></li>
+                                            <li><a href="<?php echo base_url("actualizaEstado");?>">Actualizar Estado</a></li>
                                         </ul>
                                     </div>
                                 </div>

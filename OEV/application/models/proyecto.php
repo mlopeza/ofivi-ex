@@ -276,5 +276,19 @@ function getEA($idProyecto){
 		$this->db->where('idProyecto',$proyecto);
 		$this->db->update('proyecto',$data);
 	}
+	
+	function getProyectosAceptados($idUsuario)
+	{
+		$this->load->database();
+        return $this->db->query("
+                                SELECT up.idProyecto,p.nombre as Proyecto,e.nombre as Empresa,g.nombre as Grupo
+                                FROM Usuario_Proyecto up
+                                INNER JOIN Proyecto p ON up.idProyecto = p.idProyecto
+                                INNER JOIN Empresa e ON e.idEmpresa = p.idEmpresa
+                                INNER JOIN Grupo g ON g.idGrupo = e.idGrupo
+                                WHERE up.idUsuario=".$idUsuario." AND up.activa = 1 AND up.acepto = 1
+                                ORDER BY Grupo,Empresa,Proyecto
+                                ")->result();
+	}
 }
 ?>
