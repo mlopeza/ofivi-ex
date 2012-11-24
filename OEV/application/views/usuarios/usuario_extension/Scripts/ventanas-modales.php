@@ -24,9 +24,10 @@ $(function(){
 		//prevenir el comportamiento normal del enlace
 		e.preventDefault();
 		var prueba = $(this).prop('href').split('/');
-		if(prueba[prueba.length-1]){
-		getInfoProfesor($(this),$(this).prop('name'));
-		}else{
+		console.log(prueba[prueba.length-1]);
+		if(prueba[prueba.length-1]==1){
+			getInfoProfesor($(this),$(this).prop('name'));
+		}else{			
 			getInfoContacto($(this),$(this).prop('name'));
 
 		}
@@ -90,7 +91,7 @@ $(function(){
 				}
 			});
 	}
-function getInfoContacto(elemento,idUsuario){
+function getInfoContacto(elemento,idContacto){
 			/*Datos de la tabla con Respecto al usuario*/
 			var data={ 
 			's_token':$('#s_token').attr('value'),
