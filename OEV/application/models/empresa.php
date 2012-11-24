@@ -153,6 +153,8 @@ class Empresa extends CI_Model {
 			$this->db->update('Empresa',array('nombre'=>$data['nombre']));
 		}else{
 			$this->db->insert('Empresa',$data);
+			$query=$this->db->query("select LAST_INSERT_ID() as idEmpresa;");
+			return $query->result();
 		}
 	}
 

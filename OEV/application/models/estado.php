@@ -56,7 +56,15 @@ Class Estado extends CI_Model{
 		$query = $this->db->query($qry);
 		return $query->result();
 	}
-			
 
+	function getEstadoProyecto($idProyecto){
+		$this->load->database();
+		$qry = "SELECT e.estado
+				From estado as e
+				WHERE e.idProyecto = ".$idProyecto." 
+				ORDER BY tiempoActualizacion DESC LIMIT 1 ";
+		$query = $this->db->query($qry);
+		return $query->result();
+	}
 }
 ?>

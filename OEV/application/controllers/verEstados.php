@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class jerarquiaGrupos
+class VerEstados
 extends CI_Controller {
 
     public function index()
@@ -21,10 +21,10 @@ extends CI_Controller {
 		
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
-		$this->load->view('usuarios/usuario_extension/menu_extension');
-        $this->load->view('usuarios/usuario_extension/jerarquiaGruposVista');
+		$this->load->view('usuarios/usuario_proyecto/menu_uproyecto');
+        $this->load->view('usuarios/usuario_proyecto/ver_Estados');
 		$this->load->view('usuarios/footer');
-		$this->load->view('usuarios/usuario_extension/Scripts/jerarquiaGruposScript');
+		$this->load->view('usuarios/usuario_proyecto/Scripts/verEstadosScript');
     }
 
 	//Regresa Todos los grupos de la base de datos

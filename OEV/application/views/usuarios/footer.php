@@ -20,6 +20,7 @@
 		<script src="<?php echo base_url("js/noty-script.js");?>"></script>
 		<script src="<?php echo base_url("js/jquery.noty.js");?>"></script>
 		<script src="<?php echo base_url("js/button-utils.js");?>"></script>
+		<script src="<?php echo base_url("js/blockui.js");?>"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $('.togglemenuleft').click(function(){

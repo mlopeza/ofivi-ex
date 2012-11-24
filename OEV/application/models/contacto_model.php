@@ -26,14 +26,32 @@ class contacto_model extends CI_Model {
 	//Funcion que regresa los contactos de cierta empresa con el nombre parecido
 	function getContactosDeEmpresa($idEmpresa,$nombre){
 		$this->load->database();
+		$nombre = preg_replace('/\s\s+/', ' ', $nombre);
+		$claves = preg_split("/[\s]+/", $nombre);
+		$q="";
+		foreach($claves as $c){
+				$q=$q.'Nombre like "%'.$c.'%" OR
+				ApellidoP like "%'.$c.'%" OR
+				ApellidoM like "%'.$c.'%" OR ';
+		}
+
+		if(strcmp("",$nombre) == 0){
+    		    $query = $this->db->query('
+				SELECT idContacto as id, CONCAT (Nombre, " ",ApellidoP," ",ApellidoM," ",email) as name
+				FROM Contacto
+				WHERE idEmpresa='.$idEmpresa.'
+				');
+			return $query->result();
+		}
+
         $query = $this->db->query('
 			SELECT idContacto as id, CONCAT (Nombre, " ",ApellidoP," ",ApellidoM," ",email) as name
 			FROM Contacto
 			WHERE idEmpresa='.$idEmpresa.'
 			AND 
-			(	Nombre like "%'.$nombre.'%" OR
-				ApellidoP like "%'.$nombre.'%" OR
-				ApellidoM like "%'.$nombre.'%"
+			(	
+				'.$q.'
+				lower(CONCAT (Nombre, " ",ApellidoP," ",ApellidoM," ",email)) like lower("%'.$nombre.'%")
 			)
 			');
 		return $query->result();
@@ -192,5 +210,61 @@ class contacto_model extends CI_Model {
 				u.idContacto = ".$idContacto)->result();
 		return $query;
 	}
+
+	function agregaContacto($data){
+		$this->load->database();
+		$telefonos = $data['telefonos'];
+		unset($data['telefonos']);
+		$this->db->insert('Contacto',$data);
+		$idx = $this->db->query("SELECT LAST_INSERT_ID() as idContacto;")->result();
+		$id=$idx[0]->idContacto;
+		for($i = 0; $i < sizeof($telefonos);$i++){
+			$telefonos[$i]['idContacto'] = $id;
+		}
+		if(sizeof($telefonos) > 0 ){
+			$this->db->insert_batch('Contacto_Telefono', $telefonos); 
+		}
+	}
+
+
+
+	function TrimStr($str) 
+	{ 
+    	$str = trim($str); 
+    	for($i=0;$i < strlen($str);$i++) 
+    	{ 
+	
+    	    if(substr($str, $i, 1) != " ") 
+    	    { 
+	
+    	        $ret_str .= trim(substr($str, $i, 1)); 
+	
+    	    } 
+    	    else 
+    	    { 
+    	        while(substr($str,$i,1) == " ") 
+    	       
+    	        { 
+    	            $i++; 
+    	        } 
+    	        $ret_str.= " "; 
+    	        $i--; // *** 
+    	    } 
+    	} 
+    	return $ret_str; 
+	} 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
