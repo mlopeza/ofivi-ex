@@ -203,11 +203,18 @@ class contacto_model extends CI_Model {
 	function regresaInformacion($idContacto){
 		$this->load->database();
 		$query=$this->db->query("
-				select g.nombre as grupo,e.Nombre as empresa, CONCAT (u.Nombre,' ',u.ApellidoP, ' ',u.ApellidoM) as nombre, u.email,u.departamento as departamento, u.puesto as puesto, CONCAT('(',t.lada,')',t.telefono) as telefono,t.extension as extension
-				from grupo as g, empresa as e,  contacto as u, contacto_telefono as t
+				select g.nombre as grupo,e.Nombre as empresa, CONCAT (u.Nombre,' ',u.ApellidoP, ' ',u.ApellidoM) as nombre, u.email,u.departamento as departamento, u.puesto as puesto
+				from grupo as g, empresa as e,  contacto as u
 				where g.idGrupo = e.idGrupo AND
 				u.idEmpresa = e.idEmpresa AND
 				u.idContacto = ".$idContacto)->result();
+		return $query;
+	}
+	function regresaTelefono($idContacto){
+		$this->load->database();
+		$query=$this->db->query("Select CONCAT('(',lada,')',telefono) as telefono, extension, descripcion
+		From contacto_telefono
+		Where idContacto =".$idContacto)->result();
 		return $query;
 	}
 

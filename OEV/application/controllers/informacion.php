@@ -23,7 +23,21 @@ class Informacion extends CI_Controller {
   <tr>
     <th scope="row">Email</th>
     <td>'.$query[0]->email.'</td>
+  </tr>';
+   $query2=$this->usuariomodel->regresaTelefono($data['idUsuario']);
+  foreach($query2 as $row){
+	  $resultado=$resultado.'  
+  <tr>
+    <th scope="row">Telefono</th>
+    <td>'.$row->telefono.'</td>
   </tr>
+  <tr>';
+  $resultado=$resultado.'<th scope="row">Extension</th><td>';
+  if($row->extension != null){
+    $resultado=$resultado.$row->extension.'</td>';}
+	$resultado=$resultado.'</tr>';
+  }
+  $resultado = $resultado.'
   <tr>
     <th scope="row">Departamento</th>
     <td>'.$query[0]->departamento.'</td>
@@ -62,15 +76,21 @@ class Informacion extends CI_Controller {
   <tr>
     <th scope="row">Email</th>
     <td>'.$query[0]->email.'</td>
-  </tr>
+  </tr>';
+  $query2=$this->contacto_model->regresaTelefono($data['idContacto']);
+  foreach($query2 as $row){
+	  $resultado=$resultado.'  
   <tr>
     <th scope="row">Telefono</th>
-    <td>'.$query[0]->telefono.'</td>
+    <td>'.$row->telefono.'</td>
   </tr>
-  <tr>
-    <th scope="row">Extension</th>
-    <td>'.$query[0]->extension.'</td>
-  </tr>
+  <tr>';
+  $resultado=$resultado.'<th scope="row">Extension</th><td>';
+  if($row->extension != null){
+    $resultado=$resultado.$row->extension.'</td>';}
+	$resultado=$resultado.'</tr>';
+  }
+  $resultado=$resultado.'
   <tr>
     <th scope="row">Puesto</th>
     <td>'.$query[0]->puesto.'</td>

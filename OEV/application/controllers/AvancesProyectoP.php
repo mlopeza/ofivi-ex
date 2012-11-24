@@ -142,7 +142,8 @@ class AvancesproyectoP extends CI_Controller {
 		$size = $documento[0]->Size;
 		$type = $documento[0]->Extension;
 		$name = $documento[0]->Titulo;
-		$content = $documento[0]->Archivo;
+		$content = stripslashes($documento[0]->Archivo);
+
 
 		header("Content-length: ".$size."");
 		header("Content-type: ".$type."");

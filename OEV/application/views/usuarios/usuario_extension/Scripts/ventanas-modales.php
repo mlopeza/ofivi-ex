@@ -103,8 +103,9 @@ function getInfoContacto(elemento,idContacto){
 			     url: "informacion/getInfoContacto",
 			     data: data ,
 			     success: function(msg){
+					 console.log(msg);
 						var mensaje = $.parseJSON(msg);
-						console.log(mensaje);
+						
 						if(mensaje['response'] ==  "true"){
 								//obtenemos la pagina que queremos cargar en la ventana y el titulo
 										

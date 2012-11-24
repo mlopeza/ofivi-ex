@@ -476,6 +476,13 @@ class Usuariomodel extends CI_Model {
 				u.idUsuario = ".$idUsuario)->result();
 		return $query;
 	}
+	function regresaTelefono($idUsuario){
+		$this->load->database();
+		$query=$this->db->query("Select CONCAT('(',lada,')',telefono) as telefono, extension, descripcion
+		From usuario_telefono
+		Where idUsuario =".$idUsuario)->result();
+		return $query;
+	}
 
 }
 ?>
