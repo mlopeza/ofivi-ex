@@ -52,7 +52,8 @@ Class Estado extends CI_Model{
 		$qry = "SELECT CONCAT(u.nombre,' ' ,u.apellidoP,' ',u.apellidoM) as nombre, e.estado, e.tiempoActualizacion as fecha
 				From usuario as u, estado as e
 				WHERE e.idProyecto = ".$idProyecto." AND
-				u. idUsuario = e.idUsuario";
+				u. idUsuario = e.idUsuario
+				ORDER BY tiempoActualizacion DESC";
 		$query = $this->db->query($qry);
 		return $query->result();
 	}

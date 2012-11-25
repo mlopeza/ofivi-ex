@@ -51,7 +51,7 @@
             
 			$.ajax({
 			     type: "POST",
-			     url: "actualizaEstado/getEstadoProyecto",
+			     url: "actualizaEstado/estadosDeProyecto",
 			     data: data,
 			     success: function(msg){
 								console.log("msg "+msg);
@@ -59,15 +59,15 @@
 								//Berifica que el proyecto tenga reportes
 								if(mensaje['mensaje'] == null || mensaje['mensaje'] == ""){
 									noty({text: "No hay estados para este proyecto", type: 'warning'});
-									//nodo=$("#reportes-actuales-body");
-									//$(nodo).empty();
+									nodo=$("#estados-proyecto-body");
+									$(nodo).empty();
 									$("#estadoActual").val("No hay estado");
 								}else{
 									console.log("mensaje "+mensaje);
 									if(mensaje['response'] == "false"){
 										noty({text: mensaje['mensaje'], type: 'error'});
 									}else{
-										$("#estadoActual").val(mensaje['mensaje'][0]['estado']);
+										agregaEstadoTabla2(mensaje['mensaje']);
 									}
 								}
 			     },
@@ -75,5 +75,20 @@
 						noty({text: "Ha habido un error en el sistema, intentelo nuevamente.", type: 'error'});
 				}
 			});
+    }
+    
+    function agregaEstadoTabla2(lista){
+
+        nodo=$("#estados-proyecto-body");
+        $(nodo).empty();
+        $.each(lista,function(index,elemento){
+            
+            $(nodo).append("<tr	><td>"+
+			elemento['nombre']+"</td><td>"+
+			elemento['estado']+"</td><td>"+
+			elemento['fecha']+"</td></tr>");
+             
+        
+        });
     }
 </script>

@@ -63,4 +63,17 @@ extends CI_Controller {
 			echo json_encode(array('response'=>'false','mensaje'=>"Hubo un error en el Sistema, favor de intentarlo mas tarde.".$e->getMessage()));
 		}
 	}
+	
+	//Regresa los reportes de un proyecto
+    public function estadosDeProyecto()
+    {
+		$data = $this->input->post();
+        try{
+	    	$this->load->model('estado');
+	    	$resultado = $this->estado->getAllEstados($data['idProyecto']);
+			echo json_encode(array('response'=>'true','mensaje'=>$resultado));
+        }catch(Exception $e){
+			echo json_encode(array('response'=>'false','mensaje'=>"Hubo un error en el Sistema, favor de intentarlo mas tarde.".$e->getMessage()));
+		}
+    }
 }
