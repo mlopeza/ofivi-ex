@@ -24,9 +24,10 @@ $(function(){
 		//prevenir el comportamiento normal del enlace
 		e.preventDefault();
 		var prueba = $(this).prop('href').split('/');
-		if(prueba[prueba.length-1]){
-		getInfoProfesor($(this),$(this).prop('name'));
-		}else{
+		console.log(prueba[prueba.length-1]);
+		if(prueba[prueba.length-1]==1){
+			getInfoProfesor($(this),$(this).prop('name'));
+		}else{			
 			getInfoContacto($(this),$(this).prop('name'));
 
 		}
@@ -90,7 +91,7 @@ $(function(){
 				}
 			});
 	}
-function getInfoContacto(elemento,idUsuario){
+function getInfoContacto(elemento,idContacto){
 			/*Datos de la tabla con Respecto al usuario*/
 			var data={ 
 			's_token':$('#s_token').attr('value'),
@@ -102,8 +103,9 @@ function getInfoContacto(elemento,idUsuario){
 			     url: "informacion/getInfoContacto",
 			     data: data ,
 			     success: function(msg){
+					 console.log(msg);
 						var mensaje = $.parseJSON(msg);
-						console.log(mensaje);
+						
 						if(mensaje['response'] ==  "true"){
 								//obtenemos la pagina que queremos cargar en la ventana y el titulo
 										

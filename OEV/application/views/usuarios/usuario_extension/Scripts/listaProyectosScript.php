@@ -12,8 +12,8 @@
     //Remueve un Proyecto
     $(".removeProyecto").live("click",function(){
 		console.log($(this).attr('id'));
-        data=$.parseJSON($(this).attr('id'));
-		id=data.idEmpresa;
+        	data=$.parseJSON($(this).attr('id'));
+		id=data.idProyecto;
     		noty({
     			animateOpen: {opacity: 'show'},
     			animateClose: {opacity: 'hide'},
@@ -21,7 +21,7 @@
     			text: "Deseas eliminar el Proyecto?", 
     			buttons: [
     		    {type: 'btn btn-mini btn-primary', text: 'Sí', click: function($noty) {
-                        ajaxCall('deleteProyecto',{'idProyecto':id},function(){
+                        ajaxCall('<?php echo base_url("altaProyecto");?>/deleteProyecto',{'idProyecto':id},function(){
                             noty({text: "El Proyecto se ha eliminado.", type: 'success'});
 							getProyectos();
                         });

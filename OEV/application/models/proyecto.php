@@ -277,13 +277,22 @@ class Proyecto extends CI_Model{
 
 	function getCATP($idProyecto){
 		$this->load->database();
-		$query = $this->db->query(' Select c.Categoria
+		$query = $this->db->query(' Select DISTINCT c.idCategoria,c.idSupraCategoria,c.Categoria
 									From categoria as c, categoria_proyecto as cp
 									Where '.$idProyecto.' = cp.idProyecto AND
 									cp.idCategoria = c.idCategoria' );
 		return $query->result();
 }
 
+	function getSCATP($idProyecto){
+		$this->load->database();
+		$query = $this->db->query(' Select DISTINCT sc.idSupraCategoria,sc.Nombre
+									From categoria as c, categoria_proyecto as cp, supracategoria as sc
+									Where '.$idProyecto.' = cp.idProyecto AND
+									cp.idCategoria = c.idCategoria AND
+									sc.idSupraCategoria = c.idSupraCategoria ' );
+		return $query->result();
+}
 
 
 
@@ -345,9 +354,9 @@ function getEA($idProyecto){
 		$this->load->database();
 		$this->db->trans_start();
 			$this->db->where('idProyecto',$idProyecto);
-			$this->db->delete('Proyecto');
-			$this->db->where('idProyecto',$idProyecto);
 			$this->db->delete('Contacto_Proyecto');
+			$this->db->where('idProyecto',$idProyecto);
+			$this->db->delete('Proyecto');
 		$this->db->trans_complete();
 	}
 
