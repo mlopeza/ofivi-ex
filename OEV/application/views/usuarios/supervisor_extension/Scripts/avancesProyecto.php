@@ -52,7 +52,7 @@
 								appendGrupo(mensaje['grupo'],sGrupo);
 								appendEmpresas(mensaje['mensaje'],sEmpresas);													
 							    appendProyectos(mensaje['proyectos'],sProyectos);
-								appendCategoria(mensaje['categoria'],sCategoria);
+								appendCategoria(mensaje['categoria'],sCategoria,mensaje['supracategoria']);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
 								appendEstado(mensaje['estado'],sEstados);
@@ -108,7 +108,7 @@
 								//Agrega los nodos que se buscaron
 								appendEmpresas(mensaje['mensaje'],sEmpresas);			
 								appendProyectos(mensaje['proyectos'],sProyectos);
-								appendCategoria(mensaje['categoria'],sCategoria);
+								appendCategoria(mensaje['categoria'],sCategoria,mensaje['supracategoria']);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
 																appendEstado(mensaje['estado'],sEstados);
@@ -161,7 +161,7 @@
 								
 								//Agrega los nodos que se buscaron
 								appendProyectos(mensaje['mensaje'],sProyectos);
-								appendCategoria(mensaje['categoria'],sCategoria);
+								appendCategoria(mensaje['categoria'],sCategoria,mensaje['supracategoria']);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
 								appendEstado(mensaje['estado'],sEstados);
@@ -207,7 +207,7 @@
 																$(sDocumentos).empty();
 
 								//Agrega los nodos que se								 buscaron
-								appendCategoria(mensaje['categoria'],sCategoria);
+								appendCategoria(mensaje['categoria'],sCategoria,mensaje['supracategoria']);
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
 								appendDocument(mensaje['documento'],sDocumentos);
@@ -252,13 +252,21 @@
 			});
 		}
 	}		
-	function appendCategoria(nodos,elemento){
+	function appendCategoria(nodos,elemento,nodotes){
 		if(nodos.length == 0){
 			$(elemento).append('No tiene categoria asignada');
 		}else{
-			$(nodos).each(function(index,nodo){
-			       $(elemento).append(nodo['Categoria']);
+			var supracategoria = $('<ul>');
+			$(nodotes).each(function(index,nodo){
+				supracategoria.append($("<li>").append(nodo['Nombre']));
+				var categoria = $('<ul>');
+					$(nodos).each(function(index,nodote){
+							if(nodo['idSupraCategoria'] == nodote ['idSupraCategoria'])
+							$(categoria).append($('<li>').append(nodote['Categoria']));
+					});
+				$(supracategoria).append($(categoria));
 			});
+			$(elemento).append($(supracategoria))
 		}
 	}	
 	function appendProfesor(nodos,elemento){

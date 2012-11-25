@@ -41,9 +41,10 @@ class AvancesproyectoP extends CI_Controller {
 			$resultado6=$this->estado->getAllEstados($resultado2[0]->idProyecto);
 			$this->load->model('documento');
 			$resultado7=$this->documento->getDocument($resultado2[0]->idProyecto);
+			$resultado8=$this->proyecto->getSCATP($resultado2[0]->idProyecto);			
 			
 			//Se envia el resultado			
-			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5,'estado'=>$resultado6,'documento'=>$resultado7);
+			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5,'estado'=>$resultado6,'documento'=>$resultado7,'supracategoria'=>$resultado8);
 			echo json_encode($mensaje);
 		}
 	}
@@ -68,8 +69,10 @@ class AvancesproyectoP extends CI_Controller {
 			$resultado6=$this->estado->getAllEstados($resultado[0]->idProyecto);	
 			$this->load->model('documento');
 			$resultado7=$this->documento->getDocument($resultado[0]->idProyecto);		
+			$resultado8=$this->proyecto->getSCATP($resultado2[0]->idProyecto);			
+			
 			//Se envia el resultado
-			$mensaje = array('response'=>'true','mensaje'=>$resultado,'categoria'=>$resultado2,'usuario'=>$resultado3,'contacto'=>$resultado4,'estado'=>$resultado6,'documento'=>$resultado7);
+			$mensaje = array('response'=>'true','mensaje'=>$resultado,'categoria'=>$resultado2,'usuario'=>$resultado3,'contacto'=>$resultado4,'estado'=>$resultado6,'documento'=>$resultado7,'supracategoria'=>$resultado8);
 			echo json_encode($mensaje);
 		}
 	}
@@ -92,8 +95,10 @@ class AvancesproyectoP extends CI_Controller {
 			$resultado6=$this->estado->getAllEstados($data['idProyecto']);
 			$this->load->model('documento');
 			$resultado7=$this->documento->getDocument($data['idProyecto']);
+			$resultado8=$this->proyecto->getSCATP($resultado2[0]->idProyecto);			
+			
 			//Se envia el resultado
-			$mensaje = array('response'=>'true','categoria'=>$resultado2,'usuario'=>$resultado3,'contacto'=>$resultado4,'estado'=>$resultado6,'documento'=>$resultado7);
+			$mensaje = array('response'=>'true','categoria'=>$resultado2,'usuario'=>$resultado3,'contacto'=>$resultado4,'estado'=>$resultado6,'documento'=>$resultado7,'supracategoria'=>$resultado8);
 			echo json_encode($mensaje);
 		}
 	}
@@ -126,8 +131,9 @@ class AvancesproyectoP extends CI_Controller {
 			$resultado6=$this->estado->getAllEstados($resultado2[0]->idProyecto);
 			$this->load->model('documento');
 			$resultado7=$this->documento->getDocument($resultado2[0]->idProyecto);			
+			$resultado8=$this->proyecto->getSCATP($resultado2[0]->idProyecto);						
 				//Se envia el resultado		
-			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'grupo'=>$grupo,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5,'estado'=>$resultado6,'documento'=>$resultado7);}
+			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'grupo'=>$grupo,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5,'estado'=>$resultado6,'documento'=>$resultado7,'supracategoria'=>$resultado8);}
 			else{
 				$mensaje = array('response'=>'false','mensaje'=>'No existen proyectos en la base de datos.');}
 			echo json_encode($mensaje);
