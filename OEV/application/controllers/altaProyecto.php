@@ -22,16 +22,18 @@ extends CI_Controller {
 		$this->load->library('session');
 		//Se carga el Modelo de Grupos
 		$this->load->model('grupo');
+		$this->load->model('supracategoria');
+		
 		//Cargar la sesion		
 		$datos_usuario=$this->session->all_userdata();
 		$vista = array('vista'=>$datos_usuario['vista']);
 		//Se buscan todos los Grupos disponibles
 		$query['data']=$this->grupo->getAllGroups();
-		
+		$query['supra']= $this->supracategoria->getSCWC();
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
 		$this->load->view('usuarios/usuario_extension/menu_extension');
-        $this->load->view('usuarios/usuario_extension/altaProyecto',$query);
+    $this->load->view('usuarios/usuario_extension/altaProyecto',$query);
 		$this->load->view('usuarios/footer');
 		$this->load->view('usuarios/usuario_extension/Scripts/altaProyecto',$data);
 
@@ -162,13 +164,17 @@ extends CI_Controller {
 		if(!isset($data['idProyecto'])){
 			$data['idProyecto'] = -1;
 		}
+		if(!isset($data['categorias'])){
+			$data['categorias'] = array();
+		}
 		//Crea los nuevos contactos y regresa un arreglo con sus identificadores
 		$arregloContactos = $this->contacto_model->creaContactosConTelefono($newContactos,$data['idEmpresa']);
 		//Crea el Proyecto
 		$idProyecto = $this->proyecto->altaProyecto($data['idEmpresa'],$data['nombre_proyecto'],$data['descripcionCliente'],$data['descripcionUsuario'],$data['iniciadoPor'],$data['idProyecto']);
+		$this->proyecto->asignaCategorias($idProyecto,$data['categorias']);
 		//Asigna los contactos al proyecto
-        $this->proyecto->agregaContactos($oldContactos,$arregloContactos,$idProyecto);
-			echo json_encode(array('idProyecto'=>$idProyecto,'response'=>'true','mensaje'=>"El proyecto se creó correctamente."));
+    $this->proyecto->agregaContactos($oldContactos,$arregloContactos,$idProyecto);
+    echo json_encode(array('idProyecto'=>$idProyecto,'response'=>'true','mensaje'=>"El proyecto se creó correctamente."));
 
 		}catch(Exception $e){
 			echo json_encode(array('response'=>'false','mensaje'=>"Hubo un error en el Sistema, favor de intentarlo mas tarde.".$e->getMessage()));

@@ -1,8 +1,11 @@
 <script type="text/javascript" >
 	/*Logica de Creación de Proyecto*/
 	$(document).ready(function(){
+            // Accordion
+		$("#accordion").accordion({
+              header: "h3"
+		});
 		//Llena el primer campo
-
 		//Selecciona lo que el mensaje get trae
 		seleccionaOpciones();
 
@@ -140,6 +143,11 @@
 			var oldContactos = $("#demo-input-local").tokenInput("get");
 			var descripcion_cliente=$($('iframe')[0]).contents().find('.wysihtml5-editor').html();
 			var descripcion_usuario=$($('iframe')[1]).contents().find('.wysihtml5-editor').html();
+			var categorias = new Array();
+			//Agrega todas las categorias en un arreglo
+			$.each($(".categoriaCheckbox").filter(":checked"),function(index,value){
+				categorias[categorias.length]={'idCategoria':$(value).attr('id')};
+			});
 
 			var data={ 
 			'nombre_proyecto':nombre_proyecto,
@@ -148,10 +156,10 @@
 			'idGrupo':idGrupo,
 			'oldContactos':oldContactos,
 			'descripcionCliente':descripcion_cliente,
-			'descripcionUsuario':descripcion_usuario
+			'descripcionUsuario':descripcion_usuario,
+			'categorias':categorias
 			};
-
-            if(idEmpresa == "" || idEmpresa == undefined || idEmpresa <= 0){
+					if(idEmpresa == "" || idEmpresa == undefined || idEmpresa <= 0){
 				$.unblockUI();
                 noty({text: "No se ha seleccionado una empresa.", type: 'error'});
                 return;
@@ -174,6 +182,7 @@
 			     url: "/OEV/altaProyecto/guardaProyecto",
 			     data: data ,
 			     success: function(msg){
+                console.log(msg);
 								mensaje=$.parseJSON(msg);
 							if(mensaje['response'] == "true"){
 								noty({text: "El proyecto se ha guardado correctamente.", type: 'success'});	
