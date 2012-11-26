@@ -68,7 +68,7 @@
                                                                <form class="form-horizontal">
                                                                <fieldset>
                                                                <div class="control-group">
-                                                                    <label for="focusedInput" class="control-label">Información extra.</label>
+                                                                    <label for="focusedInput" class="control-label">Comentarios.</label>
                                                                     <div class="controls">
                                                                         <input type="text" value="" id="focusedInput" class="informacion-extra input-xlarge focused">
                                                                     </div>

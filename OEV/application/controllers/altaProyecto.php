@@ -59,15 +59,17 @@ extends CI_Controller {
 		//Se carga el Modelo de Grupos
 		$this->load->model('grupo');
 		$this->load->model('proyecto');
+		$this->load->model('supracategoria');
 		//Cargar la sesion		
 		$datos_usuario=$this->session->all_userdata();
 		$vista = array('vista'=>$datos_usuario['vista']);
 		//Se buscan todos los Grupos disponibles
 		$query['data']=$this->grupo->getAllGroups();		
+		$query['supra']= $this->supracategoria->getSCWC();
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
 		$this->load->view('usuarios/usuario_extension/menu_extension');
-        $this->load->view('usuarios/usuario_extension/altaProyecto',$query);
+    $this->load->view('usuarios/usuario_extension/altaProyecto',$query);
 		$this->load->view('usuarios/footer');
 		$this->load->view('usuarios/usuario_extension/Scripts/altaProyecto',$data);
 		$this->load->view('usuarios/usuario_extension/Scripts/editaProyecto',$data);
@@ -80,8 +82,7 @@ extends CI_Controller {
 		$p = $this->proyecto->getProyecto($data['idProyecto']);
 		$p[0]->descripcionUsuario=stripslashes($p[0]->descripcionUsuario);
 		$p[0]->descripcionAEV=stripslashes($p[0]->descripcionAEV);
-		$proyecto = array("proyecto" =>$p,
-						  "contactos"=>$this->proyecto->getContactos($data['idProyecto']));
+		$proyecto = array("proyecto" =>$p,"contactos"=>$this->proyecto->getContactos($data['idProyecto']),"categorias"=>$this->proyecto->getCategorias($data['idProyecto']));
 		echo json_encode($proyecto);
 	}
 

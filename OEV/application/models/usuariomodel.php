@@ -392,6 +392,16 @@ class Usuariomodel extends CI_Model {
 		$query = $this->db->query('SELECT Nombre,ApellidoP FROM usuario WHERE username="'.$usuario.'"')->result();
 		return $query;
 	}
+
+
+  /*Obtiene los datos del usuario*/
+	function getUsuario($idUsuario){
+		$this->load->database();
+    $this->db->where('idUsuario',$idUsuario);
+		$query = $this->db->get('Usuario')->result();
+		return $query[0];
+	}
+
 	function getEspecialidad($usuario){
         $this->load->database();
         $grupos= $this->db->query('

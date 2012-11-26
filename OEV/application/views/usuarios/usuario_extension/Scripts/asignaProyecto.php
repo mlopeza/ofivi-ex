@@ -58,8 +58,8 @@
 			     url: "asignaProyecto/asignaProfesor",
 			     data: data ,
 			     success: function(msg){
+                console.log(msg);
 								mensaje=$.parseJSON(msg);
-                                console.log(msg);
 							if(mensaje['response'] == "false"){
 								noty({text: mensaje['mensaje'], type: 'error'});
 							}else{
