@@ -33,7 +33,7 @@
                                                             if(empty($proyectos)) {
 																?>
 																<tr class="colorea-proyecto" idProyecto="-1" class="tabla-proyectos">
-                                                                       <td>No hay proyectos para este usuario</td>
+                                                                       <td colspan="3">No hay proyectos para este usuario</td>
                                                                 </tr>
 															<?php }else 
                                                                 foreach($proyectos as $proyecto){

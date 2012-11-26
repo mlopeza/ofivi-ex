@@ -2,7 +2,8 @@
   <div id="section-body" class="tabbable">
     <!-- Only required for left/right tabs -->
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab1" data-toggle="tab">Crear Contacto</a></li>
+      <li id="pes1" class="active"><a href="#tab1" data-toggle="tab">Crear Contacto</a></li>
+      <li id="pes2" ><a href="#tab2" data-toggle="tab" id="tab-contactos" >Lista de Contactos</a></li>
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" id="tab1">
@@ -63,11 +64,12 @@
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse" href="#statements" data-original-title="">
-                  <i class="icon-globe icon-white"></i> <span class="divider-vertical"></span> Crear Contacto <i class="icon-chevron-down icon-white pull-right"></i>
+                  <i class="icon-globe icon-white"></i> <span class="divider-vertical"></span><span id="edicion-contacto">Crear</span> Contacto <i class="icon-chevron-down icon-white pull-right"></i>
                   </a>
                 </div>
                 <div id="statements" class="accordion-body collapse in">
                   <div class="accordion-inner paddind">
+                    <input type="hidden" value="" id="idContacto"/>
                     <form class="form-horizontal">
                       <fieldset>
                         <div class="control-group">
@@ -142,11 +144,56 @@
                         </table>
                         <br />
                         <div class="form-actions">
-                          <button class="btn btn-primary" id="agrega-contacto-arreglo" type="button">Agregar</button>
-                          <button class="btn">Limpiar</button>
+                          <button class="btn btn-primary" id="agrega-contacto-arreglo" type="button">Guardar</button>
+                          <button class="btn" id="limpiar-contacto" type="button">Limpiar</button>
                         </div>
                       </fieldset>
                     </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="tab2">
+        <div class="row-fluid">
+          <!--Tabs3-->
+          <div class="span7">
+            <div id="accordion1" class="accordion">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" href="#control-contactos" data-original-title="">
+                  <i class="icon-list-alt icon-white"></i> <span class="divider-vertical"></span> Contactos de la Empresa<i class="icon-chevron-down icon-white pull-right"></i>
+                  </a>
+                </div>
+                <div id="control-contactos" class="accordion-body collapse in">
+                  <div class="accordion-inner" style="overflow: auto;">
+                    <table id="tabla-contactos" class="table table-bordered pull-left">
+                      <thead><tr><th>Departamento</th><th>Puesto</th><th>Nombre</th><th>Correo Electrónico</th><th>Acción</th></tr></thead>
+                    </table>
+                    <br/><br/><br/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="span5">
+            <div id="accordion1" class="accordion">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" href="#control-contactos-t" data-original-title="">
+                  <i class="icon-list-alt icon-white"></i> <span class="divider-vertical"></span> Telefonos de contacto<i class="icon-chevron-down icon-white pull-right"></i>
+                  </a>
+                </div>
+                <div id="control-contactos-t" class="accordion-body collapse in">
+                  <div class="accordion-inner" style="overflow: auto;">
+                    <div><strong>Recibe Correos:</strong><span id="RecibeCorreos">..</span></div>
+                    <table id="tabla-telefono" class="table table-bordered pull-left">
+                      <thead><tr><th>Descripción</th><th>Lada</th><th>Telefono</th><th>Extensión</th><th>SubExtensión</th></tr></thead>
+                      <tbody></tbody>
+                    </table>
+                    <br/><br/><br/>
                   </div>
                 </div>
               </div>

@@ -31,6 +31,7 @@ extends CI_Controller {
     $this->load->view('usuarios/usuario_extension/creaContacto',$query);
 		$this->load->view('usuarios/footer');
 		$this->load->view('usuarios/usuario_extension/Scripts/altaProyecto',$data);
+		$this->load->view('usuarios/usuario_extension/Scripts/creaContacto');
     }
 
 	//Regresa los contactos dando como parametro una empresa

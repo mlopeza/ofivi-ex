@@ -25,7 +25,7 @@
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
-			     url: "avancesproyectoP/getGrupos",
+			     url: "AvancesProyectoP/getGrupos",
 			     data: data ,
 			     success: function(msg){
 						console.log(msg);
@@ -280,7 +280,7 @@
 	}		
 	function appendDocumentos(nodos,elemento){
 		if(nodos.length == 0){
-			$(elemento).append($("<li>").append("No tiene documentos").attr('id','0'));
+			$(elemento).append($("<li>").append("No tiene documentos guardados").attr('id','0'));
 		}else{
 			$(nodos).each(function(index,nodo){
 				if(nodo['esLegal']){

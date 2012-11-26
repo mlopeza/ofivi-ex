@@ -98,7 +98,7 @@ class contacto_model extends CI_Model {
 
 	function getContactosDeEmpresaCompletos($idEmpresa){
 		$this->load->database();
-		$this->db->select("c.*");
+		$this->db->select("c.Departamento,c.Puesto,c.idContacto,c.Nombre,c.apellidoP,c.apellidoM,c.email,c.Recibe_Correos");
 		$this->db->from("Contacto c");
 		$this->db->where("c.idEmpresa",$idEmpresa);
 		$this->db->where("c.Contacto_Activo",'1');
@@ -220,17 +220,31 @@ class contacto_model extends CI_Model {
 
 	function agregaContacto($data){
 		$this->load->database();
-		$telefonos = $data['telefonos'];
-		unset($data['telefonos']);
-		$this->db->insert('Contacto',$data);
-		$idx = $this->db->query("SELECT LAST_INSERT_ID() as idContacto;")->result();
-		$id=$idx[0]->idContacto;
-		for($i = 0; $i < sizeof($telefonos);$i++){
-			$telefonos[$i]['idContacto'] = $id;
-		}
-		if(sizeof($telefonos) > 0 ){
-			$this->db->insert_batch('Contacto_Telefono', $telefonos); 
-		}
+    $this->db->trans_start();
+		  $telefonos = $data['telefonos'];
+		  unset($data['telefonos']);
+      $id = -1;
+      if(isset($data['idContacto'])){
+        $id=$data['idContacto'];
+        $this->db->where('idContacto',$data['idContacto']);
+        $this->db->update('Contacto',$data);
+      }else{
+  	  	$this->db->insert('Contacto',$data);
+	    	$idx = $this->db->query("SELECT LAST_INSERT_ID() as idContacto;")->result();
+	    	$id=$idx[0]->idContacto;
+      }
+  
+      //ELimina los Telefonos y los sobreescribe
+      $this->db->where('idContacto',$id);
+      $this->db->delete('Contacto_Telefono');
+  
+		  for($i = 0; $i < sizeof($telefonos);$i++){
+		  	$telefonos[$i]['idContacto'] = $id;
+		  }
+		  if(sizeof($telefonos) > 0 ){
+		  	$this->db->insert_batch('Contacto_Telefono', $telefonos); 
+		  }
+    $this->db->trans_complete();
 	}
 
 
