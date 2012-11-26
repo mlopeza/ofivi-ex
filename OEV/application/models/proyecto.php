@@ -102,6 +102,12 @@ class Proyecto extends CI_Model{
 	}
 
 
+  function getCategorias($idProyecto){
+    $this->db->select('idCategoria');
+    $this->db->where('idProyecto',$idProyecto);
+    return $this->db->get('Categoria_Proyecto')->result();
+  }
+
 	//Agrega los contactos al proyecto
 	function agregaContactos($viejos,$nuevos,$idProyecto){
 		$data = array();
@@ -388,6 +394,7 @@ function getEA($idProyecto){
 				INNER JOIN Contacto_Proyecto cp ON c.idContacto = cp.idContacto AND cp.idProyecto='.$idProyecto.' ');
 		return $query->result();
 	}
+<<<<<<< HEAD
 	
 	/*
 	 * Obtiene los proyectos que fueron estan activos y qu eno estan finalizados
@@ -411,6 +418,20 @@ function getEA($idProyecto){
 		$query = $this->db->get();
 		return $query->result();
 	}
+=======
+
+  //Regresa datos acerca del proyecto y a que grupo y empresa pertenece
+  function getResumenProyecto($idProyecto){
+    $this->load->database();
+    $this->db->select('g.nombre as Grupo, e.nombre as Empresa, p.Nombre as Proyecto');
+    $this->db->from('Proyecto p');
+    $this->db->join('Empresa e','p.idEmpresa = e.idEmpresa','inner');
+    $this->db->join('Grupo g','g.idGrupo = e.idGrupo','inner');
+    $this->db->where('p.idProyecto',$idProyecto);
+    $query=$this->db->get()->result();
+    return $query[0];
+  }
+>>>>>>> 90c2c2b9a3c5690f86d0053c311924e35f82d72d
 }
 ?>
 

@@ -6,6 +6,12 @@ extends CI_Controller {
     public function index()
     {
 		//Sesiones
+    $data=$this->input->get();
+    if(!isset($data['idGrupo']))
+        $data['idGrupo'] = -1;
+
+    if(!isset($data['idEmpresa']))
+        $data['idEmpresa'] = -1;
 
 		$this->load->helper('url');
         $this->load->helper('form');
@@ -22,9 +28,9 @@ extends CI_Controller {
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
 		$this->load->view('usuarios/usuario_extension/menu_extension');
-        $this->load->view('usuarios/usuario_extension/creaContacto',$query);
+    $this->load->view('usuarios/usuario_extension/creaContacto',$query);
 		$this->load->view('usuarios/footer');
-		$this->load->view('usuarios/usuario_extension/Scripts/creaContacto');
+		$this->load->view('usuarios/usuario_extension/Scripts/altaProyecto',$data);
     }
 
 	//Regresa los contactos dando como parametro una empresa

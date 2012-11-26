@@ -92,203 +92,210 @@
                   <div class="accordion-inner paddind" style="overflow: auto;">
                     <div id="accordion" class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons" role="tablist">
                       <?php
+                        if(sizeof($supra) == 0){
+                        ?>
+                      <div>No Hay Categorías Registradas</div>
+                      <br />
+                      <?php
+                        }
                         foreach($supra as $s){
                         $contador=0; $imprimi=0;
-											?>
+                        ?>
                       <div>
                         <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-state-active ui-corner-top ui-state-focus" role="tab" aria-expanded="true" aria-selected="true" tabindex="0"><span class="ui-icon ui-icon-triangle-1-s">
-												</span><a href="#"><?php echo $s['Supra']->Nombre; ?></a></h3>
+                          </span><a href="#"><?php echo $s['Supra']->Nombre; ?></a>
+                        </h3>
                         <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" style="height: 31px; " role="tabpanel">
-												<?php
-													if(sizeof($s['Categorias']) == 0){
-															?>
-															<div class ="span12">No hay Categorias</div>
-												      </div>		
-												      </div>		
-												<?php
-															continue;
-													}
-                        ?>
-                          <?php foreach($s['Categorias'] as $sub){
-                            if($contador%2 == 0){echo '<div class="row-fluid">';$contador++;}                            
-                            ?>
-                          <div class="span5"><?php $imprimi++; echo $sub->Categoria;?></div>
-                          <div class="span1"><input type="checkbox" class="categoriaCheckbox" id="<?php echo $sub->idCategoria;?>" idSupraCategoria="<?php echo $sub->idSupraCategoria;?>" /></div>
-                          <?php 
-                            if($imprimi%2 == 0){
-                                 $contador++;
-                                 echo "</div>";    
-                            }
-                            }?>
+                          <?php
+                            if(sizeof($s['Categorias']) == 0){
+                            		?>
+                          <div class="span12">No hay Categorias</div>
                         </div>
                       </div>
-                      <?php 
-                        if($imprimi%2 != 0){
-                                echo "</div>";
+                      <?php
+                        continue;
                         }
-                        }
-                        
+                                 ?>
+                      <?php foreach($s['Categorias'] as $sub){
+                        if($contador%2 == 0){echo '<div class="row-fluid">';$contador++;}                            
                         ?>
+                      <div class="span5"><?php $imprimi++; echo $sub->Categoria;?></div>
+                      <div class="span1"><input type="checkbox" class="categoriaCheckbox" id="<?php echo $sub->idCategoria;?>" idSupraCategoria="<?php echo $sub->idSupraCategoria;?>" /></div>
+                      <?php 
+                        if($imprimi%2 == 0){
+                             $contador++;
+                             echo "</div>";    
+                        }
+                        }?>
                     </div>
                   </div>
+                  <?php 
+                    if($imprimi%2 != 0){
+                            echo "</div>";
+                    }
+                    }
+                    
+                    ?>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="tab-pane" id="tab2">
-        <div class="row-fluid">
-          <div class="span6">
-            <div id="accordion1" class="accordion">
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" href="#event" data-original-title="">
-                  <i class="icon-bookmark icon-white"></i> <span class="divider-vertical"></span> Agregar Contacto <i class="icon-chevron-down icon-white pull-right"></i>
-                  </a>
-                </div>
-                <div id="event" class="accordion-body collapse in">
-                  <div class="accordion-inner paddind" style="overflow: auto;">
-                    <fieldset>
-                      <form class="form-horizontal">
-                        <table class="table table-bordered">
-                          <thead>
-                            <tr>
-                              <th>Contactos Guardados</th>
-                            </tr>
-                          </thead>
-                          <tbody id="contactos-body-guardados">
-                            <tr>
-                              <td><input type="text" style="max-width:400px;" class="input" id="demo-input-local" name="blah" /><br /></td>
-                            </tr>
-                          </tbody>
-                          <tfoot>
-                            <tr>
-                              <td>
-                              </td>
-                            </tr>
-                          </tfoot>
-                        </table>
-                      </form>
-                    </fieldset>
-                    <div class="form-actions">
-                      <button class="btn btn-primary GuardarTodo" id="GuardarTodo" type="button">Guardar Proyecto</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--Tabs3-->
-          <div class="span6">
-            <div id="accordion2" class="accordion">
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" href="#statements" data-original-title="">
-                  <i class="icon-globe icon-white"></i> <span class="divider-vertical"></span> Crear Contacto <i class="icon-chevron-down icon-white pull-right"></i>
-                  </a>
-                </div>
-                <div id="statements" class="accordion-body collapse in">
-                  <div class="accordion-inner paddind" style="overflow: auto;">
-                    <form class="form-horizontal">
-                      <fieldset>
-                        <div class="control-group">
-                          <label for="focusedInput" class="control-label">Nombre</label>
-                          <div class="controls">
-                            <input type="text" value="" id="contacto-nombre" class="input-xlarge focused" />
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label for="focusedInput" class="control-label">Apellido Paterno</label>
-                          <div class="controls">
-                            <input type="text" value="" id="contacto-ap" class="input-xlarge focused" />
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label for="focusedInput" class="control-label">Apellido Materno</label>
-                          <div class="controls">
-                            <input type="text" value="" id="contacto-am" class="input-xlarge focused" />
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label for="focusedInput" class="control-label">Correo Electrónico</label>
-                          <div class="controls">
-                            <input type="text" value="" id="contacto-email" class="input-xlarge focused" />
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label for="focusedInput" class="control-label">Puesto</label>
-                          <div class="controls">
-                            <input type="text" value="" id="contacto-puesto" class="input-xlarge focused" />
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label for="focusedInput" class="control-label">Departamento</label>
-                          <div class="controls">
-                            <input type="text" value="" id="contacto-departamento" class="input-xlarge focused" />
-                          </div>
-                        </div>
-                        <div class="control-group">
-                          <label for="optionsCheckbox2" class="control-label">Pregunta al Cliente</label>
-                          <div class="controls">
-                            <label class="checkbox">
-                            <input type="checkbox" value="option1" id="contacto-enviar" />
-                            Se pueden enviar correos?
-                            </label>
-                          </div>
-                        </div>
-                        <table class="table table-bordered">
-                          <thead>
-                            <tr>
-                              <th>Descripción</th>
-                              <th>Lada</th>
-                              <th>Telefono</th>
-                              <th>Ext.</th>
-                              <th>SubExt.</th>
-                              <th>Acción</th>
-                            </tr>
-                          </thead>
-                          <tbody id="contacto-telefonos-body">
-                          </tbody>
-                          <tfoot>
-                            <tr>
-                              <td colspan="6" style="text-align:right;">
-                              </td>
-                            </tr>
-                            <tr>
-                              <td colspan="6" style="text-align:right;">
-                                <button class="btn btn-primary" type="button" id="contacto-nuevo-telefono">Nuevo</button>
-                              </td>
-                            </tr>
-                          </tfoot>
-                        </table>
-                        <br />
-                        <div class="form-actions">
-                          <button class="btn btn-primary" id="agrega-contacto-arreglo" type="button">Guardar Contacto</button>
-                        </div>
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="tab-pane" id="tab3">
-        <fieldset />
-        <textarea id="descripcionCliente" name="descripcionUsuario" class="textarea" placeholder="Descripci&oacute;n ..." style="width: 810px; height: 400px"></textarea>
-        <div class="form-actions">
-          <button class="btn btn-primary GuardarTodo" id="GuardarTodo" type="button">Guardar Proyecto</button>
-        </div>
-      </div>
-      <div class="tab-pane" id="tab4">
-        <fieldset />
-        <textarea id="descripcionUsuario" name="descripcionAEV" class="textarea" placeholder="Descripci&oacute;n ..." style="width: 810px; height: 400px"></textarea>
-        <div class="form-actions">
-          <button class="btn btn-primary GuardarTodo" id="GuardarTodo" type="button">Guardar Proyecto</button>
         </div>
       </div>
     </div>
   </div>
+  <div class="tab-pane" id="tab2">
+    <div class="row-fluid">
+      <div class="span6">
+        <div id="accordion1" class="accordion">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" href="#event" data-original-title="">
+              <i class="icon-bookmark icon-white"></i> <span class="divider-vertical"></span> Agregar Contacto <i class="icon-chevron-down icon-white pull-right"></i>
+              </a>
+            </div>
+            <div id="event" class="accordion-body collapse in">
+              <div class="accordion-inner paddind" style="overflow: auto;">
+                <fieldset>
+                  <form class="form-horizontal">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Contactos Guardados</th>
+                        </tr>
+                      </thead>
+                      <tbody id="contactos-body-guardados">
+                        <tr>
+                          <td><input type="text" style="max-width:400px;" class="input" id="demo-input-local" name="blah" /><br /></td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </form>
+                </fieldset>
+                <div class="form-actions">
+                  <button class="btn btn-primary GuardarTodo" id="GuardarTodo" type="button">Guardar Proyecto</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Tabs3-->
+      <div class="span6">
+        <div id="accordion2" class="accordion">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" href="#statements" data-original-title="">
+              <i class="icon-globe icon-white"></i> <span class="divider-vertical"></span> Crear Contacto <i class="icon-chevron-down icon-white pull-right"></i>
+              </a>
+            </div>
+            <div id="statements" class="accordion-body collapse in">
+              <div class="accordion-inner paddind" style="overflow: auto;">
+                <form class="form-horizontal">
+                  <fieldset>
+                    <div class="control-group">
+                      <label for="focusedInput" class="control-label">Nombre</label>
+                      <div class="controls">
+                        <input type="text" value="" id="contacto-nombre" class="input-xlarge focused" />
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label for="focusedInput" class="control-label">Apellido Paterno</label>
+                      <div class="controls">
+                        <input type="text" value="" id="contacto-ap" class="input-xlarge focused" />
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label for="focusedInput" class="control-label">Apellido Materno</label>
+                      <div class="controls">
+                        <input type="text" value="" id="contacto-am" class="input-xlarge focused" />
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label for="focusedInput" class="control-label">Correo Electrónico</label>
+                      <div class="controls">
+                        <input type="text" value="" id="contacto-email" class="input-xlarge focused" />
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label for="focusedInput" class="control-label">Puesto</label>
+                      <div class="controls">
+                        <input type="text" value="" id="contacto-puesto" class="input-xlarge focused" />
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label for="focusedInput" class="control-label">Departamento</label>
+                      <div class="controls">
+                        <input type="text" value="" id="contacto-departamento" class="input-xlarge focused" />
+                      </div>
+                    </div>
+                    <div class="control-group">
+                      <label for="optionsCheckbox2" class="control-label">Pregunta al Cliente</label>
+                      <div class="controls">
+                        <label class="checkbox">
+                        <input type="checkbox" value="option1" id="contacto-enviar" />
+                        Se pueden enviar correos?
+                        </label>
+                      </div>
+                    </div>
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Descripción</th>
+                          <th>Lada</th>
+                          <th>Telefono</th>
+                          <th>Ext.</th>
+                          <th>SubExt.</th>
+                          <th>Acción</th>
+                        </tr>
+                      </thead>
+                      <tbody id="contacto-telefonos-body">
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td colspan="6" style="text-align:right;">
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="6" style="text-align:right;">
+                            <button class="btn btn-primary" type="button" id="contacto-nuevo-telefono">Nuevo</button>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                    <br />
+                    <div class="form-actions">
+                      <button class="btn btn-primary" id="agrega-contacto-arreglo" type="button">Guardar Contacto</button>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="tab3">
+    <fieldset />
+    <textarea id="descripcionCliente" name="descripcionUsuario" class="textarea" placeholder="Descripci&oacute;n ..." style="width: 810px; height: 400px"></textarea>
+    <div class="form-actions">
+      <button class="btn btn-primary GuardarTodo" id="GuardarTodo" type="button">Guardar Proyecto</button>
+    </div>
+  </div>
+  <div class="tab-pane" id="tab4">
+    <fieldset />
+    <textarea id="descripcionUsuario" name="descripcionAEV" class="textarea" placeholder="Descripci&oacute;n ..." style="width: 810px; height: 400px"></textarea>
+    <div class="form-actions">
+      <button class="btn btn-primary GuardarTodo" id="GuardarTodo" type="button">Guardar Proyecto</button>
+    </div>
+  </div>
+</div>
+</div>
 </div>

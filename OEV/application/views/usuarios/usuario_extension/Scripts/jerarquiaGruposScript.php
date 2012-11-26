@@ -20,8 +20,6 @@
         eTable = $('#tabla-empresas').dataTable();
         lTable = $('#tabla-lista').dataTable();
 
-
-
 		//Trae todos los grupos de la base de datos
 		getGrupos();
 		getLista();
@@ -39,6 +37,37 @@
 		}
 		window.location.replace("altaProyecto?idGrupo="+grupo+"&idEmpresa="+empresa);
 	});
+
+	$("#crear-proyecto").click(function(){
+		grupo=$("#grupo-creacion").attr('idGrupo');
+		empresa=$("#empresa-creacion").attr('idEmpresa');
+		if(grupo == -1){
+			noty({text: "No se ha seleccionado ningún Grupo.", type: 'error'});
+			return;
+		}
+		if(empresa == -1){
+            noty({text: "No se ha seleccioando ninguna Empresa.", type: 'error'});
+			return;
+		}
+		window.location.replace("altaProyecto?idGrupo="+grupo+"&idEmpresa="+empresa);
+	});
+
+
+	$("#crear-contacto").click(function(){
+		grupo=$("#grupo-creacion").attr('idGrupo');
+		empresa=$("#empresa-creacion").attr('idEmpresa');
+		if(grupo == -1){
+			noty({text: "No se ha seleccionado ningún Grupo.", type: 'error'});
+			return;
+		}
+		if(empresa == -1){
+            noty({text: "No se ha seleccioando ninguna Empresa.", type: 'error'});
+			return;
+		}
+		window.location.replace("creaContacto?idGrupo="+grupo+"&idEmpresa="+empresa);
+	});
+
+
 	$("#actualizar-lista").click(getLista);
     //Remueve un grupo de la base de datos
     $(".removeGrupo").live("click",function(){
