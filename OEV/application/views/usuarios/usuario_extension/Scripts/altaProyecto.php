@@ -59,7 +59,7 @@
 				noty({text: 'Faltan campos del Contacto por llenar.', type: 'error'});
 				return;
 			}
-
+      
 			empresa=$("#Empresa").children('option').filter(':selected').attr('id');
 			if(empresa == "" || empresa == undefined){
 				$.unblockUI();
@@ -94,12 +94,18 @@
 					'telefonos':telefonos,
 					'idEmpresa':empresa
 			}
+      //En caso de edicion
+      idContacto = $("#idContacto").val()
+      if(idContacto != undefined && idContacto != null)
+        data.idContacto = idContacto;
+
 			//Se envian los datos al servidor para guardarlo
 			$.ajax({
 			     type: "POST",
 			     url: "/OEV/altaProyecto/guardaContacto",
 			     data: data ,
 			     success: function(msg){
+                console.log(msg);
 								mensaje=$.parseJSON(msg);
 								$.unblockUI();
 								noty({text:"El contacto se ha guardado con exito.", type: 'success'});	
@@ -112,6 +118,10 @@
 
 
 			//Limpia datos de la forma
+      if($("#idContacto") != undefined){
+          $("#idContacto").val("");
+        $("#edicion-contacto").html("").html("Crear")
+      }
 			$("#contacto-nombre").val("");
 			$("#contacto-ap").val("");
 			$("#contacto-am").val("");
