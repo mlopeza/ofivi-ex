@@ -53,6 +53,7 @@
 
     $(".editContacto").live("click",function(){
         $("#edicion-contacto").html("").html("Editar");
+				$("#contacto-telefonos-body").empty();
         id=$(this).attr('id');
         obj=$.parseJSON($(this).parent().find('input').val());
         $("#idContacto").val(obj.contacto.idContacto);
