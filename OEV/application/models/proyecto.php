@@ -236,8 +236,10 @@ class Proyecto extends CI_Model{
         if(sizeof($this->db->get('Usuario_Proyecto')->result()) != 0){
             $this->db->delete('Usuario_Proyecto',$data);
             $this->db->insert('Usuario_Proyecto',$data);
+            return False;
         }else{
             $this->db->insert('Usuario_Proyecto',$data);
+            return True;
         }
     }
 

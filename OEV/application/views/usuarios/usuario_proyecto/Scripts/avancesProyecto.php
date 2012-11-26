@@ -25,7 +25,7 @@
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
-			     url: "avancesproyectoP/getGrupos",
+			     url: "AvancesProyectoP/getGrupos",
 			     data: data ,
 			     success: function(msg){
 						console.log(msg);
