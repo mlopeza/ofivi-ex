@@ -96,7 +96,7 @@
 			}
       //En caso de edicion
       idContacto = $("#idContacto").val()
-      if(idContacto != undefined && idContacto != null)
+      if(idContacto != undefined && idContacto != null && idContacto != "")
         data.idContacto = idContacto;
 
 			//Se envian los datos al servidor para guardarlo
