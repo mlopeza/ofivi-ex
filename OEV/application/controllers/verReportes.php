@@ -19,14 +19,14 @@ extends CI_Controller {
 		$vista = array('vista'=>$datos_usuario['vista']);
 		$usuario = $datos_usuario['idUsuario'];
 		//Se buscan todos los proyectos relacionados al usuario
-		$proyectos['proyectos'] = $this->proyecto->selectProyectos($usuario);
+		$proyectos['proyectos'] = $this->proyecto->getProyectosIniciados($usuario,1);
 		
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
-		$this->load->view('usuarios/usuario_proyecto/menu_uproyecto');
-        $this->load->view('usuarios/usuario_proyecto/ver_Reportes',$proyectos);
+		$this->load->view('usuarios/usuario_extension/menu_extension');
+        $this->load->view('usuarios/usuario_extension/ver_Reportes',$proyectos);
 		$this->load->view('usuarios/footer');
-		$this->load->view('usuarios/usuario_proyecto/Scripts/verReporte');
+		$this->load->view('usuarios/usuario_extension/Scripts/verReporte');
     }
 
 	//Regresa los reportes de un proyecto

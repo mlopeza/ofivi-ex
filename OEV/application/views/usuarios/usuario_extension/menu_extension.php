@@ -23,6 +23,7 @@
                                             <li><a href="<?php echo base_url("asignaProyecto");?>">Asigna Proyectos</a></li>
                                             <li><a href="<?php echo base_url("asignaContacto");?>">Asigna Contacto a Proyecto</a></li>
                                             <li><a href="<?php echo base_url("actualizaEstadoUE");?>">Actualizar Estado</a></li>
+                                            <li><a href="<?php echo base_url("verReportes");?>">Ver Reportes de Proyecto</a></li>
                                         </ul>
                                     </div>
                                 </div>

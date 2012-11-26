@@ -19,7 +19,7 @@ extends CI_Controller {
 		$vista = array('vista'=>$datos_usuario['vista']);
 		$usuario = $datos_usuario['idUsuario'];
 		//Se buscan todos los proyectos relacionados al usuario
-		$proyectos['proyectos'] = $this->proyecto->selectProyectos($usuario);
+		$proyectos['proyectos'] = $this->proyecto->getProyectosAceptados($usuario);
 		
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
@@ -83,9 +83,11 @@ extends CI_Controller {
 		$this->load->model('reporte');
 		$this->load->helper('url');
 		
+		$this->reporte->setTitulo($this->input->post('titulo-reporte'));
 		$this->reporte->setReporte($this->input->post('reporteProyecto'));
 			
 		$this->reporte->modificaReporte($this->input->post('idReporteHidden'));
+		sleep(3);
 		redirect('modificarReportes', 'location'); 
 		
 	}

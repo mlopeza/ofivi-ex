@@ -125,7 +125,7 @@ class Reporte extends CI_Model{
 	 */
 	function getDescripcionReporte($param){
 		$this->load->database();
-		$this->db->select('Reporte as contenido');
+		$this->db->select('titulo, Reporte as contenido');
 		$this->db->from('reporte');
 		$this->db->where('idReporte',$param);
 		return $this->db->get()->result();
@@ -140,6 +140,7 @@ class Reporte extends CI_Model{
 	function modificaReporte($idRep){
 		$this->load->database();
 		$arreglo = array(
+			'Titulo' => $this->titulo,
 			'Reporte' => $this->Reporte);
 		$this->db->where('idReporte', $idRep);
 		$this->db->update('reporte',$arreglo);

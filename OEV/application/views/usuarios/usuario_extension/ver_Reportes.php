@@ -22,7 +22,9 @@
                                                     <table class="table table-bordered">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>Proyectos Actuales</th>
+                                                                    <th>Grupo</th>
+                                                                    <th>Empresa</th>
+                                                                    <th>Proyecto</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="reportes-de-proyecto-body">
@@ -37,7 +39,9 @@
                                                                 foreach($proyectos as $proyecto){
                                                             ?>
                                                                 <tr class="colorea-proyecto" idProyecto="<?php echo $proyecto->idProyecto; ?>" class="tabla-proyectos">
-                                                                       <td><?php echo $proyecto->nombre; ?></td>
+                                                                       <td><?php echo $proyecto->Grupo; ?></td>
+                                                                       <td><?php echo $proyecto->Empresa; ?></td>
+                                                                       <td><?php echo $proyecto->Proyecto; ?></td>
                                                                 </tr>
                                                             <?php }
                                                             ?>

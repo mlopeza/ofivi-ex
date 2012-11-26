@@ -14,6 +14,10 @@
                 $(this).attr("style","background-color:whiteSmoke;");
                 proyecto_global=$(this).attr('idproyecto');
                 
+                $('iframe').contents().find('.wysihtml5-editor').html("Seleccione reporte...");
+				$("#idReporteHidden").val('');
+				$("#titulo-reporte").val('');
+                
     
                 getReportesProyecto(proyecto_global);
             });
@@ -28,7 +32,7 @@
                 
             console.log("antes "+reporte_global);
             console.log(this);
-                reporte_global=$(this).attr('idreporte');
+            reporte_global=$(this).attr('idreporte');
                 
             console.log("despues "+reporte_global);
     
@@ -67,6 +71,7 @@
 									$(nodo).empty();
 									$('iframe').contents().find('.wysihtml5-editor').html("Seleccione reporte...");
 									$("#idReporteHidden").val('');
+									$("#titulo-reporte").val('');
 									reporte_global = -1;
 								}else{
 									console.log("mensaje "+mensaje);
@@ -113,7 +118,8 @@
 							if(mensaje['response'] == "false"){
 								noty({text: mensaje['mensaje'], type: 'error'});
 							}else{
-								//Linea que agrega el contenido del reporte
+								//Se agrega el titulo y contenido del reporte
+								$("#titulo-reporte").val(mensaje['mensaje'][0]['titulo'])
                                 $(contenido).contents().find('.wysihtml5-editor').html(mensaje['mensaje'][0]['contenido']);
                                 //Agrega id al elemento oculto
                                 $("#idReporteHidden").val(reporte_global);

@@ -378,5 +378,29 @@ function getEA($idProyecto){
 				INNER JOIN Contacto_Proyecto cp ON c.idContacto = cp.idContacto AND cp.idProyecto='.$idProyecto.' ');
 		return $query->result();
 	}
+	
+	/*
+	 * Obtiene los proyectos que fueron estan activos y qu eno estan finalizados
+	 */
+	 function selectProyectosAceptadosNoFinalizados($usuario){
+		$this->load->database();
+		$from = '(SELECT p.idProyecto, p.nombre, (
+										SELECT e.estado
+										FROM estado e
+										WHERE e.idProyecto = p.idProyecto
+										ORDER BY tiempoActualizacion DESC 
+										LIMIT 1
+										) as estado
+								FROM proyecto p
+								INNER JOIN usuario_proyecto up ON up.idProyecto = p.idProyecto
+								AND up.acepto =1
+								AND up.idUsuario = '.$usuario.') p';
+		$this->db->select('idProyecto, nombre');
+		$this->db->from($from);
+		$this->db->where_not_in('estado','Finalizado');
+		$query = $this->db->get();
+		return $query->result();
+	}
 }
 ?>
+

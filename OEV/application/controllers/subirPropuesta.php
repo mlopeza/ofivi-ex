@@ -20,7 +20,7 @@ extends CI_Controller {
 		$vista = array('vista'=>$datos_usuario['vista']);
 		$usuario = $this->usuariomodel->obtenId($datos_usuario['username']);
 		//Se buscan todos los proyectos relacionados al usuario
-		$proyectos['proyectos'] = $this->proyecto->selectProyectosAceptados($usuario);
+		$proyectos['proyectos'] = $this->proyecto->selectProyectosAceptadosNoFinalizados($usuario);
 		
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
