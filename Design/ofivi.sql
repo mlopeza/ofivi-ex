@@ -239,7 +239,7 @@ DROP TABLE IF EXISTS `SEVI`.`Categoria` ;
 CREATE  TABLE IF NOT EXISTS `SEVI`.`Categoria` (
   `idCategoria` INT NOT NULL AUTO_INCREMENT ,
   `idSupraCategoria` INT NOT NULL ,
-  `Categoria` VARCHAR(45) NOT NULL ,
+  `Categoria` VARCHAR(28) NOT NULL ,
   PRIMARY KEY (`idCategoria`, `idSupraCategoria`) ,
   INDEX `fk_Categoria_1` (`idSupraCategoria` ASC) ,
   CONSTRAINT `fk_Categoria_1`
@@ -504,6 +504,7 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Documento` (
   `Type` VARCHAR(45) NULL ,
   `Size` VARCHAR(45) NULL ,
   `Extension` VARCHAR(45) NULL ,
+  `Informacion` VARCHAR(1400) NULL ,
   PRIMARY KEY (`idDocumento`, `idProyecto`) ,
   INDEX `fk_Documento_1` (`idProyecto` ASC) ,
   CONSTRAINT `fk_Documento_1`
@@ -676,4 +677,6 @@ INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (1
 INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (2, 1);
 INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (2, 3);
 INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (4, 1);
+
 COMMIT;
+

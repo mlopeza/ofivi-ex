@@ -63,6 +63,7 @@ class Proyecto extends CI_Model{
 
 
 	function altaProyecto($idEmpresa,$Nombre,$descripcionU,$descripcionAEV,$iniciadoPor,$idProyecto){
+        $this->load->database();
 		//Descripciones de Usuario, preparando para guardarse en BLOB
 		$d1 = mysql_real_escape_string($descripcionU);
 		$d2 = mysql_real_escape_string($descripcionAEV);
@@ -86,6 +87,18 @@ class Proyecto extends CI_Model{
 		}
 		//Regresa el id del Proyecto Recien Creado
 		return $id;					
+	}
+
+	//asigna un proyecto a sus categorias
+	function asignaCategorias($idProyecto,$categorias){
+      
+        for($i=0;$i<sizeof($categorias);$i++){
+          $categorias[$i]['idProyecto']=$idProyecto;
+        }
+        $this->db->where('idProyecto',$idProyecto);
+        $this->db->delete('Categoria_Proyecto');
+        if(sizeof($categorias) != 0)
+          $this->db->insert_batch('Categoria_Proyecto',$categorias);
 	}
 
 
@@ -293,9 +306,6 @@ class Proyecto extends CI_Model{
 									sc.idSupraCategoria = c.idSupraCategoria ' );
 		return $query->result();
 }
-
-
-
 
 function getEA($idProyecto){
 		$this->load->database();
