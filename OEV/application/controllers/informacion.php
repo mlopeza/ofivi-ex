@@ -23,20 +23,7 @@ class Informacion extends CI_Controller {
   <tr>
     <th scope="row">Email</th>
     <td>'.$query[0]->email.'</td>
-  </tr>';
-   $query2=$this->usuariomodel->regresaTelefono($data['idUsuario']);
-  foreach($query2 as $row){
-	  $resultado=$resultado.'  
-  <tr>
-    <th scope="row">Telefono</th>
-    <td>'.$row->telefono.'</td>
-  </tr>
-  <tr>';
-  $resultado=$resultado.'<th scope="row">Extension</th><td>';
-  if($row->extension != null){
-    $resultado=$resultado.$row->extension.'</td>';}
-	$resultado=$resultado.'</tr>';
-  }
+  </tr>';   
   $resultado = $resultado.'
   <tr>
     <th scope="row">Departamento</th>
@@ -51,7 +38,35 @@ class Informacion extends CI_Controller {
     <td>'.$query[0]->campus.'</td>
   </tr>
 </table>
+<table width="200" border="1" class="table table-bordered">
+<tr>
+<th> Descripci&oacute;n</th>
+<th> Telefono</th>
+<th> Extension</th>
+<th> Sub-Extensi&oacute;n</th>
 ';
+
+$query2=$this->usuariomodel->regresaTelefono($data['idUsuario']);
+  foreach($query2 as $row){
+	  $resultado=$resultado.'  
+  <tr>
+  	<td>'.$row->descripcion.'</td>
+    <td>'.$row->telefono.'</td>';
+  $resultado=$resultado.'<td>';
+  if($row->extension != null){
+    $resultado=$resultado.$row->extension.'</td><td>';}
+	else
+	{
+		$resultado=$resultado."--</td><td>";}
+  
+    if($row->subextension != null){
+       $resultado=$resultado.$row->subextension.'</td>';}
+	else
+	{
+		$resultado=$resultado."--</td>";}
+	$resultado=$resultado.'</tr>';
+  }
+  $resultado=$resultado."</table>";
 			//Se envia el resultado			
 			$mensaje = array('response'=>'true','mensaje'=>$resultado,'query'=>$query);
 			echo json_encode($mensaje);
@@ -76,21 +91,7 @@ class Informacion extends CI_Controller {
   <tr>
     <th scope="row">Email</th>
     <td>'.$query[0]->email.'</td>
-  </tr>';
-  $query2=$this->contacto_model->regresaTelefono($data['idContacto']);
-  foreach($query2 as $row){
-	  $resultado=$resultado.'  
-  <tr>
-    <th scope="row">Telefono</th>
-    <td>'.$row->telefono.'</td>
   </tr>
-  <tr>';
-  $resultado=$resultado.'<th scope="row">Extension</th><td>';
-  if($row->extension != null){
-    $resultado=$resultado.$row->extension.'</td>';}
-	$resultado=$resultado.'</tr>';
-  }
-  $resultado=$resultado.'
   <tr>
     <th scope="row">Puesto</th>
     <td>'.$query[0]->puesto.'</td>
@@ -108,7 +109,35 @@ class Informacion extends CI_Controller {
     <td>'.$query[0]->grupo.'</td>
   </tr>
 </table>
+<table width="200" border="1" class="table table-bordered">
+<tr>
+<th> Descripci&oacute;n</th>
+<th> Telefono</th>
+<th> Extension</th>
+<th> Sub-Extensi&oacute;n</th>
 ';
+
+$query2=$this->contacto_model->regresaTelefono($data['idContacto']);
+  foreach($query2 as $row){
+	  $resultado=$resultado.'  
+  <tr>
+  	<td>'.$row->descripcion.'</td>
+    <td>'.$row->telefono.'</td>';
+  $resultado=$resultado.'<td>';
+  if($row->extension != null){
+    $resultado=$resultado.$row->extension.'</td><td>';}
+	else
+	{
+		$resultado=$resultado."--</td><td>";}
+  
+    if($row->subextension != null){
+       $resultado=$resultado.$row->subextension.'</td>';}
+	else
+	{
+		$resultado=$resultado."--</td>";}
+	$resultado=$resultado.'</tr>';
+  }
+  $resultado=$resultado."</table>";
 			//Se envia el resultado			
 			$mensaje = array('response'=>'true','mensaje'=>$resultado,'query'=>$query);
 			echo json_encode($mensaje);

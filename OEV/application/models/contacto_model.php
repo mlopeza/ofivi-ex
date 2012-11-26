@@ -212,7 +212,7 @@ class contacto_model extends CI_Model {
 	}
 	function regresaTelefono($idContacto){
 		$this->load->database();
-		$query=$this->db->query("Select CONCAT('(',lada,')',telefono) as telefono, extension, descripcion
+		$query=$this->db->query("Select CONCAT('(',lada,')',telefono) as telefono, extension, descripcion, descripcionExtra as subextension
 		From contacto_telefono
 		Where idContacto =".$idContacto)->result();
 		return $query;
