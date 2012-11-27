@@ -146,10 +146,9 @@ class Proyecto extends CI_Model{
 	function findPAP($empresa,$activo,$idUsuario){
 		$this->load->database();
 				$query = $this->db->query('SELECT Proyecto.idProyecto, Proyecto.nombre
-										   From Proyecto, Estado
+										   From Proyecto, usuario_proyecto
 										   WHERE idEmpresa = '.$empresa.' AND
-										   Proyecto.idProyecto = Estado.idProyecto AND
-										   Estado.idUsuario = '.$idUsuario.' AND										   
+										   Proyecto.idProyecto = usuario_proyecto.idProyecto AND													   											usuario_proyecto.idUsuario = '.$idUsuario.' AND																			
 										   Proyecto_Activo = '.$activo );
 			return $query->result();
 	}

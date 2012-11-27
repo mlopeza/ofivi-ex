@@ -13,6 +13,7 @@ class AvancesproyectoP extends CI_Controller {
 		$this->load->view('usuarios/usuario_proyecto/avances_proyecto');
 		$this->load->view('usuarios/footer');
 		$this->load->view('usuarios/usuario_proyecto/Scripts/avancesProyecto');
+		$this->load->view('usuarios/usuario_extension/Scripts/ventanas-modales');
 		
 		
 	}
@@ -135,7 +136,7 @@ class AvancesproyectoP extends CI_Controller {
 				//Se envia el resultado		
 			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'grupo'=>$grupo,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5,'estado'=>$resultado6,'documento'=>$resultado7,'supracategoria'=>$resultado8);}
 			else{
-				$mensaje = array('response'=>'false','mensaje'=>'No existen proyectos en la base de datos.');}
+				$mensaje = array('response'=>'false','mensaje'=>'No existen proyectos en la base de datos.','grupo'=>$grupo);}
 			echo json_encode($mensaje);
 		}
 	}

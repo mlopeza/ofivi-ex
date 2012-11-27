@@ -113,7 +113,7 @@ class Empresa extends CI_Model {
 	function getEPAP($activo, $grupo,$idUsuario){
 		$this->load->database();
 		$query = $this->db->query('SELECT DISTINCT e.idEmpresa, e.nombre
-								   From Empresa as e, Proyecto as P, Estado as est
+								   From Empresa as e, Proyecto as P, usuario_proyecto as est
 								   WHERE e.idEmpresa = p.idEmpresa AND
 								   p.Proyecto_Activo = '.$activo.' AND
 								   e.idGrupo = '.$grupo.' AND

@@ -133,7 +133,7 @@ class Grupo extends CI_Model {
 	function getGPAP($activo,$idUsuario){
 		$this->load->database();
 		$qry = "SELECT DISTINCT g.idGrupo, g.nombre
-				FROM Grupo AS g, Empresa e, Proyecto AS p ,Estado est
+				FROM Grupo AS g, Empresa e, Proyecto AS p ,usuario_proyecto est
 				WHERE g.idGrupo = e.idGrupo
 				AND p.idEmpresa = e.idEmpresa
 				AND p.Proyecto_Activo =".$activo."

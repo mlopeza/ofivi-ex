@@ -28,7 +28,7 @@
 			     url: "AvancesProyectoP/getGrupos",
 			     data: data ,
 			     success: function(msg){
-						console.log(msg);
+						console.log(msg+"\\"+$("#idUsuario").val());
 						var mensaje = $.parseJSON(msg);
 						if(mensaje['response'] ==  "true"){
 								//Agrega las Empresas al nodo seleccionado
