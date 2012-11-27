@@ -19,7 +19,7 @@
                   </a>
                 </div>
                 <div id="latest" class="accordion-body collapse in">
-                  <div class="accordion-inner paddind">
+                  <div class="accordion-inner paddind" style="overflow: auto;">
                     <!--Elemento 1-->
                     <table class="table table-bordered">
                       <thead>
@@ -98,7 +98,7 @@
                   </a>
                 </div>
                 <div id="notification" class="accordion-body collapse in">
-                  <div class="accordion-inner paddind">
+                  <div class="accordion-inner paddind" style="overflow: auto;">
                     <!--Elemento 3-->
                     <div class="row-fluid show-grid">
                       <!--Las Diferentes areas y los checkbox-->                                                            

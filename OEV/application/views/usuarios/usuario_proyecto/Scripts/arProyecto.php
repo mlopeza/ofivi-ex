@@ -28,7 +28,11 @@
         if(proyecto_global == -1) return;
         data={
                 'idProyecto':proyecto_global,
-                'data':{'Razon':$(".informacion-sugerencia").val().trim(),'sugerencia':$(".informacion-extra").val().trim(),'acepto':respuesta}
+                'data':{'Razon':$(".informacion-sugerencia").val().trim(),
+                        'sugerencia':$(".informacion-extra").val().trim(),
+                        'acepto':respuesta,
+                        'idUsuario':$("#idUsuario-sistema").attr('idUsuario')
+                       }
             };
         $.ajax({
             type: "POST",

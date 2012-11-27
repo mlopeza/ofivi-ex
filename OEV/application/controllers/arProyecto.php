@@ -50,7 +50,7 @@ extends CI_Controller {
         try{
 	    	$this->load->model('proyecto');
     		$resultado=$this->proyecto->setRespuesta($data['idProyecto'],$data['data']);
-		echo json_encode(array('response'=>'true'));
+	     	echo json_encode(array('response'=>'true'));
         }catch(Exception $e){
 			echo json_encode(array('response'=>'false','mensaje'=>"Hubo un error en el Sistema, favor de intentarlo mas tarde.".$e->getMessage()));
 		}

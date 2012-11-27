@@ -13,7 +13,7 @@
 
 
 		$("#usuario-nuevo-telefono").click(function(){
-			var o = $('<tr><td><input class="descripcion" type="text" style="max-width:100px;"></input></td><td><input class="lada" style="max-width:25px;" type="text"></input></td><td><input class="telefono" style="max-width:50px;" type="text"></input></td><td><input class="extension" type="text" style="max-width:30px;"></input></td><td><input class="descripcionExtra" type="text" style="max-width:50px;"></input></td><td><button class="btn btn-danger remove-telefono" type="button"><i class="icon-remove icon-white"></i></button></td></tr>');
+			var o = $('<tr><td><select class="descripcion" style="max-width:100px;"><option>Casa</option><option>Celular</option><option>Oficina</option></select></td><td><input class="lada" style="max-width:25px;" type="text"></input></td><td><input class="telefono" style="max-width:50px;" type="text"></input></td><td><input class="extension" type="text" style="max-width:30px;"></input></td><td><input class="descripcionExtra" type="text" style="max-width:50px;"></input></td><td><button class="btn btn-danger remove-telefono" type="button"><i class="icon-remove icon-white"></i></button></td></tr>');
 			$("#usuario-telefonos-body").append(o);
 		});
 
@@ -125,7 +125,10 @@
             $("#usuario-email").val(data['usuario'].email);
             //Telefonos
             $.each(data['telefonos'],function(index,value){
-				var o = $('<tr id="'+value.idTelefono+'" ><td><input class="descripcion" type="text" style="max-width:100px;"></input></td><td><input class="lada" style="max-width:25px;" type="text"></input></td><td><input class="telefono" style="max-width:50px;" type="text"></input></td><td><input class="extension" type="text" style="max-width:30px;"></input></td><td><input class="descripcionExtra" type="text" style="max-width:50px;"></input></td><td><button class="btn btn-danger remove-telefono" type="button"><i class="icon-remove icon-white"></i></button></td></tr>');
+            var o = $('<tr id="'+value.idTelefono+'"><td><select class="descripcion" style="max-width:100px;"><option>Casa</option><option>Celular</option><option>Oficina</option></select></td><td><input class="lada" style="max-width:25px;" type="text"></input></td><td><input class="telefono" style="max-width:50px;" type="text"></input></td><td><input class="extension" type="text" style="max-width:30px;"></input></td><td><input class="descripcionExtra" type="text" style="max-width:50px;"></input></td><td><button class="btn btn-danger remove-telefono" type="button"><i class="icon-remove icon-white"></i></button></td></tr>');
+						$(o).find('.descripcion').children().filter(function() {
+							    return $(this).text() == value["descripcion"]; 
+							}).attr('selected', true);
 						$(o).find('.descripcion').val(value["descripcion"]);
 						$(o).find('.telefono').val(value["telefono"]);
 						$(o).find('.extension').val(value["extension"]);

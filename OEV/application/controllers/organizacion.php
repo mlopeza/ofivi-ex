@@ -82,8 +82,8 @@ extends CI_Controller {
 
     //Se Guarda un departamento
     public function saveDepartamento(){
-		$this->load->model('departamento');
-		$this->departamento->insertaDepartamento($this->input->post());
+	  	$this->load->model('departamento');
+	  	$this->departamento->insertaDepartamento($this->input->post());
     }
 
 }

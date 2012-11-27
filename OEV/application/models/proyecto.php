@@ -233,13 +233,18 @@ class Proyecto extends CI_Model{
 
     function setProfesor($data){
         $this->load->database();
-        if(sizeof($this->db->get('Usuario_Proyecto')->result()) != 0){
+        $this->db->where($data);        
+        $query = $this->db->get('Usuario_Proyecto')->result();
+        if(sizeof($query) != 0){
             $this->db->delete('Usuario_Proyecto',$data);
             $this->db->insert('Usuario_Proyecto',$data);
-            return False;
+            if($query[0]->activa == 0 || $query[0]->acepto == 0){
+              return 1;
+            }
+            return 0;
         }else{
             $this->db->insert('Usuario_Proyecto',$data);
-            return True;
+            return 1;
         }
     }
 
@@ -275,8 +280,16 @@ class Proyecto extends CI_Model{
 
     function setRespuesta($idProyecto,$data){
 		$this->load->database();
-        $this->db->where(array('idProyecto'=>$idProyecto));
-        $this->db->update('Usuario_Proyecto',$data);
+        $this->db->trans_start();
+         $this->db->where(array('idProyecto'=>$idProyecto,'idUsuario'=>$data['idUsuario']));
+         $this->db->update('Usuario_Proyecto',$data);
+         if($data['acepto'] == 1){
+           $this->asignaEstado($idProyecto,$data['idUsuario'],"Aceptado");
+           $this->db->where(array('idProyecto'=>$idProyecto));
+           $this->db->where(array('idUsuario <>'=>$data['idUsuario']));
+           $this->db->update('Usuario_Proyecto',array('activa'=>0));
+        }
+       $this->db->trans_complete();
     }
 
 	/*
@@ -431,6 +444,30 @@ function getEA($idProyecto){
     $query=$this->db->get()->result();
     return $query[0];
   }
+
+  //Pone el estado de iniciado del proyecto
+  function iniciaProyecto($idProyecto,$idUsuario){
+    $data = array('idProyecto'=>$idProyecto,'Estado'=>'Inicializado');
+    $this->db->where($data);
+    $query = $this->db->get('Estado')->result();
+    if(sizeof($query) == 0){
+      //Agrega el estado a la base de datos
+      $this->db->insert('Estado',array('Estado'=>'Inicializado','idUsuario'=>$idUsuario,'idProyecto'=>$idProyecto));
+    }
+  }
+
+  //Pone el estado en Asignado
+  function asignaEstado($idProyecto,$idUsuario,$estado){
+    $data = array('idProyecto'=>$idProyecto,'Estado'=>$estado);
+    $this->db->where($data);
+    $query = $this->db->get('Estado')->result();
+    if(sizeof($query) == 0){
+      $data['idUsuario']=$idUsuario;
+      //Agrega el estado a la base de datos
+      $this->db->insert('Estado',$data);
+    }
+  }
+
 }
 ?>
 

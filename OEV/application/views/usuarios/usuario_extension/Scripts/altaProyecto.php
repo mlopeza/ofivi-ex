@@ -120,7 +120,8 @@
 			//Limpia datos de la forma
       if($("#idContacto") != undefined){
           $("#idContacto").val("");
-        $("#edicion-contacto").html("").html("Crear")
+          $("#edicion-contacto").html("").html("Crear")
+   			  $('#tabla-telefono tbody').empty();
       }
 			$("#contacto-nombre").val("");
 			$("#contacto-ap").val("");
@@ -162,7 +163,7 @@
 			var data={ 
 			'nombre_proyecto':nombre_proyecto,
 			'idEmpresa':idEmpresa,
-            'iniciadoPor':idUsuario,
+      'iniciadoPor':idUsuario,
 			'idGrupo':idGrupo,
 			'oldContactos':oldContactos,
 			'descripcionCliente':descripcion_cliente,
