@@ -237,9 +237,6 @@ class Proyecto extends CI_Model{
         if(sizeof($query) != 0){
             $this->db->delete('Usuario_Proyecto',$data);
             $this->db->insert('Usuario_Proyecto',$data);
-            if($query[0]->activa == 0 || $query[0]->acepto == 0){
-              return 1;
-            }
             return 0;
         }else{
             $this->db->insert('Usuario_Proyecto',$data);
