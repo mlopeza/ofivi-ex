@@ -24,7 +24,12 @@
                 return;
             }
             
-            noty({text: "Se subio la propuesta.", type: 'success'});
+            $.blockUI({ 
+				theme: true, 
+				title: 'OFIVEX', 
+				message: '<p>Subieno archivo...<br/>Al terminar la transerencia se cerrara este mensaje</p>'
+			});
+            
             $("#subir-propuesta").submit();
         });
 	});
