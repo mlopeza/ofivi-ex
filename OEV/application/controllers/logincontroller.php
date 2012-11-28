@@ -146,7 +146,7 @@ class Logincontroller extends CI_Controller {
 							);
 							$this->session->set_userdata($newdata);
 					$this->load->view('usuarios/header',$vistas);								
-								$this->load->view('usuarios\usuario_proyecto\menu_uproyecto',$vistas);
+					$this->load->view('usuarios/usuario_proyecto/menu_uproyecto',$vistas);
 					$this->load->view('usuarios/footer');			
 					break;
 					case 3:
