@@ -97,7 +97,7 @@ class Reporte extends CI_Model{
 	function getReportesDeProyecto($usuario,$proyecto)
 	{
 		$this->load->database();
-		$this->db->select("r.idreporte, u.nombre, u.apellidop, r.titulo");
+		$this->db->select("r.idreporte, u.nombre, u.apellidop, r.titulo, r.reporteFinal");
 		$this->db->from('usuario_proyecto up');
 		$this->db->join('reporte r','up.idProyecto = r.idProyecto AND r.idProyecto = '.$proyecto);
 		$this->db->join('usuario u','r.idusuario = u.idusuario');
@@ -113,7 +113,7 @@ class Reporte extends CI_Model{
 	function getReportesDeProyectoAutor($usuario,$proyecto)
 	{
 		$this->load->database();
-		$this->db->select("r.idreporte, u.nombre, u.apellidop, r.titulo");
+		$this->db->select("r.idreporte, u.nombre, u.apellidop, r.titulo, r.reporteFinal");
 		$this->db->from('reporte r');
 		$this->db->join('usuario u','r.idusuario = u.idusuario AND r.idProyecto = '.$proyecto.' AND r.idusuario = '.$usuario);
 		$this->db->order_by("r.idReporte, r.titulo");
@@ -126,7 +126,7 @@ class Reporte extends CI_Model{
 	 */
 	function getDescripcionReporte($param){
 		$this->load->database();
-		$this->db->select('titulo, Reporte as contenido');
+		$this->db->select('titulo, Reporte as contenido, reporteFinal');
 		$this->db->from('reporte');
 		$this->db->where('idReporte',$param);
 		return $this->db->get()->result();
@@ -142,7 +142,8 @@ class Reporte extends CI_Model{
 		$this->load->database();
 		$arreglo = array(
 			'Titulo' => $this->titulo,
-			'Reporte' => $this->Reporte);
+			'Reporte' => $this->Reporte,
+			'reporteFinal' => $this->reporteFinal);
 		$this->db->where('idReporte', $idRep);
 		$this->db->update('reporte',$arreglo);
 	 }	

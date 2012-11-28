@@ -85,6 +85,7 @@ extends CI_Controller {
 		
 		$this->reporte->setTitulo($this->input->post('titulo-reporte'));
 		$this->reporte->setReporte($this->input->post('reporteProyecto'));
+		$this->reporte->setReporteFinal($this->input->post('reporteFinal'));
 			
 		$this->reporte->modificaReporte($this->input->post('idReporteHidden'));
 		sleep(3);

@@ -153,6 +153,8 @@
                             elemento['Tipo_Usuario']+"</td><td>"+elemento['email']+"</td><td>"+
                             elemento['tiempo_solicitud']+"</td><td>"+(elemento['tiempo_respuesta']==null?"":elemento['tiempo_respuesta'])+
                             "</td><td>"+elemento['acepto']+"</td>"+
+                            "</td><td>"+elemento['Razon']+"</td>"+
+                            "</td><td>"+elemento['sugerencia']+"</td>"+
                             "<td><button type='button' id='"+elemento['idUsuario']+"' class='cancelar-asignacion btn btn-primary'>Cancelar</button></td></tr>");
         });
     }

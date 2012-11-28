@@ -76,6 +76,8 @@
                           <td style="min-width:150px;">Solicitud</td>
                           <td style="min-width:150px;">Respuesta</td>
                           <td>Estatus</td>
+                          <td>Comentario</td>                      
+                          <td>Sugerencia</td>
                           <td>Acción</td>
                         </tr>
                       <tbody id="contenedor-interno-profesores2"></tbody>
