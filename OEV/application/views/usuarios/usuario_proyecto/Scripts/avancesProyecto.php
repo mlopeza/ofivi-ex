@@ -283,7 +283,7 @@
 			$(elemento).append($("<li>").append("No tiene documentos guardados").attr('id','0'));
 		}else{
 			$(nodos).each(function(index,nodo){
-				if(nodo['esLegal']){
+				if(nodo['esLegal']==1){
 				$(elemento).append($("<li>")
 									.append($("<a>")
 									.append("Propuesta")
