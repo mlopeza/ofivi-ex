@@ -99,8 +99,9 @@ class Reporte extends CI_Model{
 		$this->load->database();
 		$this->db->select("r.idreporte, u.nombre, u.apellidop, r.titulo");
 		$this->db->from('usuario_proyecto up');
-		$this->db->join('reporte r','up.idProyecto = r.idProyecto AND r.idProyecto = '.$proyecto.' AND up.idusuario = '.$usuario.' AND ((up.Responsable = 0 AND r.idUsuario = up.idUsuario) OR (up.Responsable <> 0))');
+		$this->db->join('reporte r','up.idProyecto = r.idProyecto AND r.idProyecto = '.$proyecto);
 		$this->db->join('usuario u','r.idusuario = u.idusuario');
+		$this->db->join('proyecto p','r.idProyecto = p.idProyecto AND p.iniciadoPor = '.$usuario);
 		$this->db->order_by("r.idReporte, r.titulo");
 		$query = $this->db->get();
 		return $query->result();
