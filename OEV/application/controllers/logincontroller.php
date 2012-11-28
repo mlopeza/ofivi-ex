@@ -166,7 +166,7 @@ class Logincontroller extends CI_Controller {
 					);
 					$this->session->set_userdata($newdata);
 					$this->session->set_userdata($vistas);					
-					$this->load->view('usuarios/header');
+					$this->load->view('usuarios/header',$vistas);
 					$this->load->view('usuarios/supervisor_extension/menu_supervisor',$vistas);					
 					$this->load->view('usuarios/footer');			
 
