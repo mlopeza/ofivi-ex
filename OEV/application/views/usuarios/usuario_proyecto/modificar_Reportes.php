@@ -120,6 +120,12 @@
 													<div class="controls">
 														<input type="text" id="titulo-reporte" name="titulo-reporte" class="informacion-extra input-large focused">
 													</div>
+													<div class="controls">
+															<label class="checkbox">
+                                                            <input type="checkbox" name="reporteFinal" id="reporteFinal" value="1">
+																Reporte final
+                                                            </label>
+													</div>
 
 												    <textarea style="width:98%; height: 100%;" id="reporteProyecto" name="reporteProyecto" class="textarea" placeholder="Seleccione reporte..." style="width: 800px; height: 200px"></textarea>
 

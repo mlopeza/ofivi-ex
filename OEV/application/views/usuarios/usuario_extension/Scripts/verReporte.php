@@ -77,9 +77,11 @@
         $(nodo).empty();
         $.each(lista,function(index,elemento){
             
+            esfinal = elemento['reporteFinal'] == 0 ? elemento['titulo'] : elemento['titulo']+' (Final)';
+            
             $(nodo).append("<tr class='colorea-reporte' idreporte='"+elemento['idreporte']+"' class='tabla-reportes'><td>"+
 			elemento['nombre']+" "+elemento['apellidop']+"</td><td>"+
-			elemento['titulo']+"</td></tr>");
+			esfinal +"</td></tr>");
              
         
         });
