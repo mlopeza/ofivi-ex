@@ -46,7 +46,7 @@ class Departamento extends CI_Model {
 	
 	function find (){
 		$this->load->database();
-		$query = $this->db->get_where('departamento', array('nombre' => $this->nombre));
+		$query = $this->db->get_where('departamento', array('idDepartamento' => $this->idDepartamento));
 		if ($query->num_rows() > 0)
 		{
    			$row = $query->row(); 

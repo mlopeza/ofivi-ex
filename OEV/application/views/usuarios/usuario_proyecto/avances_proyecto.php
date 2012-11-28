@@ -1,4 +1,6 @@
 <link href="<?php echo base_url("css/projectAdvances.css"); ?>" rel="stylesheet">
+<link href="<?php echo base_url("css/ventanas-modales.css"); ?>" rel="stylesheet">
+
 <div id="content" class="span9 section-body">
                     <div id="section-body" class="tabbable"> <!-- Only required for left/right tabs -->
                         <ul class="nav nav-tabs">

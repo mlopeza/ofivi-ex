@@ -13,6 +13,7 @@ class AvancesproyectoP extends CI_Controller {
 		$this->load->view('usuarios/usuario_proyecto/avances_proyecto');
 		$this->load->view('usuarios/footer');
 		$this->load->view('usuarios/usuario_proyecto/Scripts/avancesProyecto');
+		$this->load->view('usuarios/usuario_extension/Scripts/ventanas-modales');
 		
 		
 	}
@@ -135,7 +136,7 @@ class AvancesproyectoP extends CI_Controller {
 				//Se envia el resultado		
 			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'grupo'=>$grupo,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5,'estado'=>$resultado6,'documento'=>$resultado7,'supracategoria'=>$resultado8);}
 			else{
-				$mensaje = array('response'=>'false','mensaje'=>'No existen proyectos en la base de datos.');}
+				$mensaje = array('response'=>'false','mensaje'=>'No existen proyectos en la base de datos.','grupo'=>$grupo);}
 			echo json_encode($mensaje);
 		}
 	}
@@ -143,14 +144,11 @@ class AvancesproyectoP extends CI_Controller {
 	{
 		$this->load->model('documento');
 		$this->load->helper('url');
-
-		$documento=$this->documento->getDocument($idProyecto,$esLegal);
+		$documento=$this->documento->getDocumentDownload($idProyecto,$esLegal);
 		$size = $documento[0]->Size;
 		$type = $documento[0]->Extension;
 		$name = $documento[0]->Titulo;
 		$content = stripslashes($documento[0]->Archivo);
-
-
 		header("Content-length: ".$size."");
 		header("Content-type: ".$type."");
 		header('Content-Disposition: attachment; filename="'.$name.'"');

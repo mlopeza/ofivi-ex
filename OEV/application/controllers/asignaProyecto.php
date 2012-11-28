@@ -65,10 +65,13 @@ extends CI_Controller {
 	    	$this->load->model('usuariomodel');
     		$respuesta=$this->proyecto->setProfesor($data['data']);
           $result1=$this->proyecto->getResumenProyecto($data['data']['idProyecto']);
-          $result2=$this->usuariomodel->getUSuario($data['data']['idUsuario']);
+          $result2=$this->usuariomodel->getUsuario($data['data']['idUsuario']);
+          $this->proyecto->asignaEstado($data['data']['idProyecto'],$data['idUsuarioExtension'],'Asignado (En Proceso)');
           //Mensaje al Usuario de Asignacion
-          $mensaje=$this->load->view('mensajes/mensajeAsignacion',array('r'=>$result1,'p'=>$result2),true);
-          $sent = enviaMail($this,$result2->email,'Nuevo Proyecto en OFIVEX',$mensaje);
+          if($respuesta == 1){
+            $mensaje=$this->load->view('mensajes/mensajeAsignacion',array('r'=>$result1,'p'=>$result2),true);
+            $sent = enviaMail($this,$result2->email,'Nuevo Proyecto en OFIVEX',$mensaje);
+          }
         //Respuesta
     		echo json_encode(array('response'=>'true','mensaje'=>"Usuario Asignado"));
         }catch(Exception $e){

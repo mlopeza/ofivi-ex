@@ -4,6 +4,7 @@
 	$(document).ready(function(){
        cTable = $('#tabla-contactos').dataTable();
        $("#limpiar-contacto").click(limpiarContacto);
+
        $("#tab-contactos").click(function(){
              grupo = $("#Grupo option:selected").attr('id');
              empresa = $("#Empresa option:selected").attr('id');
@@ -24,6 +25,7 @@
               return;
             }
             getContactos(empresa);
+     			  $('#tabla-telefono tbody').empty();
         });
 
 

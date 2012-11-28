@@ -78,8 +78,8 @@
                                                                     <td><?php echo evalua_tipo_boton(ord($row->Vista_Supervisor_Extension),'vista_supervisor_extension'); ?></td>
                                                                     <td><?php echo evalua_tipo_boton(ord($row->Vista_Usuario_Extension),'vista_usuario_extension'); ?></td>
                                                                     <td><?php echo evalua_tipo_boton(ord($row->Vista_Profesor),'vista_profesor'); ?></td>
-																	<td><?php echo evalua_tipo_boton(ord($row->Vista_Cliente),'vista_cliente'); ?></td>
 																	<td><?php echo evalua_tipo_boton(ord($row->Vista_Legal),'vista_legal'); ?></td>
+																	<td><?php echo evalua_tipo_boton(ord($row->Vista_Cliente),'vista_cliente'); ?></td>
 																	<td>
 																		<?php 
 																				switch($row->Usuario_Aceptado){

@@ -52,7 +52,7 @@
         $(".asignar-profesor").live("click",function(){
                 if(proyecto_global == -1) return;
                 //Obtiene los datos del Profesor y le manda una Peticion
-                data={'data':{'idUsuario':$(this).attr('id'),'idProyecto':proyecto_global}};
+                data={'data':{'idUsuario':$(this).attr('id'),'idProyecto':proyecto_global},'idUsuarioExtension':$("#idUsuario-sistema").attr('idUsuario')};
 			$.ajax({
 			     type: "POST",
 			     url: "asignaProyecto/asignaProfesor",

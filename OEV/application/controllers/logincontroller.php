@@ -30,15 +30,27 @@ class Logincontroller extends CI_Controller {
 		else{
 			$this->load->model('usuariomodel');
 			$this->load->model('departamento');
-			$this->departamento->set_nombre($this->input->post('departamento'));		
+			$this->departamento->set_id_departamento($this->input->post('departamento'));
 			$this->load->helper('url');
 			//Se busca el departamento para poder agregarlo a tabla de usaurios.
 			if($this->departamento->find()){			
 				$this->usuariomodel->insertarUsuario(
-						$this->departamento->get_id_departamento(),$this->input->post('username'),$this->input->post('nombre'),	$this->input->post('apellido_paterno'),$this->input->post('apellido_materno'),$this->input->post('email'),$this->input->post('password'),$this->input->post('tipo-usuario'),0,'e');
+						$this->departamento->get_id_departamento(),
+            $this->input->post('username'),
+            $this->input->post('nombre'),	
+            $this->input->post('apellido_paterno'),
+            $this->input->post('apellido_materno'),
+            $this->input->post('email'),
+            $this->input->post('password'),
+            $this->input->post('tipo-usuario'),
+            0,
+            'e');
+
+            enviaMail($this,$this->input->post('email'),"Bienvenido a OFIVEX",mensajeRegistro($this->input->post('nombre'),$this->input->post('username'),$this->input->post('password')));
+            $this->load->view('register_sucess');
+            return;
 			}
-        enviaMail($this,$this->input->post('email'),"Bienvenido a OFIVEX",mensajeRegistro($this->input->post('nombre'),$this->input->post('username'),$this->input->post('password')));
-			$this->load->view('register_sucess');
+		  $this->load->view('register_failed');
 		}
 	}	
 
@@ -120,7 +132,7 @@ class Logincontroller extends CI_Controller {
 					$this->load->view('usuarios/administrador/menu_administrador',$vistas);
 					$this->load->view('usuarios/footer');					
 					break;
-							case 2:
+					case 2:
 							$vistas['vista'] = array(
 							'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
 							'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
@@ -128,13 +140,15 @@ class Logincontroller extends CI_Controller {
 							'Legal' => $this->usuariomodel->getVistaLegal(),
 							'Profesor' => $this->usuariomodel->getVistaProfesor() );
 							$newdata = array(
+							'idUsuario' => $this->usuariomodel->obtenID($this->usuariomodel->getUsername()),							
 							'username'  => $this->usuariomodel->getUsername(),
 							'email'     => $this->usuariomodel->getEmail(),
 							'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
 							);
-							$this->session->set_userdata($newdata);
+					$this->session->set_userdata($newdata);
+					$this->session->set_userdata($vistas);					
 					$this->load->view('usuarios/header',$vistas);								
-								$this->load->view('usuarios\usuario_proyecto\menu_uproyecto',$vistas);
+					$this->load->view('usuarios/usuario_proyecto/menu_uproyecto',$vistas);
 					$this->load->view('usuarios/footer');			
 					break;
 					case 3:
@@ -145,15 +159,18 @@ class Logincontroller extends CI_Controller {
 					'Legal' => $this->usuariomodel->getVistaLegal(),
 					'Profesor' => $this->usuariomodel->getVistaProfesor() );
 					$newdata = array(
+							'idUsuario' => $this->usuariomodel->obtenID($this->usuariomodel->getUsername()),					
 					'username'  => $this->usuariomodel->getUsername(),
 					'email'     => $this->usuariomodel->getEmail(),
 					'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
 					);
 					$this->session->set_userdata($newdata);
-					$this->load->view('vistas/footer');				
-					$this->load->view('vistas/supervisor',$vistas);
-					$this->load->view('vistas/header');
-					break;/*/
+					$this->session->set_userdata($vistas);					
+					$this->load->view('usuarios/header',$vistas);
+					$this->load->view('usuarios/supervisor_extension/menu_supervisor',$vistas);					
+					$this->load->view('usuarios/footer');			
+
+					break;
 						case 4:
 						$vistas['vista'] = array(
 						'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
@@ -162,6 +179,7 @@ class Logincontroller extends CI_Controller {
 						'Legal' => $this->usuariomodel->getVistaLegal(),
 						'Profesor' => $this->usuariomodel->getVistaProfesor() );
 						$newdata = array(
+							'idUsuario' => $this->usuariomodel->obtenID($this->usuariomodel->getUsername()),											
 						'username'  => $this->usuariomodel->getUsername(),
 						'email'     => $this->usuariomodel->getEmail(),
 						'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
@@ -172,7 +190,7 @@ class Logincontroller extends CI_Controller {
 						$this->load->view('usuarios/usuario_extension/menu_extension',$vistas);
 						$this->load->view('usuarios/footer');	
 						break;
-					/*case 5:
+					case 5:
 					  $vistas['vista'] = array(
 					  'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
 					  'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
@@ -180,17 +198,19 @@ class Logincontroller extends CI_Controller {
 					  'Legal' => $this->usuariomodel->getVistaLegal(),
 					  'Profesor' => $this->usuariomodel->getVistaProfesor() );
 					  $newdata = array(
+							'idUsuario' => $this->usuariomodel->obtenID($this->usuariomodel->getUsername()),										  
 					  'username'  => $this->usuariomodel->getUsername(),
 					  'email'     => $this->usuariomodel->getEmail(),
 					  'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
 					  );
 					  $this->session->set_userdata($newdata);
-					  $this->load->view('vistas/header');
-					//					$this->load->view('vistas/legal',$vistas);
-					$this->load->view('vistas/footer');
+					  $this->session->set_userdata($vistas);
+					$this->load->view('usuarios/header',$vistas);
+					$this->load->view('usuarios/usuario_legal/menu_legal',$vistas);
+					$this->load->view('usuarios/footer');
 					break;
 					case 6:
-					break;*/
+					break;
 			}			
 
 		}

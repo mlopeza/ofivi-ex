@@ -36,16 +36,14 @@ $(document).ready(function(){
 			'Usuario_Aceptado':(accept?'a':'r'),
 			'Usuario_Activo':(accept?1:0)
 			};
-
+			console.log(data);
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
 			     url: "aceptaUsuarios/insertData",
 			     data: data ,
 			     success: function(msg){
-                        console.log(msg);
 						var mensaje = $.parseJSON(msg);
-						//console.log($.parseJSON(msg));
 						if(mensaje['response'] ==  "true"){
 							noty({text: mensaje['mensaje'], type: 'success'});
 							//Elimina la fila del usuario aceptado, si es que se acepto
@@ -57,7 +55,6 @@ $(document).ready(function(){
 			     },
 				error: function(msg){
 						noty({text: "Ha habido un error en el sistema, intenetelo nuevamente.", type: 'error'});
-						//console.log($.parseJSON(msg));				
 				}
 			});
 	}
@@ -68,16 +65,13 @@ $(document).ready(function(){
 			's_token':$('#s_token').attr('value'),
 			'idUsuario': parseInt($(parent).find('#username').attr('value'))
 			};
-			console.log(parseInt($(parent).find('#username').attr('value')));
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
 			     url: "bajaUsuarios/dardeBaja",
 			     data: data ,
 			     success: function(msg){
-                        console.log(msg);
 						var mensaje = $.parseJSON(msg);
-						//console.log($.parseJSON(msg));
 						if(mensaje['response'] ==  "true"){
 							noty({text: mensaje['mensaje'], type: 'success'});
 							//Elimina la fila del usuario aceptado, si es que se acepto
@@ -89,7 +83,6 @@ $(document).ready(function(){
 			     },
 				error: function(msg){
 						noty({text: "Ha habido un error en el sistema, intenetelo nuevamente.", type: 'error'});
-						//console.log($.parseJSON(msg));				
 				}
 			});
 	}

@@ -28,7 +28,7 @@
 			     url: "AvancesProyectoP/getGrupos",
 			     data: data ,
 			     success: function(msg){
-						console.log(msg);
+						console.log(msg+"\\"+$("#idUsuario").val());
 						var mensaje = $.parseJSON(msg);
 						if(mensaje['response'] ==  "true"){
 								//Agrega las Empresas al nodo seleccionado
@@ -283,18 +283,18 @@
 			$(elemento).append($("<li>").append("No tiene documentos guardados").attr('id','0'));
 		}else{
 			$(nodos).each(function(index,nodo){
-				if(nodo['esLegal']){
+				if(nodo['esLegal']==1){
 				$(elemento).append($("<li>")
 									.append($("<a>")
-									.append("Propuesta")
-											.attr({'href':'/OEV/avancesproyectoU/do_download/1/'+nodo['idProyecto'],'rel':'prueba'})));
+									.append("Legal")
+											.attr({'href':'/OEV/avancesproyectoP/do_download/1/'+nodo['idProyecto'],'rel':'prueba'})));
 				}
 				else
 				{
 					$(elemento).append($("<li>")
 									.append($("<a>")
-									.append("Legal")
-											.attr({'href':'/OEV/avancesproyectoU/do_download/0/'+nodo['idProyecto'],'rel':'prueba'})));
+									.append("Propuesta")
+											.attr({'href':'/OEV/avancesproyectoP/do_download/0/'+nodo['idProyecto'],'rel':'prueba'})));
 				}
 			});
 		}

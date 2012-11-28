@@ -202,13 +202,12 @@
         data.Nombre=$("#nombre-Departamento").val().trim();
         data.Ubicacion=$("#ubicacion-Departamento").val().trim();
         data.idEscuela = $("#selectEscuela-Departamento option:selected").attr('id');
-        console.log(data);
         if(data.nombre == "" || data.ubicacion == ""){
             noty({text: "Faltan campos por llenar del Departamento.", type: 'error'});
             return;
         }
 
-        if(data.idEscuela = "" || data.idEscuela == undefined){
+        if(data.idEscuela == "" || data.idEscuela == undefined){
             noty({text: "No se ha escogido una Escuela.", type: 'error'});
             return;
         }
@@ -220,7 +219,6 @@
 
         ajaxCall('organizacion/saveDepartamento',data,function(data){
             //Si se completo la transacción se avisará que se hizo con éxito
-            console.log(data);
             noty({text: "El departamento se ha guardado correctamente.", type: 'success'});
             getDepartamentosEscuelas();
             //Limpia Datos
