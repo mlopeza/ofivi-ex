@@ -301,7 +301,12 @@ class Proyecto extends CI_Model{
 									FROM usuario as c, usuario_proyecto as cp, proyecto as p
 									WHERE p.idProyecto = cp.idProyecto AND
 									cp.idUsuario = c.idUsuario AND
-									p.idProyecto = '.$idProyecto );
+									p.idProyecto = '.$idProyecto.'
+									UNION DISTINCT
+									Select u.idUsuario, CONCAT(u.Nombre, " ",u.ApellidoP," ", u.ApellidoM) as nombre
+									FROM usuario as u, proyecto as p
+									WHERE p.idProyecto = '.$idProyecto.' AND
+									u.idUsuario = p.iniciadoPor');
 		return $query->result();
 }
 
