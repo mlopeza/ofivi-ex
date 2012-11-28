@@ -179,7 +179,8 @@ class Logincontroller extends CI_Controller {
 						'Legal' => $this->usuariomodel->getVistaLegal(),
 						'Profesor' => $this->usuariomodel->getVistaProfesor() );
 						$newdata = array(
-						'username'  => $this->usuariomodel->obtenID($this->usuariomodel->getUsername()),
+							'idUsuario' => $this->usuariomodel->obtenID($this->usuariomodel->getUsername()),											
+						'username'  => $this->usuariomodel->getUsername(),
 						'email'     => $this->usuariomodel->getEmail(),
 						'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
 						);
@@ -197,7 +198,8 @@ class Logincontroller extends CI_Controller {
 					  'Legal' => $this->usuariomodel->getVistaLegal(),
 					  'Profesor' => $this->usuariomodel->getVistaProfesor() );
 					  $newdata = array(
-					  'username'  => $this->usuariomodel->obtenID($this->usuariomodel->getUsername()),
+							'idUsuario' => $this->usuariomodel->obtenID($this->usuariomodel->getUsername()),										  
+					  'username'  => $this->usuariomodel->getUsername(),
 					  'email'     => $this->usuariomodel->getEmail(),
 					  'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
 					  );
