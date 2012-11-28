@@ -281,35 +281,28 @@
 			});
 		}
 	}	
-	function appendDocument(nodos,elemento){
+	function appendDocumentos(nodos,elemento){
 		if(nodos.length == 0){
 			$(elemento).append($("<li>").append("No tiene documentos guardados").attr('id','0'));
 		}else{
 			$(nodos).each(function(index,nodo){
 				if(nodo['esLegal'] == 1){
-				$(elemento)
-					.append($("<li>")
-						.append($("<a href>")
-							.append("Legal")
-							.attr("href","avancesProyecto/do_download/1/"+nodo['idProyecto'])
-								)
-								.attr({'id':nodo['idDocumento']})
-							
-						);
+				$(elemento).append($("<li>")
+									.append($("<a>")
+									.append("Legal")
+											.attr({'href':'/OEV/avancesproyectoU/do_download/1/'+nodo['idProyecto'],'rel':'prueba'})));
 				}
 				else
 				{
-					$(elemento)
-					.append($("<li>")
-						.append($("<a>")
-							.append("Propuesta")
-								.attr({'id':nodo['idDocumento']})
-							).attr("href","avancesProyecto/do_download/0/"+nodo['idProyecto'])
-						);
+					$(elemento).append($("<li>")
+									.append($("<a>")
+									.append("Propuesta")
+											.attr({'href':'/OEV/avancesproyectoU/do_download/0/'+nodo['idProyecto'],'rel':'prueba'})));
 				}
 			});
 		}
-	}		
+	}	
+			
 	function appendContacto(nodos,elemento){
 		if(nodos.length == 0){
 			$(elemento).append($("<li>").append("No hay contactos registrados").attr('id','0'));
