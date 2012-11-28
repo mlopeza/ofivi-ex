@@ -48,6 +48,7 @@ extends CI_Controller {
     {
 		$data = $this->input->post();
         try{
+        $data['data']['tiempo_respuesta']=date("Y-m-d H:i:s", time());
 	    	$this->load->model('proyecto');
     		$resultado=$this->proyecto->setRespuesta($data['idProyecto'],$data['data']);
 	     	echo json_encode(array('response'=>'true'));

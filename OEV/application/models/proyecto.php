@@ -216,9 +216,10 @@ class Proyecto extends CI_Model{
                                 ")->result();
 	}
 
+
     function getAsignados($idProyecto){
         $this->load->database();
-        $this->db->select('up.tiempo_solicitud,up.tiempo_respuesta,up.acepto,u.idUsuario, u.Nombre, u.ApellidoP, u.ApellidoM, u.email, u.Tipo_Usuario, d.nombre as Departamento,c.Nombre as Campus, e.Nombre as Escuela');
+        $this->db->select('up.tiempo_solicitud,up.Razon,up.sugerencia,up.tiempo_respuesta,up.acepto,u.idUsuario, u.Nombre, u.ApellidoP, u.ApellidoM, u.email, u.Tipo_Usuario, d.nombre as Departamento,c.Nombre as Campus, e.Nombre as Escuela');
         $this->db->from('Usuario u');
         $this->db->join('Departamento d','d.idDepartamento = u.idDepartamento','inner');
         $this->db->join('Escuela e','e.idEscuela = d.idEscuela','inner');
