@@ -144,14 +144,11 @@ class AvancesproyectoP extends CI_Controller {
 	{
 		$this->load->model('documento');
 		$this->load->helper('url');
-
-		$documento=$this->documento->getDocument($idProyecto,$esLegal);
+		$documento=$this->documento->getDocumentDownload($idProyecto,$esLegal);
 		$size = $documento[0]->Size;
 		$type = $documento[0]->Extension;
 		$name = $documento[0]->Titulo;
 		$content = stripslashes($documento[0]->Archivo);
-
-
 		header("Content-length: ".$size."");
 		header("Content-type: ".$type."");
 		header('Content-Disposition: attachment; filename="'.$name.'"');

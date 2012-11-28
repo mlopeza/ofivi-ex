@@ -170,7 +170,7 @@ class Logincontroller extends CI_Controller {
 					$this->load->view('usuarios/supervisor_extension/menu_supervisor',$vistas);					
 					$this->load->view('usuarios/footer');			
 
-					break;/*/
+					break;
 						case 4:
 						$vistas['vista'] = array(
 						'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
@@ -189,7 +189,7 @@ class Logincontroller extends CI_Controller {
 						$this->load->view('usuarios/usuario_extension/menu_extension',$vistas);
 						$this->load->view('usuarios/footer');	
 						break;
-					/*case 5:
+					case 5:
 					  $vistas['vista'] = array(
 					  'Usuario' => $this->usuariomodel->getVistaUsuarioExtension(),
 					  'Supervisor' => $this->usuariomodel->getVistaSupervisorExtension(),
@@ -202,12 +202,13 @@ class Logincontroller extends CI_Controller {
 					  'nombre'    => $this->usuariomodel->getNombre()." ".$this->usuariomodel->getApellidoP()
 					  );
 					  $this->session->set_userdata($newdata);
-					  $this->load->view('vistas/header');
-					//					$this->load->view('vistas/legal',$vistas);
-					$this->load->view('vistas/footer');
+					  $this->session->set_userdata($vistas);
+					$this->load->view('usuarios/header',$vistas);
+					$this->load->view('usuarios/usuario_legal/menu_legal',$vistas);
+					$this->load->view('usuarios/footer');
 					break;
 					case 6:
-					break;*/
+					break;
 			}			
 
 		}
