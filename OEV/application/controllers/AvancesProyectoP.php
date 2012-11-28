@@ -151,7 +151,7 @@ class AvancesproyectoP extends CI_Controller {
 		$content = stripslashes($documento[0]->Archivo);
 		header("Content-length: ".$size."");
 		header("Content-type: ".$type."");
-		header('Content-Disposition: attachment; filename="'.$name.'"');
+		header('Content-Disposition: attachment; filename="'.$name.'.'.$documento[0]->Extension.'"');
 		echo $content;
 	}
 }

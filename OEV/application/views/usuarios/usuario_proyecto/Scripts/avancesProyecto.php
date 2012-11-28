@@ -287,14 +287,14 @@
 				$(elemento).append($("<li>")
 									.append($("<a>")
 									.append("Legal")
-											.attr({'href':'/OEV/avancesproyectoP/do_download/1/'+nodo['idProyecto'],'rel':'prueba'})));
+											.attr({'href':'/OEV/AvancesProyectoP/do_download/1/'+nodo['idProyecto'],'rel':'prueba'})));
 				}
 				else
 				{
 					$(elemento).append($("<li>")
 									.append($("<a>")
 									.append("Propuesta")
-											.attr({'href':'/OEV/avancesproyectoP/do_download/0/'+nodo['idProyecto'],'rel':'prueba'})));
+											.attr({'href':'/OEV/AvancesProyectoP/do_download/0/'+nodo['idProyecto'],'rel':'prueba'})));
 				}
 			});
 		}
