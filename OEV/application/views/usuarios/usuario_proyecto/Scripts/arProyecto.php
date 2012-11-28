@@ -25,7 +25,11 @@
         });
 
     function mandarRespuesta(respuesta){
-        if(proyecto_global == -1) return;
+        if(proyecto_global == -1){ 
+            noty({text: 'No se ha seleccionado ningún proyecto.', type: 'error'});
+          return
+
+        };
         data={
                 'idProyecto':proyecto_global,
                 'data':{'Razon':$(".informacion-sugerencia").val().trim(),
