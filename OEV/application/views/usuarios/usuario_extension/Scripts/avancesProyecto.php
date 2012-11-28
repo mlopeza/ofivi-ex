@@ -286,14 +286,14 @@
 				if(nodo['esLegal'] == 1){
 				$(elemento).append($("<li>")
 									.append($("<a>")
-									.append("Propuesta")
+									.append("Legal")
 											.attr({'href':'/OEV/avancesproyectoU/do_download/1/'+nodo['idProyecto'],'rel':'prueba'})));
 				}
 				else
 				{
 					$(elemento).append($("<li>")
 									.append($("<a>")
-									.append("Legal")
+									.append("Propuesta")
 											.attr({'href':'/OEV/avancesproyectoU/do_download/0/'+nodo['idProyecto'],'rel':'prueba'})));
 				}
 			});
