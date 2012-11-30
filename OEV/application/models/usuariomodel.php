@@ -527,6 +527,19 @@ class Usuariomodel extends CI_Model {
 		$this->db->insert('usuario_proyecto', $array); 
 
 	}
+	function regresaTodo(){
+		$this->load->database();
+		$query=$this->db->query("SELECT d.idDepartamento as idDepartamento,
+					d.Nombre as Departamento,
+					e.Nombre as Escuela, 
+					c.Nombre as Campus,
+					u.* 
+			FROM Usuario u
+			INNER JOIN Departamento d ON d.idDepartamento = u.idDepartamento
+			INNER JOIN Escuela e ON e.idEscuela = d.idEscuela
+			INNER JOIN Campus c ON e.idCampus = c.idCampus	");
+		return $query;
+	}
 }
 ?>
 
