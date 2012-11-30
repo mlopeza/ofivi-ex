@@ -86,7 +86,7 @@
 			     url: "avancesproyectoU/getEmpresas",
 			     data: data ,
 			     success: function(msg){
-
+						console.log(msg);
 						var mensaje = $.parseJSON(msg);
 						if(mensaje['response'] ==  "true"){
 								//Agrega las Empresas al nodo seleccionado
