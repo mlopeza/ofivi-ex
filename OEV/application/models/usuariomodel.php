@@ -493,7 +493,16 @@ class Usuariomodel extends CI_Model {
 		Where idUsuario =".$idUsuario)->result();
 		return $query;
 	}
-
+	
+	function getExterior()
+	{
+		$this->load->database();
+		$query=$this->db->query("Select idUsuario
+			From usuario
+			Where username = 'Sin usuario' LIMIT 1")->result();
+		
+		return $query[0]->idUsuario;
+	}
 }
 ?>
 

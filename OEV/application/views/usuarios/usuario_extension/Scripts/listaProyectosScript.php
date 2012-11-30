@@ -21,7 +21,7 @@
     			text: "Deseas eliminar el Proyecto?", 
     			buttons: [
     		    {type: 'btn btn-mini btn-primary', text: 'Sí', click: function($noty) {
-                        ajaxCall('<?php echo base_url("altaProyecto");?>/deleteProyecto',{'idProyecto':id},function(){
+                        ajaxCall('<?php echo base_url("proyectoExterno");?>/deleteProyecto',{'idProyecto':id},function(){
                             noty({text: "El Proyecto se ha eliminado.", type: 'success'});
 							getProyectos();
                         });
@@ -38,28 +38,24 @@
 		//Manda el Grupo a Edicion
 		$(".editProyecto").live("click",function(){
 			data = $.parseJSON($(this).attr('id'));
-			window.location.replace("<?php echo base_url("");?>altaProyecto/editaProyecto?idGrupo="+data.idGrupo+"&idEmpresa="+data.idEmpresa+"&idProyecto="+data.idProyecto);
+			window.location.replace("<?php echo base_url("");?>proyectoExterno/aceptaProyecto?idProyecto="+data.idProyecto);
 		});
 
 	});
 
-	/*Busca los Grupos en la Bse de datos*/
+	/*Busca los Grupos en la Bse de datos/
 	function getProyectos(){
 		//Elimina todo lo que haya en la tabla de Grupos
 		cleanTable(pTable);
-		data = {'idUsuario':$("#idUsuario-sistema").attr('idUsuario')};
-		ajaxCall("getProyectos",data,function(data){
+		data = {};
+		ajaxCall("getProyectosExternos",data,function(data){
 			//COnvierte los datos JSON en objeto
 			data = $.parseJSON(data);
 			console.log(data);
 			$.each(data,function(index,value){
 				id = {
-					'idGrupo':value.idGrupo,
-					'idEmpresa':value.idEmpresa,
 					'idProyecto':value.idProyecto,
 					}
-                delete value.idGrupo;
-				delete value.idEmpresa;
 				delete value.idProyecto;
                 insertElement(pTable,JSON.stringify(id),value,"Proyecto");
             });
