@@ -87,8 +87,8 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Usuario` (
   CONSTRAINT `Usuario_Departamento`
     FOREIGN KEY (`idDepartamento` )
     REFERENCES `SEVI`.`Departamento` (`idDepartamento` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -245,8 +245,8 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Categoria` (
   CONSTRAINT `fk_Categoria_1`
     FOREIGN KEY (`idSupraCategoria` )
     REFERENCES `SEVI`.`SupraCategoria` (`idSupraCategoria` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -510,8 +510,8 @@ CREATE  TABLE IF NOT EXISTS `SEVI`.`Documento` (
   CONSTRAINT `fk_Documento_1`
     FOREIGN KEY (`idProyecto` )
     REFERENCES `SEVI`.`Proyecto` (`idProyecto` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 

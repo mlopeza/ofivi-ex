@@ -1,3 +1,4 @@
+<script  type="text/javascript" >
 /* Cambia el color del boton y el Valor del Mismo
 	Fue diseñado para la tabla de Aceptar-Rechazar
 	Pero puede Ser utilizado si se utilizan las mismas
@@ -40,9 +41,10 @@ $(document).ready(function(){
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
-			     url: "aceptaUsuarios/insertData",
+			     url: "/OEV/index.php/aceptaUsuarios/insertData",
 			     data: data ,
 			     success: function(msg){
+					 console.log(msg);
 						var mensaje = $.parseJSON(msg);
 						if(mensaje['response'] ==  "true"){
 							noty({text: mensaje['mensaje'], type: 'success'});
@@ -97,3 +99,4 @@ $(document).ready(function(){
 		}
 	}
 });
+</script>

@@ -34,7 +34,7 @@ extends CI_Controller {
     {
 		$this->load->model('categoria');
 		//Regresa todas las categorias en JSON
-		echo json_encode($this->categoria->getAllCategorias());
+		echo json_encode($this->categoria->getAllCategoriasSupra($this->input->post()));
     }
 
 	public function deleteCategoria(){
@@ -45,52 +45,27 @@ extends CI_Controller {
 
 	public function addCategoria(){
 		$this->load->model('categoria');
-		$data = $this->input->post('data');
+		$data = $this->input->post();
 		echo json_encode($data);
 		$this->categoria->addCategoria($data);
 	}
 
-	//Regresa los reportes de un proyecto de un determinado usuario
-    public function reportesDeProyectoAutor()
-    {
-		$data = $this->input->post();
-        try{
-	    	$this->load->model('reporte');
-	    	$this->load->library('session');
-			//Cargar la sesion y se obtiene el id del usuario
-			$datos_usuario=$this->session->all_userdata();
-			$usuario = $datos_usuario['idUsuario'];
-	    	$resultado = $this->reporte->getReportesDeProyectoAutor($usuario,$data['idProyecto']);
-			echo json_encode(array('response'=>'true','mensaje'=>$resultado));
-        }catch(Exception $e){
-			echo json_encode(array('response'=>'false','mensaje'=>"Hubo un error en el Sistema, favor de intentarlo mas tarde.".$e->getMessage()));
-		}
-    }
-    
-	/*
-	 * Obtiene la descripcion del reporte seleccionado
-	 */
-	public function getReporte()
-	{
-		$data = $this->input->post();
-        try{
-	    	$this->load->model('reporte');
-	    	$resultado = $this->reporte->getDescripcionReporte($data['idReporte']);
-			echo json_encode(array('response'=>'true','mensaje'=>$resultado));
-        }catch(Exception $e){
-			echo json_encode(array('response'=>'false','mensaje'=>"Hubo un error en el Sistema, favor de intentarlo mas tarde.".$e->getMessage()));
-		}
-	}
-	
-	public function modificaReporte()
-	{
-		$this->load->model('reporte');
-		$this->load->helper('url');
-		
-		$this->reporte->setReporte($this->input->post('reporteProyecto'));
-			
-		$this->reporte->modificaReporte($this->input->post('idReporteHidden'));
-		redirect('modificarReportes', 'location'); 
-		
-	}
+  public function getSupra(){
+    $this->load->model('supracategoria');
+    $data = $this->supracategoria->getAllSupraCategorias();
+    echo json_encode($data);
+  }
+
+  public function saveSupra(){
+    $this->load->model('supracategoria');
+    $this->supracategoria->addSupraCategoria($this->input->post());
+    echo json_encode(array());
+  }
+
+  public function deleteSupra(){
+    $this->load->model('supracategoria');
+    $this->supracategoria->deleteSupraCategoria($this->input->post('idSupraCategoria'));
+    echo json_encode(array());
+  }
+
 }

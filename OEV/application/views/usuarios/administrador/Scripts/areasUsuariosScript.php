@@ -30,11 +30,11 @@
     			animateOpen: {opacity: 'show'},
     			animateClose: {opacity: 'hide'},
     			layout: 'center',
-    			text: "Deseas eliminar la Categoría?", 
+    			text: "Deseas eliminar el grupo?", 
     			buttons: [
     		    {type: 'btn btn-mini btn-primary', text: 'Sí', click: function($noty) {
-                        ajaxCall('areasClientes/deleteSupra',{'idSupraCategoria':id},function(){
-                            noty({text: "La categoría se ha eliminado.", type: 'success'});
+                        ajaxCall('areasUsuarios/deleteGrupo',{'idGrupo_Area':id},function(){
+                            noty({text: "El grupo se ha eliminado.", type: 'success'});
 							limpiarGrupo();
 							limpiarEmpresa();
 							getGrupos();
@@ -57,11 +57,11 @@
     			animateOpen: {opacity: 'show'},
     			animateClose: {opacity: 'hide'},
     			layout: 'center',
-    			text: "Deseas eliminar la categoría?", 
+    			text: "Deseas eliminar la especialidad?", 
     			buttons: [
     		    {type: 'btn btn-mini btn-primary', text: 'Sí', click: function($noty) {
-                        ajaxCall('areasClientes/deleteCategoria',{'idCategoria':id},function(){
-                            noty({text: "La subcategoría se ha eliminado.", type: 'success'});
+                        ajaxCall('areasUsuarios/deleteArea',{'idArea_Conocimiento':id},function(){
+                            noty({text: "La especialidad se ha eliminado.", type: 'success'});
 							limpiarGrupo();
 							limpiarEmpresa();
 							getEmpresas();
@@ -99,16 +99,18 @@
 			nombre = $("#grupo-input").val().trim();
 			idGrupo = $("#grupo-input").attr('idGrupo');
 			if(idGrupo != "" && idGrupo != undefined)
-				data.idSupraCategoria = idGrupo;
+				data.idGrupo_Area = idGrupo;
 
 			if(nombre == ""){
 				noty({text: "El nombre de la categoría no debe de estar vacío.", type: 'error'});
 				return;
 			}
-			data.Nombre = nombre;
-			ajaxCall('areasClientes/saveSupra',data,function(response){
+			data.nombre = nombre;
+      console.log(data);
+			ajaxCall('areasUsuarios/saveGrupo',data,function(response){
+        console.log(response);
 				response = $.parseJSON(response);
-				noty({text: "La categoría "+nombre+" se ha guardado con éxito", type: 'success'});
+				noty({text: "El Grupo "+nombre+" se ha guardado con éxito", type: 'success'});
 				limpiarGrupo();
 				limpiarEmpresa();
 				getGrupos();
@@ -133,22 +135,22 @@
 			idEmpresa = $(edemp).attr('idEmpresa');
 
 			if(idGrupo != "" && idGrupo != undefined){
-				data.idSupraCategoria = idGrupo;
+				data.idGrupo_Area = idGrupo;
 			}else{
 				noty({text: "Se debe seleccionar primero una Categoría.", type: 'error'});
 				return;
 			}
 
 			if(idEmpresa != "" && idEmpresa != undefined)
-				data.idCategoria = idEmpresa;
+				data.idArea_Conocimiento = idEmpresa;
 
 			if(nombre == ""){
 				noty({text: "El nombre de la subcategoría no debe de estar vacío.", type: 'error'});
 				return;
 			}
-			data.Categoria = nombre;
+			data.area = nombre;
       console.log("Data",data.idCategoria);
-			ajaxCall('areasClientes/addCategoria',data,function(response){
+			ajaxCall('areasUsuarios/addArea',data,function(response){
         console.log(response);
 				response = $.parseJSON(response);
 				$(edemp).attr('idEmpresa',response['idEmpresa']);
@@ -214,13 +216,13 @@
 		//Elimina todo lo que haya en la tabla de Grupos
 		cleanTable(gTable);
 		cleanTable(eTable);
-		ajaxCall("areasClientes/getSupra",undefined,function(data){
+		ajaxCall("areasUsuarios/getGrupos",undefined,function(data){
 			//COnvierte los datos JSON en objeto
       console.log(data);
 			data = $.parseJSON(data);
 			$.each(data,function(index,value){
-                id = value.idSupraCategoria;
-                delete value.idSupraCategoria;
+                id = value.idGrupo_Area;
+                delete value.idGrupo_Area;
                 insertElement(gTable,id,value,"Grupo")                
             });
 		});
@@ -231,13 +233,13 @@
 	function getEmpresas(){
 		//Elimina todo lo que haya en la tabla de Grupos
 		cleanTable(eTable);
-		ajaxCall("areasClientes/getCategorias",{'idSupraCategoria':idGrupoGlobal},function(data){
+		ajaxCall("areasUsuarios/getAreas",{'idGrupo_Area':idGrupoGlobal},function(data){
 			//Convierte los datos JSON en objeto
 			data = $.parseJSON(data);
 			$.each(data,function(index,value){
-                id = value.idCategoria;
-                delete value.idSupraCategoria;
-                delete value.idCategoria;
+                id = value.idArea_Conocimiento;
+                delete value.idGrupo_Area;
+                delete value.idArea_Conocimiento;
                 insertElement(eTable,id,value,"Empresa")                
             });
     	    $(".editEmpresa").filter("[id="+idEmpresaGlobal+"]").parent().parent().attr("style","background-color:whiteSmoke;");

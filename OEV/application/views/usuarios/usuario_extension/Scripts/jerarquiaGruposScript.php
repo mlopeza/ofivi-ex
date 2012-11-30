@@ -24,6 +24,19 @@
 		getGrupos();
 		getLista();
 
+		//Obtiene el Id de la empresa que se ha seleccionado y se le colorea
+		$('#tabla-empresas tbody tr').live("click",function () {
+      nodo = $("#so");
+			idEmpresa = $(this).find('button').filter(':first').attr('id');
+			var aPos = gTable.fnGetPosition( this );
+			$("#empresa-creacion").html("").html((eTable.fnGetData(aPos[0])[aPos][0]));
+			$("#empresa-creacion").attr("idEmpresa",idEmpresa);
+            $.each($("#tabla-empresas tbody tr"),function(index,elemento){
+                    $(elemento).attr("style","");
+            });
+            $(this).attr("style","background-color:whiteSmoke;");
+		});
+
 	$("#crear-proyecto").click(function(){
 		grupo=$("#grupo-creacion").attr('idGrupo');
 		empresa=$("#empresa-creacion").attr('idEmpresa');
@@ -71,7 +84,7 @@
 	$("#actualizar-lista").click(getLista);
     //Remueve un grupo de la base de datos
     $(".removeGrupo").live("click",function(){
-        id=$(this).attr('id');
+        idnow=$(this).attr('id');
     		noty({
     			animateOpen: {opacity: 'show'},
     			animateClose: {opacity: 'hide'},
@@ -79,7 +92,7 @@
     			text: "Deseas eliminar el Grupo?", 
     			buttons: [
     		    {type: 'btn btn-mini btn-primary', text: 'Sí', click: function($noty) {
-                        ajaxCall('jerarquiaGrupos/deleteGrupo',{'idGrupo':id},function(){
+                        ajaxCall('jerarquiaGrupos/deleteGrupo',{'idGrupo':idnow},function(data){
                             noty({text: "El Grupo se ha eliminado.", type: 'success'});
 							limpiarGrupo();
 							limpiarEmpresa();
@@ -161,18 +174,19 @@
 
 		//Manda la empresa a edicion
 		$(".editEmpresa").live("click",function(){
-			$("#EtiquetaEmpresa").html("- Edición");
-			$("#empresa-input").val($(this).parent().parent().children(":first").html());
-			$("#empresa-input").attr('idEmpresa',$(this).attr('id'));
+      x=$(this).parent().parent().children(":first").html();
+      id=$(this).attr('id');
+			$('#so').attr('idEmpresa',id).val(x);
+			$("#ete").html("- Edición");
 		});
 
 		//Manda a la empresa a guardar en la base de datos
 		$("#guardar-empresa").click(function(){
 			data = {}
-
+      nodo = $("#so");
 			idGrupo = $("#empresa-grupo-input").attr('idGrupo');
-			nombre = $("#empresa-input").val().trim();
-			idEmpresa = $("#empresa-input").attr('idEmpresa');
+			nombre = $(nodo).val().trim();
+			idEmpresa = $(nodo).attr('idEmpresa');
 
 			if(idGrupo != "" && idGrupo != undefined){
 				data.idGrupo = idGrupo;
@@ -191,7 +205,7 @@
 			data.nombre = nombre;
 			ajaxCall('jerarquiaGrupos/saveEmpresa',data,function(response){
 				response = $.parseJSON(response);
-				$("#empresa-input").attr('idEmpresa',response['idEmpresa']);
+				$(nodo).attr('idEmpresa',response['idEmpresa']);
 				getEmpresas();
 				idEmpresaGlobal=response['idEmpresa'];
 				$("#empresa-creacion").html("").html(nombre);
@@ -233,20 +247,7 @@
 
 		});
 
-		//Obtiene el Id de la empresa que se ha seleccionado y se le colorea
-		$('#tabla-empresas tbody tr').live("click",function () {
-			idEmpresa = $(this).find('button').filter(':first').attr('id');
-			var aPos = gTable.fnGetPosition( this );
-			$("#empresa-creacion").html("").html((eTable.fnGetData(aPos[0])[aPos][0]));
-			$("#empresa-creacion").attr("idEmpresa",idEmpresa);
-            $.each($("#tabla-empresas tbody tr"),function(index,elemento){
-                    $(elemento).attr("style","");
-            });
-            $(this).attr("style","background-color:whiteSmoke;");
-			$("#empresa-input").val("");
-			$("#empresa-input").attr('idEmpresa',"");
-			$("#EtiquetaEmpresa").html("");
-		});
+
 
 
 	});
@@ -262,9 +263,8 @@
 
 	//Limpia los campos de Grupo
 	function limpiarEmpresa(){
-		$("#empresa-input").val("");
-		$("#empresa-input").attr('idEmpresa',"");
-		$("#EtiquetaEmpresa").html("");
+		$("#so").val("").attr('idEmpresa',"");
+		$("#ete").html("");
 	}
 
 

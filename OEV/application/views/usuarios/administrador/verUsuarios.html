@@ -93,7 +93,7 @@
 																	</td>
 																						  <td style="text-align:center;">
 																						  		<button class="btn btn-primary accept-user">Aceptar</button>
-																						  		<button class="btn btn-danger reject-user">Rechazar</button>
+
 																						  </td>
                                                                 </tr>
 															<?php }; ?>

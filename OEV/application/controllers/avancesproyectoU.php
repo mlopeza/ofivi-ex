@@ -30,11 +30,11 @@ class AvancesproyectoU extends CI_Controller {
 			//Regresa las empresas del Grupo
 			$this->load->model('empresa');
 			$resultado=$this->empresa->getEPAU($data['activo'],$data['idGrupo'],$data['idUsuario']);			
-			//Regresa las empresas del Grupo
+			//Regresa las empresas del Grupo		
 			$this->load->model('proyecto');
-			$resultado2=$this->proyecto->findPAU($resultado[0]->idEmpresa,$data['activo'],$data['idGrupo'],$data['idUsuario']);
+			$resultado2=$this->proyecto->findPAU($resultado[0]->idEmpresa,$data['activo'],$data['idUsuario']);
 			//Regresa a categoria del proyecto.
-			$resultado3=$this->proyecto->getCATU($resultado2[0]->idProyecto);
+			$resultado3=$this->proyecto->getCATP($resultado2[0]->idProyecto);
 			$resultado4=$this->proyecto->getUA($resultado2[0]->idProyecto);
 			$resultado5=$this->proyecto->getCA($resultado2[0]->idProyecto);
 			$this->load->model('estado');
@@ -61,7 +61,7 @@ class AvancesproyectoU extends CI_Controller {
 			$this->load->model('proyecto');
 			$resultado=$this->proyecto->findPAU($data['idEmpresa'],$data['activo'],$data['idUsuario']);
 			//Regresa a categoria del proyecto.
-			$resultado2=$this->proyecto->getCATU($resultado[0]->idProyecto);
+			$resultado2=$this->proyecto->getCATP($resultado[0]->idProyecto);
 			$resultado3=$this->proyecto->getUA($resultado[0]->idProyecto);
 			$resultado4=$this->proyecto->getCA($resultado[0]->idProyecto);
 			$this->load->model('estado');
@@ -86,7 +86,7 @@ class AvancesproyectoU extends CI_Controller {
 			//Regresa las empresas del Grupo
 			$this->load->model('proyecto');
 			//Regresa a categoria del proyecto.
-			$resultado2=$this->proyecto->getCATU($data['idProyecto']);
+			$resultado2=$this->proyecto->getCATP($data['idProyecto']);
 			$resultado3=$this->proyecto->getUA($data['idProyecto']);
 			$resultado4=$this->proyecto->getCA($data['idProyecto']);
 						$this->load->model('estado');

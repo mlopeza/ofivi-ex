@@ -281,7 +281,7 @@
 			});
 		}
 	}	
-	function appendDocumentos(nodos,elemento){
+	function appendDocument(nodos,elemento){
 		if(nodos.length == 0){
 			$(elemento).append($("<li>").append("No tiene documentos guardados").attr('id','0'));
 		}else{
