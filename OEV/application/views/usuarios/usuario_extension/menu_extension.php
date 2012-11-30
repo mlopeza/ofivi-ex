@@ -21,6 +21,7 @@
                                             <li><a href="<?php echo base_url("altaProyecto");?>">Alta de Proyecto</a></li>
                                             <li><a href="<?php echo base_url("altaProyecto/listaProyectos");?>">Edita Proyecto</a></li>
                                             <li><a href="<?php echo base_url("asignaProyecto");?>">Asigna Proyectos</a></li>
+                                            <li><a href="<?php echo base_url("proyectoExterno");?>">Proyectos Externos</a></li>
                                             <li><a href="<?php echo base_url("actualizaEstadoUE");?>">Actualizar Estado</a></li>
                                             <li><a href="<?php echo base_url("avancesproyectoU");?>">Avances de Proyectos</a></li>
                                             <li><a href="<?php echo base_url("verReportes");?>">Ver Reportes de Proyecto</a></li>
