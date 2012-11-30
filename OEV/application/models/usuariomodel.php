@@ -493,8 +493,6 @@ class Usuariomodel extends CI_Model {
 		Where idUsuario =".$idUsuario)->result();
 		return $query;
 	}
-<<<<<<< HEAD
-	
 	function getExterior()
 	{
 		$this->load->database();
@@ -503,7 +501,8 @@ class Usuariomodel extends CI_Model {
 			Where username = 'Sin usuario' LIMIT 1")->result();
 		
 		return $query[0]->idUsuario;
-=======
+	}
+	
 	function regresaLegalSP(){
 		$this->load->database();
 		$query=$this->db->query("SELECT user.idUsuario,CONCAT(user.nombre,' ',user.apellidoP,' ',user.apellidoM) as nombre
@@ -516,6 +515,7 @@ class Usuariomodel extends CI_Model {
 				u.Vista_Legal = 1)");
 		return $query->result();
 	}
+	
 	function regresaLegalCP(){
 		$this->load->database();
 		$query=$this->db->query("SELECT user.idUsuario,CONCAT(user.nombre,' ',user.apellidoP,' ',user.apellidoM) as nombre
@@ -528,6 +528,7 @@ class Usuariomodel extends CI_Model {
 		$this->load->database();
 		$query=$this->db->query('DELETE FROM usuario_proyecto WHERE idUsuario='.$idUsuario.' AND idProyecto='.$idProyecto);
 	}
+	
 	function insertaLegal($idUsuario,$idProyecto){
 		$this->load->database();
 		$array = array(
@@ -538,6 +539,7 @@ class Usuariomodel extends CI_Model {
 		$this->db->insert('usuario_proyecto', $array); 
 
 	}
+	
 	function regresaTodo(){
 		$this->load->database();
 		$query=$this->db->query("SELECT d.idDepartamento as idDepartamento,
@@ -550,7 +552,7 @@ class Usuariomodel extends CI_Model {
 			INNER JOIN Escuela e ON e.idEscuela = d.idEscuela
 			INNER JOIN Campus c ON e.idCampus = c.idCampus	");
 		return $query;
->>>>>>> da07c16917d02e2b4a6b9363f23e13f6e2cccdcc
+
 	}
 }
 ?>
