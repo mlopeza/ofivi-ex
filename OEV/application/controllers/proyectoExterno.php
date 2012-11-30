@@ -81,7 +81,7 @@ extends CI_Controller {
 		$this->estado->setIdUsuario($idUsuarioExterior);
 		$this->estado->setEstado('Entrada de proyecto externo');
 		$this->estado->insert();
-		
+		redirect('proyectoExterno', 'location');
 	}
 	
 	
@@ -98,7 +98,7 @@ extends CI_Controller {
 		
 		$this->proyecto->updateExterno($data['idProyectoExterno'],$usuario);
 		sleep(3);
-		redirect('proyectoExterno', 'location'); 
+		redirect(base_url('Contacto.php'), 'location'); 
 	}
 }
 ?>
