@@ -30,9 +30,9 @@ class AvancesproyectoU extends CI_Controller {
 			//Regresa las empresas del Grupo
 			$this->load->model('empresa');
 			$resultado=$this->empresa->getEPAU($data['activo'],$data['idGrupo'],$data['idUsuario']);			
-			//Regresa las empresas del Grupo
+			//Regresa las empresas del Grupo		
 			$this->load->model('proyecto');
-			$resultado2=$this->proyecto->findPAU($resultado[0]->idEmpresa,$data['activo'],$data['idGrupo'],$data['idUsuario']);
+			$resultado2=$this->proyecto->findPAU($resultado[0]->idEmpresa,$data['activo'],$data['idUsuario']);
 			//Regresa a categoria del proyecto.
 			$resultado3=$this->proyecto->getCATP($resultado2[0]->idProyecto);
 			$resultado4=$this->proyecto->getUA($resultado2[0]->idProyecto);

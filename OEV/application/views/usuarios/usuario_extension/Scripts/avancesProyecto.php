@@ -90,7 +90,7 @@
 						var mensaje = $.parseJSON(msg);
 						if(mensaje['response'] ==  "true"){
 								//Agrega las Empresas al nodo seleccionado
-								var sEmpresas = $('#sempresa');
+/*								var sEmpresas = $('#sempresa');
 								var sProyectos = $('#sproyecto');
 								var sCategoria = $('[name = "categoria"]');
 								var sContactos = $('[name = "contacto"]');
@@ -112,7 +112,7 @@
 								appendProfesor(mensaje['usuario'],sProfesor);
 								appendContacto(mensaje['contacto'],sContactos);
 								appendEstado(mensaje['estado'],sEstados);
-								appendDocumentos(mensaje['documento'],sDocumentos);
+								appendDocumentos(mensaje['documento'],sDocumentos);*/
 
 						}else{
 							noty({text: mensaje['mensaje'], type: 'error'});
