@@ -81,7 +81,7 @@ extends CI_Controller {
 		$this->estado->setIdUsuario($idUsuarioExterior);
 		$this->estado->setEstado('Entrada de proyecto externo');
 		$this->estado->insert();
-		redirect(base_url('Contacto.php'), 'location'); 
+    header( 'Location: /Contacto.php' ) ;
 	}
 	
 	
