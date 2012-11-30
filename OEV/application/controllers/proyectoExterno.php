@@ -35,7 +35,7 @@ extends CI_Controller {
     function altaProyectoExterno()
 	{
 		$data = $this->input->post();
-		
+		$this->load->helper('url');		
 		$this->load->model('proyecto');
 		$this->load->model('usuariomodel');
 		$this->load->model('empresa');
@@ -81,7 +81,7 @@ extends CI_Controller {
 		$this->estado->setIdUsuario($idUsuarioExterior);
 		$this->estado->setEstado('Entrada de proyecto externo');
 		$this->estado->insert();
-		redirect('proyectoExterno', 'location');
+		redirect(base_url('Contacto.php'), 'location'); 
 	}
 	
 	
@@ -98,7 +98,7 @@ extends CI_Controller {
 		
 		$this->proyecto->updateExterno($data['idProyectoExterno'],$usuario);
 		sleep(3);
-		redirect(base_url('Contacto.php'), 'location'); 
+		redirect('proyectoExterno', 'location'); 
 	}
 }
 ?>
