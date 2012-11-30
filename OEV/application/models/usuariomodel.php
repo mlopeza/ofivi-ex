@@ -493,7 +493,40 @@ class Usuariomodel extends CI_Model {
 		Where idUsuario =".$idUsuario)->result();
 		return $query;
 	}
+	function regresaLegalSP(){
+		$this->load->database();
+		$query=$this->db->query("SELECT user.idUsuario,CONCAT(user.nombre,' ',user.apellidoP,' ',user.apellidoM) as nombre
+		FROM usuario as user
+		WHERE user.Vista_Legal = 1 AND
+			idUsuario NOT IN (
+				SELECT u.idUsuario
+				FROM usuario as u,usuario_proyecto as up
+				WHERE u.idUsuario = up.idUsuario AND
+				u.Vista_Legal = 1)");
+		return $query->result();
+	}
+	function regresaLegalCP(){
+		$this->load->database();
+		$query=$this->db->query("SELECT user.idUsuario,CONCAT(user.nombre,' ',user.apellidoP,' ',user.apellidoM) as nombre
+		FROM usuario as user, usuario_proyecto as up
+		WHERE user.Vista_Legal = 1 AND
+		up.idUsuario = user.idUsuario");
+		return $query->result();
+	}
+	function eliminaLegal($idUsuario,$idProyecto){
+		$this->load->database();
+		$query=$this->db->query('DELETE FROM usuario_proyecto WHERE idUsuario='.$idUsuario.' AND idProyecto='.$idProyecto);
+	}
+	function insertaLegal($idUsuario,$idProyecto){
+		$this->load->database();
+		$array = array(
+		'idUsuario'=>$idUsuario,
+		'idProyecto'=>$idProyecto,
+		'acepto'=>1,
+		'activa'=>1);
+		$this->db->insert('usuario_proyecto', $array); 
 
+	}
 }
 ?>
 
