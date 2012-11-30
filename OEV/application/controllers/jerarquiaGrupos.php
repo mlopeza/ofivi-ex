@@ -68,7 +68,7 @@ extends CI_Controller {
 		$data = $this->input->post();
 		$this->load->model('grupo');
 		$this->grupo->deleteGrupo($data);
-		echo json_encode(array("mensaje"=>"Acción relizada con éxito"));
+		echo json_encode(array("mensaje"=>"Acción relizada con éxito","data"=>$data));
     }
 
 	//Pone inactivo una empresa

@@ -5,37 +5,55 @@ class Proyecto extends CI_Model{
     var $descripcionUsuario='';
     var $descripcionAEV='';
     var $Proyecto_Activo=1;
+    var $idEmpresa;
+    var $iniciadoPor;
     
     function getNombre(){
-		return $nombre;
+		return $this->nombre;
 	}
 	
 	function getDescripcionUsuario(){
-		return $descripcionUsuario;
+		return $this->descripcionUsuario;
 	}
 	
 	function getDescripcionAEV(){
-		return $descripcionAEV;
+		return $this->descripcionAEV;
 	}
 	
 	function getProyecto_Activo(){
-		return $Proyecto_Activo;
+		return $this->Proyecto_Activo;
+	}
+	
+	function getIdEmpresa(){
+		return $this->idEmpresa;
+	}
+		
+	function getIniciadoPor(){
+		return $this->iniciadoPor;
+	}
+	
+	function setIdEmpresa($param){
+		$this->idEmpresa = $param;
+	}
+		
+	function setIniciadoPor($param){
+		$this->iniciadoPor = $param;
 	}
 	
 	function setNombre(){
-		$nombre = $this->input->post('nombre_proyecto');
+		$this->nombre = $this->input->post('nombre_proyecto');
 	}
 	
 	function setDescripcionAEV(){
-		$descripcionAEV = $this->input->post('descripcionAEV');
+		$this->descripcionAEV = $this->input->post('descripcionAEV');
 	}
 	
 	function setDescripcionUsuario(){
-		$descripcionUsuario = $this->input->post('descripcionUsuario');
+		$this->descripcionUsuario = $this->input->post('descripcionUsuario');
 	}
 	
 	function setProyecto_Activo(){
-		$Proyecto_Activo = $this->input->post('Proyecto_Activo');
+		$this->Proyecto_Activo = $this->input->post('Proyecto_Activo');
 	}
     
     function __construct()
@@ -469,7 +487,33 @@ function getEA($idProyecto){
       $this->db->insert('Estado',$data);
     }
   }
-
+  
+	function altaProyectoExterno($data)
+	{
+		$this->load->database();
+		$this->db->insert('proyecto',$data);
+		$idx = $this->db->query("SELECT LAST_INSERT_ID() as idProyecto;")->result();
+		$id=$idx[0]->idProyecto;
+	
+		//Regresa el id del Proyecto Recien Creado
+		return $id;
+	}
+  
+	function selectProyectosExteriores($idUsuario)
+	{
+		$this->load->database();
+		$this->db->where('iniciadoPor',$idUsuario);
+		return $this->db->get('proyecto')->result();
+	}
+	
+	function updateExterno($idProy,$usuario)
+	{
+		$this->load->database();
+		
+		$data = array('iniciadoPor'=>$usuario);
+		$this->db->where('idProyecto',$idProy);
+		
+		$this->db->update('proyecto',$data);
+	}
 }
 ?>
-

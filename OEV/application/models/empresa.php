@@ -163,7 +163,19 @@ class Empresa extends CI_Model {
 		$this->db->where($data);
 		$this->db->update('Empresa',array('activo'=>0));
 	}
-
+	
+	/*
+	 * Obtiene el id de la empresa NA
+	 */
+	function getExterior()
+	{
+		$this->load->database();
+		$query=$this->db->query("Select idEmpresa
+			From empresa
+			Where nombre = 'Sin empresa' LIMIT 1")->result();
+		
+		return $query[0]->idEmpresa;
+	}
 }
 ?>
 

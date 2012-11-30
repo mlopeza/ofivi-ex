@@ -21,7 +21,7 @@
     			text: "Deseas eliminar el Proyecto?", 
     			buttons: [
     		    {type: 'btn btn-mini btn-primary', text: 'Sí', click: function($noty) {
-                        ajaxCall('<?php echo base_url("altaProyecto");?>/deleteProyecto',{'idProyecto':id},function(){
+                        ajaxCall('<?php echo base_url("proyectoExterno");?>/deleteProyecto',{'idProyecto':id},function(){
                             noty({text: "El Proyecto se ha eliminado.", type: 'success'});
 							getProyectos();
                         });
@@ -43,6 +43,7 @@
 
 	});
 
+	/*Busca los Grupos en la Bse de datos*/
 	/*Busca los Grupos en la Bse de datos*/
 	function getProyectos(){
 		//Elimina todo lo que haya en la tabla de Grupos
