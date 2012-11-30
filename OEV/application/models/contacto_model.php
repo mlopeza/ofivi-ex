@@ -273,19 +273,27 @@ class contacto_model extends CI_Model {
     	    } 
     	} 
     	return $ret_str; 
+	}
+
+	function getContactosActivos(){
+		$this->load->database();
+        $query = $this->db->query('
+			SELECT 
+          e.idEmpresa as idEmpresa,
+					g.Nombre as Grupo, 
+					e.Nombre as Empresa,
+					CONCAT(c.Nombre," ", c.ApellidoP, " ", c.ApellidoM) as Nombre,
+          c.Puesto,
+					c.email as Email,
+					c.idContacto as idContacto
+			FROM Contacto c
+			INNER JOIN Empresa e ON e.idEmpresa = c.idEmpresa
+			INNER JOIN Grupo g ON g.idGrupo = e.idGrupo
+			WHERE c.Contacto_Activo = 1
+			');
+		return $query->result();
+
 	} 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>

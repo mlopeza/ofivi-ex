@@ -18,6 +18,12 @@ class Categoria extends CI_Model {
 	}
 
 
+	function getAllCategoriasSupra($data){
+    $this->db->where($data);
+		$query=$this->db->get('Categoria');
+		return $query->result();
+	}
+
 	/*	
 		Elimina una Categoria de la BD
 	*/
@@ -33,9 +39,9 @@ class Categoria extends CI_Model {
 	function addCategoria($data){
 		if(isset($data['idCategoria'])){
 			$this->db->where('idCategoria',$data['idCategoria']);
-			$this->db->update('Categoria',array('Categoria'=>$data['Categoria']));
+			$this->db->update('Categoria',$data);
 		}else{
-			$this->db->insert('Categoria',array('Categoria'=>$data['Categoria']));
+			$this->db->insert('Categoria',$data);
 		}
 	}
 }

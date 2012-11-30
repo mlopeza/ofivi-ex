@@ -291,9 +291,9 @@ class Usuariomodel extends CI_Model {
 		$this->load->database();
         $query = $this->db->query('
 			SELECT d.idDepartamento as idDepartamento,
-					d.Nombre as Departamento,
-					e.Nombre as Escuela, 
 					c.Nombre as Campus, 
+					e.Nombre as Escuela, 
+					d.Nombre as Departamento,
 					CONCAT(u.Nombre," ", u.ApellidoP, " ", u.ApellidoM) as Nombre,
 					u.email as Email,
 					u.idUsuario as idUsuario,

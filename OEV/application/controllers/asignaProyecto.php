@@ -29,6 +29,28 @@ extends CI_Controller {
 		$this->load->view('usuarios/usuario_extension/Scripts/asignaProyecto');
     }
 
+    public function listaUsuarios()
+    {
+		//Sesiones
+
+		$this->load->helper('url');
+        $this->load->helper('form');
+		$this->load->model('grupo_area_model');
+		$this->load->model('proyecto');
+		$this->load->helper('security');		
+
+		$this->load->library('session');
+		//Cargar la sesion		
+		$datos_usuario=$this->session->all_userdata();
+		$vista = array('vista'=>$datos_usuario['vista']);
+		//Se cargan las Vistas
+		$this->load->view('usuarios/header',$vista);
+		$this->load->view('usuarios/usuario_extension/menu_extension');
+        $this->load->view('usuarios/usuario_extension/listaUsuariosVista');
+		$this->load->view('usuarios/footer');
+		$this->load->view('usuarios/usuario_extension/Scripts/listaUsuariosScript');
+    }
+
 	//Regresa los contactos dando como parametro una empresa
     public function buscaProfesores()
     {
@@ -92,4 +114,9 @@ extends CI_Controller {
     			echo json_encode(array('response'=>'false','mensaje'=>"Hubo un error en el Sistema, favor de intentarlo mas tarde.".$this->db->_error_message()));
             }
     }
+
+  public function getAllUsuarios(){
+    $this->load->model('usuariomodel');
+    echo json_encode($this->usuariomodel->getUsuariosActivos()->result());
+  }
 }

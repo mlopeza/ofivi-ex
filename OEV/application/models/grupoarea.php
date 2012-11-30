@@ -1,9 +1,10 @@
 <?php
-class Grupo_Area_Model extends CI_Model {
+class GrupoArea extends CI_Model {
 	
     function __construct()
     {
         // Call the Model constructor
+        $this->load->database();
         parent::__construct();
     }
     //Función que se encarga de ir a la BD y traer todos los usuarios que existan en la tabla.
@@ -32,5 +33,28 @@ class Grupo_Area_Model extends CI_Model {
 
         return $matriz;
     }
+
+	function addGrupo($data){
+		if(isset($data['idGrupo_Area'])){
+			$this->db->where('idGrupo_Area',$data['idGrupo_Area']);
+			$this->db->update('Grupo_Area',array('nombre'=>$data['nombre']));
+		}else{
+			$this->db->insert('Grupo_Area',array('nombre'=>$data['nombre']));
+		}
+	}
+
+
+	/*	
+		Elimina una Supra Categoria de la BD
+	*/
+	function deleteGrupo($id){
+		$this->db->where('idGrupo_Area',$id);
+		$this->db->delete('Grupo_Area');
+	}
+
+  function getAreas($data){
+    $this->db->where($data);
+    return $this->db->get('Area_Conocimiento')->result();
+  }
 }
 ?>

@@ -1,4 +1,65 @@
-<script  type="text/javascript" >
+<script type="text/javascript" >
+    var uTable;
+	$(document).ready(function(){
+            uTable = $('#tabla-usuarios').dataTable();
+            getUsuarios();
+    });
+
+  function getUsuarios(){
+    cleanTable(uTable);
+    ajaxCall("<?php echo base_url("listaContactos/getAllContactos");?>",undefined,function(data){
+          console.log(data);
+          data = $.parseJSON(data);
+          $.each(data,function(index,value){
+                id = value.idUsuario;
+                value.Datos = '<a name="'+value.idContacto+'" href="0" class="clsVentanaIFrame" rel="prueba">Información</a>';
+                delete value.idContacto;
+                delete value.idEmpresa;
+                console.log(value);
+                insertElement(uTable,id,value,"Usuario");                
+          });
+    });      
+  }
+
+
+    /*Inserta un elemento a la tabla*/
+    function insertElement(table,id,value,type){
+       //Crea un arreglo del objeto
+       arreglo=objectToArray(value);
+       //Asigna el elemento a la tabla
+       $(table).dataTable().fnAddData(arreglo);
+    }
+
+    //Convierte un 
+    function objectToArray(o){
+        i = 0;
+        arreglo = new Array();
+        $.each(o,function(index,value){
+            arreglo[i]=value;
+            i++;
+        })
+        return arreglo;
+    }
+
+    /*Elimina los nodos de la tabla*/
+    function cleanTable(table){
+            table.fnClearTable();
+    }
+
+    /*Hace una llamada de AJAX Generica al servidor*/
+    function ajaxCall(url,data,continueFunc){
+			$.ajax({
+			     type: "POST",
+			     url: url,
+			     data: data ,
+			     success: continueFunc,
+				error: function(msg){
+						noty({text: "Ha habido un error en el sistema, intentelo nuevamente.", type: 'error'});
+				}
+			});
+    }
+</script>
+<script type="text/javascript">
 $(document).ready(function(){
 	//evento que se produce al hacer clic en el boton cerrar de la ventana
 	$('.clsVentanaCerrar').live('click',function(eEvento){
@@ -25,12 +86,8 @@ $(document).ready(function(){
 		e.preventDefault();
 		var prueba = $(this).prop('href').split('/');
 		console.log(prueba[prueba.length-1]);
-		if(prueba[prueba.length-1]==1){
-			getInfoProfesor($(this),$(this).prop('name'));
-		}else{			
 			getInfoContacto($(this),$(this).prop('name'));
 
-		}
 		
 	});
 		function getInfoProfesor(elemento,idUsuario){
@@ -42,7 +99,7 @@ $(document).ready(function(){
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
-			     url: "informacion/getInfoProfesor",
+			     url: "<?php echo base_url("informacion/getInfoProfesor");?>",
 			     data: data ,
 			     success: function(msg){
 						var mensaje = $.parseJSON(msg);
@@ -100,7 +157,7 @@ function getInfoContacto(elemento,idContacto){
 			/*Hace la llamada y maneja la respuesta con un popup en caso de que haya habido un error*/
 			$.ajax({
 			     type: "POST",
-			     url: "informacion/getInfoContacto",
+			     url: "<?php echo base_url("informacion/getInfoContacto");?>",
 			     data: data ,
 			     success: function(msg){
 					 console.log(msg);
@@ -125,7 +182,6 @@ function getInfoContacto(elemento,idContacto){
 								//		$objVentanaContenido.append('<iframe src="'++'">')
 										//agregamos la capa de contenido a la ventana
 										$objVentana.append(mensaje['mensaje']);
-										
 										//creamos el overlay con sus propiedades css y lo agregamos al body
 										var $objOverlay=$('<div id="divOverlay">').css({
 											opacity: .5,
@@ -152,4 +208,10 @@ function getInfoContacto(elemento,idContacto){
 	}
 
 });
+
+
+
 </script>
+
+
+
