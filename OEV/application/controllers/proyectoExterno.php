@@ -59,8 +59,13 @@ extends CI_Controller {
 				
 				Datos del proyecto<br/>
 				<br/>
-				Categoría: '.$data['categoria'].'<br/>
-				Subcategoría: '.$data['subCategoria'].'<br/>
+				Categoría: ';
+				if(isset($data['categoria'])){
+				$descripcion = $descripcion.$data['categoria'].'<br/>
+				Subcategoría: '.$data['subCategoria'].'<br/>';}
+				else{
+					$descripcion = $descripcion.'Sin Informacion <br/>';}
+					$descripcion = $descripcion.'
 				<br/>
 				Nombre de proyecto: '.$data['nombreProyecto'].'<br/>
 				Desctipcion: '.$data['descripcionUsuario'];
