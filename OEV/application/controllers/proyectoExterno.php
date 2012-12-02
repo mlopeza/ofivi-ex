@@ -40,7 +40,13 @@ extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->model('empresa');
 		$this->load->model('estado');
-		
+		$arreglo = array('nombre','apellidoP','apellidoM','email','estadoRep','empresa','puesto','lada','telefono','extension','informacionExtra','categoria','nombreProyecto','descripcionUsuario');
+		foreach($arreglo as $row){
+			if(isset($data[$row])){}
+			else {
+				$data[$row] = 'Sin Informacion';
+			}
+		}
 		$descripcion = 'Datos de contacto<br/>
 				<br/>
 				Nombre: '.$data['nombre'].'<br/>
@@ -59,13 +65,8 @@ extends CI_Controller {
 				
 				Datos del proyecto<br/>
 				<br/>
-				Categoría: ';
-				if(isset($data['categoria'])){
-				$descripcion = $descripcion.$data['categoria'].'<br/>
-				Subcategoría: '.$data['subCategoria'].'<br/>';}
-				else{
-					$descripcion = $descripcion.'Sin Informacion <br/>';}
-					$descripcion = $descripcion.'
+				Categoría:'.$data['categoria'].'<br/>
+				Subcategoría: '.$data['subCategoria'].'<br/>
 				<br/>
 				Nombre de proyecto: '.$data['nombreProyecto'].'<br/>
 				Desctipcion: '.$data['descripcionUsuario'];
