@@ -578,6 +578,7 @@ START TRANSACTION;
 USE `SEVI`;
 INSERT INTO `SEVI`.`Campus` (`idCampus`, `Nombre`, `Ciudad`) VALUES (1, 'Campus Monterrey', 'Monterrey');
 INSERT INTO `SEVI`.`Campus` (`idCampus`, `Nombre`, `Ciudad`) VALUES (2, 'Campus Guadalajara', 'Guadalajara');
+INSERT INTO `SEVI`.`Campus` (`idCampus`, `Nombre`, `Ciudad`) VALUES (1000, 'N/A', 'N/A');
 
 COMMIT;
 
@@ -588,6 +589,7 @@ START TRANSACTION;
 USE `SEVI`;
 INSERT INTO `SEVI`.`Escuela` (`idEscuela`, `idCampus`, `Nombre`, `Ubicacion`) VALUES (1, 1, 'Escuela de Ingenieria', 'Aulas 6 Cuarto Piso');
 INSERT INTO `SEVI`.`Escuela` (`idEscuela`, `idCampus`, `Nombre`, `Ubicacion`) VALUES (2, 1, 'Escuela de Negocios', 'A6402');
+INSERT INTO `SEVI`.`Escuela` (`idEscuela`, `idCampus`, `Nombre`, `Ubicacion`) VALUES (1000, 1000, 'N/A', 'N/A');
 
 COMMIT;
 
@@ -598,6 +600,7 @@ START TRANSACTION;
 USE `SEVI`;
 INSERT INTO `SEVI`.`Departamento` (`idDepartamento`, `idEscuela`, `nombre`, `ubicacion`) VALUES (1, 1, 'Ciencias Computacionales', 'A2110');
 INSERT INTO `SEVI`.`Departamento` (`idDepartamento`, `idEscuela`, `nombre`, `ubicacion`) VALUES (2, 1, 'Ingenieria Quimica', 'A1110');
+INSERT INTO `SEVI`.`Departamento` (`idDepartamento`, `idEscuela`, `nombre`, `ubicacion`) VALUES (1000, 1000, 'N/A', 'N/A');
 
 COMMIT;
 
@@ -612,6 +615,7 @@ INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (4, 1, 'jorge_limon', 'Jorge', 'Limon', '', 'jlimon@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'v', 1, 1, 1, 1, 1, 1, 1, 'a');
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (5, 1, 'evesdrop_fake_hack_hack', 'Eve', 'Fake', '', 'efake@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'a', 0, 0, 0, 0, 0, 0, 0, 'r');
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (6, 1, 'L00902890', 'Jenny', 'V', '', 'No mail', 'ce8a7bda5bb05a8e0bf1b7166335cad2a9ed79504ac5ec694c2c0286efa94d1913963130a1af41e6bffbf9c2c5036439985cdf67cc1ac6ee00a3faba3065ee58', 'a', 1, 1, 1, 1, 0, 0, 1, 'a');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (1000, 1000, 'no_user', 'Cliente Externo', '', '', 'noemail@gmail.com', 'no_password', 'o', 0, 0, 0, 0, 0, 0, 0, '0');
 
 COMMIT;
 
@@ -630,7 +634,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SEVI`;
-INSERT INTO `SEVI`.`Grupo` (`idGrupo`, `nombre`, `activo`) VALUES (1, 'OXXO', NULL);
+INSERT INTO `SEVI`.`Grupo` (`idGrupo`, `nombre`, `activo`) VALUES (1, 'OXXO', 1);
+INSERT INTO `SEVI`.`Grupo` (`idGrupo`, `nombre`, `activo`) VALUES (1000, 'N/A', 1);
 
 COMMIT;
 
@@ -639,7 +644,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SEVI`;
-INSERT INTO `SEVI`.`Empresa` (`idEmpresa`, `idGrupo`, `nombre`, `activo`) VALUES (1, 1, 'Empresa 1', NULL);
+INSERT INTO `SEVI`.`Empresa` (`idEmpresa`, `idGrupo`, `nombre`, `activo`) VALUES (1, 1, 'Empresa 1', 1);
+INSERT INTO `SEVI`.`Empresa` (`idEmpresa`, `idGrupo`, `nombre`, `activo`) VALUES (1000, 1000, 'N/A', 1);
 
 COMMIT;
 

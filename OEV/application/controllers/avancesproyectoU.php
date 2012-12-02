@@ -129,7 +129,7 @@ class AvancesproyectoU extends CI_Controller {
 			$this->load->model('documento');
 			$resultado7=$this->documento->getDocument($resultado2[0]->idProyecto);			
 			$resultado8=$this->proyecto->getSCATP($resultado2[0]->idProyecto);			
-			//Se envia el resultado		
+			//Se envia el resultado			
 			$mensaje = array('response'=>'true','mensaje'=>$resultado,'proyectos'=>$resultado2,'grupo'=>$grupo,'categoria'=>$resultado3,'usuario'=>$resultado4,'contacto'=>$resultado5,'estado'=>$resultado6,'documento'=>$resultado7,'supracategoria'=>$resultado8);}
 			else{
 				$mensaje = array('response'=>'false','mensaje'=>'No existen proyectos en la base de datos.');}
