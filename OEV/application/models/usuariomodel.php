@@ -498,7 +498,7 @@ class Usuariomodel extends CI_Model {
 		$this->load->database();
 		$query=$this->db->query("Select idUsuario
 			From usuario
-			Where username = 'Sin usuario' LIMIT 1")->result();
+			Where idUsuario = 1000 LIMIT 1")->result();
 		
 		return $query[0]->idUsuario;
 	}

@@ -172,7 +172,7 @@ class Empresa extends CI_Model {
 		$this->load->database();
 		$query=$this->db->query("Select idEmpresa
 			From empresa
-			Where nombre = 'Sin empresa' LIMIT 1")->result();
+			Where idEmpresa = 1000 LIMIT 1")->result();
 		
 		return $query[0]->idEmpresa;
 	}
