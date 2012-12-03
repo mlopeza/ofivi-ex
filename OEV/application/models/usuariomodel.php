@@ -554,6 +554,22 @@ class Usuariomodel extends CI_Model {
 		return $query;
 
 	}
+	function comparaContra($id,$password){
+		$this->load->database();
+		$password=hash('sha512',$password);
+		$query=$this->db->query("SELECT * FROM Usuario WHERE idUsuario = '".$id."'")->result();
+		if(empty($query) || $password != $query[0]->password){
+			return 0;}
+			else{
+	    return 1;}
+	}
+	function actualizaContra($id,$password){
+		$this->load->database();
+		$array = array('password'=>hash('sha512',$password));
+		$this->db->where('idUsuario',$id);
+		$this->db->update('usuario', $array); 
+		
+	}
 }
 ?>
 

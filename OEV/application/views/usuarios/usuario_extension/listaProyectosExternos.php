@@ -67,7 +67,7 @@
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
                                                     <a class="accordion-toggle" data-toggle="collapse" href="#gallery" data-original-title="">
-                                                        <i class="icon-th icon-white"></i> <span class="divider-vertical"></span> Aceptar <i class="icon-chevron-down icon-white pull-right"></i>
+                                                        <i class="icon-th icon-white"></i> <span class="divider-vertical"></span> Acci&oacute;n <i class="icon-chevron-down icon-white pull-right"></i>
                                                     </a>
                                                 <div id="notification" class="accordion-body collapse in">
                                                     <div class="accordion-inner paddind">
@@ -77,9 +77,20 @@
 														?>
 														<input type="hidden" name="idProyectoExterno" id="idProyectoExterno" value=-1 />
 														<button class="btn btn-primary" id="AceptaProyectoExterno" type="button">Aceptar Proyecto</button>
+                                                        
 														<?php
 														echo form_close();
 														?>
+                                                        <?php
+															$attributes = array('id' => 'proyecto-externo-rechazado', 'class' => 'clearfix' , 'autocomplete' => 'off');
+															echo form_open('proyectoExterno/rechazaProyecto',$attributes);
+														?>
+														<input type="hidden" name="idProyectoExternoR" id="idProyectoExternoR" value=-1 />
+														<button class="btn btn-primary" id="RechazaProyectoExterno" type="button">Rechazar Proyecto</button>
+                                                        
+														<?php
+														echo form_close();
+														?>                                                        
                                                         <br/>
                                                     </div>
                                                     </div>

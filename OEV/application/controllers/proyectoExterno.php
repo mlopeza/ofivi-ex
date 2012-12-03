@@ -31,7 +31,6 @@ extends CI_Controller {
 		$this->load->view('usuarios/usuario_extension/Scripts/listaProyectosExternosScript');
 		
     }
-    
     function altaProyectoExterno()
 	{
 		$data = $this->input->post();
@@ -106,6 +105,21 @@ extends CI_Controller {
 		$this->proyecto->updateExterno($data['idProyectoExterno'],$usuario);
 		sleep(3);
 		redirect('proyectoExterno', 'location'); 
+	}
+	function rechazaProyecto()
+	{
+		$data=$this->input->post();
+		$this->load->model('proyecto');
+		$this->load->model('usuariomodel');
+		$this->load->library('session');
+		$this->load->helper('url');
+		//Cargar la sesion y se obtiene el id del usuario
+		$datos_usuario=$this->session->all_userdata();
+		$usuario = $this->usuariomodel->obtenId($datos_usuario['username']);
+		
+		$this->proyecto->updateExternoR($data['idProyectoExternoR'],$usuario);
+		sleep(3);
+		redirect('proyectoExterno', 'location');	
 	}
 }
 ?>
