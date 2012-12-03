@@ -137,6 +137,7 @@ class Documento extends CI_Model{
 		$query = $this->db->get_where('documento', array('idProyecto' => $idDocument));
 		return $query->result();
 	}
+
 	function getDocumentDownload($idProyecto,$esLegal){
 		$this->load->database();
         $query = $this->db->query('

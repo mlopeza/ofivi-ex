@@ -14,13 +14,18 @@ class Campus extends CI_Model {
 	var $Ciudad='';
 	
 	//Métodos GET
-	
+
+  //Regresa el id del Cmpus	
 	function get_id_campus(){
 		return $this->idCampus;
 	}
+
+  //Regresa el Nombre del campus
 	function get_nombre(){
 		return $this->Nombre;
 	}
+
+  //Regresa la ciudad del campus
 	function get_ciudad(){
 		return $this->Ciudad;
 	}
@@ -38,7 +43,7 @@ class Campus extends CI_Model {
 	}
 	
 	//Método FIND
-	
+	//Busca en la Tabla de Campus, los datos del Campus con el Id del objeto
 	function find(){		
 		$this->load->database();
 		$query = $this->db->get_where('campus', array('Nombre' => $this->Nombre));
@@ -56,7 +61,7 @@ class Campus extends CI_Model {
 	}
 	
 	//Funcion update
-	
+	//Actualiza la base de datos con el objeto actual
 	function update(){
 		$this->load->database();
 		//Se crea el arreglo con el cual se hara el update de la tabla.
@@ -81,7 +86,7 @@ class Campus extends CI_Model {
 		$this->db->insert('campus',$data);	 	
 	}
 
-	//Función Select de Nombres
+	//Función Select de Nombres de todos los campus.
 	function selectN(){
 		$this->load->database();
 		$this->db->select('Nombre,idCampus');
@@ -96,6 +101,7 @@ class Campus extends CI_Model {
         $query=$this->db->get('Campus');
         return $query->result();
     }		
+
 
     function saveCampus($data){
         $this->load->database();
