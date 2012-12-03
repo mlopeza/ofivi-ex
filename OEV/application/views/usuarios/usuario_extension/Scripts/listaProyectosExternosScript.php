@@ -52,7 +52,7 @@
                 return;
             }
             
-            noty({text: "El proyecto aparecera en la lista editar proyectos.", type: 'success'});
+            noty({text: "El proyecto se inactivara.", type: 'success'});
             $("#proyecto-externo-rechazado").submit();
         });
        
