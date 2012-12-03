@@ -172,6 +172,7 @@
 	
 	function muestraDescripcion(proyecto_global)
 	{
+		console.log("Proyecto_Global",proyecto_global);
 		$.ajax({
 			     type: "POST",
 			     url: "/OEV/altaProyecto/getDatosProyecto",

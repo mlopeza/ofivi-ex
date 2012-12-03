@@ -68,30 +68,31 @@ class proyectoExterno extends CI_Controller
                 $data[$row] = 'Sin Informacion';
             }
         }
-        $descripcion = '
+
+	$descripcion = "
 		Datos de contacto<br/>
 				<br/>
-				Nombre: ' . $data['nombre'] . '<br/>
-				Apellido Paterno: ' . $data['apellidoP'] . '<br/>
-				Apellido Materno: ' . $data['apellidoM'] . '<br/>
-				Email: ' . $data['email'] . '<br/>
+				Nombre: " . $data["nombre"] . "<br/>
+				Apellido Paterno: " . $data["apellidoP"] . "<br/>
+				Apellido Materno: " . $data["apellidoM"] . "<br/>
+				Email: " . $data["email"] . "<br/>
 				<br/>
-				Estado de la republica: ' . $data['estadoRep'] . '<br/>
-				Empresa: ' . $data['empresa'] . '<br/>
-				Puesto: ' . $data['puesto'] . '<br/>
+				Estado de la republica: " . $data["estadoRep"] . "<br/>
+				Empresa: " . $data["empresa"] . "<br/>
+				Puesto: " . $data["puesto"] . "<br/>
 				<br/>
-				Lada: ' . $data['lada'] . '<br/>
-				Telefono: ' . $data['telefono'] . '<br/>
-				Extensión: ' . $data['extension'] . '<br/>
-				Sub Extensión: ' . $data['informacionExtra'] . '<br/>
+				Lada: " . $data["lada"] . "<br/>
+				Telefono: " . $data["telefono"] . "<br/>
+				Extensi&oacute;n: " . $data["extension"] . "<br/>
+				Sub Extensi&oacute;n: " . $data["informacionExtra"] . "<br/>
 				
 				Datos del proyecto<br/>
 				<br/>
-				Categoría:' . $data['categoria'] . '<br/>
-				Subcategoría: ' . $data['subCategoria'] . '<br/>
+				Categor&iacute;a:" . $data["categoria"] . "<br/>
+				Subcategor&iacute;a: " . $data["subCategoria"] . "<br/>
 				<br/>
-				Nombre de proyecto: ' . $data['nombreProyecto'] . '<br/>
-				Descripcion: ' . $data['descripcionUsuario'];
+				Nombre de proyecto: " . $data["nombreProyecto"] . "<br/>
+				Descripcion: " . $data["descripcionUsuario"];
         
         //Obtenemos el id del usuario Exterior
         $idUsuarioExterior = $this->usuariomodel->getExterior();
@@ -110,7 +111,7 @@ class proyectoExterno extends CI_Controller
         $this->estado->setIdUsuario($idUsuarioExterior);
         $this->estado->setEstado('Entrada de proyecto externo');
         $this->estado->insert();
-        header('Location: /Contacto.php');
+	header('Location: /OVE/contacto.php');
     }
     
     

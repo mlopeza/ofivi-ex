@@ -95,13 +95,18 @@ class altaProyecto extends CI_Controller
     {
         $data = $this->input->post();
         $this->load->model('proyecto');
-        $p                        = $this->proyecto->getProyecto($data['idProyecto']);
+	$p = $this->proyecto->getProyecto($data['idProyecto']);
+	//echo var_dump($p[0]->descripcionUsuario);
+	//return;
+        //echo json_encode($this->proyecto->getProyecto($data['idProyecto']));
+	//return;
         $p[0]->descripcionUsuario = stripslashes($p[0]->descripcionUsuario);
         $p[0]->descripcionAEV     = stripslashes($p[0]->descripcionAEV);
+	//echo var_dump($p[0]->descripcionUsuario);
         $proyecto                 = array(
             "proyecto" => $p,
             "contactos" => $this->proyecto->getContactos($data['idProyecto']),
-            "categorias" => $this->proyecto->getCategorias($data['idProyecto'])
+            "categorias" => $this->proyecto->getCategorias($data['idProyecto']),
         );
         echo json_encode($proyecto);
     }
