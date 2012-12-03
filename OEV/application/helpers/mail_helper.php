@@ -15,7 +15,7 @@ if ( ! function_exists('enviaMail'))
         $o->load->library('email', $config);
         $o->email->set_newline("\r\n");
 
-        $o->email->from('ofivex@gmail.com', 'Oficina de Extensión Virtual');
+        $o->email->from('ofivex@gmail.com', 'Oficina de Extensión y Vinculación');
         $o->email->to($destinatario);
 
         $o->email->subject($asunto);
