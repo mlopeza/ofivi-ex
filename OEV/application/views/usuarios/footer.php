@@ -117,6 +117,15 @@
           $('#end').datepicker('hide');
         });
     });
+
+$(document).ready(function(){
+  setTimeout(function(){
+        $('#mensaje-mensaje').html("");
+    }, 2000);
+
+});
+
+
   </script>
     </body>
 </html>

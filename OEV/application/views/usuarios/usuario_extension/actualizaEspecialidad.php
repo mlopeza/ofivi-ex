@@ -1,5 +1,4 @@
 <div id="content" class="span9 section-body">
-
                     <div id="section-body" class="tabbable">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab1" data-toggle="tab">Modificar Reportes</a></li>
@@ -19,7 +18,7 @@
                                                 </div>                                                            
 
                                                             <!--Grupos y Areas para las llamadas-->
-															<?php
+                              															<?php
                                                                 $attributes = array('id' => 'auth-for', 'class' => 'clearfix' , 'autocomplete' => 'off');
                                                                 echo form_open('actualizaEspecialidad/actualizar',$attributes);
                                                             ?>

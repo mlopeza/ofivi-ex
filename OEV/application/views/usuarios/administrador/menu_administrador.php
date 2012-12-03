@@ -1,7 +1,7 @@
 <div id="menu-left" class="span3">
                     <div class="sidebar-nav">
                         <ul class="nav nav-list">
-                            <li><a href="index.html" class="current active" data-original-title=""><i class="icon-th-large icon-white"></i><span> Inicio</span></a></li>
+                            <li><a class="current active" data-original-title=""><i class="icon-th-large icon-white"></i><span>Administrador</span></a></li>
 							<li class="accordion-menu">
                                 <a href="#collapseOne" data-toggle="collapse" class="accordion-toggle"><i class="icon-signal"></i><span>Administración de Sistema<i class="icon-chevron-down pull-right"></i></span></a>
                                 <div class="accordion-body collapse dropdown" id="collapseOne">
@@ -11,6 +11,7 @@
                                             <li><a href="<?php echo base_url("/bajaUsuarios");?>">Baja de Usuarios</a></li>
                                             <li><a href="<?php echo base_url("/organizacion");?>">Organización del Sistema Tecnológico</a></li>
                                             <li><a href="<?php echo base_url("/areasUsuarios");?>">Especialidades de Usuarios</a></li>
+                                            <li><a href="<?php echo base_url("/cambioContrasena");?>">Cambiar contrase&ntilde;a de usuarios</a></li>
                                         </ul>
                                     </div>
                                 </div>
