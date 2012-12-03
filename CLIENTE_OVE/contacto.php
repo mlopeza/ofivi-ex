@@ -177,7 +177,7 @@
 			  <input type="text" name="informacionExtra" id="informacionExtra" size="10" tabindex="1" class="styled" />
 			  </div></td>
 			<td width="32%"><div align="left">Descripci&oacute;n
-			  <select name="descripciónTelefono" size="1" id="descripciónTelefono">
+			  <select name="descripcionTelefono" size="1" id="descripcionTelefono">
 			    <option value="NA" selected="selected">---</option>
 			    <option value="Categoria1">CASA</option>
 			    <option value="Categoria2">CELULAR</option>
