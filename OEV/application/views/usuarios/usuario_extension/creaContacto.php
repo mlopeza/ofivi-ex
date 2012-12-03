@@ -3,7 +3,7 @@
     <!-- Only required for left/right tabs -->
     <ul class="nav nav-tabs">
       <li id="pes1" class="active"><a href="#tab1" data-toggle="tab">Crear Contacto</a></li>
-      <li id="pes2" ><a href="#tab2" data-toggle="tab" id="tab-contactos" >Lista de Contactos</a></li>
+      <li id="pes2"><a href="#tab2" data-toggle="tab" id="tab-contactos">Lista de Contactos</a></li>
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" id="tab1">
@@ -69,7 +69,7 @@
                 </div>
                 <div id="statements" class="accordion-body collapse in">
                   <div class="accordion-inner paddind">
-                    <input type="hidden" value="" id="idContacto"/>
+                    <input type="hidden" value="" id="idContacto" />
                     <form class="form-horizontal">
                       <fieldset>
                         <div class="control-group">
@@ -170,9 +170,17 @@
                 <div id="control-contactos" class="accordion-body collapse in">
                   <div class="accordion-inner" style="overflow: auto;">
                     <table id="tabla-contactos" class="table table-bordered pull-left">
-                      <thead><tr><th>Departamento</th><th>Puesto</th><th>Nombre</th><th>Correo Electrónico</th><th>Acción</th></tr></thead>
+                      <thead>
+                        <tr>
+                          <th>Departamento</th>
+                          <th>Puesto</th>
+                          <th>Nombre</th>
+                          <th>Correo Electrónico</th>
+                          <th>Acción</th>
+                        </tr>
+                      </thead>
                     </table>
-                    <br/><br/><br/>
+                    <br /><br /><br />
                   </div>
                 </div>
               </div>
@@ -190,10 +198,18 @@
                   <div class="accordion-inner" style="overflow: auto;">
                     <div><strong>Recibe Correos:</strong><span id="RecibeCorreos">..</span></div>
                     <table id="tabla-telefono" class="table table-bordered pull-left">
-                      <thead><tr><th>Descripción</th><th>Lada</th><th>Telefono</th><th>Extensión</th><th>SubExtensión</th></tr></thead>
+                      <thead>
+                        <tr>
+                          <th>Descripción</th>
+                          <th>Lada</th>
+                          <th>Telefono</th>
+                          <th>Extensión</th>
+                          <th>SubExtensión</th>
+                        </tr>
+                      </thead>
                       <tbody></tbody>
                     </table>
-                    <br/><br/><br/>
+                    <br /><br /><br />
                   </div>
                 </div>
               </div>

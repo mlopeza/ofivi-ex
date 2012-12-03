@@ -1,88 +1,105 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
-class ActualizaEstadoUE
-extends CI_Controller {
-
+class ActualizaEstadoUE extends CI_Controller
+{
     public function index()
     {
-		//Sesiones
-
-		$this->load->helper('url');
-        $this->load->helper('form');
-		$this->load->model('usuariomodel');
-		$this->load->helper('security');		
-		$this->load->library('session');
-    if($this->session->userdata('vista')){
-    
-    }else{
-      redirect('/logincontroller', 'location');
-    }
-		//Se carga el Modelo de Proyecto
-		$this->load->model('proyecto');
-		//Cargar la sesion y se obtiene el id del usuario
-		$datos_usuario=$this->session->all_userdata();
-		$vista = array('vista'=>$datos_usuario['vista']);
-		$usuario = $datos_usuario['idUsuario'];
-		//Se buscan todos los proyectos relacionados al usuario
-		$proyectos['proyectos'] = $this->proyecto->getProyectosIniciados($usuario,1);
-		
-		//Se cargan las Vistas
-		$this->load->view('usuarios/header',$vista);
-		$this->load->view('usuarios/usuario_extension/menu_extension');
-        $this->load->view('usuarios/usuario_extension/actualiza_Estado',$proyectos);
-		$this->load->view('usuarios/footer');
-		$this->load->view('usuarios/usuario_proyecto/Scripts/actualizaEstado');
-    }
+        //Sesiones
         
-	function actualizaEstadoProyecto()
-	{
-		$this->load->model('estado');
-		$this->load->helper('url');
-		$this->load->library('session');
-    if($this->session->userdata('vista')){
-    
-    }else{
-      redirect('/logincontroller', 'location');
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->model('usuariomodel');
+        $this->load->helper('security');
+        $this->load->library('session');
+        if ($this->session->userdata('vista')) {
+        } else {
+            redirect('/logincontroller', 'location');
+        }
+        //Se carga el Modelo de Proyecto
+        $this->load->model('proyecto');
+        //Cargar la sesion y se obtiene el id del usuario
+        $datos_usuario          = $this->session->all_userdata();
+        $vista                  = array(
+            'vista' => $datos_usuario['vista']
+        );
+        $usuario                = $datos_usuario['idUsuario'];
+        //Se buscan todos los proyectos relacionados al usuario
+        $proyectos['proyectos'] = $this->proyecto->getProyectosIniciados($usuario, 1);
+        
+        //Se cargan las Vistas
+        $this->load->view('usuarios/header', $vista);
+        $this->load->view('usuarios/usuario_extension/menu_extension');
+        $this->load->view('usuarios/usuario_extension/actualiza_Estado', $proyectos);
+        $this->load->view('usuarios/footer');
+        $this->load->view('usuarios/usuario_proyecto/Scripts/actualizaEstado');
     }
-		//Cargar la sesion y se obtiene el id del usuario
-		$datos_usuario=$this->session->all_userdata();
-		$vista = array('vista'=>$datos_usuario['vista']);
-		$usuario = $datos_usuario['idUsuario'];
-		
-		$idProyecto = $this->input->post('idProyectoActualizar');
-		$estado = $this->input->post('nuevoEstado');
-		
-		$this->estado->setIdProyecto($idProyecto);
-		$this->estado->setIdUsuario($usuario);
-		$this->estado->setEstado($estado);
-		
-		$this->estado->insert();
-		sleep(3);
-		redirect('actualizaEstadoUE', 'location'); 
-	}
-	
-	function getEstadoProyecto()
-	{
-		$data = $this->input->post();
-		try{
-			$this->load->model('estado');
-			$resultado = $this->estado->getEstadoProyecto($data['idProyecto']);
-			echo json_encode(array('response'=>'true','mensaje'=>$resultado));
-        }catch(Exception $e){
-			echo json_encode(array('response'=>'false','mensaje'=>"Hubo un error en el Sistema, favor de intentarlo mas tarde.".$e->getMessage()));
-		}
-	}
-	
-	//Regresa los reportes de un proyecto
+    
+    function actualizaEstadoProyecto()
+    {
+        $this->load->model('estado');
+        $this->load->helper('url');
+        $this->load->library('session');
+        if ($this->session->userdata('vista')) {
+        } else {
+            redirect('/logincontroller', 'location');
+        }
+        //Cargar la sesion y se obtiene el id del usuario
+        $datos_usuario = $this->session->all_userdata();
+        $vista         = array(
+            'vista' => $datos_usuario['vista']
+        );
+        $usuario       = $datos_usuario['idUsuario'];
+        
+        $idProyecto = $this->input->post('idProyectoActualizar');
+        $estado     = $this->input->post('nuevoEstado');
+        
+        $this->estado->setIdProyecto($idProyecto);
+        $this->estado->setIdUsuario($usuario);
+        $this->estado->setEstado($estado);
+        
+        $this->estado->insert();
+        sleep(3);
+        redirect('actualizaEstadoUE', 'location');
+    }
+    
+    function getEstadoProyecto()
+    {
+        $data = $this->input->post();
+        try {
+            $this->load->model('estado');
+            $resultado = $this->estado->getEstadoProyecto($data['idProyecto']);
+            echo json_encode(array(
+                'response' => 'true',
+                'mensaje' => $resultado
+            ));
+        }
+        catch (Exception $e) {
+            echo json_encode(array(
+                'response' => 'false',
+                'mensaje' => "Hubo un error en el Sistema, favor de intentarlo mas tarde." . $e->getMessage()
+            ));
+        }
+    }
+    
+    //Regresa los reportes de un proyecto
     public function estadosDeProyecto()
     {
-		$data = $this->input->post();
-        try{
-	    	$this->load->model('estado');
-	    	$resultado = $this->estado->getAllEstados($data['idProyecto']);
-			echo json_encode(array('response'=>'true','mensaje'=>$resultado));
-        }catch(Exception $e){
-			echo json_encode(array('response'=>'false','mensaje'=>"Hubo un error en el Sistema, favor de intentarlo mas tarde.".$e->getMessage()));
-		}
+        $data = $this->input->post();
+        try {
+            $this->load->model('estado');
+            $resultado = $this->estado->getAllEstados($data['idProyecto']);
+            echo json_encode(array(
+                'response' => 'true',
+                'mensaje' => $resultado
+            ));
+        }
+        catch (Exception $e) {
+            echo json_encode(array(
+                'response' => 'false',
+                'mensaje' => "Hubo un error en el Sistema, favor de intentarlo mas tarde." . $e->getMessage()
+            ));
+        }
     }
 }

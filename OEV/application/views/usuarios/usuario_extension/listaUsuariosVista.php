@@ -1,5 +1,5 @@
-<link href="<?php echo base_url("css/projectAdvances.css"); ?>" rel="stylesheet">
-<link href="<?php echo base_url("css/ventanas-modales.css"); ?>" rel="stylesheet">
+<link href="<?php echo base_url("css/projectAdvances.css"); ?>" rel="stylesheet" />
+<link href="<?php echo base_url("css/ventanas-modales.css"); ?>" rel="stylesheet" />
 <div id="content" class="span9 section-body">
   <?php echo form_open_multipart(); ?>
   <?php echo form_close(); ?> 

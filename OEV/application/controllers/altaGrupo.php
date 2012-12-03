@@ -1,8 +1,9 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
-class altaGrupo
-extends CI_Controller {
-
+class altaGrupo extends CI_Controller
+{
     /**
      * Index Page for this controller.
      *
@@ -20,30 +21,32 @@ extends CI_Controller {
      */
     public function index()
     {
-		$this->load->helper('url');
+        $this->load->helper('url');
         $this->load->helper('form');
-
-		$this->load->library('session');
-    if($this->session->userdata('vista')){
-    
-    }else{
-      redirect('/logincontroller', 'location');
-    }
-		$datos_usuario=$this->session->all_userdata();
-		$vista = array('vista'=>$datos_usuario['vista']);
-
-		$this->load->view('usuarios/header',$vista);
-		$this->load->view('usuarios/usuario_extension/menu_extension');
+        
+        $this->load->library('session');
+        if ($this->session->userdata('vista')) {
+        } else {
+            redirect('/logincontroller', 'location');
+        }
+        $datos_usuario = $this->session->all_userdata();
+        $vista         = array(
+            'vista' => $datos_usuario['vista']
+        );
+        
+        $this->load->view('usuarios/header', $vista);
+        $this->load->view('usuarios/usuario_extension/menu_extension');
         $this->load->view('usuarios/usuario_extension/alta_Grupo');
-		$this->load->view('usuarios/footer');
+        $this->load->view('usuarios/footer');
     }
-
+    
     public function alta()
-    {	$this->load->model('grupo');		
-		$this->load->helper('url');
-		$this->grupo->set_nombre($this->input->post('nombre_grupo'));
-		$this->grupo->insert();	//Se registra el proyecto
-		redirect('altaGrupo', 'location'); 
+    {
+        $this->load->model('grupo');
+        $this->load->helper('url');
+        $this->grupo->set_nombre($this->input->post('nombre_grupo'));
+        $this->grupo->insert(); //Se registra el proyecto
+        redirect('altaGrupo', 'location');
     }
 }
 

@@ -1,22 +1,21 @@
-<div   class="popup_window_css" id="sample">
-		<table class="popup_window_css">
-			<tr    class="popup_window_css">
-				<td    class="popup_window_css">
-					<div   class="popup_window_css_head"><img src="<?php echo base_url("img/close.gif"); ?>" alt="" width="9" height="9" />Informaci&oacute;n de proyecto </div>
-						<div   class="popup_window_css_body" >
-                        	<div style="border: 1px solid #808080; padding: 6px; background: #FFFFFF;" id='texto'>
-						</div>
-                    </div>
-					<div   class="popup_window_css_foot"><img src="<?php echo base_url("img/about.gif"); ?>" alt="" width="6" height="6" />
-                    </div>
-               </td>
-           </tr>
-        </table>
-    </div>
+<div class="popup_window_css" id="sample">
+  <table class="popup_window_css">
+    <tr class="popup_window_css">
+      <td class="popup_window_css">
+        <div class="popup_window_css_head"><img src="<?php echo base_url("img/close.gif"); ?>" alt="" width="9" height="9" />Informaci&oacute;n de proyecto </div>
+        <div class="popup_window_css_body">
+          <div style="border: 1px solid #808080; padding: 6px; background: #FFFFFF;" id="texto">
+          </div>
+        </div>
+        <div class="popup_window_css_foot"><img src="<?php echo base_url("img/about.gif"); ?>" alt="" width="6" height="6" />
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
 <div id="content" class="span9 section-body">
   <input type="hidden" value="" id="idProyecto" />
-  <link href="<?php echo base_url("css/popup-window.css");?> " rel="stylesheet"> 
-
+  <link href="<?php echo base_url("css/popup-window.css");?> " rel="stylesheet" />
   <?php echo form_open_multipart(); ?>
   <?php echo form_close(); ?> 
   <div id="section-body" class="tabbable">
