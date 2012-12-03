@@ -47,7 +47,8 @@ extends CI_Controller {
 				$data[$row] = 'Sin Informacion';
 			}
 		}
-		$descripcion = 'Datos de contacto<br/>
+		$descripcion = '
+		Datos de contacto<br/>
 				<br/>
 				Nombre: '.$data['nombre'].'<br/>
 				Apellido Paterno: '.$data['apellidoP'].'<br/>
@@ -69,7 +70,7 @@ extends CI_Controller {
 				Subcategoría: '.$data['subCategoria'].'<br/>
 				<br/>
 				Nombre de proyecto: '.$data['nombreProyecto'].'<br/>
-				Desctipcion: '.$data['descripcionUsuario'];
+				Descripcion: '.$data['descripcionUsuario'];
 		
 		//Obtenemos el id del usuario Exterior
 		$idUsuarioExterior = $this->usuariomodel->getExterior();
