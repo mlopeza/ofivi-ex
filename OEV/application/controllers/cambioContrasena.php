@@ -62,8 +62,8 @@ class CambioContrasena extends CI_Controller {
 			}
 			else
 			{				
-			//	$this->usuariomodel->actualizaContra($this->input->post('idUsuario'),$this->input->post('password'));	
-			//	$this->load->view('/usuarios/usuario_extension/cambioContrasena');
+				$this->usuariomodel->actualizaContra($this->input->post('idUsuario'),$this->input->post('password'));	
+				$this->load->view('/usuarios/usuario_extension/cambioContrasena');
 				//$this->load->view('usuarios/usuario_extension/Scripts/cambiarContrasena');
 			}
 	}
