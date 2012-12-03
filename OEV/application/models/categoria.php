@@ -18,6 +18,8 @@ class Categoria extends CI_Model {
 	}
 
 
+  /*Obtiene todas las categorias que tienen como padre a la
+    supracategoria*/
 	function getAllCategoriasSupra($data){
     $this->db->where($data);
 		$query=$this->db->get('Categoria');

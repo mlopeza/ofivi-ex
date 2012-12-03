@@ -68,6 +68,8 @@ class Empresa extends CI_Model {
 		$this->db->where('idEmpresa', $this->idEmpresa);
 		$this->db->update('empresa',$data);	 	
 	}
+
+
 	function insert(){
 		$this->load->database();
 		//Se crea el arreglo con el cual se hara el update de la tabla.
@@ -122,6 +124,7 @@ class Empresa extends CI_Model {
 								   Order by e.idEmpresa');
 		return $query->result();
 	}		
+
 	function getEPAU($activo, $grupo,$idUsuario){
 		$this->load->database();
 		$query = $this->db->query('SELECT DISTINCT e.idEmpresa, e.nombre
@@ -172,7 +175,7 @@ class Empresa extends CI_Model {
 		$this->load->database();
 		$query=$this->db->query("Select idEmpresa
 			From empresa
-			Where nombre = 'Sin empresa' LIMIT 1")->result();
+			Where idEmpresa = 1000 LIMIT 1")->result();
 		
 		return $query[0]->idEmpresa;
 	}

@@ -43,7 +43,6 @@ class Departamento extends CI_Model {
 	}
 	
 	//Función find
-	
 	function find (){
 		$this->load->database();
 		$query = $this->db->get_where('departamento', array('idDepartamento' => $this->idDepartamento));
@@ -73,6 +72,8 @@ class Departamento extends CI_Model {
 		$this->db->where('idDepartamento', $this->idDepartamento);
 		$this->db->update('departamento',$data);	 	
 	}
+
+  //Inserta el objeto en la base de datos
 	function insert(){
 		$this->load->database();
 		//Se crea el arreglo con el cual se hara el update de la tabla.
@@ -85,6 +86,7 @@ class Departamento extends CI_Model {
 
 		$this->db->insert('departamento',$data);	 	
 	}
+
 	//Función Select de Nombres
 	function selectN($id){
 		$this->load->database();
