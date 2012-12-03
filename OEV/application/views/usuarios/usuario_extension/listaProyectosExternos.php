@@ -1,4 +1,5 @@
 <div id="content" class="span9 section-body">
+<link href="<?php echo base_url("css/ventanas-modales.css"); ?>" rel="stylesheet">
 
                     <div id="section-body" class="tabbable">
                         <ul class="nav nav-tabs">
