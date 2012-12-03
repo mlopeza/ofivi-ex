@@ -14,7 +14,8 @@
                 proyecto_global=$(this).attr('idproyecto');
                 
     
-                $("#idProyectoExterno").val(proyecto_global)
+                $("#idProyectoExterno").val(proyecto_global);
+				$("#idProyectoExternoR").val(proyecto_global);
             });
 
 		//Se selecciona un Reporte
@@ -43,6 +44,16 @@
             
             noty({text: "El proyecto aparecera en la lista editar proyectos.", type: 'success'});
             $("#proyecto-externo").submit();
+        });
+		
+		$("#RechazaProyectoExterno").click(function(){
+            if(proyecto_global==-1 ){
+				noty({text: "No se ha escogido ningún proyecto.", type: 'error'});
+                return;
+            }
+            
+            noty({text: "El proyecto aparecera en la lista editar proyectos.", type: 'success'});
+            $("#proyecto-externo-rechazado").submit();
         });
        
 	});
@@ -86,11 +97,10 @@
         $(nodo).empty();
         $.each(lista,function(index,elemento){
             
-            esfinal = elemento['reporteFinal'] == 0 ? elemento['titulo'] : elemento['titulo']+' (Final)';
-            
-            $(nodo).append("<tr class='colorea-reporte' idreporte='"+elemento['idreporte']+"' class='tabla-reportes'><td>"+
-			elemento['nombre']+" "+elemento['apellidop']+"</td><td>"+
-			esfinal +"</td></tr>");
+           esfinal = elemento['reporteFinal'] == 0 ? elemento['titulo'] : elemento['titulo']+' (Final)';
+           $(nodo).append("<tr class='colorea-reporte' idreporte='"+elemento['idreporte']+"' class='tabla-reportes'><td>"+
+		   elemento['nombre']+" "+elemento['apellidop']+"</td><td>"+
+		   esfinal +"</td></tr>");
              
         
         });

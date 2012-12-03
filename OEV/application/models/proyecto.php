@@ -515,5 +515,15 @@ function getEA($idProyecto){
 		
 		$this->db->update('proyecto',$data);
 	}
+	
+	function updateExternoR($idProy,$usuario)
+	{
+		$this->load->database();
+		
+		$data = array('iniciadoPor'=>$usuario,'Proyecto_Activo'=>0);
+		$this->db->where('idProyecto',$idProy);
+		
+		$this->db->update('proyecto',$data);
+	}
 }
 ?>

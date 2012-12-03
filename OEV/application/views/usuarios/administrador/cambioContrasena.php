@@ -1,6 +1,7 @@
 <?php
-							$attributes = array('id' => 'auth-for', 'class' => 'clearfix' , 'autocomplete' => 'off');
-							echo form_open('cambioContrasena/cambiarContrasena',$attributes);
+		
+		$attributes = array('id' => 'auth-for', 'class' => 'clearfix' , 'autocomplete' => 'off');
+		echo form_open('cambioContrasena/cambiarContrasena',$attributes);
 		echo "<select name = 'susuario'>";
 		foreach($usuarios as $row){
 			echo "<option id=".$row->idUsuarios." value=".$row->email.">".$row->Username."</option>";
