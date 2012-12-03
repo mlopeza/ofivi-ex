@@ -36,7 +36,6 @@
 		$(".remove-telefono-tabla").live("click",function(){
 			$(this).parent().parent().remove();
 		});
-
 		//Regresa los datos para edicion
 		$(".edit-telefono-tabla").live("click",function(){
 			regresaEdicion($(this).parent().parent());
@@ -135,7 +134,10 @@
 			
 		//Consulta AJAX de Clientes
 	    $("#demo-input-local").tokenInput(getContactos);
-
+		$(".ventana").click(function(){												
+					$(".texto").html("").html($($('iframe')[0]).contents().find('.wysihtml5-editor').html());
+					popup_window_show('#sample', { pos : 'window-center',       width : '500px' });
+		});
 		//Envia todo al servidor para guardarse
 		$(".GuardarTodo").click(function(){
 			$.blockUI({ 

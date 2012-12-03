@@ -40,8 +40,15 @@ extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->model('empresa');
 		$this->load->model('estado');
-		
-		$descripcion = 'Datos de contacto<br/>
+		$arreglo = array('nombre','apellidoP','apellidoM','email','estadoRep','empresa','puesto','lada','telefono','extension','informacionExtra','categoria','nombreProyecto','descripcionUsuario');
+		foreach($arreglo as $row){
+			if(isset($data[$row])){}
+			else {
+				$data[$row] = 'Sin Informacion';
+			}
+		}
+		$descripcion = '
+		Datos de contacto<br/>
 				<br/>
 				Nombre: '.$data['nombre'].'<br/>
 				Apellido Paterno: '.$data['apellidoP'].'<br/>
@@ -59,11 +66,11 @@ extends CI_Controller {
 				
 				Datos del proyecto<br/>
 				<br/>
-				Categoría: '.$data['categoria'].'<br/>
+				Categoría:'.$data['categoria'].'<br/>
 				Subcategoría: '.$data['subCategoria'].'<br/>
 				<br/>
 				Nombre de proyecto: '.$data['nombreProyecto'].'<br/>
-				Desctipcion: '.$data['descripcionUsuario'];
+				Descripcion: '.$data['descripcionUsuario'];
 		
 		//Obtenemos el id del usuario Exterior
 		$idUsuarioExterior = $this->usuariomodel->getExterior();

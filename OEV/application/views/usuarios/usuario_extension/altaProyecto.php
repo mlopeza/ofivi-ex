@@ -1,5 +1,7 @@
 <div id="content" class="span9 section-body">
   <input type="hidden" value="" id="idProyecto" />
+  <link href="<?php echo base_url("css/popup-window.css");?> " rel="stylesheet">
+
   <?php echo form_open_multipart(); ?>
   <?php echo form_close(); ?> 
   <div id="section-body" class="tabbable">
@@ -287,6 +289,22 @@
     <textarea id="descripcionCliente" name="descripcionUsuario" class="textarea" placeholder="Descripci&oacute;n ..." style="width: 810px; height: 400px"></textarea>
     <div class="form-actions">
       <button class="btn btn-primary GuardarTodo" id="GuardarTodo" type="button">Guardar Proyecto</button>
+      <button class="btn btn-primary Ventana" id="ventana" type="button">Ventana</button>
+      <div   class="popup_window_css" id="sample">
+		<table class="popup_window_css">
+			<tr    class="popup_window_css">
+				<td    class="popup_window_css">
+					<div   class="popup_window_css_head"><img src="images/close.gif" alt="" width="9" height="9" />Informaci&oacute;n de proyecto </div>
+						<div   class="popup_window_css_body">
+                        	<div style="border: 1px solid #808080; padding: 6px; background: #FFFFFF;" id='texto'>
+						</div>
+                    </div>
+					<div   class="popup_window_css_foot"><img src="images/about.gif" alt="" width="6" height="6" />
+                    </div>
+               </td>
+           </tr>
+        </table>
+    </div>
     </div>
   </div>
   <div class="tab-pane" id="tab4">

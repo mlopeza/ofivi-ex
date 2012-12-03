@@ -35,6 +35,7 @@ extends CI_Controller {
 		$this->load->view('usuarios/usuario_extension/menu_extension');
     $this->load->view('usuarios/usuario_extension/altaProyecto',$query);
 		$this->load->view('usuarios/footer');
+		$this->load->view('usuarios/usuario_extension/Scripts/popup-window');
 		$this->load->view('usuarios/usuario_extension/Scripts/altaProyecto',$data);
 
     }
