@@ -15,7 +15,7 @@ if ( ! function_exists('enviaMail'))
         $o->load->library('email', $config);
         $o->email->set_newline("\r\n");
 
-        $o->email->from('ofivex@gmail.com', 'Oficina de Extensión Virtual');
+        $o->email->from('ofivex@gmail.com', 'Oficina de Extensión y Vinculación');
         $o->email->to($destinatario);
 
         $o->email->subject($asunto);
@@ -79,11 +79,11 @@ if ( ! function_exists('mensajeContrasena'))
     function mensajeContrasena($r,$password)
     {
         
-        $mensaje = " Hola <strong>".$r[0]->Nombre." ".$r[0]->ApellidoP."</strong> se te mando el correo con motivo de avisarte que la contraseña. Tu nueva contraseña será: <br/> <br/>";
+        $mensaje = " Hola <strong>".$r[0]->Nombre." ".$r[0]->ApellidoP."</strong> se te mando el correo con motivo de avisarte que la contraseña de tu cuenta ha sido cambiada.<br/> Tu nueva contraseña será: <br/> <br/>";
         
         //Crea lso recordatorios
         
-        $mensaje = $mensaje."<strong>Contraseña :</strong>".$password."\n";
+        $mensaje = $mensaje."<strong>Contraseña: </strong>".$password."\n";
         
         return $mensaje;
     }   

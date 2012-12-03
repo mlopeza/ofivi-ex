@@ -23,7 +23,7 @@ class AsignaLegal extends CI_Controller {
 		//Se cargan las Vistas
 		$this->load->view('usuarios/header',$vista);
 		$this->load->view('usuarios/usuario_extension/menu_extension');
-        $this->load->view('usuarios/usuario_extension/AsignaLegal',array('proyectos'=>$proyectos,'legal'=>$legal));
+        $this->load->view('usuarios/usuario_extension/asignaLegal',array('proyectos'=>$proyectos,'legal'=>$legal));
 		
 
 		$this->load->view('usuarios/footer');

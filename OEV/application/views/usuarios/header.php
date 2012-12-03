@@ -50,7 +50,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="index.html"><img src="<?php echo base_url("img/logo-small.png");?>" alt="logo" /></a>
+                    <a class="brand" href="#"><img src="<?php echo base_url("img/logo-small.png");?>" alt="logo" /></a>
                     <ul class="nav pull-left bar-root">
                         <li class="divider-vertical"></li>
 						<!--Cambio de Rol del Usuario-->
@@ -65,21 +65,6 @@
 									}
 								}
 								?>            
-                            </ul>
-                        </li>
-						<!--Los Proyectos actuales-->
-                        <li class="dropdown">
-                        <a style="text-align:center" href="#" data-toggle="dropdown" ><i class="icon-folder-open icon-white"></i><span class="label label-info">2</span><div>Proyectos</div></a> 
-                            <ul class="dropdown-menu">
-                                <li><a href="inbox.html"><img src="<?php echo base_url("img/small/thumb1.png");?>" alt="" /> Subject : Project <p class='help-block'><small>From: ab.alhyane@gmail.com</small></p><span class="label">23/09/2012</span></a></li>
-                                <li class="divider"></li>
-                                <li><a href="inbox.html"><img src="<?php echo base_url("img/small/thumb2.png");?>" alt="" /> Subject : Film <p class='help-block'><small>From: ab.alhyane@gmail.com</small></p><span class="label">21/04/2012</span> </a></li>
-                                <li class="divider"></li>
-                                <li><a href="inbox.html"><img src="<?php echo base_url("img/small/thumb3.png");?>" alt="" /> Subject : Meeting <p class='help-block'><small>From: ab.alhyane@gmail.com</small></p><span class="label">20/02/2012</span></a></li>
-                                <li class="divider"></li>
-                                <li><a href="inbox.html"><img src="<?php echo base_url("img/small/thumb4.png");?>" alt="" /> Subject : Tasks <p class='help-block'><small>From: ab.alhyane@gmail.com</small></p><span class="label">19/01/2012</span></a></li>
-                                <li class="divider"></li>
-                                <li class="active"><a href="inbox.html"> Show All </a></li>
                             </ul>
                         </li>
 						<!--Calendario de Usuario-->
@@ -103,13 +88,11 @@
                                         <div class="modal-body">
                                             <div class="row">
 												<!--Imagen del Usuario-->
-                                                <div class="span1"><img src="<?php echo base_url("img/avatar/photo.png");?>"
- alt="avatar" /></div>
                                                 <div class="span3 pull-right">
 													<!--Cuenta de Usuario-->
                                                     <h5><?php echo $this->session->userdata('email');?></h5>
 													<!--Acceder a la CUenta del Usuario-->
-                                                    <a href="#" class="link-modal" >Account</a>
+                                                    <a href="<?php echo base_url("/cambioContrasena/cambiarContrasenaUsuario");?>" class="link-modal" >Cambiar Contraseña</a>
                                                 </div>
                                             </div>
                                         </div>

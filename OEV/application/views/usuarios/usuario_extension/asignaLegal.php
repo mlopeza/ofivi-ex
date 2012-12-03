@@ -81,7 +81,7 @@
           </div>
         </div>
         <div class="row-fluid">
-          <div class="span12">
+          <div class="span8">
             <div id="accordion3" class="accordion">
               <div class="accordion-group">
                 <div class="accordion-heading">
@@ -94,12 +94,12 @@
                     <!--Elemento 3-->
                     <div class="row-fluid show-grid">
                       <!--Las Diferentes areas y los checkbox-->                                                            
-                      <div class="span8">
+                      <div class="span12">
                         <!--Grupos y Areas para las llamadas-->
                         <div id="accordion" class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons" role="tablist">
               
                       <!--Los Profesores que resultaron de los checkbox-->
-                      <div id="contenedor-profesores" class="span8">
+                      <div id="contenedor-profesores" class="span12">
                         <table class="table table-bordered table-striped">
                           <thead>
                             <tr>
@@ -123,16 +123,14 @@
                           
                           </thead>
                         </table>
+            <br/>
                       </div>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
-        </div>
-        <div class="row-fluid">
         </div>
       </div>
     </div>

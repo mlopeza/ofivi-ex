@@ -31,6 +31,13 @@ class Usuariomodel extends CI_Model {
         $query = $this->db->get('usuario');
         return $query->result();
     }
+
+    function getUsuariosAA(){
+    		$this->load->database();
+        $this->db->where(array('Usuario_Aceptado'=>'a','Usuario_Activo'=>1));
+        $query = $this->db->get('usuario');
+        return $query->result();
+    }
 	//Función para validar que el usuario puso correctamente su contraseña.
 	function validLogin(){
 		$this->load->database();
