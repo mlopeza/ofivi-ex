@@ -134,8 +134,10 @@
 			
 		//Consulta AJAX de Clientes
 	    $("#demo-input-local").tokenInput(getContactos);
-		$(".ventana").click(function(){												
-					$(".texto").html("").html($($('iframe')[0]).contents().find('.wysihtml5-editor').html());
+		$("#ventana").live("click",function(){							
+		console.log(($('iframe')[0]));		
+					$("#texto").empty();			
+					$("#texto").append($($('iframe')[0]).contents().find('.wysihtml5-editor').html());
 					popup_window_show('#sample', { pos : 'window-center',       width : '500px' });
 		});
 		//Envia todo al servidor para guardarse
