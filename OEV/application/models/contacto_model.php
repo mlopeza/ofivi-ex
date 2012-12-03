@@ -96,6 +96,7 @@ class contacto_model extends CI_Model {
 	}
 
 
+  /*Regresa toda la informacion de los contactos junto sus telefonos*/
 	function getContactosDeEmpresaCompletos($idEmpresa){
 		$this->load->database();
 		$this->db->select("c.Departamento,c.Puesto,c.idContacto,c.Nombre,c.apellidoP,c.apellidoM,c.email,c.Recibe_Correos");
@@ -133,7 +134,7 @@ class contacto_model extends CI_Model {
 
     }
 
-    /*Inserta Nuevos Contactos*/
+    /*Inserta Nuevos Contactos, junto con sus telefonos*/
     function createContactos($idEmpresa,$contactos){
         $this->load->database();
         foreach($contactos as $contacto){
@@ -151,6 +152,7 @@ class contacto_model extends CI_Model {
 
     }
 
+    /*Inserta los telefonso de un contacto en la base de datos*/
     function updateInsertTelefonos($telefonos,$idContacto){
         $this->load->database();
         foreach($telefonos as $telefono){
@@ -192,14 +194,19 @@ class contacto_model extends CI_Model {
         return $query->result();
     }
 
+    /*Elimina una relacion enter un proyecto y un contacto*/
     function eliminaRelacion($idProyecto,$idContacto){
         $this->load->database();
         $this->db->delete('Contacto_Proyecto', array('idProyecto' => $idProyecto,'idContacto'=>$idContacto));
    }
+
+    /*Crea una relacion entre un contacto y un proyecto*/
     function creaRelacion($idProyecto,$idContacto){
         $this->load->database();
         $this->db->insert('Contacto_Proyecto', array('idProyecto' => $idProyecto,'idContacto'=>$idContacto));
    }
+
+  /*Regresa toda la informacion de un contacto*/
 	function regresaInformacion($idContacto){
 		$this->load->database();
 		$query=$this->db->query("
@@ -210,6 +217,8 @@ class contacto_model extends CI_Model {
 				u.idContacto = ".$idContacto)->result();
 		return $query;
 	}
+
+  /*Regresa los telefonos de un contacto*/
 	function regresaTelefono($idContacto){
 		$this->load->database();
 		$query=$this->db->query("Select CONCAT('(',lada,')',telefono) as telefono, extension, descripcion, descripcionExtra as subextension
@@ -218,6 +227,7 @@ class contacto_model extends CI_Model {
 		return $query;
 	}
 
+  /*Agrega un contacto  a la base de datos, o si tiene un id lo actualiza*/
 	function agregaContacto($data){
 		$this->load->database();
     $this->db->trans_start();
