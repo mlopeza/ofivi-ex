@@ -20,6 +20,11 @@ extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->helper('security');		
 		$this->load->library('session');
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		//Se carga el Modelo de Grupos
 		$this->load->model('grupo');
 		$this->load->model('supracategoria');
@@ -57,6 +62,11 @@ extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->helper('security');		
 		$this->load->library('session');
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		//Se carga el Modelo de Grupos
 		$this->load->model('grupo');
 		$this->load->model('proyecto');
@@ -96,6 +106,11 @@ extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->helper('security');		
 		$this->load->library('session');
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		//Cargar la sesion		
 		$datos_usuario=$this->session->all_userdata();
 		$vista = array('vista'=>$datos_usuario['vista']);

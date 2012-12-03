@@ -12,6 +12,11 @@ extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->helper('security');		
 		$this->load->library('session');
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		//Se carga el Modelo de Proyecto
 		$this->load->model('proyecto');
 		//Cargar la sesion y se obtiene el id del usuario
@@ -35,7 +40,11 @@ extends CI_Controller {
 		$this->load->model('proyecto');
 		$this->load->helper('url');
 		$this->load->library('session');
-
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		//Cargar la sesion y se obtiene el id del usuario
 		$datos_usuario=$this->session->all_userdata();
 		$vista = array('vista'=>$datos_usuario['vista']);

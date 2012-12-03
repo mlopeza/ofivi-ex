@@ -7,6 +7,11 @@ class BajaContacto extends CI_Controller {
 	{
 		$this->load->helper('url');
 		$this->load->library('session');
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		$this->load->model('grupo');
 		$this->load->model('empresa');
 		$this->load->model('contacto_model');

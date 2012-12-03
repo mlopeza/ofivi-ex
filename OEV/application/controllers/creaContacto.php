@@ -18,6 +18,11 @@ extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->helper('security');		
 		$this->load->library('session');
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		//Se carga el Modelo de Grupos
 		$this->load->model('grupo');
 		//Cargar la sesion		

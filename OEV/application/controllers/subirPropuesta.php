@@ -12,6 +12,11 @@ extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->helper('security');		
 		$this->load->library('session');
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		//Se carga el Modelo de Proyecto
 		$this->load->model('proyecto');
 		$this->load->model('usuariomodel');

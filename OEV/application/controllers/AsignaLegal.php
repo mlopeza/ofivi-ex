@@ -13,6 +13,11 @@ class AsignaLegal extends CI_Controller {
 		$this->load->helper('security');		
 
 		$this->load->library('session');
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		//Cargar la sesion		
 		$datos_usuario=$this->session->all_userdata();
 		$vista = array('vista'=>$datos_usuario['vista']);

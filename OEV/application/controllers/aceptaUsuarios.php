@@ -3,12 +3,20 @@ class AceptaUsuarios extends CI_Controller {
 
 	public function index()
 	{
+    
 		$this->load->helper('url');
 		$this->load->helper('administrador');
 		$this->load->model('usuariomodel');
-        $this->load->helper('form');
+    $this->load->helper('form');
 		$this->load->helper('security');		
 		$this->load->library('session');
+
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
+
 		//Toma las variables de la session
 		$vista= array('vista'=>$this->session->userdata('vista'));
 		$query['data']=$this->usuariomodel->getUsuariosPendientes();

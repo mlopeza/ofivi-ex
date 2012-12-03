@@ -12,6 +12,11 @@ extends CI_Controller {
 		$this->load->helper('security');		
 		$this->load->library('session');
 		//Cargar la sesion		
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		$datos_usuario=$this->session->all_userdata();
 		$vista = array('vista'=>$datos_usuario['vista']);
 //		echo json_encode($datos_usuario);
@@ -32,6 +37,11 @@ extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->helper('security');		
 		$this->load->library('session');		
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		$datos_usuario=$this->session->all_userdata();
 		$this->usuariomodel->deleteEspecialidad($this->usuariomodel->obtenId($datos_usuario['username']));
 		foreach ($this->input->post("especialidad") as $especialidad){

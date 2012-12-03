@@ -66,6 +66,11 @@ class Logincontroller extends CI_Controller {
 		$datos_usuario=$this->session->all_userdata();
 		$vista = array('vista'=>$datos_usuario['vista']);
 		$this->load->view('usuarios/header',$vista);					
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		if($nombre == 'Usuario'){
 			$this->load->view('usuarios/usuario_extension/menu_extension',$vistas);			
 		}

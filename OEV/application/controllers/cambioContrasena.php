@@ -10,7 +10,11 @@ class CambioContrasena extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->helper('security');		
 		$this->load->library('session');
-
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
     //Trae todos los usuarios
 		$usuarios = $this->usuariomodel->getUsuariosAA();
 		$resultado = array('usuarios'=>$usuarios);
@@ -29,7 +33,11 @@ class CambioContrasena extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->helper('security');		
 		$this->load->library('session');
-
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		$datos_usuario=$this->session->all_userdata();
 		$vista = array('vista'=>$datos_usuario['vista']);
 		$this->load->view('usuarios/header',$vista);
@@ -47,7 +55,11 @@ class CambioContrasena extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->form_validation->set_rules('password', 'Password', 'required|matches[password_conf]');
 		$this->form_validation->set_rules('password_conf', 'Password Confirmation', 'required');
-
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 
     //Vistas
 		$datos_usuario=$this->session->all_userdata();
@@ -77,6 +89,11 @@ class CambioContrasena extends CI_Controller {
 		$this->load->model('usuariomodel');
 		$this->load->helper('security');		
 		$this->load->library('session');
+    if($this->session->userdata('vista')){
+    
+    }else{
+      redirect('/logincontroller', 'location');
+    }
 		$this->load->library('form_validation');
 		$this->load->model('usuariomodel');
 
