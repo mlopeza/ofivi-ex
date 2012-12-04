@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
 <head profile="http://gmpg.org/xfn/11">
 <title>Educational Theory | 3 Columns</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta http-equiv="imagetoolbar" content="no" />
 <link rel="stylesheet" href="styles/layout.css" type="text/css" />
 
@@ -135,27 +135,27 @@
 					  <option value="Colima">Colima</option>
 					  <option value="Distrito Federal">Distrito Federal</option>
 					  <option value="Durango">Durango</option>
-					  <option value="Estado de M&ecute;xico">Estado de México</option>
+					  <option value="Estado de México">Estado de México</option>
 					  <option value="Guanajuato">Guanajuato</option>
 					  <option value="Guerrero">Guerrero</option>
 					  <option value="Hidalgo">Hidalgo</option>
 					  <option value="Jalisco">Jalisco</option>
-					  <option value="Michoac&acute;n">Michoacán</option>
+					  <option value="Michoacán">Michoacán</option>
 					  <option value="Morelos">Morelos</option>
 					  <option value="Nayarit">Nayarit</option>
-					  <option value="Nuevo Le&ocute;n">Nuevo León</option>
+					  <option value="Nuevo León">Nuevo León</option>
 					  <option value="Oaxaca">Oaxaca</option>
 					  <option value="Puebla">Puebla</option>
-					  <option value="Quer&ecute;taro">Querétaro</option>
+					  <option value="Querétaro">Querétaro</option>
 					  <option value="Quintana Roo">Quintana Roo</option>
-					  <option value="San Luis Potos&icute;">San Luis Potosí</option>
+					  <option value="San Luis Potosí">San Luis Potosí</option>
 					  <option value="Sinaloa">Sinaloa</option>
 					  <option value="Sonora">Sonora</option>
 					  <option value="Tabasco">Tabasco</option>
 					  <option value="Tamaulipas">Tamaulipas</option>
 					  <option value="Tlaxcala">Tlaxcala</option>
 					  <option value="Veracruz">Veracruz</option>
-					  <option value="Yucat&acute;n">Yucatán</option>
+					  <option value="Yucatán">Yucatán</option>
 					  <option value="Zacatecas">Zacatecas</option>
 				  </select>
 				 <br>
