@@ -111,7 +111,7 @@ class proyectoExterno extends CI_Controller
         $this->estado->setIdUsuario($idUsuarioExterior);
         $this->estado->setEstado('Entrada de proyecto externo');
         $this->estado->insert();
-	header('Location: /OVE/contacto.php');
+	header('Location: /CLIENTE_OVE/contacto.php');
     }
     
     
