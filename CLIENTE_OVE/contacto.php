@@ -135,27 +135,27 @@
 					  <option value="Colima">Colima</option>
 					  <option value="Distrito Federal">Distrito Federal</option>
 					  <option value="Durango">Durango</option>
-					  <option value="Estado de M&ecute;xico">Estado de M&ecute;xico</option>
+					  <option value="Estado de M&ecute;xico">Estado de México</option>
 					  <option value="Guanajuato">Guanajuato</option>
 					  <option value="Guerrero">Guerrero</option>
 					  <option value="Hidalgo">Hidalgo</option>
 					  <option value="Jalisco">Jalisco</option>
-					  <option value="Michoac&acute;n">Michoac&acute;n</option>
+					  <option value="Michoac&acute;n">Michoacán</option>
 					  <option value="Morelos">Morelos</option>
 					  <option value="Nayarit">Nayarit</option>
-					  <option value="Nuevo Le&ocute;n">Nuevo Le&ocute;n</option>
+					  <option value="Nuevo Le&ocute;n">Nuevo León</option>
 					  <option value="Oaxaca">Oaxaca</option>
 					  <option value="Puebla">Puebla</option>
-					  <option value="Quer&ecute;taro">Quer&ecute;taro</option>
+					  <option value="Quer&ecute;taro">Querétaro</option>
 					  <option value="Quintana Roo">Quintana Roo</option>
-					  <option value="San Luis Potos&icute;">San Luis Potos&icute;</option>
+					  <option value="San Luis Potos&icute;">San Luis Potosí</option>
 					  <option value="Sinaloa">Sinaloa</option>
 					  <option value="Sonora">Sonora</option>
 					  <option value="Tabasco">Tabasco</option>
 					  <option value="Tamaulipas">Tamaulipas</option>
 					  <option value="Tlaxcala">Tlaxcala</option>
 					  <option value="Veracruz">Veracruz</option>
-					  <option value="Yucat&acute;n">Yucat&acute;n</option>
+					  <option value="Yucat&acute;n">Yucatán</option>
 					  <option value="Zacatecas">Zacatecas</option>
 				  </select>
 				 <br>
