@@ -114,7 +114,7 @@
                       <thead>
                         <tr>
                           <td>Nombre</td>
-                          <td>Ubucación</td>
+                          <td>Ubicación</td>
                           <td>Acción</td>
                         </tr>
                       </thead>
@@ -182,7 +182,7 @@
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse" href="#control" data-original-title="">
-                  <i class="icon-list-alt icon-white"></i> <span class="divider-vertical"></span> Escuelas Actuales <i class="icon-chevron-down icon-white pull-right"></i>
+                  <i class="icon-list-alt icon-white"></i> <span class="divider-vertical"></span> Departamentos Actuales <i class="icon-chevron-down icon-white pull-right"></i>
                   </a>
                 </div>
                 <div id="control" class="accordion-body in collapse" style="height: auto; ">
@@ -211,7 +211,7 @@
                       <thead>
                         <tr>
                           <td>Nombre</td>
-                          <td>Ubucación</td>
+                          <td>Ubicación</td>
                           <td>Acción</td>
                         </tr>
                       </thead>
@@ -236,7 +236,7 @@
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse" href="#control" data-original-title="">
-                  <i class="icon-list-alt icon-white"></i> <span class="divider-vertical"></span> Escuela <i class="icon-chevron-down icon-white pull-right"></i>
+                  <i class="icon-list-alt icon-white"></i> <span class="divider-vertical"></span> Departamento <i class="icon-chevron-down icon-white pull-right"></i>
                   </a>
                 </div>
                 <div id="control" class="accordion-body in collapse" style="height: auto; ">

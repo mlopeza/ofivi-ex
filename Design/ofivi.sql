@@ -609,23 +609,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SEVI`;
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (1, 1, 'elda_quiroga', 'Elda', 'Quiroga', '', 'equiroga@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'p', 1, 0, 0, 0, 0, 0, 1, 'e');
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (2, 1, 'L00203456', 'Juan Arturo', 'Nolazco', 'Flores', 'jnolazco@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'p', 1, 1, 0, 0, 0, 0, 1, 'e');
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (3, 1, 'L00202020', 'Luis Humberto', 'Gonzalez', 'Guerra', 'lherrera@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'p', 1, 0, 0, 1, 1, 0, 1, 'a');
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (4, 1, 'jorge_limon', 'Jorge', 'Limon', '', 'jlimon@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'v', 1, 1, 1, 1, 1, 1, 1, 'a');
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (5, 1, 'evesdrop_fake_hack_hack', 'Eve', 'Fake', '', 'efake@itesm.mx', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'a', 0, 0, 0, 0, 0, 0, 0, 'r');
-INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (6, 1, 'L00902890', 'Jenny', 'V', '', 'No mail', 'ce8a7bda5bb05a8e0bf1b7166335cad2a9ed79504ac5ec694c2c0286efa94d1913963130a1af41e6bffbf9c2c5036439985cdf67cc1ac6ee00a3faba3065ee58', 'a', 1, 1, 1, 1, 0, 0, 1, 'a');
+INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (4, 1, 'admin', 'Admin', '', '', 'ofivex@gmail.com', '5b722b307fce6c944905d132691d5e4a2214b7fe92b738920eb3fce3a90420a19511c3010a0e7712b054daef5b57bad59ecbd93b3280f210578f547f4aed4d25', 'v', 1, 1, 1, 1, 1, 1, 1, 'a');
 INSERT INTO `SEVI`.`Usuario` (`idUsuario`, `idDepartamento`, `Username`, `Nombre`, `ApellidoP`, `ApellidoM`, `email`, `password`, `Tipo_Usuario`, `Vista_Profesor`, `Vista_Administrador`, `Vista_Supervisor_Extension`, `Vista_Usuario_Extension`, `Vista_Legal`, `Vista_Cliente`, `Usuario_Activo`, `Usuario_Aceptado`) VALUES (1000, 1000, 'no_user', 'Cliente Externo', '', '', 'noemail@gmail.com', 'no_password', 'o', 0, 0, 0, 0, 0, 0, 0, '0');
-
-COMMIT;
-
--- -----------------------------------------------------
--- Data for table `SEVI`.`Usuario_Telefono`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `SEVI`;
-INSERT INTO `SEVI`.`Usuario_Telefono` (`idTelefono`, `idUsuario`, `lada`, `telefono`, `extension`, `descripcion`, `descripcionExtra`) VALUES (1, 4, '899', '9290171', '202', 'Ninguna', 'Nada');
-INSERT INTO `SEVI`.`Usuario_Telefono` (`idTelefono`, `idUsuario`, `lada`, `telefono`, `extension`, `descripcion`, `descripcionExtra`) VALUES (2, 4, '899', '9290171', '203', 'Ninguna 2', 'Nada 2');
 
 COMMIT;
 
@@ -634,7 +619,6 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SEVI`;
-INSERT INTO `SEVI`.`Grupo` (`idGrupo`, `nombre`, `activo`) VALUES (1, 'OXXO', 1);
 INSERT INTO `SEVI`.`Grupo` (`idGrupo`, `nombre`, `activo`) VALUES (1000, 'N/A', 1);
 
 COMMIT;
@@ -644,45 +628,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `SEVI`;
-INSERT INTO `SEVI`.`Empresa` (`idEmpresa`, `idGrupo`, `nombre`, `activo`) VALUES (1, 1, 'Empresa 1', 1);
 INSERT INTO `SEVI`.`Empresa` (`idEmpresa`, `idGrupo`, `nombre`, `activo`) VALUES (1000, 1000, 'N/A', 1);
-
-COMMIT;
-
--- -----------------------------------------------------
--- Data for table `SEVI`.`Grupo_Area`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `SEVI`;
-INSERT INTO `SEVI`.`Grupo_Area` (`idGrupo_Area`, `nombre`) VALUES (1, 'Tecnologias de la Infromación y la comunicación');
-INSERT INTO `SEVI`.`Grupo_Area` (`idGrupo_Area`, `nombre`) VALUES (2, 'Medicina');
-
-COMMIT;
-
--- -----------------------------------------------------
--- Data for table `SEVI`.`Area_Conocimiento`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `SEVI`;
-INSERT INTO `SEVI`.`Area_Conocimiento` (`idArea_Conocimiento`, `idGrupo_Area`, `area`) VALUES (1, 1, 'Redes');
-INSERT INTO `SEVI`.`Area_Conocimiento` (`idArea_Conocimiento`, `idGrupo_Area`, `area`) VALUES (2, 1, 'Sistemas Operativos');
-INSERT INTO `SEVI`.`Area_Conocimiento` (`idArea_Conocimiento`, `idGrupo_Area`, `area`) VALUES (3, 1, 'Sistemas Embebidos');
-INSERT INTO `SEVI`.`Area_Conocimiento` (`idArea_Conocimiento`, `idGrupo_Area`, `area`) VALUES (4, 2, 'Medicina General');
-INSERT INTO `SEVI`.`Area_Conocimiento` (`idArea_Conocimiento`, `idGrupo_Area`, `area`) VALUES (5, 2, 'Gastro Enterologia');
-
-COMMIT;
-
--- -----------------------------------------------------
--- Data for table `SEVI`.`Usuario_Area`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `SEVI`;
-INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (1, 1);
-INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (1, 2);
-INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (1, 3);
-INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (2, 1);
-INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (2, 3);
-INSERT INTO `SEVI`.`Usuario_Area` (`idArea_Conocimiento`, `idUsuario`) VALUES (4, 1);
 
 COMMIT;
 

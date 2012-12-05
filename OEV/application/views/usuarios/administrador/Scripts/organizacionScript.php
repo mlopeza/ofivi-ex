@@ -128,7 +128,7 @@
             return;
         }
 
-        if(data.idCampus = "" || data.idCampus == undefined){
+        if(data.idCampus == "" || data.idCampus == undefined){
             noty({text: "No se ha escogido un Campus.", type: 'error'});
             return;
         }

@@ -77,12 +77,12 @@ class proyectoExterno extends CI_Controller
 				Apellido Materno: " . $data["apellidoM"] . "<br/>
 				Email: " . $data["email"] . "<br/>
 				<br/>
-				Estado de la republica: " . $data["estadoRep"] . "<br/>
+				Estado de la rep&uacute;blica: " . $data["estadoRep"] . "<br/>
 				Empresa: " . $data["empresa"] . "<br/>
 				Puesto: " . $data["puesto"] . "<br/>
 				<br/>
 				Lada: " . $data["lada"] . "<br/>
-				Telefono: " . $data["telefono"] . "<br/>
+				Tel&eacute;fono: " . $data["telefono"] . "<br/>
 				Extensi&oacute;n: " . $data["extension"] . "<br/>
 				Sub Extensi&oacute;n: " . $data["informacionExtra"] . "<br/>
 				
@@ -92,7 +92,7 @@ class proyectoExterno extends CI_Controller
 				Subcategor&iacute;a: " . $data["subCategoria"] . "<br/>
 				<br/>
 				Nombre de proyecto: " . $data["nombreProyecto"] . "<br/>
-				Descripcion: " . $data["descripcionUsuario"];
+				Descripci&oacute;n: " . $data["descripcionUsuario"];
         
         //Obtenemos el id del usuario Exterior
         $idUsuarioExterior = $this->usuariomodel->getExterior();
@@ -111,7 +111,16 @@ class proyectoExterno extends CI_Controller
         $this->estado->setIdUsuario($idUsuarioExterior);
         $this->estado->setEstado('Entrada de proyecto externo');
         $this->estado->insert();
-	header('Location: /CLIENTE_OVE/contacto.php');
+        //Regresa los correos del usuario de extension
+        $emails=$this->usuariomodel->getCorreosUE();
+        if($emails != NULL || !$emails != ""){
+          $this->load->helper('mail');
+          $mensaje = $this->load->view('mensajes/mensajePexterno', array(
+            'mensaje'=>$descripcion
+          ), true);
+          enviaMail($this, $emails, "Nuevo Proyecto Externo en OFIVEX",$mensaje);        
+        }
+      	header('Location: /CLIENTE_OVE/contacto.php');
     }
     
     

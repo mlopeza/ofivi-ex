@@ -653,6 +653,15 @@ class Usuariomodel extends CI_Model
         $this->db->update('usuario', $array);
         
     }
+
+    function getCorreosUE()
+    {
+      $this->load->database();
+      $this->db->select("GROUP_CONCAT( distinct email SEPARATOR ',') as lista",FALSE);
+      $this->db->where('Vista_Usuario_Extension',1);
+      $emails=$this->db->get('Usuario')->result();
+      return $emails[0]->lista;
+    }
 }
 ?>
 

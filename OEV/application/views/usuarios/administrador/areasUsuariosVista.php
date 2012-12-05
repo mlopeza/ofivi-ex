@@ -88,7 +88,7 @@
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a href="#event10" data-toggle="collapse" class="accordion-toggle" data-original-title="">
-                  <i class="icon-th-large icon-white"></i> <span class="divider-vertical"></span>Subcategoría <span id="ete"></span> <i class="icon-chevron-down icon-white pull-right"></i>
+                  <i class="icon-th-large icon-white"></i> <span class="divider-vertical"></span>Especialidad <span id="ete"></span> <i class="icon-chevron-down icon-white pull-right"></i>
                   </a>
                 </div>
                 <div class="accordion-body in collapse" id="event10" style="height: auto;">
